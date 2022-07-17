@@ -26,7 +26,7 @@ export class AuthService {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     });
-    // const body = `username=${user.username}&password=${user.password}`;
+
     const body = {
       'email': user.email,
       'password': user.password
