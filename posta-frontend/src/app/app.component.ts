@@ -1,3 +1,4 @@
+import { AuthService } from './service/auth.service';
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Auth } from './model/auth';
@@ -10,7 +11,8 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'posta-frontend';
-  constructor(private _http:HttpClient) { }
+  constructor(private _http:HttpClient,
+    private authService: AuthService) { }
 
 
   login(){
@@ -24,9 +26,19 @@ export class AppComponent {
       "password": "kris"
     }
     console.log(dto)
-    this._http.post<Auth>(`http://localhost:8080/api/auth/login`, JSON.stringify(dto)).subscribe(data=>{
+    // this._http.post<Auth>(`http://localhost:8080/api/auth/login`, JSON.stringify(dto)).subscribe(data=>{
+    //   console.log(data)
+    // })
+
+    this.authService.login(dto)
+    .subscribe(data => {
       console.log(data)
-    })
+         
+      },
+      error => {
+        // this.submitted = false;
+        // this.notification = {msgType: 'error', msgBody: 'Incorrect username/password or account is not verified.'};
+      });
 
   }
 }

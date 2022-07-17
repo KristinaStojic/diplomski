@@ -18,66 +18,66 @@ export enum RequestMethod {
 })
 export class ApiService {
 
-  headers = new HttpHeaders({
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  });
+  // headers = new HttpHeaders({
+  //   'Accept': 'application/json',
+  //   'Content-Type': 'application/json'
+  // });
 
-  constructor(private http: HttpClient) { }
+  // constructor(private http: HttpClient) { }
 
-  get(path: string, args?: any): Observable<any> {
-    const options = {
-      headers: this.headers,
-    };
+  // get(path: string, args?: any): Observable<any> {
+  //   const options = {
+  //     headers: this.headers,
+  //   };
 
-    if (args) {
-      options['params'] = this.serialize(args);
-    }
+  //   if (args) {
+  //     options['params'] = this.serialize(args);
+  //   }
 
-    return this.http.get(path, options)
-      .pipe(catchError(this.checkError.bind(this)));
-  }
+  //   return this.http.get(path, options)
+  //     .pipe(catchError(this.checkError.bind(this)));
+  // }
 
-  post(path: string, body: any, customHeaders?: HttpHeaders): Observable<any> {
-    return this.request(path, body, RequestMethod.Post, customHeaders);
-  }
+  // post(path: string, body: any, customHeaders?: HttpHeaders): Observable<any> {
+  //   return this.request(path, body, RequestMethod.Post, customHeaders);
+  // }
 
-  put(path: string, body: any): Observable<any> {
-    return this.request(path, body, RequestMethod.Put);
-  }
+  // put(path: string, body: any): Observable<any> {
+  //   return this.request(path, body, RequestMethod.Put);
+  // }
 
-  delete(path: string, body?: any): Observable<any> {
-    return this.request(path, body, RequestMethod.Delete);
-  }
+  // delete(path: string, body?: any): Observable<any> {
+  //   return this.request(path, body, RequestMethod.Delete);
+  // }
 
-  private request(path: string, body: any, method = RequestMethod.Post, custemHeaders?: HttpHeaders): Observable<any> {
-    const req = new HttpRequest(method, path, body, {
-      headers: custemHeaders || this.headers,
-    });
+  // private request(path: string, body: any, method = RequestMethod.Post, custemHeaders?: HttpHeaders): Observable<any> {
+  //   const req = new HttpRequest(method, path, body, {
+  //     headers: custemHeaders || this.headers,
+  //   });
 
-    return this.http.request(req).pipe(filter(response => response instanceof HttpResponse))
-      .pipe(map((response: HttpResponse<any>) => response.body))
-      .pipe(catchError(error => this.checkError(error)));
-  }
+  //   return this.http.request(req).pipe(filter(response => response instanceof HttpResponse))
+  //     .pipe(map((response: HttpResponse<any>) => response.body))
+  //     .pipe(catchError(error => this.checkError(error)));
+  // }
 
-  private checkError(error: any): any {
-    throw error;
-  }
+  // private checkError(error: any): any {
+  //   throw error;
+  // }
 
-  private serialize(obj: any): HttpParams {
-    let params = new HttpParams();
+  // private serialize(obj: any): HttpParams {
+  //   let params = new HttpParams();
   
-    for (const key in obj) {
-      if (obj.hasOwnProperty(key) && !this.looseInvalid(obj[key])) {
-        params = params.set(key, obj[key]);
-      }
-    }
+  //   for (const key in obj) {
+  //     if (obj.hasOwnProperty(key) && !this.looseInvalid(obj[key])) {
+  //       params = params.set(key, obj[key]);
+  //     }
+  //   }
   
-    return params;
-  }
+  //   return params;
+  // }
 
-  private looseInvalid(a: string | number): boolean {
-    return a === '' || a === null || a === undefined;
-  }
+  // private looseInvalid(a: string | number): boolean {
+  //   return a === '' || a === null || a === undefined;
+  // }
 
 }
