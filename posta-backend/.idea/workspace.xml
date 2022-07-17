@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6af5fa15-64bf-4b02-81db-a7dc119ce67e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Posta/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/java/com/example/posta/PostaApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/java/com/example/posta/controller/AuthentificationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/java/com/example/posta/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/java/com/example/posta/dto/JwtAuthenticationRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/java/com/example/posta/dto/UserTokenState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/java/com/example/posta/exception/ResourceConflictException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/java/com/example/posta/model/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/java/com/example/posta/model/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/java/com/example/posta/repository/RoleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/java/com/example/posta/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/java/com/example/posta/security/auth/RestAuthenticationEntryPoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/java/com/example/posta/security/auth/TokenAuthenticationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/java/com/example/posta/security/auth/TokenBasedAuthentication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/java/com/example/posta/security/config/CustomPasswordEncoder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/java/com/example/posta/security/config/WebConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/java/com/example/posta/security/config/WebSecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/java/com/example/posta/security/util/TokenUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/java/com/example/posta/service/CustomUserDetailsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/java/com/example/posta/service/RoleService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/java/com/example/posta/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/resources/Images/cottage1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/resources/Images/cottage2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/resources/Images/cottage3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/main/resources/data-postgres.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/test/java/com/example/posta/WishAndFishApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/src/test/java/com/example/posta/util/TestUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Posta/system.properties" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2C59jcGhXzqZgnl4eInV9Mp55Fp" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Posta" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6af5fa15-64bf-4b02-81db-a7dc119ce67e" name="Changes" comment="" />
+      <created>1658081715204</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1658081715204</updated>
+    </task>
+    <servers />
+  </component>
+</project>
