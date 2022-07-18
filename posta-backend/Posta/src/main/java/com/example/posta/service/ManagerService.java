@@ -30,7 +30,7 @@ public class ManagerService {
         m.setEmail(dto.getEmail());
         m.setPhoneNumber(dto.getPhoneNumber());
         m.setPassword(dto.getPhoneNumber());
-        Role role = this.roleRepository.findByName(dto.getRole());
+        Role role = this.roleRepository.findByName("ROLE_MANAGER");
         m.setRole(role);
 
         return this.managerRepository.save(m);

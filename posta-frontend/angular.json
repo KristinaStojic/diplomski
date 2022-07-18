@@ -33,7 +33,6 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss",
-              "src/assets/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css"
 
             ],
             "scripts": [

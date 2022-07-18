@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ManagerDTO {
+    private Long id;
     private String name;
     private String surname;
     private String email;
@@ -18,6 +19,7 @@ public class ManagerDTO {
     private String phoneNumber;
 
     public ManagerDTO(Manager m){
+        this.id = m.getId();
         this.name = m.getName();
         this.surname = m.getSurname();
         this.email = m.getEmail();

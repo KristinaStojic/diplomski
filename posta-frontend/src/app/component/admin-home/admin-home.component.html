@@ -1,1 +1,73 @@
-<p>admin-home works!</p>
+
+
+<div class="borders">
+
+    <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#addManager">Додај управника</button>
+    </div>
+
+    <table class="shadow p-3 mb-5 bg-white rounded table" style="width:100%">
+        <thead>
+          <tr>
+            <th scope="col" style="width:8%">#</th>
+            <th scope="col" style="width:17.5%">Име</th>
+            <th scope="col"  style="width:17.5%">Презиме</th>
+            <th scope="col" style="width:17.5%">Емаил</th>
+            <th scope="col" style="width:17.5%">Телефон</th>
+            <th scope="col" style="width:8%"></th>
+            <th scope="col" style="width:8%"></th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let m of managers">
+            <th scope="row">1</th>
+            <td>{{m.name}}</td>
+            <td>{{m.surname}}</td>
+            <td>{{m.email}}</td>
+            <td>{{m.phoneNumber}}</td>
+            <td><button class="btn btn-primary">Измени</button></td>
+            <td><button class="btn btn-primary">Избриши</button></td>
+
+          </tr>
+
+        </tbody>
+      </table>
+</div>
+
+
+
+
+  <!-- Modal for adding new manager -->
+  <div class="modal fade" id="addManager" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Додај новог управника</h5>
+        </div>
+        
+        <div  class="container"  style="margin: 5% 5% 5% 5%;">
+
+            
+            <mat-form-field>
+                <input matInput required placeholder="Име"  [(ngModel)]="manager.name">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <input matInput required placeholder="Презиме" [(ngModel)]="manager.surname" >
+            </mat-form-field><br>
+            <mat-form-field>
+                <input matInput required placeholder="Телефон" [(ngModel)]="manager.phoneNumber">
+            </mat-form-field><br>
+            <mat-form-field>
+                <input matInput required placeholder="Емаил" [(ngModel)]="manager.email">
+            </mat-form-field>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" [disabled]="this.manager.name == '' || this.manager.surname == '' || this.manager.email == '' || this.manager.phoneNumber == ''" class="btn btn-primary"  data-dismiss="modal" (click)="addManager()">Save changes</button>
+        </div>
+    </div>
+    </div>
+</div>
