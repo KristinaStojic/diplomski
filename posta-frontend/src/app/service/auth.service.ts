@@ -11,7 +11,7 @@ import { Auth } from '../model/auth';
 })
 export class AuthService {
 
-  private auth_url = 'http://localhost:8080/api/auth';
+  private auth_url = 'https://localhost:8080/api/auth';
 
 
   constructor(
