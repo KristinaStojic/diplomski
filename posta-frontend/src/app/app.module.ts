@@ -9,12 +9,16 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {AngularMaterialModule} from './angular-material/angular-material.module'; 
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminHomeComponent } from './component/admin-home/admin-home.component';
+import { HeaderComponent } from './component/header/header.component';
+import { SidebarComponent } from './component/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    HeaderComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
