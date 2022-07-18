@@ -36,6 +36,15 @@ public class ManagerService {
         return this.managerRepository.save(m);
     }
 
+    public Manager editManager(AddManagerDTO dto){
+        Manager m = this.managerRepository.findById(dto.getId()).orElseGet(null);
+        m.setName(dto.getName());
+        m.setSurname(dto.getSurname());
+        m.setEmail(dto.getEmail());
+        m.setPhoneNumber(dto.getPhoneNumber());
+        return this.managerRepository.save(m);
+    }
+
     public List<ManagerDTO> getAllManagers(){
         List<ManagerDTO> ret = new ArrayList<>();
 
@@ -44,5 +53,13 @@ public class ManagerService {
             ret.add(manager);
         }
         return ret;
+    }
+
+    public Manager deleteManager(Long id){
+        Manager m = this.managerRepository.findById(id).orElseGet(null);
+        m.setDeleted(true);
+        this.managerRepository.save(m);
+
+        return m;
     }
 }

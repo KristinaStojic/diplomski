@@ -9,6 +9,7 @@ import javax.persistence.Column;
 @Setter
 public class AddManagerDTO {
 
+    private Long id;
     private String name;
     private String surname;
     private String email;

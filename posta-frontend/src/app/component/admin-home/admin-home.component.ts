@@ -16,7 +16,14 @@ export class AdminHomeComponent implements OnInit {
     "surname": "",
     "phoneNumber": "",
     "email": ""
+  }
 
+  selectedManager= {
+    "name": "",
+    "surname": "",
+    "phoneNumber": "",
+    "email": "",
+    "id": ""
   }
   constructor(private managerService: ManagerService) { }
 
@@ -38,6 +45,22 @@ export class AdminHomeComponent implements OnInit {
       (error) => {
         alert("greska")
       },
+    )
+  }
+
+  selectManager(manager){
+    this.selectedManager = manager
+  }
+
+  editManager(){
+
+    this.managerService.editManager(this.selectedManager).subscribe(
+      (m: Manager) => {
+        console.log(this.selectedManager.id)
+      },
+      (error) => {
+        alert("greska")
+      }
     )
   }
 

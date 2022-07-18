@@ -37,4 +37,24 @@ public class ManagerController {
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
+    @RequestMapping(value="/editManager", method = RequestMethod.PUT)
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public ResponseEntity<Manager> editManager(@RequestBody AddManagerDTO dto) {
+        Manager m = this.managerService.editManager(dto);
+        if(m!=null){
+            return new ResponseEntity<>(m, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(value="/deleteManager/{id}", method = RequestMethod.DELETE)
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public ResponseEntity<Manager> editManager(@PathVariable Long id) {
+        Manager m = this.managerService.deleteManager(id);
+        if(m!=null){
+            return new ResponseEntity<>(m, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
 }

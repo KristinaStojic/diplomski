@@ -20,4 +20,9 @@ export class ManagerService {
     public addMaganer(manager): Observable<Manager> {
       return this._http.post<Manager>(`${this.manager_url}/addManager`, manager)
     }
+
+    public editManager(manager): Observable<Manager>{
+      console.log(manager)
+      return this._http.put<Manager>(`${this.manager_url}/editManager`, manager)
+    }
 }
