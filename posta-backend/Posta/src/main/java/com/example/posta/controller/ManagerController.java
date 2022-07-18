@@ -14,6 +14,7 @@ import java.util.List;
 
 @RequestMapping(value = "api/manager")
 @RestController
+@CrossOrigin
 public class ManagerController {
     @Autowired
     ManagerService managerService;

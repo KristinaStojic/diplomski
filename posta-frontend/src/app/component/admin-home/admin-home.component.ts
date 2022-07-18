@@ -64,4 +64,15 @@ export class AdminHomeComponent implements OnInit {
     )
   }
 
+  deleteManager(id) {
+    this.managerService.delete(id).subscribe(
+      (boolean:any) =>{
+        window.location.reload()
+      },
+      (error) => {
+        alert("greska")
+      }
+    )
+  }
+
 }

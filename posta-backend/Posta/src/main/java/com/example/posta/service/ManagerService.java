@@ -49,8 +49,10 @@ public class ManagerService {
         List<ManagerDTO> ret = new ArrayList<>();
 
         for(Manager m: this.managerRepository.findAll()){
-            ManagerDTO manager = new ManagerDTO(m);
-            ret.add(manager);
+            if(!m.isDeleted()){
+                ManagerDTO manager = new ManagerDTO(m);
+                ret.add(manager);
+            }
         }
         return ret;
     }

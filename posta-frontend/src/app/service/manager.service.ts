@@ -25,4 +25,8 @@ export class ManagerService {
       console.log(manager)
       return this._http.put<Manager>(`${this.manager_url}/editManager`, manager)
     }
+
+    public delete(id): Observable <Manager> {
+      return this._http.delete<Manager>(`${this.manager_url}/deleteManager/` + id)
+    }
 }
