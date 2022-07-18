@@ -1,22 +1,32 @@
 package com.example.posta.controller;
 
 import com.example.posta.dto.AddManagerDTO;
+import com.example.posta.dto.ManagerDTO;
 import com.example.posta.model.Manager;
 import com.example.posta.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping(value = "api/manager")
 @RestController
 public class ManagerController {
     @Autowired
     ManagerService managerService;
+
+    @RequestMapping(value="/getAll", method = RequestMethod.GET)
+    public @ResponseBody ResponseEntity<List<ManagerDTO>> getAllManagers(@RequestHeader("Authorization") String token){
+        List<ManagerDTO> m = managerService.getAllManagers();
+        if(m != null){
+            return new ResponseEntity<>(m, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
 
     @RequestMapping(value="/addManager", method = RequestMethod.POST)
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
