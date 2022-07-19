@@ -22,7 +22,7 @@ public class PostOffice {
     private String phoneNumber;
 
     @Column(name = "employee_number", unique = false, nullable = true)
-    private String employeeNumber;
+    private Integer employeeNumber;
 
 
     @OneToOne(targetEntity = Address.class,cascade = CascadeType.ALL)

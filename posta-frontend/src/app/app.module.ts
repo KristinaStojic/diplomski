@@ -12,6 +12,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminHomeComponent } from './component/admin-home/admin-home.component';
 import { HeaderComponent } from './component/header/header.component';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
+import { AgmCoreModule } from '@agm/core';
+import { PostOfficesComponent } from './component/post-offices/post-offices.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { SidebarComponent } from './component/sidebar/sidebar.component';
     LoginComponent,
     AdminHomeComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    PostOfficesComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,11 @@ import { SidebarComponent } from './component/sidebar/sidebar.component';
     NoopAnimationsModule,
     AngularMaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCX5DQFPxHlQlEeFkkWzTJ41PU6FehGzVs'   // za google maps
+  }),
+    
 
   ],
   providers: [

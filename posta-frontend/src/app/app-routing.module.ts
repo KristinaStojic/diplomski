@@ -1,3 +1,4 @@
+import { PostOfficesComponent } from './component/post-offices/post-offices.component';
 import { AdminHomeComponent } from './component/admin-home/admin-home.component';
 import { LoginComponent } from './component/login/login.component';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'admin-home',
     component: AdminHomeComponent,
+  },
+  {
+    path: 'post-offices',
+    component: PostOfficesComponent,
   },
 ];
 

@@ -20,8 +20,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let m of managers">
-            <th scope="row">1</th>
+          <tr *ngFor="let m of managers; index as i">
+            <th scope="row">{{i+1}}</th>
             <td>{{m.name}}</td>
             <td>{{m.surname}}</td>
             <td>{{m.email}}</td>

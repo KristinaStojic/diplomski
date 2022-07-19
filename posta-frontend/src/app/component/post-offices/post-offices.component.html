@@ -1,0 +1,36 @@
+
+
+<div class="borders">
+
+    <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#addManager">Додај пословницу</button>
+    </div>
+
+    <table class="shadow p-3 mb-5 bg-white rounded table" style="width:100%">
+        <thead>
+          <tr>
+            <th scope="col" style="width:8%">#</th>
+            <th scope="col" style="width:17.5%">Адреса</th>
+            <th scope="col"  style="width:17.5%">Град</th>
+            <th scope="col" style="width:17.5%">Држава</th>
+            <th scope="col" style="width:17.5%">Телефон</th>
+            <th scope="col" style="width:8%"></th>
+            <th scope="col" style="width:8%"></th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let m of postOffices; index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{m.street}}</td>
+            <td>{{m.city}}</td>
+            <td>{{m.country}}</td>
+            <td>{{m.phoneNumber}}</td>
+            <!-- <td><button class="btn btn-primary" (click)="selectManager(m)" data-toggle="modal" data-target="#editManager">Измени</button></td>
+            <td><button class="btn btn-primary" (click)="deleteManager(m.id)">Избриши</button></td> -->
+
+          </tr>
+
+        </tbody>
+      </table>
+</div>

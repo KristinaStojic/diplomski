@@ -1,0 +1,18 @@
+.borders{
+    margin: 8ch 10ch 10ch 10ch;
+   //margin: 8ch 3ch 3ch 3ch;
+
+}
+
+
+/* Important part */
+.modal-dialog{
+   overflow-y: initial !important
+ }
+
+ ::ng-deep .cdk-overlay-container {     z-index:2000; }
+
+
+ mat-form-field {
+   width: 90%;
+ }
