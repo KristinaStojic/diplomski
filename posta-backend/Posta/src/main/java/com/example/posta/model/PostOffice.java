@@ -24,8 +24,15 @@ public class PostOffice {
     @Column(name = "employee_number", unique = false, nullable = true)
     private Integer employeeNumber;
 
+    @Column(name = "deleted", unique = false, nullable = false)
+    private Boolean deleted;
+
 
     @OneToOne(targetEntity = Address.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
+
+    @OneToOne(targetEntity = Manager.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "manager_id")
+    private Manager manager;
 }

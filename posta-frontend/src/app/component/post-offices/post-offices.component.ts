@@ -21,4 +21,43 @@ export class PostOfficesComponent implements OnInit {
     )
   }
 
+  addPostOffice(){
+
+    // this.managerService.addMaganer(this.manager).subscribe(
+    //   (m: Manager) => {
+    //     window.location.reload()
+    //   },
+    //   (error) => {
+    //     alert("greska")
+    //   },
+    // )
+  }
+
+  selectPostOffice(manager){
+    // this.selectedManager = manager
+  }
+
+  editPostOffice(){
+
+    // this.managerService.editManager(this.selectedManager).subscribe(
+    //   (m: Manager) => {
+    //     console.log(this.selectedManager.id)
+    //   },
+    //   (error) => {
+    //     alert("greska")
+    //   }
+    // )
+  }
+
+  deletePostOffice(id) {
+    this.postOfficeService.delete(id).subscribe(
+      (boolean:any) =>{
+        window.location.reload()
+      },
+      (error) => {
+        alert("greska")
+      }
+    )
+  }
+
 }

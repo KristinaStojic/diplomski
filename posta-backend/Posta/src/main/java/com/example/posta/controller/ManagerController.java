@@ -51,7 +51,7 @@ public class ManagerController {
 
     @RequestMapping(value="/deleteManager/{id}", method = RequestMethod.DELETE)
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public ResponseEntity<Manager> editManager(@PathVariable Long id) {
+    public ResponseEntity<Manager> deleteManager(@PathVariable Long id) {
         Manager m = this.managerService.deleteManager(id);
         if(m!=null){
             return new ResponseEntity<>(m, HttpStatus.OK);

@@ -17,4 +17,17 @@ export class PostOfficeService {
     public getAll(): Observable<PostOffice[]>{
       return this._http.get<PostOffice[]>(`${this.postOffice_url}/getAll`)
     }
+
+    public addMaganer(postOffice): Observable<PostOffice> {
+      return this._http.post<PostOffice>(`${this.postOffice_url}/addPostOffice`, postOffice)
+    }
+
+    public editManager(postOffice): Observable<PostOffice>{
+      console.log(postOffice)
+      return this._http.put<PostOffice>(`${this.postOffice_url}/editPostOffice`, postOffice)
+    }
+
+    public delete(id): Observable <any> {
+      return this._http.delete<any>(`${this.postOffice_url}/deletePostOffice/` + id)
+    }
 }

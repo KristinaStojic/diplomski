@@ -12,5 +12,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 public class AccountingWorker extends Worker{
-
+    public AccountingWorker(Worker u) {
+        super(u);
+    }
 }

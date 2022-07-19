@@ -18,4 +18,15 @@ public class Worker extends User{
     @JsonBackReference
     private PostOffice postOffice;
 
+    public Worker(User u){
+        super(u);
+    }
+
+    public Worker(){
+
+    }
+
+    public Worker(Worker w){
+        this.postOffice = w.getPostOffice();
+    }
 }

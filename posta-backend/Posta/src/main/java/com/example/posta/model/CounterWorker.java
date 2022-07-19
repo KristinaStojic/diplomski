@@ -11,4 +11,7 @@ import javax.persistence.Entity;
 @Setter
 @Entity
 public class CounterWorker extends Worker{
+    public CounterWorker(Worker u) {
+        super(u);
+    }
 }
