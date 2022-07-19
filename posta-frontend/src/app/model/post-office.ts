@@ -8,4 +8,5 @@ export class PostOffice {
     latitude: number;
     streetNumber: String
     postalCode: String
+    managerID: String
 }

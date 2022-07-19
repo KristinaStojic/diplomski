@@ -29,6 +29,16 @@ public class ManagerController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    @RequestMapping(value="/getById/{id}", method = RequestMethod.GET)
+    public @ResponseBody ResponseEntity<ManagerDTO> getById(@PathVariable Long id){
+        ManagerDTO m = managerService.getById(id);
+        if(m != null){
+            return new ResponseEntity<>(m, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
     @RequestMapping(value="/addManager", method = RequestMethod.POST)
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Manager> addManager(@RequestBody AddManagerDTO dto) {

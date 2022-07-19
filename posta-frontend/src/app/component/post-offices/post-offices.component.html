@@ -26,7 +26,7 @@
             <td>{{m.city}}</td>
             <td>{{m.country}}</td>
             <td>{{m.phoneNumber}}</td>
-            <td><button class="btn btn-primary" (click)="selectPostOffice(m)" data-toggle="modal" data-target="#editManager">Измени</button></td>
+            <td><button class="btn btn-primary" (click)="selectPostOffice(m)" data-toggle="modal" data-target="#editPostOffice">Измени</button></td>
             <td><button class="btn btn-primary" (click)="deletePostOffice(m.id)">Избриши</button></td>
 
           </tr>
@@ -44,7 +44,7 @@
     <div class="modal-dialog modal-dialog-centered modal" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Додај новог управника</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Додај нову пословницу</h5>
         </div>
         
      
@@ -69,13 +69,51 @@
         </div>
         
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" [disabled]="this.address == '' || this.newPostOffice.phoneNumber == '' || this.newPostOffice.managerId == ''" class="btn btn-primary"  data-dismiss="modal" (click)="addPostOffice()">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Назад</button>
+            <button type="button" [disabled]="this.address == '' || this.newPostOffice.phoneNumber == '' || this.newPostOffice.managerId == ''" class="btn btn-primary"  data-dismiss="modal" (click)="addPostOffice()">Сачувај</button>
         </div>
     </div>
     </div>
 </div>
 
 
+
+
+  <!-- Modal for editing new post office -->
+<div class="modal fade" id="editPostOffice" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Измени пословницу</h5>
+        </div>
+        
+     
+        <div class="container" style="margin: 5% 5% 5% 5%;">
+            <label>Управник:</label>
+
+            <select class="form-select" (change)="changeManager($event)" aria-label="Default select example" style="width: 425px;">
+                <option *ngIf="selectedManager" selected>{{selectedManager.name}} {{selectedManager.surname}}</option>
+                <option *ngFor="let m of freeManagers" [ngValue]="m.id">{{m.name}} {{m.surname}}</option>
+              </select>
+
+            <mat-form-field>
+                <input matInput required placeholder="Телефон" [(ngModel)]="selectedPostOffice.phoneNumber">
+            </mat-form-field>
+
+            <label>Адреса:</label>
+            <agm-map [latitude]="selectedPostOffice.latitude" [longitude]="selectedPostOffice.longitude">
+                <agm-marker [latitude]="selectedPostOffice.latitude" [longitude]="selectedPostOffice.longitude" [markerDraggable]="true" (dragEnd)="markerDragEndEditing($event)"></agm-marker>
+              </agm-map>
+              <label>Адреса: {{selectedAddress}}</label>
+
+        </div>
+        
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Назад</button>
+            <button type="button" [disabled]="this.selectedAddress == '' || this.selectedPostOffice.phoneNumber == ''" class="btn btn-primary"  data-dismiss="modal" (click)="editPostOffice()">Сачувај</button>
+        </div>
+    </div>
+    </div>
+</div>
 
 

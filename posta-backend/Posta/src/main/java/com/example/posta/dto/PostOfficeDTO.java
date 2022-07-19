@@ -19,6 +19,7 @@ public class PostOfficeDTO {
     private String country;
     private Double longitude;
     private Double latitude;
+    private Long managerID;
 
     public PostOfficeDTO(PostOffice p){
         this.id = p.getId();
@@ -29,5 +30,6 @@ public class PostOfficeDTO {
         this.country = p.getAddress().getCity().getCountry().getCountryName();
         this.longitude = p.getAddress().getLongitude();
         this.latitude = p.getAddress().getLatitude();
+        this.managerID = p.getManager().getId();
     }
 }

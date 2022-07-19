@@ -65,7 +65,7 @@ public class PostOfficeService {
         p.setPhoneNumber(dto.getPhoneNumber());
         p.setEmployeeNumber(1);
 
-        Manager m = this.managerRepository.findById(dto.getManagerId()).orElseGet(null);
+        Manager m = this.managerRepository.findById(dto.getManagerID()).orElseGet(null);
         p.setManager(m);
 
         Country c = new Country();
@@ -89,6 +89,23 @@ public class PostOfficeService {
         m.setPostOffice(p);
         this.managerRepository.save(m);
         //this.postOfficeRepository.save(p);
+        return p;
+    }
+
+
+    public PostOffice editPostOffice(AddPostOfficeDTO dto){
+        PostOffice p = this.postOfficeRepository.findById(dto.getId()).orElseGet(null);
+        Manager m = this.managerRepository.findById(dto.getManagerID()).orElseGet(null);
+        p.setManager(m);
+        m.setPostOffice(p);
+        p.setPhoneNumber(dto.getPhoneNumber());
+        p.getAddress().getCity().setCityName(dto.getCity());
+        p.getAddress().getCity().getCountry().setCountryName(dto.getCountry());
+        p.getAddress().setStreet(dto.getStreet());
+        p.getAddress().setStreetNumber(dto.getStreetNumber());
+        p.getAddress().setLatitude(dto.getLatitude());
+        p.getAddress().setLongitude(dto.getLongitude());
+        this.managerRepository.save(m);
         return p;
     }
 }

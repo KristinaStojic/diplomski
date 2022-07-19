@@ -54,4 +54,14 @@ public class PostOfficeController {
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
+    @RequestMapping(value="/editPostOffice", method = RequestMethod.PUT)
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public ResponseEntity<PostOffice> editPostOffice(@RequestBody AddPostOfficeDTO dto) {
+        PostOffice m = this.postOfficeService.editPostOffice(dto);
+        if(m!=null){
+            return new ResponseEntity<>(m, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
 }

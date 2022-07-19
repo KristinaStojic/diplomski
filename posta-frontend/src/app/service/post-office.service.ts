@@ -22,7 +22,7 @@ export class PostOfficeService {
       return this._http.post<PostOffice>(`${this.postOffice_url}/addPostOffice`, postOffice)
     }
 
-    public editManager(postOffice): Observable<PostOffice>{
+    public editPostOffice(postOffice): Observable<PostOffice>{
       console.log(postOffice)
       return this._http.put<PostOffice>(`${this.postOffice_url}/editPostOffice`, postOffice)
     }

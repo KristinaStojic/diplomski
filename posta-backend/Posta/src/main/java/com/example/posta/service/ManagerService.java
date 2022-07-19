@@ -57,6 +57,16 @@ public class ManagerService {
         return ret;
     }
 
+    public ManagerDTO getById(Long id){
+        Manager m = managerRepository.findById(id).orElseGet(null);
+
+        if(m == null){
+            return null;
+        }
+        ManagerDTO ret = new ManagerDTO(m);
+        return ret;
+    }
+
     public Manager deleteManager(Long id){
         Manager m = this.managerRepository.findById(id).orElseGet(null);
         m.setDeleted(true);

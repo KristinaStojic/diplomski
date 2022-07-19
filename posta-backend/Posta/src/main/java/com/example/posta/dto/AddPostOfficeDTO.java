@@ -10,13 +10,14 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddPostOfficeDTO {
+    private Long id;
     private String phoneNumber;
     private String street;
     private String streetNumber;
     private String postalCode;
     private String city;
     private String country;
-    private Long managerId;
+    private Long managerID;
     private Double longitude;
     private Double latitude;
 

@@ -17,6 +17,10 @@ export class ManagerService {
       return this._http.get<Manager[]>(`${this.manager_url}/getAll`)
     }
 
+    public getById(id): Observable<Manager>{
+      return this._http.get<Manager>(`${this.manager_url}/getById/` + id)
+    }
+
     public addMaganer(manager): Observable<Manager> {
       return this._http.post<Manager>(`${this.manager_url}/addManager`, manager)
     }

@@ -15,11 +15,14 @@ export class PostOfficesComponent implements OnInit {
   lat = 45.23731467405363;
   lng = 19.842083286315937;
   private geoCoder;
+  private geoCoder2;
   address: string = '';
+  selectedAddress: string = ''
   zoom: number;
   longitude: number = 0;
   latitude: number = 0;
   freeManagers: Manager[]
+  selectedManager: Manager
   managerId;
   newPostOffice= {
     "street": "",
@@ -31,6 +34,19 @@ export class PostOfficesComponent implements OnInit {
     "managerId": "",
     "latitude": 0,
     "longitude": 0
+  }
+
+  selectedPostOffice = {
+    "id": "",
+    "street": "",
+    "city": "",
+    "country": "",
+    "phoneNumber": "",
+    "longitude": 0,
+    "latitude": 0,
+    "streetNumber": "",
+    "postalCode": "",
+    "managerID": ""
   }
 
   constructor(private postOfficeService: PostOfficeService,
@@ -74,20 +90,34 @@ export class PostOfficesComponent implements OnInit {
     )
   }
 
-  selectPostOffice(manager){
-    // this.selectedManager = manager
+  selectPostOffice(postOffice){
+    this.selectedPostOffice = postOffice
+    this.selectedAddress = this.selectedPostOffice.street + ", " + this.selectedPostOffice.city + ", " + this.selectedPostOffice.country
+
+    this.findSelectedManager()
+    console.log(this.selectedPostOffice)
+  }
+
+  findSelectedManager(){
+    this.managerService.getById(this.selectedPostOffice.managerID).subscribe(
+      (manager: Manager) => {
+        this.selectedManager = manager
+        console.log(this.selectedManager)
+      }
+    )
   }
 
   editPostOffice(){
 
-    // this.managerService.editManager(this.selectedManager).subscribe(
-    //   (m: Manager) => {
-    //     console.log(this.selectedManager.id)
-    //   },
-    //   (error) => {
-    //     alert("greska")
-    //   }
-    // )
+    this.postOfficeService.editPostOffice(this.selectedPostOffice).subscribe(
+      (m: PostOffice) => {
+        console.log(this.selectedPostOffice)
+        window.location.reload()
+      },
+      (error) => {
+        alert("greska")
+      }
+    )
   }
 
   deletePostOffice(id) {
@@ -159,6 +189,55 @@ export class PostOfficesComponent implements OnInit {
     console.log(this.newPostOffice)
   }
 
+  markerDragEndEditing($event: MouseEvent) {
+
+    this.selectedPostOffice.longitude = $event.coords.lng
+    this.selectedPostOffice.latitude = $event.coords.lat
+    this.getEditedAddress($event.coords.lat, $event.coords.lng);
+  }
+
+  getEditedAddress(latitude, longitude) {
+    this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
+      //console.log(results);
+      //console.log(status);
+      if (status === 'OK') {
+        if (results[0]) {
+          this.zoom = 6;
+          this.selectedAddress = results[0].formatted_address;
+          console.log(results[0])
+          if(results[0].address_components.filter(ac=>~ac.types.indexOf('locality')) != undefined){
+            this.selectedPostOffice.city = results[0].address_components.filter(ac=>~ac.types.indexOf('locality'))[0].long_name
+          }
+
+          if(results[0].address_components.filter(ac=>~ac.types.indexOf('country')) != undefined){
+            this.selectedPostOffice.country = results[0].address_components.filter(ac=>~ac.types.indexOf('country'))[0].long_name
+          }
+
+          if( results[0].address_components.filter(ac=>~ac.types.indexOf('street_number')) != undefined){
+            // console.log(results[0].address_components.filter(ac=>~ac.types.indexOf('street_number'))[0].long_name)
+
+            this.selectedPostOffice.streetNumber = results[0].address_components.filter(ac=>~ac.types.indexOf('street_number'))[0].long_name
+          }
+
+          if(results[0].address_components.filter(ac=>~ac.types.indexOf('route')) != undefined){
+            this.selectedPostOffice.street = results[0].address_components.filter(ac=>~ac.types.indexOf('route'))[0].long_name
+          }
+
+          if(results[0].address_components.filter(ac=>~ac.types.indexOf('postal_code')) != undefined){
+            this.selectedPostOffice.postalCode = results[0].address_components.filter(ac=>~ac.types.indexOf('postal_code'))[0].long_name
+          }
+
+        } else {
+          window.alert('No results found');
+        }
+      } else {
+        window.alert('Geocoder failed due to: ' + status);
+      }
+
+    });
+
+    console.log(this.selectedPostOffice)
+  }
 
   changeManager($event){
     var selected = $event.target.value
