@@ -30,7 +30,7 @@ public class Address {
     @Column(name = "latitude", unique = false, nullable = true)
     private double latitude;
 
-    @OneToOne(targetEntity = City.class,cascade = CascadeType.ALL)
+    @OneToOne(targetEntity = City.class,cascade = CascadeType.MERGE)
     @JoinColumn(name = "city_id")
     private City city;
 }

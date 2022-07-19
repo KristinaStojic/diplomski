@@ -29,4 +29,8 @@ export class ManagerService {
     public delete(id): Observable <Manager> {
       return this._http.delete<Manager>(`${this.manager_url}/deleteManager/` + id)
     }
+
+    public getFreeManagers(): Observable<Manager[]>{
+      return this._http.get<Manager[]>(`${this.manager_url}/getFreeManagers`)
+    }
 }

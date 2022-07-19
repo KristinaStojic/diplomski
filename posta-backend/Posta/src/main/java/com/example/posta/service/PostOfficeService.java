@@ -1,11 +1,10 @@
 package com.example.posta.service;
 
+import com.example.posta.dto.AddManagerDTO;
+import com.example.posta.dto.AddPostOfficeDTO;
 import com.example.posta.dto.PostOfficeDTO;
-import com.example.posta.model.PostOffice;
-import com.example.posta.model.Worker;
-import com.example.posta.repository.ManagerRepository;
-import com.example.posta.repository.PostOfficeRepository;
-import com.example.posta.repository.WorkerRepository;
+import com.example.posta.model.*;
+import com.example.posta.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +19,18 @@ public class PostOfficeService {
 
     @Autowired
     WorkerRepository workerRepository;
+
+    @Autowired
+    ManagerRepository managerRepository;
+
+    @Autowired
+    CountryRepository countryRepository;
+
+    @Autowired
+    CityRepository cityRepository;
+
+    @Autowired
+    AddressRepository addressRepository;
 
     public List<PostOfficeDTO> getAllPostOffices(){
         List<PostOfficeDTO> ret = new ArrayList<>();
@@ -37,11 +48,47 @@ public class PostOfficeService {
         PostOffice p = postOfficeRepository.findById(id).orElseGet(null);
         p.setDeleted(true);
         for(Worker w: workerRepository.findAll()){
-            if(id.equals(w.getPostOffice().getId())){
+            if(w.getPostOffice() != null && id.equals(w.getPostOffice().getId())){
                 w.setPostOffice(null);
+                p.setManager(null);
+                workerRepository.save(w);
             }
         }
         postOfficeRepository.save(p);
+        return p;
+    }
+
+
+    public PostOffice addPostOffice(AddPostOfficeDTO dto){
+        PostOffice p = new PostOffice();
+        p.setDeleted(false);
+        p.setPhoneNumber(dto.getPhoneNumber());
+        p.setEmployeeNumber(1);
+
+        Manager m = this.managerRepository.findById(dto.getManagerId()).orElseGet(null);
+        p.setManager(m);
+
+        Country c = new Country();
+        c.setCountryName(dto.getCountry());
+        this.countryRepository.save(c);
+
+        City city = new City();
+        city.setCountry(c);
+        city.setCityName(dto.getCity());
+        this.cityRepository.save(city);
+
+        Address a = new Address();
+        a.setCity(city);
+        a.setStreet(dto.getStreet());
+        a.setStreetNumber(dto.getStreetNumber());
+        a.setLongitude(dto.getLongitude());
+        a.setLatitude(dto.getLatitude());
+        addressRepository.save(a);
+        p.setAddress(a);
+
+        m.setPostOffice(p);
+        this.managerRepository.save(m);
+        //this.postOfficeRepository.save(p);
         return p;
     }
 }

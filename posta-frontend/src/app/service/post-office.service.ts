@@ -18,7 +18,7 @@ export class PostOfficeService {
       return this._http.get<PostOffice[]>(`${this.postOffice_url}/getAll`)
     }
 
-    public addMaganer(postOffice): Observable<PostOffice> {
+    public addPostOffice(postOffice): Observable<PostOffice> {
       return this._http.post<PostOffice>(`${this.postOffice_url}/addPostOffice`, postOffice)
     }
 

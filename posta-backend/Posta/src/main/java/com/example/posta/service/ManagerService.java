@@ -64,4 +64,16 @@ public class ManagerService {
 
         return m;
     }
+
+    public List<ManagerDTO> getFreeManagers(){
+        List<ManagerDTO> ret = new ArrayList<>();
+
+        for(Manager m: this.managerRepository.findAll()){
+            if(!m.isDeleted() && m.getPostOffice() == null){
+                ManagerDTO manager = new ManagerDTO(m);
+                ret.add(manager);
+            }
+        }
+        return ret;
+    }
 }

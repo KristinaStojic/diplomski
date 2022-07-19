@@ -58,4 +58,14 @@ public class ManagerController {
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
+    @RequestMapping(value="/getFreeManagers", method = RequestMethod.GET)
+    public @ResponseBody ResponseEntity<List<ManagerDTO>> getFreeManagers(@RequestHeader("Authorization") String token){
+        List<ManagerDTO> m = managerService.getFreeManagers();
+        if(m != null){
+            return new ResponseEntity<>(m, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
 }

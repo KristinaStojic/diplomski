@@ -17,6 +17,8 @@ public class PostOfficeDTO {
     private String street;
     private String city;
     private String country;
+    private Double longitude;
+    private Double latitude;
 
     public PostOfficeDTO(PostOffice p){
         this.id = p.getId();
@@ -25,5 +27,7 @@ public class PostOfficeDTO {
         this.street = p.getAddress().getStreet() + " " + p.getAddress().getStreetNumber();
         this.city = p.getAddress().getCity().getCityName();
         this.country = p.getAddress().getCity().getCountry().getCountryName();
+        this.longitude = p.getAddress().getLongitude();
+        this.latitude = p.getAddress().getLatitude();
     }
 }

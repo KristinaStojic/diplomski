@@ -3,9 +3,9 @@
 <div class="borders">
 
     <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#addManager">Додај пословницу</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#addPostOffice">Додај пословницу</button>
     </div>
-
+   
     <table class="shadow p-3 mb-5 bg-white rounded table" style="width:100%">
         <thead>
           <tr>
@@ -33,4 +33,49 @@
 
         </tbody>
       </table>
+
+   
 </div>
+
+
+
+  <!-- Modal for adding new post office -->
+  <div class="modal fade" id="addPostOffice" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Додај новог управника</h5>
+        </div>
+        
+     
+        <div class="container" style="margin: 5% 5% 5% 5%;">
+            <label>Управник:</label>
+
+            <select class="form-select" (change)="changeManager($event)" aria-label="Default select example" style="width: 425px;">
+                <option></option>
+                <option *ngFor="let m of freeManagers" [ngValue]="m.id">{{m.name}} {{m.surname}}</option>
+              </select>
+
+            <mat-form-field>
+                <input matInput required placeholder="Телефон" [(ngModel)]="newPostOffice.phoneNumber">
+            </mat-form-field>
+
+            <label>Адреса:</label>
+            <agm-map [latitude]="lat" [longitude]="lng">
+                <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"></agm-marker>
+              </agm-map>
+              <label>Адреса: {{address}}</label>
+
+        </div>
+        
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" [disabled]="this.address == '' || this.newPostOffice.phoneNumber == '' || this.newPostOffice.managerId == ''" class="btn btn-primary"  data-dismiss="modal" (click)="addPostOffice()">Save changes</button>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+
+

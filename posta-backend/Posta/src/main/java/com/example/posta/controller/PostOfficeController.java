@@ -1,5 +1,7 @@
 package com.example.posta.controller;
 
+import com.example.posta.dto.AddManagerDTO;
+import com.example.posta.dto.AddPostOfficeDTO;
 import com.example.posta.dto.ManagerDTO;
 import com.example.posta.dto.PostOfficeDTO;
 import com.example.posta.model.Manager;
@@ -37,6 +39,16 @@ public class PostOfficeController {
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<PostOffice> deletePostOffice(@PathVariable Long id) {
         PostOffice m = this.postOfficeService.deletePostOffice(id);
+        if(m!=null){
+            return new ResponseEntity<>(m, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(value="/addPostOffice", method = RequestMethod.POST)
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public ResponseEntity<PostOffice> addPostOffice(@RequestBody AddPostOfficeDTO dto) {
+        PostOffice m = this.postOfficeService.addPostOffice(dto);
         if(m!=null){
             return new ResponseEntity<>(m, HttpStatus.OK);
         }

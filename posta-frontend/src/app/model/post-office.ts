@@ -4,4 +4,8 @@ export class PostOffice {
     city: String;
     country: String;
     phoneNumber: String;
+    longitude: number;
+    latitude: number;
+    streetNumber: String
+    postalCode: String
 }
