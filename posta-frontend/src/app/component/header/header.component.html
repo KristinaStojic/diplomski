@@ -6,8 +6,11 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin: left 20px; ;">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active" *ngIf="isLogged()">
+      <li class="nav-item active" *ngIf="isLogged() && isAdmin()">
         <a class="nav-link" href="/admin-home">Почетна <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active" *ngIf="isLogged() && isManager()">
+        <a class="nav-link" href="/manager-home">Почетна <span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -17,6 +20,18 @@
             </li>
             <li class="nav-item active" *ngIf="isAdmin()">
               <a class="nav-link" href="/post-offices">Пословнице</a>
+            </li>
+            <li class="nav-item active" *ngIf="isManager()">
+              <a class="nav-link" href="#">Запослени</a>
+            </li>
+            <li class="nav-item active" *ngIf="isManager()">
+              <a class="nav-link" href="#">Обавјештења</a>
+            </li>
+            <li class="nav-item active" *ngIf="isManager()">
+              <a class="nav-link" href="#">Возила</a>
+            </li>
+            <li class="nav-item active" *ngIf="isManager()">
+              <a class="nav-link" href="#">Одсуство</a>
             </li>
             <li class="nav-item dropdown active" *ngIf="isLogged()">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

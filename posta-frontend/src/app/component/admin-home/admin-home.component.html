@@ -3,6 +3,7 @@
 <div class="borders">
 
     <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
+        <h4>Управници</h4>
         <button class="btn btn-primary" data-toggle="modal" data-target="#addManager">Додај управника</button>
     </div>
 
@@ -26,7 +27,7 @@
             <td>{{m.surname}}</td>
             <td>{{m.email}}</td>
             <td>{{m.phoneNumber}}</td>
-            <td><button class="btn btn-primary" (click)="selectManager(m)" data-toggle="modal" data-target="#editManager">Измени</button></td>
+            <td><button class="btn btn-primary" (click)="selectManager(m)" data-toggle="modal" data-target="#editManager">Измијени</button></td>
             <td><button class="btn btn-primary" (click)="deleteManager(m.id)">Избриши</button></td>
 
           </tr>
@@ -77,7 +78,7 @@
     <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Измени информације</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Измијени информације</h5>
         </div>
         
         <div  class="container"  style="margin: 5% 5% 5% 5%;">

@@ -4,6 +4,7 @@ import { PostOfficeService } from './../../service/post-office.service';
 import { Component, OnInit } from '@angular/core';
 import { PostOffice } from 'src/app/model/post-office';
 import { MapsAPILoader, MouseEvent } from '@agm/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-post-offices',
@@ -85,7 +86,11 @@ export class PostOfficesComponent implements OnInit {
         window.location.reload()
       },
       (error) => {
-        alert("greska")
+        Swal.fire({
+          icon: 'error',
+          title: 'Упс...',
+          text: 'Дошло је до грешке!',
+        })
       },
     )
   }
@@ -115,7 +120,11 @@ export class PostOfficesComponent implements OnInit {
         window.location.reload()
       },
       (error) => {
-        alert("greska")
+        Swal.fire({
+          icon: 'error',
+          title: 'Упс...',
+          text: 'Дошло је до грешке!',
+        })
       }
     )
   }
@@ -126,7 +135,11 @@ export class PostOfficesComponent implements OnInit {
         window.location.reload()
       },
       (error) => {
-        alert("greska")
+        Swal.fire({
+          icon: 'error',
+          title: 'Упс...',
+          text: 'Дошло је до грешке!',
+        })
       }
     )
   }
@@ -178,10 +191,18 @@ export class PostOfficesComponent implements OnInit {
           }
 
         } else {
-          window.alert('No results found');
+          Swal.fire({
+            icon: 'error',
+            title: 'Упс...',
+            text: 'Дошло је до грешке!',
+          })
         }
       } else {
-        window.alert('Geocoder failed due to: ' + status);
+        Swal.fire({
+          icon: 'error',
+          title: 'Упс...',
+          text: 'Дошло је до грешке!',
+        })
       }
 
     });
@@ -228,10 +249,18 @@ export class PostOfficesComponent implements OnInit {
           }
 
         } else {
-          window.alert('No results found');
+          Swal.fire({
+            icon: 'error',
+            title: 'Упс...',
+            text: 'Дошло је до грешке!',
+          })
         }
       } else {
-        window.alert('Geocoder failed due to: ' + status);
+        Swal.fire({
+          icon: 'error',
+          title: 'Упс...',
+          text: 'Дошло је до грешке!',
+        })
       }
 
     });

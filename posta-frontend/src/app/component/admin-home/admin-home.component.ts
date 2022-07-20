@@ -1,6 +1,7 @@
 import { ManagerService } from './../../service/manager.service';
 import { Component, OnInit } from '@angular/core';
 import { Manager } from 'src/app/model/manager';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-home',
@@ -43,7 +44,11 @@ export class AdminHomeComponent implements OnInit {
         window.location.reload()
       },
       (error) => {
-        alert("greska")
+        Swal.fire({
+          icon: 'error',
+          title: 'Упс...',
+          text: 'Дошло је до грешке!',
+        })
       },
     )
   }
@@ -59,7 +64,11 @@ export class AdminHomeComponent implements OnInit {
         console.log(this.selectedManager.id)
       },
       (error) => {
-        alert("greska")
+        Swal.fire({
+          icon: 'error',
+          title: 'Упс...',
+          text: 'Дошло је до грешке!',
+        })
       }
     )
   }
@@ -70,7 +79,11 @@ export class AdminHomeComponent implements OnInit {
         window.location.reload()
       },
       (error) => {
-        alert("greska")
+        Swal.fire({
+          icon: 'error',
+          title: 'Упс...',
+          text: 'Дошло је до грешке!',
+        })
       }
     )
   }

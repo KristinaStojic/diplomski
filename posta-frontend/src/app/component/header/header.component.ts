@@ -34,4 +34,12 @@ export class HeaderComponent implements OnInit {
     }
     return false;
   }
+
+  isManager() {
+    let role = localStorage.getItem("role");
+    if (role == "ROLE_MANAGER" && this.isLogged){
+      return true;
+    }
+    return false;
+  }
 }

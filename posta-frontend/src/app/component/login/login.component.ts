@@ -52,8 +52,13 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/counter-worker-home']);
             break;
           case "ROLE_ACCOUNTING_WORKER":
-            this.router.navigate(['/accountin-worker-home']);
+            this.router.navigate(['/accounting-worker-home']);
+            break;
+          case "ROLE_MANAGER":
+            this.router.navigate(['/manager-home']);
+            break;
           }
+          
            
         },
         error => {

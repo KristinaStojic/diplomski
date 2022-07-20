@@ -1,3 +1,4 @@
+import { ManagerHomeComponent } from './component/manager-home/manager-home.component';
 import { PostOfficesComponent } from './component/post-offices/post-offices.component';
 import { AdminHomeComponent } from './component/admin-home/admin-home.component';
 import { LoginComponent } from './component/login/login.component';
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'post-offices',
     component: PostOfficesComponent,
+  },
+  {
+    path: 'manager-home',
+    component: ManagerHomeComponent,
   },
 ];
 

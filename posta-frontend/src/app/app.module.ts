@@ -14,6 +14,7 @@ import { HeaderComponent } from './component/header/header.component';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
 import { AgmCoreModule } from '@agm/core';
 import { PostOfficesComponent } from './component/post-offices/post-offices.component';
+import { ManagerHomeComponent } from './component/manager-home/manager-home.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PostOfficesComponent } from './component/post-offices/post-offices.comp
     AdminHomeComponent,
     HeaderComponent,
     SidebarComponent,
-    PostOfficesComponent
+    PostOfficesComponent,
+    ManagerHomeComponent,
   ],
   imports: [
     BrowserModule,
