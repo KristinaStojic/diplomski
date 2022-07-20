@@ -1,7 +1,29 @@
+import { ManagerHomeComponent } from './component/manager-home/manager-home.component';
+import { PostOfficesComponent } from './component/post-offices/post-offices.component';
+import { AdminHomeComponent } from './component/admin-home/admin-home.component';
+import { LoginComponent } from './component/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    component: LoginComponent,
+    pathMatch: 'full', 
+  },
+  {
+    path: 'admin-home',
+    component: AdminHomeComponent,
+  },
+  {
+    path: 'post-offices',
+    component: PostOfficesComponent,
+  },
+  {
+    path: 'manager-home',
+    component: ManagerHomeComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

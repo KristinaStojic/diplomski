@@ -9,4 +9,7 @@ import javax.persistence.Entity;
 @Setter
 @Entity
 public class Admin extends Worker{
+    public Admin(Worker u) {
+        super(u);
+    }
 }

@@ -1,0 +1,120 @@
+
+
+<div class="borders">
+
+    <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
+        <h4>Пословнице</h4>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#addPostOffice">Додај пословницу</button>
+    </div>
+   
+    <table class="shadow p-3 mb-5 bg-white rounded table" style="width:100%">
+        <thead>
+          <tr>
+            <th scope="col" style="width:8%">#</th>
+            <th scope="col" style="width:17.5%">Адреса</th>
+            <th scope="col"  style="width:17.5%">Град</th>
+            <th scope="col" style="width:17.5%">Држава</th>
+            <th scope="col" style="width:17.5%">Телефон</th>
+            <th scope="col" style="width:8%"></th>
+            <th scope="col" style="width:8%"></th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let m of postOffices; index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{m.street}}</td>
+            <td>{{m.city}}</td>
+            <td>{{m.country}}</td>
+            <td>{{m.phoneNumber}}</td>
+            <td><button class="btn btn-primary" (click)="selectPostOffice(m)" data-toggle="modal" data-target="#editPostOffice">Измијени</button></td>
+            <td><button class="btn btn-primary" (click)="deletePostOffice(m.id)">Избриши</button></td>
+
+          </tr>
+
+        </tbody>
+      </table>
+
+   
+</div>
+
+
+
+  <!-- Modal for adding new post office -->
+  <div class="modal fade" id="addPostOffice" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Додај нову пословницу</h5>
+        </div>
+        
+     
+        <div class="container" style="margin: 5% 5% 5% 5%;">
+            <label>Управник:</label>
+
+            <select class="form-select" (change)="changeManager($event)" aria-label="Default select example" style="width: 425px;">
+                <option></option>
+                <option *ngFor="let m of freeManagers" [ngValue]="m.id">{{m.name}} {{m.surname}}</option>
+              </select>
+
+            <mat-form-field>
+                <input matInput required placeholder="Телефон" [(ngModel)]="newPostOffice.phoneNumber">
+            </mat-form-field>
+
+            <label>Адреса:</label>
+            <agm-map [latitude]="lat" [longitude]="lng">
+                <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"></agm-marker>
+              </agm-map>
+              <label>Адреса: {{address}}</label>
+
+        </div>
+        
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Назад</button>
+            <button type="button" [disabled]="this.address == '' || this.newPostOffice.phoneNumber == '' || this.newPostOffice.managerId == ''" class="btn btn-primary"  data-dismiss="modal" (click)="addPostOffice()">Сачувај</button>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+
+
+  <!-- Modal for editing new post office -->
+<div class="modal fade" id="editPostOffice" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Измијени пословницу</h5>
+        </div>
+        
+     
+        <div class="container" style="margin: 5% 5% 5% 5%;">
+            <label>Управник:</label>
+
+            <select class="form-select" (change)="changeManager($event)" aria-label="Default select example" style="width: 425px;">
+                <option *ngIf="selectedManager" selected>{{selectedManager.name}} {{selectedManager.surname}}</option>
+                <option *ngFor="let m of freeManagers" [ngValue]="m.id">{{m.name}} {{m.surname}}</option>
+              </select>
+
+            <mat-form-field>
+                <input matInput required placeholder="Телефон" [(ngModel)]="selectedPostOffice.phoneNumber">
+            </mat-form-field>
+
+            <label>Адреса:</label>
+            <agm-map [latitude]="selectedPostOffice.latitude" [longitude]="selectedPostOffice.longitude">
+                <agm-marker [latitude]="selectedPostOffice.latitude" [longitude]="selectedPostOffice.longitude" [markerDraggable]="true" (dragEnd)="markerDragEndEditing($event)"></agm-marker>
+              </agm-map>
+              <label>Адреса: {{selectedAddress}}</label>
+
+        </div>
+        
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Назад</button>
+            <button type="button" [disabled]="this.selectedAddress == '' || this.selectedPostOffice.phoneNumber == ''" class="btn btn-primary"  data-dismiss="modal" (click)="editPostOffice()">Сачувај</button>
+        </div>
+    </div>
+    </div>
+</div>
+
+

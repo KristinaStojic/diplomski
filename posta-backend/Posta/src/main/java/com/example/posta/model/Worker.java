@@ -14,9 +14,19 @@ import javax.persistence.*;
 public class Worker extends User{
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "post_office_id", nullable = false)
+    @JoinColumn(name = "post_office_id", nullable = true)
     @JsonBackReference
     private PostOffice postOffice;
 
+    public Worker(User u){
+        super(u);
+    }
 
+    public Worker(){
+
+    }
+
+    public Worker(Worker w){
+        this.postOffice = w.getPostOffice();
+    }
 }

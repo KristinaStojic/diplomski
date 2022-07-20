@@ -25,7 +25,7 @@ public class City {
     @Column(unique = false, nullable = true)
     private String cityName;
 
-    @OneToOne(targetEntity = Country.class,cascade = CascadeType.ALL)
+    @OneToOne(targetEntity = Country.class,cascade = CascadeType.MERGE)
     @JoinColumn(name = "country_id")
     private Country country;
 }

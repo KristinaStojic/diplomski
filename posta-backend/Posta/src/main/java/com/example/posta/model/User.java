@@ -48,22 +48,16 @@ public class User implements UserDetails{
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
 
-    @Column(name = "points", nullable = false)
-    private double points;
-
-    @Column(name = "last_password_reset_date")
-    private Timestamp lastPasswordResetDate;
-
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "role_id")
     private Role role;
 
-
     @Column(name = "verification_code", length = 64)
     private String verificationCode;
 
-    @Column(name = "reason_for_registration")
-    private String reasonForRegistration;
+    @Column(name = "last_password_reset_date")
+    private Timestamp lastPasswordResetDate;
+
     public User() {
         super();
     }
@@ -73,12 +67,6 @@ public class User implements UserDetails{
         Timestamp now = new Timestamp(new Date().getTime());
         this.setLastPasswordResetDate(now);
         this.password = password;
-    }
-
-
-    @Override
-    public boolean isEnabled() {
-        return enabled;
     }
 
     @Override
@@ -136,8 +124,6 @@ public class User implements UserDetails{
         this.surname = surname;
         this.phoneNumber = phoneNumber;
         this.deleted = false;
-        this.enabled = false;
-        this.points = 0.0;
     }
 
     public User(User u){
@@ -148,6 +134,5 @@ public class User implements UserDetails{
         this.phoneNumber = u.getPhoneNumber();
         this.deleted = u.isDeleted();
         this.enabled = u.isEnabled();
-        this.points = u.getPoints();
     }
 }
