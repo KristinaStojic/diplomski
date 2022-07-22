@@ -20,18 +20,63 @@
           </tr>
         </thead>
         <tbody>
-          <!-- <tr *ngFor="let m of managers; index as i">
+          <tr *ngFor="let m of employees; index as i">
             <th scope="row">{{i+1}}</th>
             <td>{{m.name}}</td>
             <td>{{m.surname}}</td>
             <td>{{m.email}}</td>
             <td>{{m.phoneNumber}}</td>
-            <td><button class="btn btn-primary" (click)="selectManager(m)" data-toggle="modal" data-target="#editManager">Измијени</button></td>
-            <td><button class="btn btn-primary" (click)="deleteManager(m.id)">Избриши</button></td>
+            <!-- <td><button class="btn btn-primary" (click)="selectManager(m)" data-toggle="modal" data-target="#editManager">Измијени</button></td>
+            <td><button class="btn btn-primary" (click)="deleteManager(m.id)">Избриши</button></td> -->
 
-          </tr> -->
+          </tr>
 
         </tbody>
       </table>
 
+</div>
+
+
+
+
+
+<div class="modal fade" id="addEmployee" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Додај новог запосленог</h5>
+        </div>
+        
+        <div  class="container"  style="margin: 5% 5% 5% 5%;">
+            <mat-form-field style="width: 243px;">
+                <input matInput required placeholder="Име"  [(ngModel)]="employee.name">
+            </mat-form-field>
+            <br>
+            <mat-form-field style="width: 243px;">
+                <input matInput required placeholder="Презиме" [(ngModel)]="employee.surname" >
+            </mat-form-field><br>
+            <mat-form-field style="width: 243px;">
+                <input matInput required placeholder="Телефон" [(ngModel)]="employee.phoneNumber">
+            </mat-form-field><br>
+            <mat-form-field style="width: 243px;">
+                <input matInput required placeholder="Емаил" [(ngModel)]="employee.email">
+            </mat-form-field>
+            <div>
+                <label>Радно мјесто:</label>
+                <select class="form-select" (change)="selectRole($event)" aria-label="Default select example" style="width: 243px;">
+                    <option></option>
+                    <option>Шалтерски радник</option>
+                    <option>Обрачунски радник</option>
+                    <option>Поштар</option>
+                </select>
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Назад</button>
+            <button type="button" [disabled]="this.employee.name == '' || this.employee.surname == '' || this.employee.role == '' || this.employee.email == '' || this.employee.phoneNumber == ''" class="btn btn-primary"  data-dismiss="modal" (click)="addEmployee()">Сачувај</button>
+        </div>
+    </div>
+    </div>
 </div>

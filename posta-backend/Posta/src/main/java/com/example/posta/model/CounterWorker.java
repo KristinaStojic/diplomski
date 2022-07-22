@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 public class CounterWorker extends Worker{
     public CounterWorker(Worker u) {
         super(u);

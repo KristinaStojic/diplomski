@@ -3,11 +3,9 @@ package com.example.posta.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-
 @Getter
 @Setter
-public class AddManagerDTO {
+public class AddWorkerDTO {
 
     private Long id;
     private String name;
@@ -15,4 +13,5 @@ public class AddManagerDTO {
     private String email;
     private String role;
     private String phoneNumber;
+    private String managerEmail;
 }

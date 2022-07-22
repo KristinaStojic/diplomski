@@ -1,6 +1,5 @@
 package com.example.posta.service;
 
-import com.example.posta.dto.AddManagerDTO;
 import com.example.posta.dto.AddPostOfficeDTO;
 import com.example.posta.dto.PostOfficeDTO;
 import com.example.posta.model.*;

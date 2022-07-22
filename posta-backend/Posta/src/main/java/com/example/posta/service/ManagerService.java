@@ -1,7 +1,7 @@
 package com.example.posta.service;
 
-import com.example.posta.dto.AddManagerDTO;
-import com.example.posta.dto.ManagerDTO;
+import com.example.posta.dto.AddWorkerDTO;
+import com.example.posta.dto.WorkerDTO;
 import com.example.posta.model.Manager;
 import com.example.posta.model.Role;
 import com.example.posta.repository.ManagerRepository;
@@ -21,7 +21,7 @@ public class ManagerService {
     @Autowired
     private ManagerRepository managerRepository;
 
-    public Manager addManager(AddManagerDTO dto){
+    public Manager addManager(AddWorkerDTO dto){
         Manager m = new Manager();
         m.setEnabled(true);
         m.setDeleted(false);
@@ -36,7 +36,7 @@ public class ManagerService {
         return this.managerRepository.save(m);
     }
 
-    public Manager editManager(AddManagerDTO dto){
+    public Manager editManager(AddWorkerDTO dto){
         Manager m = this.managerRepository.findById(dto.getId()).orElseGet(null);
         m.setName(dto.getName());
         m.setSurname(dto.getSurname());
@@ -45,25 +45,25 @@ public class ManagerService {
         return this.managerRepository.save(m);
     }
 
-    public List<ManagerDTO> getAllManagers(){
-        List<ManagerDTO> ret = new ArrayList<>();
+    public List<WorkerDTO> getAllManagers(){
+        List<WorkerDTO> ret = new ArrayList<>();
 
         for(Manager m: this.managerRepository.findAll()){
             if(!m.isDeleted()){
-                ManagerDTO manager = new ManagerDTO(m);
+                WorkerDTO manager = new WorkerDTO(m);
                 ret.add(manager);
             }
         }
         return ret;
     }
 
-    public ManagerDTO getById(Long id){
+    public WorkerDTO getById(Long id){
         Manager m = managerRepository.findById(id).orElseGet(null);
 
         if(m == null){
             return null;
         }
-        ManagerDTO ret = new ManagerDTO(m);
+        WorkerDTO ret = new WorkerDTO(m);
         return ret;
     }
 
@@ -75,15 +75,20 @@ public class ManagerService {
         return m;
     }
 
-    public List<ManagerDTO> getFreeManagers(){
-        List<ManagerDTO> ret = new ArrayList<>();
+    public List<WorkerDTO> getFreeManagers(){
+        List<WorkerDTO> ret = new ArrayList<>();
 
         for(Manager m: this.managerRepository.findAll()){
             if(!m.isDeleted() && m.getPostOffice() == null){
-                ManagerDTO manager = new ManagerDTO(m);
+                WorkerDTO manager = new WorkerDTO(m);
                 ret.add(manager);
             }
         }
         return ret;
+    }
+
+    public Boolean checkIfHasPostOffice(Long id){
+        Manager m = managerRepository.findById(id).orElseGet(null);
+        return m.getPostOffice() != null;
     }
 }
