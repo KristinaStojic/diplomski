@@ -33,5 +33,5 @@ INSERT INTO public.manager(id) VALUES (1237);
 INSERT INTO public.manager(id) VALUES (1238);
 
 
-INSERT INTO public.notification(id, content, manager_id, creation_date) VALUES (15, 'Srecni pozicni i novogodisnji praznici!', 1237, '07-01-2020');
-INSERT INTO public.notification(id, content, manager_id, creation_date) VALUES (16, 'Kolektivni godisnji odmor od 01.08.!', 1237, '07-15-2022');
+INSERT INTO public.notification(id, content, manager_id, creation_date) VALUES (15, 'Срећни божићни и новогодишњи празници!', 1237, '07-01-2020');
+INSERT INTO public.notification(id, content, manager_id, creation_date) VALUES (16, 'Колективни годишњи одмор od 01.08. до 05.08!', 1237, '07-15-2022');
