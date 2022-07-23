@@ -11,12 +11,6 @@ INSERT INTO USERS(id, deleted, email, enabled, last_password_reset_date, name, p
 INSERT INTO USERS(id, deleted, email, enabled, last_password_reset_date, name, password, phone_number, surname, role_id, verification_code)
 	VALUES (1238, false, 'markomarko@gmail.com', true, null,  'Marko', 'marko', '0636523562', 'Markovic', 3, null);
 
-INSERT INTO public.worker(id, post_office_id) VALUES (1237, null);
-INSERT INTO public.worker(id, post_office_id) VALUES (1238, null);
-
-INSERT INTO public.manager(id) VALUES (1237);
-INSERT INTO public.manager(id) VALUES (1238);
-
 
 INSERT INTO public.country(id, country_name) VALUES (100, 'Srbija');
 
@@ -28,5 +22,16 @@ INSERT INTO public.address(id, latitude, longitude, street, street_number, city_
 INSERT INTO public.address(id, latitude, longitude, street, street_number, city_id) VALUES (156, 17.615, 47.354, 'Balzakova', 11, 151);
 
 
-INSERT INTO public.post_office(id, employee_number, phone_number, address_id, deleted, manager_id) VALUES (33, 8, 062352654, 155, false, 1237);
-INSERT INTO public.post_office(id, employee_number, phone_number, address_id, deleted, manager_id) VALUES (34, 11, 0653562545, 156, false, 1238);
+INSERT INTO public.post_office(id, employee_number, phone_number, address_id, deleted) VALUES (33, 8, 062352654, 155, false);
+INSERT INTO public.post_office(id, employee_number, phone_number, address_id, deleted) VALUES (34, 11, 0653562545, 156, false);
+
+
+INSERT INTO public.worker(id, post_office_id) VALUES (1237, 33);
+INSERT INTO public.worker(id, post_office_id) VALUES (1238, 34);
+
+INSERT INTO public.manager(id) VALUES (1237);
+INSERT INTO public.manager(id) VALUES (1238);
+
+
+INSERT INTO public.notification(id, content, manager_id, creation_date) VALUES (15, 'Srecni pozicni i novogodisnji praznici!', 1237, '07-01-2020');
+INSERT INTO public.notification(id, content, manager_id, creation_date) VALUES (16, 'Kolektivni godisnji odmor od 01.08.!', 1237, '07-15-2022');

@@ -1,3 +1,4 @@
+import { NotificationComponent } from './component/notification/notification.component';
 import { ManagerHomeComponent } from './component/manager-home/manager-home.component';
 import { PostOfficesComponent } from './component/post-offices/post-offices.component';
 import { AdminHomeComponent } from './component/admin-home/admin-home.component';
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'manager-home',
     component: ManagerHomeComponent,
+  },
+  {
+    path: 'notification',
+    component: NotificationComponent,
   },
 ];
 
