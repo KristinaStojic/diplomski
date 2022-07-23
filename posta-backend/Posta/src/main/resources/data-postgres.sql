@@ -7,7 +7,7 @@ INSERT INTO ROLES (name) VALUES ('ROLE_ACCOUNTING_WORKER');
 INSERT INTO USERS(id, deleted, email, enabled, last_password_reset_date, name, password, phone_number, surname, role_id, verification_code)
 	VALUES (1236, false, 'stojic.kris@gmail.com', true, null,  'Kristina', 'kris', '0643515864', 'Stojic', 1, null);
 INSERT INTO USERS(id, deleted, email, enabled, last_password_reset_date, name, password, phone_number, surname, role_id, verification_code)
-	VALUES (1237, false, 'nikolastojic@gmail.com', true, null,  'Nikola', 'nikola', '06536526541', 'Stojic', 3, null);
+	VALUES (1237, false, 'huawei5242@gmail.com', true, null,  'Nikola', 'nikola', '06536526541', 'Stojic', 3, null);
 INSERT INTO USERS(id, deleted, email, enabled, last_password_reset_date, name, password, phone_number, surname, role_id, verification_code)
 	VALUES (1238, false, 'markomarko@gmail.com', true, null,  'Marko', 'marko', '0636523562', 'Markovic', 3, null);
 
