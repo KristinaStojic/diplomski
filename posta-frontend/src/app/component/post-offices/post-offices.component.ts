@@ -32,7 +32,7 @@ export class PostOfficesComponent implements OnInit {
     "phoneNumber": "",
     "streetNumber": "",
     "postalCode": "",
-    "managerId": "",
+    "managerID": "",
     "latitude": 0,
     "longitude": 0
   }
@@ -282,7 +282,7 @@ export class PostOfficesComponent implements OnInit {
     }
 
     console.log(this.managerId)
-    this.newPostOffice.managerId = this.managerId
+    this.newPostOffice.managerID = this.managerId
 
   }
 

@@ -1,12 +1,8 @@
 package com.example.posta.controller;
 
-import com.example.posta.dto.AddManagerDTO;
 import com.example.posta.dto.AddPostOfficeDTO;
-import com.example.posta.dto.ManagerDTO;
 import com.example.posta.dto.PostOfficeDTO;
-import com.example.posta.model.Manager;
 import com.example.posta.model.PostOffice;
-import com.example.posta.service.ManagerService;
 import com.example.posta.service.PostOfficeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

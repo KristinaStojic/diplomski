@@ -32,7 +32,7 @@ public class PostOffice {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @OneToOne(targetEntity = Manager.class,cascade = CascadeType.MERGE)
-    @JoinColumn(name = "manager_id")
-    private Manager manager;
+//    @OneToOne(targetEntity = Manager.class,cascade = CascadeType.MERGE)
+//    @JoinColumn(name = "manager_id")
+//    private Manager manager;
 }

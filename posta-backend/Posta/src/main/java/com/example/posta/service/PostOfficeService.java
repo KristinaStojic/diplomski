@@ -1,6 +1,5 @@
 package com.example.posta.service;
 
-import com.example.posta.dto.AddManagerDTO;
 import com.example.posta.dto.AddPostOfficeDTO;
 import com.example.posta.dto.PostOfficeDTO;
 import com.example.posta.model.*;
@@ -50,7 +49,7 @@ public class PostOfficeService {
         for(Worker w: workerRepository.findAll()){
             if(w.getPostOffice() != null && id.equals(w.getPostOffice().getId())){
                 w.setPostOffice(null);
-                p.setManager(null);
+                //p.setManager(null);
                 workerRepository.save(w);
             }
         }
@@ -66,7 +65,7 @@ public class PostOfficeService {
         p.setEmployeeNumber(1);
 
         Manager m = this.managerRepository.findById(dto.getManagerID()).orElseGet(null);
-        p.setManager(m);
+//        p.setManager(m);
 
         Country c = new Country();
         c.setCountryName(dto.getCountry());
@@ -96,7 +95,7 @@ public class PostOfficeService {
     public PostOffice editPostOffice(AddPostOfficeDTO dto){
         PostOffice p = this.postOfficeRepository.findById(dto.getId()).orElseGet(null);
         Manager m = this.managerRepository.findById(dto.getManagerID()).orElseGet(null);
-        p.setManager(m);
+        //p.setManager(m);
         m.setPostOffice(p);
         p.setPhoneNumber(dto.getPhoneNumber());
         p.getAddress().getCity().setCityName(dto.getCity());
