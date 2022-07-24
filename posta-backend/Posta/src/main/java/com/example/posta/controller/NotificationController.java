@@ -22,10 +22,10 @@ public class NotificationController {
     @Autowired
     NotificationService notificationService;
 
-    @RequestMapping(value="/getAll", method = RequestMethod.GET)
+    @RequestMapping(value="/getAll/{workerEmail}", method = RequestMethod.GET)
     public @ResponseBody
-    ResponseEntity<List<NotificationDTO>> getAllNotification(@RequestHeader("Authorization") String token){
-        List<NotificationDTO> m = notificationService.getAllNotification();
+    ResponseEntity<List<NotificationDTO>> getAllNotification(@PathVariable String workerEmail){
+        List<NotificationDTO> m = notificationService.getAllNotification(workerEmail);
         if(m != null){
             return new ResponseEntity<>(m, HttpStatus.OK);
         }

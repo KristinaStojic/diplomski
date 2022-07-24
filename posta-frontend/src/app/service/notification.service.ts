@@ -13,7 +13,7 @@ export class NotificationService {
   constructor(private router: Router,
     private _http:HttpClient) { }
 
-  public getAll(): Observable<Notification[]>{
-    return this._http.get<Notification[]>(`${this.notification_url}/getAll`)
+  public getAll(user): Observable<Notification[]>{
+    return this._http.get<Notification[]>(`${this.notification_url}/getAll/`+ user)
   }
 }

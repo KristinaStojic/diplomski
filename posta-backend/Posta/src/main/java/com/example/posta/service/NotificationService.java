@@ -9,6 +9,7 @@ import com.example.posta.repository.ManagerRepository;
 import com.example.posta.repository.NotificationRepository;
 import com.example.posta.repository.PostOfficeRepository;
 import com.example.posta.repository.WorkerRepository;
+import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,12 +36,16 @@ public class NotificationService {
     @Autowired
     WorkerRepository workerRepository;
 
-    public List<NotificationDTO> getAllNotification(){
+    public List<NotificationDTO> getAllNotification(String workerEmail){
         List<NotificationDTO> ret = new ArrayList<>();
+        Worker w = workerRepository.findByEmail(workerEmail);
+        PostOffice p = postOfficeRepository.findById(w.getPostOffice().getId()).orElseGet(null);
 
         for(Notification n: notificationRepository.findAll()){
-            NotificationDTO ndto = new NotificationDTO(n);
-            ret.add(ndto);
+            if(n.getManager().getPostOffice() != null && p.getId() == n.getManager().getPostOffice().getId()){
+                NotificationDTO ndto = new NotificationDTO(n);
+                ret.add(ndto);
+            }
         }
 
         return ret;

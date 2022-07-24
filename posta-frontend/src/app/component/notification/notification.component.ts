@@ -14,7 +14,7 @@ export class NotificationComponent implements OnInit {
   constructor(private notificationService: NotificationService) { }
 
   ngOnInit(): void {
-    this.notificationService.getAll().subscribe(
+    this.notificationService.getAll(localStorage.getItem('user')).subscribe(
       (notifications: Notification[]) => {
         this.notifications = notifications
         console.log(this.notifications)
