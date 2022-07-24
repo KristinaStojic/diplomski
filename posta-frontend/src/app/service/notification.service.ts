@@ -16,4 +16,8 @@ export class NotificationService {
   public getAll(user): Observable<Notification[]>{
     return this._http.get<Notification[]>(`${this.notification_url}/getAll/`+ user)
   }
+
+  public addNotification(n): Observable<Notification> {
+    return this._http.post<Notification>(`${this.notification_url}/addNotification`, n)
+  }
 }
