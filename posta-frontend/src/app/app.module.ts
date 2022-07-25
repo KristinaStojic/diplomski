@@ -19,6 +19,7 @@ import { NotificationComponent } from './component/notification/notification.com
 import { AccountingWorkerHomeComponent } from './component/accounting-worker-home/accounting-worker-home.component';
 import { CounterWorkerHomeComponent } from './component/counter-worker-home/counter-worker-home.component';
 import { PaymentsComponent } from './component/payments/payments.component';
+import { AddPaymentComponent } from './component/add-payment/add-payment.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { PaymentsComponent } from './component/payments/payments.component';
     AccountingWorkerHomeComponent,
     CounterWorkerHomeComponent,
     PaymentsComponent,
+    AddPaymentComponent,
   ],
   imports: [
     BrowserModule,

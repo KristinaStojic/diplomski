@@ -1,3 +1,4 @@
+import { AddPaymentComponent } from './component/add-payment/add-payment.component';
 import { PaymentsComponent } from './component/payments/payments.component';
 import { CounterWorkerHomeComponent } from './component/counter-worker-home/counter-worker-home.component';
 import { AccountingWorkerHomeComponent } from './component/accounting-worker-home/accounting-worker-home.component';
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: 'payments',
     component: PaymentsComponent,
+  },
+  {
+    path: 'add-payment',
+    component: AddPaymentComponent,
   },
 ];
 
