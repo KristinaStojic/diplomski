@@ -2,6 +2,7 @@ package com.example.posta.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,13 +10,17 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-public class Client {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+@NoArgsConstructor
+public class Client extends User{
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "client_id", nullable = false)
-    @JsonBackReference
-    private Client client;
+    public Client(User u){
+        super(u);
+    }
+
+    @OneToOne(targetEntity = Address.class,cascade = CascadeType.MERGE)
+    @JoinColumn(name = "address_id")
+    private Address address;
+
+    @Column(unique = false, nullable = false)
+    private String jmbg;
 }

@@ -12,6 +12,9 @@
       <li class="nav-item active" *ngIf="isLogged() && isManager()">
         <a class="nav-link" href="/manager-home">Почетна <span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item active" *ngIf="isLogged() && isCounterWorker()">
+        <a class="nav-link" href="/counter-worker-home">Почетна <span class="sr-only">(current)</span></a>
+      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
         <ul class="navbar-nav mr-auto">
@@ -24,8 +27,11 @@
             <li class="nav-item active" *ngIf="isManager()">
               <a class="nav-link" href="/manager-home#">Запослени</a>
             </li>
-            <li class="nav-item active" *ngIf="isManager() || isAccountingWorker()">
+            <li class="nav-item active" *ngIf="isManager() || isAccountingWorker() || isCounterWorker()">
               <a class="nav-link" href="/notification">Обавјештења</a>
+            </li>
+            <li class="nav-item active" *ngIf="isCounterWorker()">
+              <a class="nav-link" href="/payments">Уплате</a>
             </li>
             <li class="nav-item active" *ngIf="isManager()">
               <a class="nav-link" href="#">Возила</a>

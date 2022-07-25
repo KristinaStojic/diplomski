@@ -1,3 +1,5 @@
+import { PaymentsComponent } from './component/payments/payments.component';
+import { CounterWorkerHomeComponent } from './component/counter-worker-home/counter-worker-home.component';
 import { AccountingWorkerHomeComponent } from './component/accounting-worker-home/accounting-worker-home.component';
 import { NotificationComponent } from './component/notification/notification.component';
 import { ManagerHomeComponent } from './component/manager-home/manager-home.component';
@@ -32,6 +34,14 @@ const routes: Routes = [
   {
     path: 'accounting-worker-home',
     component: AccountingWorkerHomeComponent,
+  },
+  {
+    path: 'counter-worker-home',
+    component: CounterWorkerHomeComponent,
+  },
+  {
+    path: 'payments',
+    component: PaymentsComponent,
   },
 ];
 

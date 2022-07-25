@@ -11,7 +11,7 @@ INSERT INTO USERS(id, deleted, email, enabled, last_password_reset_date, name, p
 INSERT INTO USERS(id, deleted, email, enabled, last_password_reset_date, name, password, phone_number, surname, role_id, verification_code)
 	VALUES (1238, false, 'markomarko@gmail.com', true, null,  'Marko', 'marko', '0636523562', 'Markovic', 3, null);
 INSERT INTO USERS(id, deleted, email, enabled, last_password_reset_date, name, password, phone_number, surname, role_id, verification_code)
-	VALUES (1239, false, 'klaraacim1@gmail.com', true, null,  'Klara', 'klara', '061352652', 'Acimovic', 5, null);
+	VALUES (1239, false, 'klaraacim1@gmail.com', true, null,  'Klara', 'klara', '061352652', 'Acimovic', 2, null);
 
 
 

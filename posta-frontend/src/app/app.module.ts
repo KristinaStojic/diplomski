@@ -17,6 +17,8 @@ import { PostOfficesComponent } from './component/post-offices/post-offices.comp
 import { ManagerHomeComponent } from './component/manager-home/manager-home.component';
 import { NotificationComponent } from './component/notification/notification.component';
 import { AccountingWorkerHomeComponent } from './component/accounting-worker-home/accounting-worker-home.component';
+import { CounterWorkerHomeComponent } from './component/counter-worker-home/counter-worker-home.component';
+import { PaymentsComponent } from './component/payments/payments.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { AccountingWorkerHomeComponent } from './component/accounting-worker-hom
     ManagerHomeComponent,
     NotificationComponent,
     AccountingWorkerHomeComponent,
+    CounterWorkerHomeComponent,
+    PaymentsComponent,
   ],
   imports: [
     BrowserModule,

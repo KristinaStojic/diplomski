@@ -50,4 +50,12 @@ export class HeaderComponent implements OnInit {
     }
     return false;
   }
+
+  isCounterWorker() {
+    let role = localStorage.getItem("role");
+    if (role == "ROLE_COUNTER_WORKER" && this.isLogged){
+      return true;
+    }
+    return false;
+  }
 }
