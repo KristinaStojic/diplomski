@@ -12,7 +12,6 @@ import javax.persistence.*;
 @Setter
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 public class Payment extends FinancialService{
 
     public Payment(FinancialService u) {

@@ -15,6 +15,8 @@ import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "financial_service")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class FinancialService {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,8 +43,8 @@ public class FinancialService {
 
 
     public FinancialService(FinancialService u) {
-        this.counterWorker = u.getCounterWorker();
-        this.client = u.getClient();
+        //this.counterWorker = u.getCounterWorker();
+        //this.client = u.getClient();
         this.amount = u.getAmount();
         this.currency = u.getCurrency();
         this.date = u.getDate();
