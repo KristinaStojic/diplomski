@@ -21,16 +21,15 @@
           </tr>
         </thead>
         <tbody>
-          <!-- <tr *ngFor="let m of postOffices; index as i">
+          <tr *ngFor="let m of payments; index as i">
             <th scope="row">{{i+1}}</th>
-            <td>{{m.street}}</td>
-            <td>{{m.city}}</td>
-            <td>{{m.country}}</td>
-            <td>{{m.phoneNumber}}</td>
-            <td><button class="btn btn-primary" (click)="selectPostOffice(m)" data-toggle="modal" data-target="#editPostOffice">Измијени</button></td>
-            <td><button class="btn btn-primary" (click)="deletePostOffice(m.id)">Избриши</button></td>
-
-          </tr> -->
+            <td>{{m.client.name}} {{m.client.surname}}</td>
+            <td>{{m.receiver}}</td>
+            <td>{{m.purpose}}</td>
+            <td>{{m.amount}}</td>
+            <td>{{m.date}}</td>
+     
+          </tr>
 
         </tbody>
       </table>

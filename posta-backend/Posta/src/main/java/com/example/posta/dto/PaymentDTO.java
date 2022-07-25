@@ -10,14 +10,16 @@ import lombok.Setter;
 
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class PaymentDTO {
+    private Long id;
     private String receiver;
-    private Address receiver_address;
+    private AddressDTO receiver_address;
     private String purpose;
     private String paymentCode;
     private String receiverAccount;
@@ -27,11 +29,13 @@ public class PaymentDTO {
     private Client client;
     private Double amount;
     private String currency;
-    private LocalDateTime date;
+    private String date;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyy HH:mm:ss");
 
     public PaymentDTO(Payment p){
+        this.id = p.getId();
         this.receiver = p.getReceiver();
-        this.receiver_address = p.getReceiver_address();
+        this.receiver_address = new AddressDTO(p.getReceiver_address());
         this.purpose = p.getPurpose();
         this.paymentCode = p.getPaymentCode();
         this.receiverAccount = p.getReceiverAccount();
@@ -41,6 +45,6 @@ public class PaymentDTO {
         this.client = p.getClient();
         this.amount = p.getAmount();
         this.currency = p.getCurrency();
-        this.date = p.getDate();
+        this.date = p.getDate().format(formatter);
     }
 }
