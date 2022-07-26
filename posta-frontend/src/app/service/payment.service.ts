@@ -20,4 +20,8 @@ export class PaymentService {
     public getAll(): Observable<Payment[]>{
       return this._http.get<Payment[]>(`${this.payment_url}/getAll`)
     }
+
+    public addPayment(payment): Observable<Payment> {
+      return this._http.post<Payment>(`${this.payment_url}/addPayment`, payment)
+    }
 }

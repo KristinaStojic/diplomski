@@ -1,9 +1,11 @@
+import { PaymentService } from './../../service/payment.service';
 import { Address } from './../../model/address';
 import { Client } from './../../model/client';
 import { StreetViewControlOptions } from '@agm/core';
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Payment } from 'src/app/model/payment';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-payment',
@@ -19,11 +21,13 @@ export class AddPaymentComponent implements OnInit {
   clientAddress : Address = new Address()
   receiver: Client = new Client()
   receiverAddress: Address = new Address()
+  valid: Boolean = true
 
-  constructor() { }
+  constructor(private paymentService: PaymentService) { }
 
   ngOnInit(): void {
     this.date = this.pipe.transform(Date.now(), 'dd/MM/yyyy');
+    
   }
 
   addPayment(){
@@ -32,8 +36,57 @@ export class AddPaymentComponent implements OnInit {
     this.payment.clientAddress = this.clientAddress;
     this.payment.receiver = this.receiver;
     this.payment.receiverAddress = this.receiverAddress;
+    this.isValid()
 
-    console.log(this.payment)
+    if(this.valid){
+      // this.paymentService.addPayment(this.payment).subscribe(
+      //   (p: Payment) => {
+      //     window.location.reload()
+      //   },
+      //   (error) => {
+      //     Swal.fire({
+      //       icon: 'error',
+      //       title: 'Упс...',
+      //       text: 'Дошло је до грешке!',
+      //     })
+      //   },
+      // )
+      console.log(this.payment)
+
+    }else{
+      Swal.fire({
+              icon: 'error',
+              title: 'Упс...',
+              text: 'Попуните сва поља!',
+            })
+    }
+    
+  }
+
+  isValid(){
+    if(this.client.name == "" || this.client.surname == ""){
+      this.valid = false
+      return
+    }
+    if(this.receiver.name == "" || this.receiver.surname == ""){
+      this.valid = false;
+      return
+    }
+    if(this.clientAddress.city == "" || this.clientAddress.country == "" || this.clientAddress.postalCode == "" || this.clientAddress.street == "" || this.clientAddress.streetNumber == ""){
+      this.valid = false;
+      return
+    }
+    if(this.receiverAddress.city == "" || this.receiverAddress.country == "" || this.receiverAddress.postalCode == "" || this.receiverAddress.street == "" || this.receiverAddress.streetNumber == ""){
+      this.valid = false;
+      return
+    }
+    if(this.payment.currency == "" || this.payment.model == "" || this.payment.paymentCode == "" || this.payment.purpose == "" || this.payment.receivingPlace == "" || this.payment.referenceNumber == "" || this.payment.amount == null){
+      this.valid = false;
+      return
+    }
+    
+    this.valid = true;
+    
   }
 
 }
