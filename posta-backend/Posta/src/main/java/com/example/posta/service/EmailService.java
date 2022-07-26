@@ -27,7 +27,7 @@ public class EmailService {
         MimeMessageHelper helper = new MimeMessageHelper(mail);
         helper.setTo(userEmail);
         helper.setFrom("wish.and.fish.serbia@gmail.com");
-        helper.setSubject("New action");
+        helper.setSubject("Ново обавјештење");
         helper.setText(text, true);
         javaMailSender.send(mail);
 
