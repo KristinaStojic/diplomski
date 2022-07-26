@@ -7,33 +7,33 @@
                 <div class="row" >
                     <div class="col">
                         <label style="margin-bottom: 10px; margin-left: 0.5ch;" class="row">Уплатилац:</label>
-                        <input style="width: 95%; margin-left: 0.5ch;" type="text" class="row" placeholder="Име">
+                        <input style="width: 95%; margin-left: 0.5ch;" type="text" class="row" placeholder="Име" [(ngModel)]="client.name" name="name">
                     </div>
                     <div class="col">
-                        <input style="width: 107%; margin-top: 3.9ch;" type="text" class="row" placeholder="Презиме">
+                        <input style="width: 107%; margin-top: 3.9ch;" type="text" class="row" placeholder="Презиме" [(ngModel)]="client.surname" name="name">
                     </div>
                 </div>
                 <br>
 
                 <div class="row">
                     <div class="col-6" >
-                        <input type="text" placeholder="Улица" style="width: 95%; margin-left: 0.5ch;">
+                        <input type="text" placeholder="Улица" style="width: 95%; margin-left: 0.5ch;" [(ngModel)]="clientAddress.street" name="street">
                     </div>
                     <div class="col-3" style="padding: 0%">
-                        <input type="text" placeholder="Број" style="width: 100%;">
+                        <input type="text" placeholder="Број" style="width: 100%;" [(ngModel)]="clientAddress.streetNumber" name="streetNumber">
                     </div>
                     <div class="col-3" style="padding-right: 0%;">
-                        <input type="text" placeholder="Поштански број" style="width: 97%;">
+                        <input type="text" placeholder="Поштански број" style="width: 97%;" [(ngModel)]="clientAddress.postalCode" name="postalCode">
                     </div>
                 </div><br>
 
                 <div class="row">
                     <div class="col">
-                        <input style="width: 95%; margin-left: 0.5ch; margin-top: 0.5ch;" type="text" class="row" placeholder="Град">
+                        <input style="width: 95%; margin-left: 0.5ch; margin-top: 0.5ch;" type="text" class="row" placeholder="Град" [(ngModel)]="clientAddress.city" name="city">
                     </div>
     
                     <div class="col">
-                        <input style="width: 107%; margin-top: 0.5ch;" type="text" class="row" placeholder="Држава">
+                        <input style="width: 107%; margin-top: 0.5ch;" type="text" class="row" placeholder="Држава" [(ngModel)]="clientAddress.country" name="country">
                     </div>
                 </div>
 
@@ -42,40 +42,40 @@
 
             <div class="form-group" class="center" style="width: 40vw;">
                 <label style="margin-bottom: 10px;">Сврха уплате:</label>
-                <input style="width: 100%; height: 90px; margin-left: 0.5ch;" type="text" class="row">
+                <input style="width: 100%; height: 90px; margin-left: 0.5ch;" type="text" class="row" [(ngModel)]="payment.purpose" name="purpose">
             </div><br>
 
             <div class="form-group" class="center" style="width: 40vw;" >
                 <div class="row">
                     <div class="col">
                         <label style="margin-bottom: 10px; margin-left: 0.5ch;" class="row">Прималац:</label>
-                        <input style="width: 95%; margin-left: 0.5ch;" type="text" class="row" placeholder="Име">
+                        <input style="width: 95%; margin-left: 0.5ch;" type="text" class="row" placeholder="Име" [(ngModel)]="receiver.name" name="rname">
                     </div>
                     <div class="col">
-                        <input style="width: 107%; margin-top: 3.9ch;" type="text" class="row" placeholder="Презиме">
+                        <input style="width: 107%; margin-top: 3.9ch;" type="text" class="row" placeholder="Презиме" [(ngModel)]="receiver.surname" name="rsurname">
                     </div>
                 </div>
                 <br>
 
                 <div class="row">
                     <div class="col-6" >
-                        <input type="text" placeholder="Улица" style="width: 95%; margin-left: 0.5ch;">
+                        <input type="text" placeholder="Улица" style="width: 95%; margin-left: 0.5ch;" [(ngModel)]="receiverAddress.street" name="rstreet">
                     </div>
                     <div class="col-3" style="padding: 0%">
-                        <input type="text" placeholder="Број" style="width: 100%;">
+                        <input type="text" placeholder="Број" style="width: 100%;"  [(ngModel)]="receiverAddress.streetNumber" name="rstreetNum">
                     </div>
                     <div class="col-3" style="padding-right: 0%;">
-                        <input type="text" placeholder="Поштански број" style="width: 97%;">
+                        <input type="text" placeholder="Поштански број" style="width: 97%;"  [(ngModel)]="receiverAddress.postalCode" name="rPostalCode">
                     </div>
                 </div><br>
 
                 <div class="row">
                     <div class="col">
-                        <input style="width: 95%; margin-left: 0.5ch; margin-top: 0.5ch;" type="text" class="row" placeholder="Град">
+                        <input style="width: 95%; margin-left: 0.5ch; margin-top: 0.5ch;" type="text" class="row" placeholder="Град"  [(ngModel)]="receiverAddress.city" name="rcity">
                     </div>
     
                     <div class="col">
-                        <input style="width: 107%; margin-top: 0.5ch;" type="text" class="row" placeholder="Држава">
+                        <input style="width: 107%; margin-top: 0.5ch;" type="text" class="row" placeholder="Држава"  [(ngModel)]="receiverAddress.country" name="rcountry">
                     </div><br><br>
 
                 </div>
@@ -88,22 +88,22 @@
                 <div class="row">
                     <div class="col">
                         <label style="margin-bottom: 10px;" class="row">Шифра плаћања:</label>
-                        <input style="width: 75%;" type="text" class="row">
+                        <input style="width: 75%;" type="text" class="row"  [(ngModel)]="payment.paymentCode" name="code">
                     </div>
                     <div class="col">
                         <label style="margin-bottom: 10px;" class="row">Валута:</label>
-                        <input style="width: 65%;" type="text" class="row">
+                        <input style="width: 65%;" type="text" class="row" [(ngModel)]="payment.currency" name="currency">
                     </div>
                     <div class="col">
                         <label style="margin-bottom: 10px;" class="row">Износ:</label>
-                        <input style="width: 145%;" type="text" class="row">
+                        <input style="width: 145%;" type="text" class="row" [(ngModel)]="payment.amount" name="amount">
                     </div><br>
                 </div>
 
                 <div class="row" >
                     <div class="col"><br>
                         <label style="margin-bottom: 10px;" class="row">Рачун примаоца:</label>
-                        <input style="width: 114%;" type="text" class="row">
+                        <input style="width: 114%;" type="text" class="row" [(ngModel)]="payment.receiverAccount" name="receiverAccount">
                     </div>
                
            
@@ -113,12 +113,12 @@
 
                     <div class="col"><br>
                         <label style="margin-bottom: 10px;" class="row">Модел:</label>
-                        <input style="width: 95%;" type="text" class="row">
+                        <input style="width: 95%;" type="text" class="row" [(ngModel)]="payment.model" name="model">
                     </div>
                
                     <div class="col"><br>
                         <label style="margin-bottom: 10px;" class="row">Позив на број:</label>
-                        <input style="width: 130%;" type="text" class="row">
+                        <input style="width: 130%;" type="text" class="row" [(ngModel)]="payment.referenceNumber" name="referenceNumber">
                     </div>
                 </div>
 
@@ -127,7 +127,7 @@
 
                     <div class="col"><br>
                         <label style="margin-bottom: 10px;" class="row">Датум пријема:</label>
-                        <input style="width: 114%;" type="text" class="row">
+                        <input style="width: 114%;" type="text" class="row" [(ngModel)]="date" name="date" disabled>
                     </div>
                
                 </div>
@@ -136,7 +136,7 @@
 
                     <div class="col"><br>
                         <label style="margin-bottom: 10px;" class="row">Мјесто пријема:</label>
-                        <input style="width: 114%;" type="text" class="row">
+                        <input style="width: 114%;" type="text" class="row" [(ngModel)]="payment.receivingPlace" name="place">
                     </div>
                
                 </div><br><br><br>
@@ -146,7 +146,7 @@
             
             <div class="float-right" style="margin-right: 5ch;">
                 <button class="btn btn-primary" style="margin-right: 1ch;">Откажи</button>
-                <button class="btn btn-primary">Сачувај</button>
+                <button class="btn btn-primary" (click)="addPayment()">Сачувај</button>
     
             </div>
         </form>
