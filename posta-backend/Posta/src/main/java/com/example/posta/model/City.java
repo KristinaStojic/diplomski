@@ -28,4 +28,8 @@ public class City {
     @OneToOne(targetEntity = Country.class,cascade = CascadeType.MERGE)
     @JoinColumn(name = "country_id")
     private Country country;
+
+    public City(String city){
+        this.cityName = city;
+    }
 }

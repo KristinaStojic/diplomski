@@ -21,6 +21,6 @@ public class Client extends User{
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @Column(unique = false, nullable = false)
+    @Column(unique = false, nullable = true)
     private String jmbg;
 }

@@ -18,12 +18,13 @@ public class Payment extends FinancialService{
         super(u);
     }
 
-    @Column(unique = false, nullable = false)
-    private String receiver;
+    @OneToOne(targetEntity = Client.class,cascade = CascadeType.MERGE)
+    @JoinColumn(name = "receiver_id")
+    private Client receiver;
 
-    @OneToOne(targetEntity = Address.class,cascade = CascadeType.MERGE)
-    @JoinColumn(name = "receiver_address_id")
-    private Address receiver_address;
+//    @OneToOne(targetEntity = Address.class,cascade = CascadeType.MERGE)
+//    @JoinColumn(name = "receiver_address_id")
+//    private Address receiver_address;
 
     @Column(unique = false, nullable = false)
     private String purpose;
@@ -39,5 +40,8 @@ public class Payment extends FinancialService{
 
     @Column(unique = false, nullable = false)
     private String referenceNumber;
+
+    @Column(unique = false, nullable = false)
+    private String receivingPlace;
 
 }

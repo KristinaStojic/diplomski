@@ -22,12 +22,13 @@ export class AddPaymentComponent implements OnInit {
   receiver: Client = new Client()
   receiverAddress: Address = new Address()
   valid: Boolean = true
+  worker: any
 
   constructor(private paymentService: PaymentService) { }
 
   ngOnInit(): void {
     this.date = this.pipe.transform(Date.now(), 'dd/MM/yyyy');
-    
+    this.worker = localStorage.getItem('user')
   }
 
   addPayment(){
@@ -36,21 +37,22 @@ export class AddPaymentComponent implements OnInit {
     this.payment.clientAddress = this.clientAddress;
     this.payment.receiver = this.receiver;
     this.payment.receiverAddress = this.receiverAddress;
+    this.payment.counterWorker = this.worker;
     this.isValid()
 
     if(this.valid){
-      // this.paymentService.addPayment(this.payment).subscribe(
-      //   (p: Payment) => {
-      //     window.location.reload()
-      //   },
-      //   (error) => {
-      //     Swal.fire({
-      //       icon: 'error',
-      //       title: 'Упс...',
-      //       text: 'Дошло је до грешке!',
-      //     })
-      //   },
-      // )
+      this.paymentService.addPayment(this.payment).subscribe(
+        (p: Payment) => {
+          window.location.reload()
+        },
+        (error) => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Упс...',
+            text: 'Дошло је до грешке!',
+          })
+        },
+      )
       console.log(this.payment)
 
     }else{

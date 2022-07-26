@@ -34,8 +34,8 @@ public class PaymentDTO {
 
     public PaymentDTO(Payment p){
         this.id = p.getId();
-        this.receiver = p.getReceiver();
-        this.receiver_address = new AddressDTO(p.getReceiver_address());
+        this.receiver = p.getReceiver().getName() + " " + p.getReceiver().getSurname();
+        this.receiver_address = new AddressDTO(p.getReceiver().getAddress());
         this.purpose = p.getPurpose();
         this.paymentCode = p.getPaymentCode();
         this.receiverAccount = p.getReceiverAccount();

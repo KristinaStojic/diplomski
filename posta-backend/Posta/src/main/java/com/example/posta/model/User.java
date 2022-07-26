@@ -26,7 +26,7 @@ public class User implements UserDetails{
     @Column(name = "password", nullable = true)
     private String password;
 
-    @Column(name = "email", unique = true, nullable = false)
+    @Column(name = "email", unique = true, nullable = true)
     private String email;
 
     @Column(name = "name", nullable = false)
@@ -39,7 +39,7 @@ public class User implements UserDetails{
 //    @JoinColumn(name = "address_id")
 //    private Address address;
 
-    @Column(name = "phoneNumber", nullable = false)
+    @Column(name = "phoneNumber", nullable = true)
     private String phoneNumber;
 
     @Column(name = "deleted", nullable = false)

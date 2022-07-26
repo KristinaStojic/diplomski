@@ -31,6 +31,10 @@ public class FinancialService {
     @JoinColumn(name = "client_id")
     private Client client;
 
+//    @OneToOne(targetEntity = Address.class,cascade = CascadeType.MERGE)
+//    @JoinColumn(name = "client_address_id")
+//    private Address client_address;
+
     @Column(unique = false, nullable = false)
     private Double amount;
 

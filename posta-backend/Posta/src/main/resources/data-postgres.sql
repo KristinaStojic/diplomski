@@ -50,4 +50,4 @@ INSERT INTO public.client(jmbg, id, address_id) VALUES ('0503999199652', 1240, 1
 INSERT INTO public.financial_service(id, amount, currency, date, client_id, counter_worker_id) VALUES (11, 1500, 'DIN', '07-01-2022', 1240, 1239);
 
 
-INSERT INTO public.payment(model, payment_code, purpose, receiver, receiver_account, reference_number, id, receiver_address_id) VALUES ('156', '365', 'Пријава испита', 'Факултет техничких наука', '5510235112365412', '352', 11, 155);
+--INSERT INTO public.payment(model, payment_code, purpose, receiver, receiver_account, reference_number, id, receiver_address_id) VALUES ('156', '365', 'Пријава испита', 'Факултет техничких наука', '5510235112365412', '352', 11, 155);
