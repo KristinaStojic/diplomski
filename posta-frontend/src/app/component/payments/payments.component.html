@@ -1,0 +1,34 @@
+<div class="borders">
+
+    <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
+        <h4>Уплате</h4>
+        <button class="btn btn-primary" (click)="addPayment()">Додај уплату</button>
+    </div>
+
+    <table class="shadow p-3 mb-5 bg-white rounded table" style="width:100%">
+        <thead>
+          <tr>
+            <th scope="col" style="width:8%">#</th>
+            <th scope="col" >Уплатилац</th>
+            <th scope="col" >Прималац</th>
+            <th scope="col" >Сврха уплате</th>
+            <th scope="col" >Износ</th>
+            <th scope="col" >Датум уплате</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let m of payments; index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{m.client.name}} {{m.client.surname}}</td>
+            <td>{{m.receiver}}</td>
+            <td>{{m.purpose}}</td>
+            <td>{{m.amount}}</td>
+            <td>{{m.date}}</td>
+     
+          </tr>
+
+        </tbody>
+      </table>
+
+</div>

@@ -1,5 +1,6 @@
 package com.example.posta.model;
 
+import com.example.posta.dto.AddressDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,4 +34,9 @@ public class Address {
     @OneToOne(targetEntity = City.class,cascade = CascadeType.MERGE)
     @JoinColumn(name = "city_id")
     private City city;
+
+    public Address(AddressDTO a){
+        this.street = a.getStreet();
+        this.streetNumber = a.getStreetNumber();
+    }
 }
