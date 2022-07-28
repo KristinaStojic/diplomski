@@ -10,10 +10,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>WishAndFish</artifactId>
+	<artifactId>Posta</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>WishAndFish</name>
-	<description>WishAndFish application</description>
+	<name>Posta</name>
+	<description>Posta application</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -115,6 +115,14 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.20.0</version>
+		</dependency>
+
 
 	</dependencies>
 
