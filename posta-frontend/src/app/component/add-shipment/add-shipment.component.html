@@ -6,7 +6,7 @@
             <div class="form-group" class="center" style="width: 40vw;">
                 <div class="row" >
                     <div class="col">
-                        <label style="margin-bottom: 10px; margin-left: 0.5ch;" class="row">Уплатилац:</label>
+                        <label style="margin-bottom: 10px; margin-left: 0.5ch;" class="row">Пошиљалац:</label>
                         <input style="width: 95%; margin-left: 0.5ch;" type="text" class="row" placeholder="Име" [(ngModel)]="client.name" name="name">
                     </div>
                     <div class="col">
@@ -39,11 +39,6 @@
 
                    
                 </div><br>
-
-            <div class="form-group" class="center" style="width: 40vw;">
-                <label style="margin-bottom: 10px;">Сврха уплате:</label>
-                <input style="width: 100%; height: 90px; margin-left: 0.5ch;" type="text" class="row" [(ngModel)]="payment.purpose" name="purpose">
-            </div><br>
 
             <div class="form-group" class="center" style="width: 40vw;" >
                 <div class="row">
@@ -80,6 +75,16 @@
 
                 </div>
 
+                <div class="row">
+
+                    <div class="col" style="margin-left: 12px;"><br>
+                        <label style="margin-bottom: 10px;" class="row">Датум пријема:</label>
+                        <input style="width: 103%;" type="text" class="row" [(ngModel)]="date" name="date" disabled>
+                    </div>
+               
+                </div><br>
+                
+
             </div>
         </form>
 
@@ -87,66 +92,77 @@
             <div class="form-group" class="center" style="width: 37vw;">
                 <div class="row">
                     <div class="col">
-                        <label style="margin-bottom: 10px;" class="row">Шифра плаћања:</label>
-                        <input style="width: 75%;" type="text" class="row"  [(ngModel)]="payment.paymentCode" name="code">
+                        <label style="margin-bottom: 10px; margin-left: 1px;" class="row">Услуга:</label>
+                        <select class="form-select" aria-label="Default select example" style="width: 112%;">
+                            <option value="1">Писмоносна услуга</option>
+                            <option value="2">Пакет</option>
+                        </select>
                     </div>
-                    <div class="col">
-                        <label style="margin-bottom: 10px;" class="row">Валута:</label>
-                        <input style="width: 65%;" type="text" class="row" [(ngModel)]="payment.currency" name="currency">
-                    </div>
-                    <div class="col">
-                        <label style="margin-bottom: 10px;" class="row">Износ:</label>
-                        <input style="width: 145%;" type="text" class="row" [(ngModel)]="payment.amount" name="amount">
-                    </div><br>
-                </div>
+                </div><br>
 
                 <div class="row" >
-                    <div class="col"><br>
-                        <label style="margin-bottom: 10px;" class="row">Рачун примаоца:</label>
-                        <input style="width: 114%;" type="text" class="row" [(ngModel)]="payment.receiverAccount" name="receiverAccount">
+                    <div class="col">
+                        <label style="margin-bottom: 10px; margin-left: 1px;" class="row">Врста пошиљке:</label>
+                        <select class="form-select" aria-label="Default select example" style="width: 112%;">
+                            <option value="1">Писмо</option>
+                            <option value="2">Препоручена пошиљка</option>
+                            <option value="2">Вриједносна пошиљка</option>
+                        </select>
                     </div>
-               
-           
-                </div>
-
-                <div class="row">
-
-                    <div class="col"><br>
-                        <label style="margin-bottom: 10px;" class="row">Модел:</label>
-                        <input style="width: 95%;" type="text" class="row" [(ngModel)]="payment.model" name="model">
-                    </div>
-               
-                    <div class="col"><br>
-                        <label style="margin-bottom: 10px;" class="row">Позив на број:</label>
-                        <input style="width: 130%;" type="text" class="row" [(ngModel)]="payment.referenceNumber" name="referenceNumber">
-                    </div>
-                </div>
+                </div><br>
 
 
                 <div class="row">
 
-                    <div class="col"><br>
-                        <label style="margin-bottom: 10px;" class="row">Датум пријема:</label>
-                        <input style="width: 114%;" type="text" class="row" [(ngModel)]="date" name="date" disabled>
+                    <div class="col-10" style="margin-left: 12px;">
+                        <label style="margin-bottom: 10px;" class="row">Маса пошиљке (0-1000г):</label>
+                        <input style="width: 135%;" type="text" class="row" [(ngModel)]="shipment.weight" name="place">
                     </div>
-               
-                </div>
+
+                </div><br>
 
                 <div class="row">
 
-                    <div class="col"><br>
-                        <label style="margin-bottom: 10px;" class="row">Мјесто пријема:</label>
-                        <input style="width: 114%;" type="text" class="row" [(ngModel)]="payment.receivingPlace" name="place">
+                    <div class="col-10" style="margin-left: 12px;">
+                        <label style="margin-bottom: 10px;" class="row">Вредност пошиљке (дин):</label>
+                        <input style="width: 135%;" type="text" class="row" [(ngModel)]="shipment.value" name="place">
                     </div>
-               
-                </div><br><br><br>
-                
+                    
+                </div><br>
+
+                <div class="row">
+
+                    <div class="col-10" style="margin-left: 12px;">
+                        <label style="margin-bottom: 10px;" class="row">Услуге по захтјеву:</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Повратница
+                            </label>
+                        </div>
+                          
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Лично уручење
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                             Електронска потврда о уручењу пошиљке - СМС
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
                
             </div><br>
             
             <div class="float-right" style="margin-right: 5ch;">
                 <button class="btn btn-primary" style="margin-right: 1ch;">Откажи</button>
-                <button class="btn btn-primary" (click)="addPayment()">Сачувај</button>
+                <button class="btn btn-primary" >Сачувај</button>
     
             </div>
         </form>

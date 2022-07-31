@@ -45,7 +45,7 @@ INSERT INTO public.notification(id, content, manager_id, creation_date) VALUES (
 INSERT INTO public.notification(id, content, manager_id, creation_date) VALUES (16, 'Колективни годишњи одмор od 01.08. до 05.08!', 1237, '07-15-2022');
 
 
-INSERT INTO public.client(jmbg, id, address_id) VALUES ('0503999199652', 1240, 155);
+INSERT INTO public.client(id, address_id) VALUES (1240, 155);
 
 INSERT INTO public.financial_service(id, amount, currency, date, client_id, counter_worker_id) VALUES (11, 1500, 'DIN', '07-01-2022', 1240, 1239);
 

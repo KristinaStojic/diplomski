@@ -20,7 +20,4 @@ public class Client extends User{
     @OneToOne(targetEntity = Address.class,cascade = CascadeType.MERGE)
     @JoinColumn(name = "address_id")
     private Address address;
-
-    @Column(unique = false, nullable = true)
-    private String jmbg;
 }
