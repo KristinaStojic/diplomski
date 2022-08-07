@@ -10,7 +10,10 @@ export class Shipment {
     counterWorker: String
     weight: number
     value: number
-    personalDelivery: Boolean
-    SMSreport: Boolean
-    returnReceipt: Boolean
+    personalDelivery: Boolean = false
+    SMSreport: Boolean = false
+    returnReceipt: Boolean = false
+    smsNumber: String
+    shipmentType: String
+    letterType: String
 }

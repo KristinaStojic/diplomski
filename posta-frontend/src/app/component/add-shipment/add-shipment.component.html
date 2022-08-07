@@ -90,20 +90,21 @@
                 <div class="row">
                     <div class="col">
                         <label style="margin-bottom: 10px; margin-left: 1px;" class="row">Услуга:</label>
-                        <select class="form-select" aria-label="Default select example" style="width: 112%;">
+                        <select class="form-select" (change)="selectShipmentType($event)" aria-label="Default select example" style="width: 112%;">
                             <option value="1">Писмоносна услуга</option>
                             <option value="2">Пакет</option>
                         </select>
                     </div>
                 </div><br>
 
-                <div class="row" >
+                <div class="row" *ngIf="letter">
                     <div class="col">
                         <label style="margin-bottom: 10px; margin-left: 1px;" class="row">Врста пошиљке:</label>
-                        <select class="form-select" aria-label="Default select example" style="width: 112%;">
+                        <select [disabled]="!letter" (change)="selectLetterType($event)" class="form-select" aria-label="Default select example" style="width: 112%;">
+                            <option *ngIf="!letter" selected></option>
                             <option value="1">Писмо</option>
                             <option value="2">Препоручена пошиљка</option>
-                            <option value="2">Вриједносна пошиљка</option>
+                            <option value="3">Вриједносна пошиљка</option>
                         </select>
                     </div>
                 </div><br>
@@ -112,41 +113,42 @@
                 <div class="row">
 
                     <div class="col-10" style="margin-left: 12px;">
-                        <label style="margin-bottom: 10px;" class="row">Маса пошиљке (0-1000г):</label>
-                        <input style="width: 135%;" type="text" class="row" [(ngModel)]="shipment.weight" name="place">
+                        <label *ngIf="letter" style="margin-bottom: 10px;" class="row">Маса пошиљке (0-1000г):</label>
+                        <label *ngIf="!letter" style="margin-bottom: 10px;" class="row">Маса пошиљке (кг):</label>
+                        <input style="width: 135%;" type="text" class="row" [(ngModel)]="shipment.weight" name="weight">
                     </div>
 
                 </div><br>
 
-                <div class="row">
+                <div class="row" *ngIf="valueLetter">
 
                     <div class="col-10" style="margin-left: 12px;">
-                        <label style="margin-bottom: 10px;" class="row">Вредност пошиљке (дин):</label>
+                        <label style="margin-bottom: 10px;" class="row">Вриједност пошиљке (дин):</label>
                         <input style="width: 135%;" type="text" class="row" [(ngModel)]="shipment.value" name="place">
                     </div>
                     
                 </div><br>
 
-                <div class="row">
+                <div class="row" *ngIf="!ordinaryLetter">
 
                     <div class="col-10" style="margin-left: 12px;">
                         <label style="margin-bottom: 10px;" class="row">Услуге по захтјеву:</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <input class="form-check-input" type="checkbox" (change)="returnReceipt($event)" value="" id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                               Повратница
                             </label>
                         </div>
                           
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <input class="form-check-input" type="checkbox" (change)="personalDelivery($event)" value="" id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                               Лично уручење
                             </label>
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <input class="form-check-input" type="checkbox" (change)="SMSReport($event)" value="" id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                              Електронска потврда о уручењу пошиљке - СМС
                             </label>
@@ -155,11 +157,11 @@
                     
                 </div><br>
 
-                <div class="row">
+                <div *ngIf="sms" class="row">
 
                     <div class="col-10" style="margin-left: 12px;">
                         <label style="margin-bottom: 10px;" class="row">Број телефона:</label>
-                        <input style="width: 135%;" type="text" class="row" [(ngModel)]="shipment.weight" name="place">
+                        <input style="width: 135%;" type="text" class="row" [(ngModel)]="shipment.smsNumber" name="phoneNum">
                     </div>
 
                 </div><br>
@@ -168,7 +170,7 @@
             
             <div class="float-right" style="margin-right: 5ch;">
                 <button class="btn btn-primary" style="margin-right: 1ch;">Откажи</button>
-                <button class="btn btn-primary" >Сачувај</button>
+                <button class="btn btn-primary" (click)="addShipment()">Сачувај</button>
     
             </div>
         </form>
