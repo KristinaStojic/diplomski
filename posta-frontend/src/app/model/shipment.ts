@@ -1,3 +1,4 @@
+import { SafeResourceUrl } from '@angular/platform-browser';
 import { Address } from './address';
 import { Client } from './client';
 export class Shipment {
@@ -16,4 +17,7 @@ export class Shipment {
     smsNumber: String
     shipmentType: String
     letterType: String
+    code: String
+    sender: Client
+    shipmentStatus: String
 }

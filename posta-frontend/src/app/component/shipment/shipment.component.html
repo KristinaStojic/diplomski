@@ -2,5 +2,36 @@
     <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
         <h4>Пошиљке</h4>
         <button class="btn btn-primary" (click)="addShipment()">Додај пошиљку</button>
+
+
     </div>
+
+    <table class="shadow p-3 mb-5 bg-white rounded table" style="width:100%">
+        <thead>
+          <tr>
+            <th scope="col" style="width:8%">#</th>
+            <th scope="col" >Шифра пошиљке</th>
+            <th scope="col" >Пошиљалац</th>
+            <th scope="col" >Прималац</th>
+            <th scope="col" >Адреса примаоца</th>
+            <th scope="col" >Датум слања</th>
+            <th scope="col" >Статус</th>
+            <th scope="col" ></th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let m of shipments; index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{m.code}}</td>
+            <td>{{m.sender}}</td>
+            <td>{{m.receiver}}</td>
+            <td>{{m.receiverAddress}}</td>
+            <td>{{m.date}}</td>
+            <td>{{m.shipmentStatus}}</td>
+            <td><button class="btn btn-primary">Детаљи</button></td>
+          </tr>
+
+        </tbody>
+      </table>
 </div>

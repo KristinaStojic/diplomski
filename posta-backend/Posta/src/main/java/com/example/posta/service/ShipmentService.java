@@ -2,6 +2,8 @@ package com.example.posta.service;
 
 import com.example.posta.dto.AddPaymentDTO;
 import com.example.posta.dto.AddShipmentDTO;
+import com.example.posta.dto.PaymentDTO;
+import com.example.posta.dto.ShipmentDTO;
 import com.example.posta.model.*;
 import com.example.posta.model.enums.LetterType;
 import com.example.posta.model.enums.ShipmentStatus;
@@ -12,6 +14,10 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.UUID;
 
 @Service
 public class ShipmentService {
@@ -39,6 +45,16 @@ public class ShipmentService {
 
     @Autowired
     RoleRepository roleRepository;
+
+    public List<ShipmentDTO> getAllShipments(){
+        List<ShipmentDTO> ret = new ArrayList<>();
+
+        for(Shipment p: this.shipmentRepository.findAll()){
+            ShipmentDTO s = new ShipmentDTO(p);
+            ret.add(s);
+        }
+        return ret;
+    }
 
     public Shipment addShipment(AddShipmentDTO dto){
         Shipment s = new Shipment();
@@ -84,14 +100,14 @@ public class ShipmentService {
 
         s.setSender(client);
         s.setReceiver(receiver);
-        s.setDate(LocalDate.now());
+        s.setDate(LocalDateTime.now());
         s.setValue(dto.getValue());
         s.setWeight(dto.getWeight());
         s.setSMSReport(dto.getSmsReport());
         s.setSmsNumber(dto.getSmsNumber());
         s.setPersonalDelivery(dto.getPersonalDelivery());
         s.setReturnReceipt(dto.getReturnReceipt());
-
+        s.setCode(UUID.randomUUID().toString().toUpperCase().substring(0,9));
         Worker w = workerRepository.findByEmail(dto.getCounterWorker());
         CounterWorker cw = counterWorkerRepository.getById(w.getId());
 

@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -17,6 +18,9 @@ public class Shipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "code", unique = true)
+    private String code;
 
     @Column(name = "shipment_type", unique = false)
     private ShipmentType shipmentType;
@@ -69,7 +73,7 @@ public class Shipment {
     private String smsNumber;
 
     @Column(name = "sent_date", unique = false, nullable = false)
-    private LocalDate date;
+    private LocalDateTime date;
 
     @Column(name = "total_price", unique = false)
     private Double totalPrice;
