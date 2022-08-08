@@ -1,9 +1,11 @@
+import { ShipmentService } from './../../service/shipment.service';
 import { Address } from './../../model/address';
 import { Client } from './../../model/client';
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Shipment } from 'src/app/model/shipment';
 import { throwToolbarMixedModesError } from '@angular/material/toolbar';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-shipment',
@@ -24,8 +26,9 @@ export class AddShipmentComponent implements OnInit {
   letter: Boolean = true
   valueLetter: Boolean = false
   ordinaryLetter: Boolean = true
-  
-  constructor() { }
+  valid: Boolean = true
+  isNaN: Boolean = false
+  constructor(private shipmentService: ShipmentService) { }
 
   ngOnInit(): void {
     this.date = this.pipe.transform(Date.now(), 'dd/MM/yyyy');
@@ -36,6 +39,32 @@ export class AddShipmentComponent implements OnInit {
 
   addShipment(){
     this.setShipmentFields()
+    this.isValid()
+
+    if(this.valid){
+      this.shipmentService.addShipment(this.shipment).subscribe(
+        (p: Shipment) => {
+         window.location.reload()
+        },
+        (error) => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Упс...',
+            text: 'Дошло је до грешке!',
+          })
+        },
+      )
+      console.log(this.shipment)
+
+    }else{
+      Swal.fire({
+              icon: 'error',
+              title: 'Упс...',
+              text: 'Попуните сва поља у исправном формату!',
+            })
+            console.log(this.shipment)
+
+    }
     console.log(this.shipment)
   }
 
@@ -65,6 +94,39 @@ export class AddShipmentComponent implements OnInit {
       this.shipment.letterType = ''
       this.shipment.weight = this.shipment.weight * 1000
     }
+
+  }
+
+  isValid(){
+    if(this.client.name == undefined || this.client.surname == undefined){
+      this.valid = false
+      return
+    }
+    if(this.receiver.name == undefined || this.receiver.surname == undefined){
+      this.valid = false;
+      return
+    }
+    if(this.clientAddress.city == undefined || this.clientAddress.country == undefined || this.clientAddress.postalCode == undefined || this.clientAddress.street == undefined || this.clientAddress.streetNumber == undefined){
+      this.valid = false;
+      return
+    }
+    if(this.receiverAddress.city == undefined || this.receiverAddress.country == undefined || this.receiverAddress.postalCode == undefined || this.receiverAddress.street == undefined || this.receiverAddress.streetNumber == undefined){
+      this.valid = false;
+      return
+    }
+
+    if(this.shipment.weight == undefined || this.shipment.value == undefined){
+      this.valid = false;
+      return
+    }
+
+    if(isNaN(this.shipment.weight) || isNaN(this.shipment.value)){
+      this.valid = false;
+      this.isNaN = true;
+      return
+    }
+
+    this.valid = true;
 
   }
 
@@ -123,11 +185,11 @@ export class AddShipmentComponent implements OnInit {
 
   SMSReport($event){
     if($event.target.checked === true){
-      this.shipment.SMSreport = true
+      this.shipment.smsReport = true
       this.sms = true
     }
     else{
-      this.shipment.SMSreport = false
+      this.shipment.smsReport = false
       this.sms = false
       this.shipment.smsNumber = ''
     }

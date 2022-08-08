@@ -1,5 +1,6 @@
 package com.example.posta.model;
 import com.example.posta.model.enums.LetterType;
+import com.example.posta.model.enums.ShipmentStatus;
 import com.example.posta.model.enums.ShipmentType;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
@@ -22,6 +23,9 @@ public class Shipment {
 
     @Column(name = "letter_type", unique = false, nullable = true)
     private LetterType letterType;
+
+    @Column(name = "shipment_status", unique = false, nullable = true)
+    private ShipmentStatus shipmentStatus;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "counter_worker_id", nullable = true)
@@ -61,6 +65,12 @@ public class Shipment {
     @Column(name = "SMS_report", unique = false)
     private Boolean SMSReport;
 
+    @Column(name = "SMS_number", unique = false)
+    private String smsNumber;
+
     @Column(name = "sent_date", unique = false, nullable = false)
     private LocalDate date;
+
+    @Column(name = "total_price", unique = false)
+    private Double totalPrice;
 }
