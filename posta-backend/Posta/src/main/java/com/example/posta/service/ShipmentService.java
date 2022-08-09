@@ -87,7 +87,7 @@ public class ShipmentService {
         Address receiverAddress = new Address(dto.getReceiverAddress());
         City rc = new City(dto.getReceiverAddress().getCity());
         Country cntr = new Country();
-        cnt.setCountryName(dto.getReceiverAddress().getCountry());
+        cntr.setCountryName(dto.getReceiverAddress().getCountry());
         countryRepository.save(cntr);
         rc.setCountry(cntr);
         rc.setPostalCode(dto.getReceiverAddress().getPostalCode());
@@ -107,7 +107,7 @@ public class ShipmentService {
         s.setSmsNumber(dto.getSmsNumber());
         s.setPersonalDelivery(dto.getPersonalDelivery());
         s.setReturnReceipt(dto.getReturnReceipt());
-        s.setCode(UUID.randomUUID().toString().toUpperCase().substring(0,9));
+        s.setCode(UUID.randomUUID().toString().toUpperCase().substring(0,11));
         Worker w = workerRepository.findByEmail(dto.getCounterWorker());
         CounterWorker cw = counterWorkerRepository.getById(w.getId());
 
@@ -146,10 +146,10 @@ public class ShipmentService {
                 total += 500;
             }
             else if(5000 < dto.getWeight() && dto.getWeight() < 15000){
-                total += 1000;
+                total += 700;
             }
             else if(dto.getWeight() > 15000){
-                total += 1500;
+                total += 1000;
             }
         }
         else{
@@ -167,11 +167,12 @@ public class ShipmentService {
         }
 
         if(dto.getSmsReport()){
-            total += 200;
+            total += 100;
         }
         if(dto.getReturnReceipt()){
             total += 50;
         }
+
 
         return total;
     }

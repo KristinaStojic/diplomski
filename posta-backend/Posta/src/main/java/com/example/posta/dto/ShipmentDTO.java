@@ -78,7 +78,7 @@ public class ShipmentDTO {
         this.totalPrice = s.getTotalPrice();
 
         if(s.getShipmentStatus().equals(ShipmentStatus.RECEIVED)){
-            this.shipmentStatus = "Примљено за испоруку";
+            this.shipmentStatus = "Чека на испоруку";
         }
         else if(s.getShipmentStatus().equals(ShipmentStatus.DELIVERED)){
             this.shipmentStatus = "Достављено";

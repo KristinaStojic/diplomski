@@ -167,10 +167,9 @@
                 </div><br>
                
             </div><br>
-            
             <div class="float-right" style="margin-right: 5ch; ">
                 <button class="btn btn-primary" style="margin-right: 1ch;">Откажи</button>
-                <button class="btn btn-primary" (click)="addShipment()">Сачувај</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#totalPrice" (click)="findTotalPrice()">Сачувај</button>
     
             </div>
         </form>
@@ -178,4 +177,30 @@
 
     </div>
 
+</div>
+
+
+
+
+<div *ngIf="this.valid" class="modal fade" id="totalPrice" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Укупна цијена пошиљке</h5>
+        </div>
+        
+        <div  class="container"  style="margin: 5% 5% 5% 5%;">
+            
+                <label>Услуга: {{typePrice}} дин</label><br>        
+                <label>Маса: {{weightPrice}} дин</label><br>
+                <label *ngIf="this.shipment.returnReceipt">Повратница: 50 дин</label><br>
+                <label *ngIf="this.shipment.smsReport">СМС: 100 дин</label><br>
+                <b>Укупно: {{totalPrice}}</b>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Назад</button>
+            <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="addShipment()">Потврдите?</button>
+        </div>
+    </div>
+    </div>
 </div>

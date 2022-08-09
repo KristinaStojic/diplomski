@@ -6,6 +6,7 @@ import { DatePipe } from '@angular/common';
 import { Shipment } from 'src/app/model/shipment';
 import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-shipment',
@@ -28,7 +29,13 @@ export class AddShipmentComponent implements OnInit {
   ordinaryLetter: Boolean = true
   valid: Boolean = true
   isNaN: Boolean = false
-  constructor(private shipmentService: ShipmentService) { }
+  totalPrice: number = 0
+  weightPrice: number = 0
+  typePrice: number = 0
+
+  constructor(private shipmentService: ShipmentService,
+    private router: Router,
+    ) { }
 
   ngOnInit(): void {
     this.date = this.pipe.transform(Date.now(), 'dd/MM/yyyy');
@@ -38,13 +45,20 @@ export class AddShipmentComponent implements OnInit {
   }
 
   addShipment(){
-    this.setShipmentFields()
+    //this.setShipmentFields()
     this.isValid()
 
     if(this.valid){
+
+      if(this.shipment.shipmentType == 'PACKAGE'){
+        this.shipment.weight = this.shipment.weight * 1000
+      }
+
       this.shipmentService.addShipment(this.shipment).subscribe(
         (p: Shipment) => {
-         window.location.reload()
+         //window.location.reload()
+         this.router.navigate(['/shipments']);
+
         },
         (error) => {
           Swal.fire({
@@ -92,7 +106,6 @@ export class AddShipmentComponent implements OnInit {
     else{
       this.shipment.shipmentType = 'PACKAGE'
       this.shipment.letterType = ''
-      this.shipment.weight = this.shipment.weight * 1000
     }
 
   }
@@ -193,6 +206,65 @@ export class AddShipmentComponent implements OnInit {
       this.sms = false
       this.shipment.smsNumber = ''
     }
+  }
+
+
+  findTotalPrice(){
+    console.log("cao")
+    this.setShipmentFields()
+    this.isValid()
+    if(!this.valid){
+      Swal.fire({
+        icon: 'error',
+        title: 'Упс...',
+        text: 'Попуните сва поља у исправном формату!',
+      })
+    }
+
+    this.totalPrice = 0
+    
+    if(this.shipment.shipmentType == 'PACKAGE'){
+        this.typePrice = 100;
+
+        this.totalPrice += 100
+        if(this.shipment.weight > 1 && this.shipment.weight < 5){
+          this.weightPrice = 500
+          this.totalPrice += 500;
+        }
+        else if(this.shipment.weight >= 5 && this.shipment.weight < 15){
+          this.weightPrice = 700
+          this.totalPrice += 700;
+        } 
+        else if(this.shipment.weight >= 15){
+          this.weightPrice = 1000
+          this.totalPrice += 1000;
+        } 
+    }else{
+        this.typePrice = 50
+
+        this.totalPrice += 50
+        if(this.shipment.weight < 300){
+          this.weightPrice = 100
+          this.totalPrice += 100;
+        }
+        else if(this.shipment.weight >= 300 && this.shipment.weight < 500){
+          this.weightPrice = 200
+          this.totalPrice += 200;
+        } 
+        else if(this.shipment.weight >= 500 && this.shipment.weight < 1000){
+          this.weightPrice = 300
+          this.totalPrice += 300;
+        } 
+    }
+
+    if(this.shipment.smsReport){
+      this.totalPrice += 100;
+    }
+    if(this.shipment.returnReceipt){
+      this.totalPrice += 50;
+    }
+
+    this.shipment.totalPrice = this.totalPrice;
   }
 
 }
