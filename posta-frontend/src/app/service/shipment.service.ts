@@ -1,7 +1,7 @@
+import { Shipment } from 'src/app/model/shipment';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Shipment } from '../model/shipment';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +18,10 @@ export class ShipmentService {
   public addShipment(shipment): Observable<Shipment> {
     console.log(shipment)
     return this._http.post<Shipment>(`${this.shipment_url}/addShipment`, shipment)
+  }
+
+  public editShipmentStatus(s): Observable<Shipment>{
+    console.log(s)
+    return this._http.put<Shipment>(`${this.shipment_url}/editShipmentStatus`, s)
   }
 }

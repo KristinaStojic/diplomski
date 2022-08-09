@@ -1,9 +1,6 @@
 package com.example.posta.controller;
 
-import com.example.posta.dto.AddPaymentDTO;
-import com.example.posta.dto.AddShipmentDTO;
-import com.example.posta.dto.PaymentDTO;
-import com.example.posta.dto.ShipmentDTO;
+import com.example.posta.dto.*;
 import com.example.posta.model.Payment;
 import com.example.posta.model.Shipment;
 import com.example.posta.service.PaymentService;
@@ -39,6 +36,16 @@ public class ShipmentController {
     @PreAuthorize("hasAuthority('ROLE_COUNTER_WORKER')")
     public ResponseEntity<Shipment> addShipment(@RequestBody AddShipmentDTO dto) {
         Shipment m = this.shipmentService.addShipment(dto);
+        if(m!=null){
+            return new ResponseEntity<>(m, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(value="/editShipmentStatus", method = RequestMethod.PUT)
+    @PreAuthorize("hasAuthority('ROLE_COUNTER_WORKER')")
+    public ResponseEntity<Shipment> editShipmentStatus(@RequestBody EditShipmentDTO dto) {
+        Shipment m = this.shipmentService.editShipmentStatus(dto);
         if(m!=null){
             return new ResponseEntity<>(m, HttpStatus.OK);
         }

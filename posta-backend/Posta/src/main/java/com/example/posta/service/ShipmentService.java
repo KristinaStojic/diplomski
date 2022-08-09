@@ -1,9 +1,6 @@
 package com.example.posta.service;
 
-import com.example.posta.dto.AddPaymentDTO;
-import com.example.posta.dto.AddShipmentDTO;
-import com.example.posta.dto.PaymentDTO;
-import com.example.posta.dto.ShipmentDTO;
+import com.example.posta.dto.*;
 import com.example.posta.model.*;
 import com.example.posta.model.enums.LetterType;
 import com.example.posta.model.enums.ShipmentStatus;
@@ -175,5 +172,23 @@ public class ShipmentService {
 
 
         return total;
+    }
+
+
+    public Shipment editShipmentStatus(EditShipmentDTO dto){
+
+        Shipment s = this.shipmentRepository.findById(dto.getId()).orElseGet(null);
+        if(s == null){
+            return null;
+        }
+
+        switch (dto.getNewStatus()) {
+            case "Чека на испоруку" -> s.setShipmentStatus(ShipmentStatus.RECEIVED);
+            case "Достављено" -> s.setShipmentStatus(ShipmentStatus.DELIVERED);
+            case "Послато на испоруку" -> s.setShipmentStatus(ShipmentStatus.SENDING);
+            case "Враћено" -> s.setShipmentStatus(ShipmentStatus.RETURNED);
+        }
+
+        return this.shipmentRepository.save(s);
     }
 }
