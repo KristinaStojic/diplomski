@@ -145,10 +145,10 @@ public class ShipmentService {
             if(1000 < dto.getWeight() && dto.getWeight() < 5000){
                 total += 500;
             }
-            else if(5000 < dto.getWeight() && dto.getWeight() < 15000){
+            else if(5000 <= dto.getWeight() && dto.getWeight() < 15000){
                 total += 700;
             }
-            else if(dto.getWeight() > 15000){
+            else if(dto.getWeight() >= 15000){
                 total += 1000;
             }
         }
@@ -158,10 +158,10 @@ public class ShipmentService {
             if(dto.getWeight() < 300){
                 total += 100;
             }
-            else if(300 < dto.getWeight() && dto.getWeight() < 500){
+            else if(300 <= dto.getWeight() && dto.getWeight() < 500){
                 total += 200;
             }
-            else if(dto.getWeight() > 500 && dto.getWeight() < 1000){
+            else if(dto.getWeight() >= 500 && dto.getWeight() < 1000){
                 total += 300;
             }
         }

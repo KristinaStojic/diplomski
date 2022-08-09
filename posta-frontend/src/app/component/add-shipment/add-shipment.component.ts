@@ -210,7 +210,7 @@ export class AddShipmentComponent implements OnInit {
 
 
   findTotalPrice(){
-    console.log("cao")
+
     this.setShipmentFields()
     this.isValid()
     if(!this.valid){
@@ -221,9 +221,20 @@ export class AddShipmentComponent implements OnInit {
       })
     }
 
+
     this.totalPrice = 0
     
     if(this.shipment.shipmentType == 'PACKAGE'){
+
+        if(this.shipment.weight < 0){
+          this.valid = false
+          Swal.fire({
+            icon: 'error',
+            title: 'Упс...',
+            text: 'Маса пакета мора бити већа од 0!',
+          })
+        }
+
         this.typePrice = 100;
 
         this.totalPrice += 100
@@ -240,6 +251,17 @@ export class AddShipmentComponent implements OnInit {
           this.totalPrice += 1000;
         } 
     }else{
+
+      if(this.shipment.weight < 0 || this.shipment.weight > 1000){
+        this.valid = false
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Упс...',
+          text: 'Дозвољена маса пошиљке је између 0 и 1000 грама!',
+        })
+      }
+
         this.typePrice = 50
 
         this.totalPrice += 50
