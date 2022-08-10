@@ -24,4 +24,8 @@ export class ShipmentService {
     console.log(s)
     return this._http.put<Shipment>(`${this.shipment_url}/editShipmentStatus`, s)
   }
+
+  public searchByCode(code): Observable<any>{
+    return this._http.get<any>(this.shipment_url + `/searchByCode/${code}`, code)
+  }
 }

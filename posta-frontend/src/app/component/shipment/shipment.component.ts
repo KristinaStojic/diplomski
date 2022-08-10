@@ -14,7 +14,7 @@ export class ShipmentComponent implements OnInit {
   shipments: Shipment[]
   selectedShipment: Shipment
   newShipmentStatus: String
-
+  searchCriteria: String = ""
   
 
   constructor(private shipmentService:ShipmentService ,private router: Router) { }
@@ -74,6 +74,26 @@ export class ShipmentComponent implements OnInit {
           title: 'Упс...',
           text: 'Дошло је до грешке!',
         })
+      }
+    )
+  }
+
+  getAll(){
+    this.searchCriteria = ""
+
+    this.shipmentService.getAll().subscribe(
+      (shipments: Shipment[]) => {
+        this.shipments = shipments
+        console.log(this.shipments)
+      }
+    )
+  }
+
+  search(){
+    this.shipmentService.searchByCode(this.searchCriteria).subscribe(
+      (shipments: Shipment[]) => {
+        this.shipments = shipments
+        console.log(this.shipments)
       }
     )
   }
