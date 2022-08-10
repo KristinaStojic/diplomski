@@ -1,0 +1,74 @@
+<div class="borders">
+    <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
+        <h4>Пошиљке</h4>
+        <button class="btn btn-primary" (click)="addShipment()">Додај пошиљку</button>
+
+
+    </div>
+
+    <table class="shadow p-3 mb-5 bg-white rounded table" style="width:100%">
+        <thead>
+          <tr>
+            <th scope="col" >#</th>
+            <th scope="col" >Шифра пошиљке</th>
+            <th scope="col" >Пошиљалац</th>
+            <th scope="col" >Прималац</th>
+            <th scope="col" >Адреса примаоца</th>
+            <th scope="col" >Датум слања</th>
+            <th scope="col" >Статус</th>
+            <th scope="col" ></th>
+            <th scope="col" ></th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let m of shipments; index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{m.code}}</td>
+            <td>{{m.sender}}</td>
+            <td>{{m.receiver}}</td>
+            <td>{{m.receiverAddress}}</td>
+            <td>{{m.date}}</td>
+            <td>{{m.shipmentStatus}}</td>
+            <td><button class="btn btn-primary">Детаљи</button></td>
+            <td><button class="btn btn-primary" style="width: 17ch; height: 4.3ch; white-space: nowrap;" (click)="selectShipment(m)" data-toggle="modal" data-target="#changeStatus">Промијени статус</button></td>
+
+          </tr>
+
+        </tbody>
+      </table>
+</div>
+
+
+
+
+<div class="modal fade" id="changeStatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered " role="document">
+  <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Промијени статус пошиљке: {{selectedShipment?.code}}</h5>
+      </div>
+      
+      <div  class="container"  style="margin: 5% 5% 5% 5%;">
+          
+              <label *ngIf="this.selectedShipment?.shipmentStatus != 'Достављено'">Тренутни статус: </label>&nbsp;&nbsp;
+              <b *ngIf="this.selectedShipment?.shipmentStatus != 'Достављено'">{{this.selectedShipment?.shipmentStatus}}</b><br>
+              <div class="row" style="width: 95%;" *ngIf="this.selectedShipment?.shipmentStatus != 'Достављено'">
+                <label class="col-sm-4">Нови статус:</label>
+                <select class="form-select col" (change)="newStatus($event)" aria-label="Default select example" >
+                  <option value="1">Чека на испоруку</option>
+                  <option value="2">Послато на испоруку</option>
+                  <option value="3">Достављено</option>
+                  <option value="4">Враћено</option>
+                </select>
+              </div>
+              <b *ngIf="this.selectedShipment?.shipmentStatus == 'Достављено'">Не може се мијењати статус пошиљке која је већ достављена!!</b>      
+              
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Одустани</button>
+          <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="changeStatus()">Сачувај</button>
+      </div>
+  </div>
+  </div>
+</div>

@@ -1,3 +1,5 @@
+import { AddShipmentComponent } from './component/add-shipment/add-shipment.component';
+import { ShipmentComponent } from './component/shipment/shipment.component';
 import { AddPaymentComponent } from './component/add-payment/add-payment.component';
 import { PaymentsComponent } from './component/payments/payments.component';
 import { CounterWorkerHomeComponent } from './component/counter-worker-home/counter-worker-home.component';
@@ -47,6 +49,14 @@ const routes: Routes = [
   {
     path: 'add-payment',
     component: AddPaymentComponent,
+  },
+  {
+    path: 'shipments',
+    component: ShipmentComponent,
+  },
+  {
+    path: 'add-shipment',
+    component: AddShipmentComponent,
   },
 ];
 

@@ -20,6 +20,8 @@ import { AccountingWorkerHomeComponent } from './component/accounting-worker-hom
 import { CounterWorkerHomeComponent } from './component/counter-worker-home/counter-worker-home.component';
 import { PaymentsComponent } from './component/payments/payments.component';
 import { AddPaymentComponent } from './component/add-payment/add-payment.component';
+import { ShipmentComponent } from './component/shipment/shipment.component';
+import { AddShipmentComponent } from './component/add-shipment/add-shipment.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { AddPaymentComponent } from './component/add-payment/add-payment.compone
     CounterWorkerHomeComponent,
     PaymentsComponent,
     AddPaymentComponent,
+    ShipmentComponent,
+    AddShipmentComponent,
   ],
   imports: [
     BrowserModule,

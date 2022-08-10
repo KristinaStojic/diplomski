@@ -15,6 +15,8 @@ INSERT INTO USERS(id, deleted, email, enabled, last_password_reset_date, name, p
 	VALUES (1239, false, 'klaraacim1@gmail.com', true, null,  'Klara', 'klara', '061352652', 'Acimovic', 2, null);
 INSERT INTO USERS(id, deleted, email, enabled, last_password_reset_date, name, password, phone_number, surname, role_id, verification_code)
 	VALUES (1240, false, 'klijent@gmail.com', true, null,  'Jovan', null, '061352652', 'Jovanovic', 6, null);
+INSERT INTO USERS(id, deleted, email, enabled, last_password_reset_date, name, password, phone_number, surname, role_id, verification_code)
+	VALUES (1242, false, 'klijent2@gmail.com', true, null,  'Petar', null, '0641352652', 'Jovanovic', 6, null);
 
 
 
@@ -45,9 +47,14 @@ INSERT INTO public.notification(id, content, manager_id, creation_date) VALUES (
 INSERT INTO public.notification(id, content, manager_id, creation_date) VALUES (16, 'Колективни годишњи одмор od 01.08. до 05.08!', 1237, '07-15-2022');
 
 
-INSERT INTO public.client(jmbg, id, address_id) VALUES ('0503999199652', 1240, 155);
+INSERT INTO public.client(id, address_id) VALUES (1240, 155);
+INSERT INTO public.client(id, address_id) VALUES (1242, 155);
+
 
 INSERT INTO public.financial_service(id, amount, currency, date, client_id, counter_worker_id) VALUES (11, 1500, 'DIN', '07-01-2022', 1240, 1239);
 
+INSERT INTO public.shipment(
+	id, sms_report, sent_date, letter_type, personal_delivery, return_receipt, shipment_status, shipment_type, sms_number, total_price, value, weight, accounting_worker_id, counter_worker_id, receiver_id, region_id, sender_id, code)
+	VALUES (11, false, '05-05-2022', null, true, true, 0, 1, null, 250, 0, 3500, null, 1239, 1242, null, 1240, 'AKR3O53M8P');
 
 --INSERT INTO public.payment(model, payment_code, purpose, receiver, receiver_account, reference_number, id, receiver_address_id) VALUES ('156', '365', 'Пријава испита', 'Факултет техничких наука', '5510235112365412', '352', 11, 155);
