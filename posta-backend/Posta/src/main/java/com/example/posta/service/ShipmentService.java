@@ -53,6 +53,18 @@ public class ShipmentService {
         return ret;
     }
 
+    public List<ShipmentDTO> searchByCode(String code){
+        List<ShipmentDTO> ret = new ArrayList<>();
+
+        for(Shipment s: shipmentRepository.findAll()){
+            if(s.getCode().contains(code)){
+                ShipmentDTO ss = new ShipmentDTO(s);
+                ret.add(ss);
+            }
+        }
+        return ret;
+    }
+
     public Shipment addShipment(AddShipmentDTO dto){
         Shipment s = new Shipment();
 

@@ -1,7 +1,20 @@
 <div class="borders">
+  <h4>Пошиљке</h4>
+
     <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
-        <h4>Пошиљке</h4>
-        <button class="btn btn-primary" (click)="addShipment()">Додај пошиљку</button>
+        
+        <div class="row" >
+          <div class="col input-group">
+            <input type="search" class="form-control rounded" placeholder="Шифра пошиљке" aria-label="Search" aria-describedby="search-addon" />
+            <button type="button" class="btn btn-outline-primary" >Претражи</button>
+            <button type="button" class="btn btn-outline-primary" >Обриши</button>
+          </div>
+
+          <div class="col-4"> 
+            <button class="btn btn-primary" (click)="addShipment()" style="margin-left: 4ch;">Додај пошиљку</button>
+          </div>
+
+        </div>
 
 
     </div>

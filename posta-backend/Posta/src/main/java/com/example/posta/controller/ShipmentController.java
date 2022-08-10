@@ -51,4 +51,15 @@ public class ShipmentController {
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
+    @RequestMapping(value="/searchByCode/{code}", method = RequestMethod.GET)
+    public @ResponseBody
+    ResponseEntity<List<ShipmentDTO>> searchByCode(@PathVariable String code){
+        List<ShipmentDTO> p = shipmentService.searchByCode(code);
+        if(p != null){
+            return new ResponseEntity<>(p, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
 }
