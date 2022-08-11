@@ -13,5 +13,7 @@ public class EditShipmentDTO {
 
     private Long id;
     private String newStatus;
-
+    private String email;
+    private String code;
+    private Boolean emailReport;
 }

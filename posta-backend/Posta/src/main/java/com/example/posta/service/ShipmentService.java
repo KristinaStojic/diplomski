@@ -9,6 +9,7 @@ import com.example.posta.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -42,6 +43,9 @@ public class ShipmentService {
 
     @Autowired
     RoleRepository roleRepository;
+
+    @Autowired
+    EmailService emailService;
 
     public List<ShipmentDTO> getAllShipments(){
         List<ShipmentDTO> ret = new ArrayList<>();
@@ -187,7 +191,7 @@ public class ShipmentService {
     }
 
 
-    public Shipment editShipmentStatus(EditShipmentDTO dto){
+    public Shipment editShipmentStatus(EditShipmentDTO dto) throws MessagingException {
 
         Shipment s = this.shipmentRepository.findById(dto.getId()).orElseGet(null);
         if(s == null){
@@ -196,7 +200,12 @@ public class ShipmentService {
 
         switch (dto.getNewStatus()) {
             case "Чека на испоруку" -> s.setShipmentStatus(ShipmentStatus.RECEIVED);
-            case "Достављено" -> s.setShipmentStatus(ShipmentStatus.DELIVERED);
+            case "Достављено" -> {
+                s.setShipmentStatus(ShipmentStatus.DELIVERED);
+                if(dto.getEmailReport()){
+                    emailService.sendMailForDeliveredShipment(dto.getEmail(),dto.getCode());
+                }
+            }
             case "Послато на испоруку" -> s.setShipmentStatus(ShipmentStatus.SENDING);
             case "Враћено" -> s.setShipmentStatus(ShipmentStatus.RETURNED);
         }

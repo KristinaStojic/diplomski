@@ -58,7 +58,10 @@ export class ShipmentComponent implements OnInit {
     //this.selectedShipment.shipmentStatus = this.newShipmentStatus
     var changedStatus = {
       "id": this.selectedShipment.id,
-      "newStatus": this.newShipmentStatus
+      "newStatus": this.newShipmentStatus,
+      "email": this.selectedShipment.email,
+      "code": this.selectedShipment.code,
+      "emailReport": this.selectedShipment.emailReport
     }
 
     console.log(this.selectedShipment.shipmentStatus)
@@ -118,7 +121,10 @@ export class ShipmentComponent implements OnInit {
   deliverShipment(){
     var changedStatus = {
       "id": this.selectedShipment.id,
-      "newStatus": "Достављено"
+      "newStatus": "Достављено",
+      "email": this.selectedShipment.email,
+      "code": this.selectedShipment.code,
+      "emailReport": this.selectedShipment.emailReport
     }
 
     console.log(this.selectedShipment.shipmentStatus)
