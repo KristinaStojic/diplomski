@@ -12,9 +12,9 @@ export class Shipment {
     weight: number
     value: number
     personalDelivery: Boolean = false
-    smsReport: Boolean = false
+    emailReport: Boolean = false
     returnReceipt: Boolean = false
-    smsNumber: String
+    email: String
     shipmentType: String
     letterType: String
     code: String

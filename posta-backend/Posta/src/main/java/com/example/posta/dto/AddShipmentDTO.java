@@ -21,8 +21,8 @@ public class AddShipmentDTO {
     private Double value;
     private Boolean personalDelivery;
     private Boolean returnReceipt;
-    private Boolean smsReport;
+    private Boolean emailReport;
     private String shipmentType;
     private String letterType;
-    private String smsNumber;
+    private String email;
 }

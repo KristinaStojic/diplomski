@@ -23,7 +23,7 @@ export class AddShipmentComponent implements OnInit {
   receiverAddress: Address = new Address()
   worker: any
   shipment: Shipment = new Shipment()
-  sms:Boolean = false
+  email:Boolean = false
   letter: Boolean = true
   valueLetter: Boolean = false
   ordinaryLetter: Boolean = true
@@ -196,15 +196,15 @@ export class AddShipmentComponent implements OnInit {
     }
   }
 
-  SMSReport($event){
+  emailReport($event){
     if($event.target.checked === true){
-      this.shipment.smsReport = true
-      this.sms = true
+      this.shipment.emailReport = true
+      this.email = true
     }
     else{
-      this.shipment.smsReport = false
-      this.sms = false
-      this.shipment.smsNumber = ''
+      this.shipment.emailReport = false
+      this.email = false
+      this.shipment.email = ''
     }
   }
 
@@ -279,7 +279,7 @@ export class AddShipmentComponent implements OnInit {
         } 
     }
 
-    if(this.shipment.smsReport){
+    if(this.shipment.emailReport){
       this.totalPrice += 100;
     }
     if(this.shipment.returnReceipt){

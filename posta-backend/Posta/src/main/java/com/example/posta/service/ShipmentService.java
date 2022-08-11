@@ -112,8 +112,8 @@ public class ShipmentService {
         s.setDate(LocalDateTime.now());
         s.setValue(dto.getValue());
         s.setWeight(dto.getWeight());
-        s.setSMSReport(dto.getSmsReport());
-        s.setSmsNumber(dto.getSmsNumber());
+        s.setEmailReport(dto.getEmailReport());
+        s.setEmail(dto.getEmail());
         s.setPersonalDelivery(dto.getPersonalDelivery());
         s.setReturnReceipt(dto.getReturnReceipt());
         s.setCode(UUID.randomUUID().toString().toUpperCase().substring(0,11));
@@ -175,7 +175,7 @@ public class ShipmentService {
             }
         }
 
-        if(dto.getSmsReport()){
+        if(dto.getEmailReport()){
             total += 100;
         }
         if(dto.getReturnReceipt()){

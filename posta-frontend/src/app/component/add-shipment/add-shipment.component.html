@@ -148,20 +148,20 @@
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" (change)="SMSReport($event)" value="" id="flexCheckDefault">
+                            <input class="form-check-input" type="checkbox" (change)="emailReport($event)" value="" id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
-                             Електронска потврда о уручењу пошиљке - СМС
+                             Електронска потврда о уручењу пошиљке - емаил
                             </label>
                         </div>
                     </div>
                     
                 </div><br>
 
-                <div *ngIf="sms" class="row">
+                <div *ngIf="email" class="row">
 
                     <div class="col-10" style="margin-left: 12px;">
-                        <label style="margin-bottom: 10px;" class="row">Број телефона:</label>
-                        <input style="width: 135%;" type="text" class="row" [(ngModel)]="shipment.smsNumber" name="phoneNum">
+                        <label style="margin-bottom: 10px;" class="row"> Емаил:</label>
+                        <input style="width: 135%;" type="text" class="row" [(ngModel)]="shipment.email" name="phoneNum">
                     </div>
 
                 </div><br>
@@ -194,7 +194,7 @@
                 <label>Услуга: {{typePrice}} дин</label><br>        
                 <label>Маса: {{weightPrice}} дин</label><br>
                 <label *ngIf="this.shipment.returnReceipt">Повратница: 50 дин</label><br>
-                <label *ngIf="this.shipment.smsReport">СМС: 100 дин</label><br>
+                <label *ngIf="this.shipment.emailReport">Емаил: 100 дин</label><br>
                 <b>Укупно: {{totalPrice}}</b>
         </div>
         <div class="modal-footer">
