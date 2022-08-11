@@ -44,7 +44,9 @@
             <td>{{m.date}}</td>
             <td>{{m.shipmentStatus}}</td>
             <td><button class="btn btn-primary">Детаљи</button></td>
-            <td><button class="btn btn-primary" style="width: 17ch; height: 4.3ch; white-space: nowrap;" (click)="selectShipment(m)" data-toggle="modal" data-target="#changeStatus">Промијени статус</button></td>
+            <!-- <b *ngIf="m.shipmentStatus == 'Достављено'">Достављено</b> -->
+            <td *ngIf="isCounterWorker()"><button class="btn btn-primary" style=" height: 4.3ch; white-space: nowrap;" (click)="selectShipment(m)" data-toggle="modal" data-target="#deliver">Испоручи</button></td>
+            <td *ngIf="isAccountingWorker()"><button class="btn btn-primary" style=" height: 4.3ch; white-space: nowrap;" (click)="selectShipment(m)" data-toggle="modal" data-target="#changeStatus">Промијени статус</button></td>
 
           </tr>
 
@@ -63,7 +65,8 @@
       </div>
       
       <div  class="container"  style="margin: 5% 5% 5% 5%;">
-          
+              <b *ngIf="this.selectedShipment?.shipmentStatus == 'Достављено'">Не може се мијењати статус пошиљке која је већ достављена!!</b>      
+
               <label *ngIf="this.selectedShipment?.shipmentStatus != 'Достављено'">Тренутни статус: </label>&nbsp;&nbsp;
               <b *ngIf="this.selectedShipment?.shipmentStatus != 'Достављено'">{{this.selectedShipment?.shipmentStatus}}</b><br>
               <div class="row" style="width: 95%;" *ngIf="this.selectedShipment?.shipmentStatus != 'Достављено'">
@@ -75,12 +78,37 @@
                   <option value="4">Враћено</option>
                 </select>
               </div>
-              <b *ngIf="this.selectedShipment?.shipmentStatus == 'Достављено'">Не може се мијењати статус пошиљке која је већ достављена!!</b>      
               
       </div>
       <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Одустани</button>
-          <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="changeStatus()">Сачувај</button>
+          <button [disabled]="this.selectedShipment?.shipmentStatus == 'Достављено'" type="button" class="btn btn-primary"  data-dismiss="modal" (click)="changeStatus()">Сачувај</button>
+      </div>
+  </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="modal fade" id="deliver" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered " role="document">
+  <div class="modal-content">
+      <div class="modal-header">
+          <!-- <h5 class="modal-title" id="exampleModalLongTitle">Пошиљка: {{selectedShipment?.code}}</h5> -->
+      </div>
+      
+      <div  class="container"  style="margin: 5% 5% 5% 5%;">
+          <b *ngIf="this.selectedShipment?.shipmentStatus == 'Достављено'">Не може се мијењати статус пошиљке која је већ испоручена!!</b>      
+          <!-- <b *ngIf="this.selectedShipment?.shipmentStatus != 'Достављено'">Пошиљка {{selectedShipment?.code}} је успјешно испоручена!</b> -->
+          <b *ngIf="this.selectedShipment?.shipmentStatus != 'Достављено'">Да ли сте сигурни да желите да испоручите пошиљку са шифром: {{selectedShipment?.code}}?</b>
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Затвори</button>
+          <button *ngIf="this.selectedShipment?.shipmentStatus != 'Достављено'" type="button" class="btn btn-primary"  data-dismiss="modal" (click)="deliverShipment()">Сачувај</button>
+
       </div>
   </div>
   </div>

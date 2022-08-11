@@ -97,4 +97,44 @@ export class ShipmentComponent implements OnInit {
       }
     )
   }
+
+
+  isAccountingWorker() {
+    let role = localStorage.getItem("role");
+    if (role == "ROLE_ACCOUNTING_WORKER"){
+      return true;
+    }
+    return false;
+  }
+
+  isCounterWorker() {
+    let role = localStorage.getItem("role");
+    if (role == "ROLE_COUNTER_WORKER"){
+      return true;
+    }
+    return false;
+  }
+
+  deliverShipment(){
+    var changedStatus = {
+      "id": this.selectedShipment.id,
+      "newStatus": "Достављено"
+    }
+
+    console.log(this.selectedShipment.shipmentStatus)
+
+    this.shipmentService.editShipmentStatus(changedStatus).subscribe(
+      (m: Shipment) => {
+        console.log(m.id)
+        window.location.reload()
+      },
+      (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Упс...',
+          text: 'Дошло је до грешке!',
+        })
+      }
+    )
+  }
 }

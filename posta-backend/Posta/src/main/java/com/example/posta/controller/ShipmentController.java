@@ -43,7 +43,7 @@ public class ShipmentController {
     }
 
     @RequestMapping(value="/editShipmentStatus", method = RequestMethod.PUT)
-    @PreAuthorize("hasAuthority('ROLE_COUNTER_WORKER')")
+    @PreAuthorize("hasAuthority('ROLE_COUNTER_WORKER') || hasAuthority('ROLE_ACCOUNTING_WORKER')")
     public ResponseEntity<Shipment> editShipmentStatus(@RequestBody EditShipmentDTO dto) {
         Shipment m = this.shipmentService.editShipmentStatus(dto);
         if(m!=null){
