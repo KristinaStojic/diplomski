@@ -74,4 +74,17 @@ public class PaymentController {
             return new ResponseEntity<>(n, HttpStatus.OK);
         }
     }
+
+
+    @RequestMapping(value = "/getNumberofPaymentsWeekly", method = RequestMethod.POST)
+    @PreAuthorize("hasAuthority('ROLE_COUNTER_WORKER')")
+    public ResponseEntity<Map<String, Integer>> getNumberofPaymentsWeekly(@RequestBody WeekReportDTO dto) {
+        Map<String, Integer> n = this.paymentService.getNumberofPaymentsWeekly(dto);
+        if (n == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(n, HttpStatus.OK);
+        }
+    }
+
 }

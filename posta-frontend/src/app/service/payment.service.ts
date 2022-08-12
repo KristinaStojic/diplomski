@@ -40,4 +40,11 @@ export class PaymentService {
         return reservations;
       }));   
     }
+
+    getNumberofPaymentsWeekly(dto) {
+      return this._http.post(this.payment_url + `/getNumberofPaymentsWeekly`, dto)
+      .pipe(map(reservations => {
+        return reservations;
+      }));   
+    }
 }

@@ -6,7 +6,9 @@ import com.example.posta.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -146,7 +148,7 @@ public class PaymentService {
         Map<String, Integer> map = new HashMap<>();
         for (Payment r : paymentRepository.findAll()) {
                 if (!map.containsKey(r.getDate().getMonth().toString())) {
-                    Integer n = countPaymentnPerMonth(r.getDate().getMonth().toString(), Integer.parseInt(year));
+                    Integer n = countPaymentPerMonth(r.getDate().getMonth().toString(), Integer.parseInt(year));
                     map.put(r.getDate().getMonth().toString(), n);
                 }
 
@@ -156,7 +158,7 @@ public class PaymentService {
     }
 
 
-    private Integer countPaymentnPerMonth(String month, Integer year) {
+    private Integer countPaymentPerMonth(String month, Integer year) {
         Integer n = 0;
 
         for (Payment r : paymentRepository.findAll()) {
@@ -166,4 +168,39 @@ public class PaymentService {
         }
         return n;
     }
+
+
+    public Map<String, Integer> getNumberofPaymentsWeekly(WeekReportDTO dto) {
+        Map<String, Integer> ret = new HashMap<>();
+        LocalDate start = findDate(dto.getStartDate()).toLocalDate();
+        LocalDate end = findDate(dto.getEndDate()).toLocalDate();
+
+        while (start.isBefore(end) || start.isEqual(end)) {
+            for (Payment r : paymentRepository.findAll()) {
+                  Integer n = countPaymentWeekly(start);
+                  ret.put(start.toString().substring(0, 10), n);
+                }
+            start = start.plusDays(1);
+        }
+        
+        return ret;
+    }
+
+    private LocalDateTime findDate(String start) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        return LocalDateTime.parse(start, formatter);
+    }
+
+    private Integer countPaymentWeekly(LocalDate date) {
+        Integer n = 0;
+        for (Payment r : paymentRepository.findAll()) {
+                if (r.getDate().toLocalDate().isEqual(date)) {
+                    n++;
+                }
+        }
+        return n;
+    }
+
+
+
 }
