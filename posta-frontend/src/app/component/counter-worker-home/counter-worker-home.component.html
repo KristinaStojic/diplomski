@@ -8,4 +8,16 @@
 
     <canvas id="myChartYear" width="1357" height="400"></canvas>
 
+
+
+    <div>
+        <br><h5>Мјесечни број уплата за изабрану годину: </h5><br>
+        <label>Изабрана година:</label>
+        <select class="form-select" aria-label="Default select example" (change)="selectYear($event)">
+            <option value="2021">2021</option>
+            <option selected value="2022">2022</option>
+        </select>
+        <canvas id="myChart" width="1357" height="400"></canvas>
+    </div>
+
 </div>

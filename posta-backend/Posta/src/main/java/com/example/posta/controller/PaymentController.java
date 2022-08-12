@@ -1,10 +1,6 @@
 package com.example.posta.controller;
 
-import com.example.posta.dto.AddPaymentDTO;
-import com.example.posta.dto.AddWorkerDTO;
-import com.example.posta.dto.PaymentDTO;
-import com.example.posta.dto.WorkerDTO;
-import com.example.posta.model.Manager;
+import com.example.posta.dto.*;
 import com.example.posta.model.Payment;
 import com.example.posta.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +57,17 @@ public class PaymentController {
     @PreAuthorize("hasAuthority('ROLE_COUNTER_WORKER')")
     public ResponseEntity<Map<Integer, Integer>> getNumberofPaymentsYearly() {
         Map<Integer, Integer> n = this.paymentService.getNumberofPaymentsYearly();
+        if (n == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(n, HttpStatus.OK);
+        }
+    }
+
+    @RequestMapping(value = "/getNumberofPaymentsMonthly/{year}", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('ROLE_COUNTER_WORKER')")
+    public ResponseEntity<Map<String, Integer>> getNumberofPaymentsMonthly(@PathVariable String year) {
+        Map<String, Integer> n = this.paymentService.getNumberofPaymentsMonthly(year);
         if (n == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {

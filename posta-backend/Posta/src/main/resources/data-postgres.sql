@@ -66,7 +66,6 @@ INSERT INTO public.client(id, address_id) VALUES (1244, 157);
 INSERT INTO public.client(id, address_id) VALUES (1245, 158);
 
 
-INSERT INTO public.financial_service(id, amount, currency, date, client_id, counter_worker_id) VALUES (11, 1500, 'DIN', '07-01-2022', 1240, 1239);
 
 INSERT INTO public.shipment(
 	id, email_report, sent_date, letter_type, personal_delivery, return_receipt, shipment_status, shipment_type, email, total_price, value, weight, accounting_worker_id, counter_worker_id, receiver_id, region_id, sender_id, code)
@@ -79,4 +78,22 @@ INSERT INTO public.shipment(
 	id, email_report, sent_date, letter_type, personal_delivery, return_receipt, shipment_status, shipment_type, email, total_price, value, weight, accounting_worker_id, counter_worker_id, receiver_id, region_id, sender_id, code)
 	VALUES (15, true, '10-17-2022', 1, true, true, 2, 0, null, 350, 0, 120, null, 1239, 1244, null, 1245, 'NFHG24K45N');
 
---INSERT INTO public.payment(model, payment_code, purpose, receiver, receiver_account, reference_number, id, receiver_address_id) VALUES ('156', '365', 'Пријава испита', 'Факултет техничких наука', '5510235112365412', '352', 11, 155);
+
+INSERT INTO public.financial_service(id, amount, currency, date, client_id, counter_worker_id) VALUES (11, 1500, 'DIN', '07-01-2022', 1240, 1239);
+
+INSERT INTO public.payment(
+	model, payment_code, purpose, receiver_account, receiving_place, reference_number, id, receiver_id)
+	VALUES ('2ER', '2451563254', 'Ispiti', '546598563264', 'Zvornik', '542', 11, 1244);
+
+INSERT INTO public.financial_service(id, amount, currency, date, client_id, counter_worker_id) VALUES (12, 5000, 'DIN', '10-11-2021', 1244, 1239);
+
+INSERT INTO public.payment(
+	model, payment_code, purpose, receiver_account, receiving_place, reference_number, id, receiver_id)
+	VALUES ('3R4', '6548645447', 'Internet', '6598656244', 'Subotica', '234', 12, 1240);
+
+
+INSERT INTO public.financial_service(id, amount, currency, date, client_id, counter_worker_id) VALUES (13, 3500, 'DIN', '09-05-2021', 1242, 1239);
+
+INSERT INTO public.payment(
+	model, payment_code, purpose, receiver_account, receiving_place, reference_number, id, receiver_id)
+	VALUES ('RT4', '1564864512', 'Struja', '64687654135', 'Novi Sad', '784', 13, 1240);

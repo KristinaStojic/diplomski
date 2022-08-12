@@ -32,4 +32,12 @@ export class PaymentService {
         return reservations;
       }));   
     }
+
+
+    getNumberofPaymentsMonthly(year) {
+      return this._http.get(this.payment_url + `/getNumberofPaymentsMonthly/${year}`, year)
+      .pipe(map(reservations => {
+        return reservations;
+      }));   
+    }
 }

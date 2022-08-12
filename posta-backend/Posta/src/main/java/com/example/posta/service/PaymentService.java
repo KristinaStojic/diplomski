@@ -1,9 +1,6 @@
 package com.example.posta.service;
 
-import com.example.posta.dto.AddPaymentDTO;
-import com.example.posta.dto.AddWorkerDTO;
-import com.example.posta.dto.PaymentDTO;
-import com.example.posta.dto.WorkerDTO;
+import com.example.posta.dto.*;
 import com.example.posta.model.*;
 import com.example.posta.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -144,4 +141,29 @@ public class PaymentService {
         return n;
     }
 
+
+    public Map<String, Integer> getNumberofPaymentsMonthly(String year) {
+        Map<String, Integer> map = new HashMap<>();
+        for (Payment r : paymentRepository.findAll()) {
+                if (!map.containsKey(r.getDate().getMonth().toString())) {
+                    Integer n = countPaymentnPerMonth(r.getDate().getMonth().toString(), Integer.parseInt(year));
+                    map.put(r.getDate().getMonth().toString(), n);
+                }
+
+        }
+
+        return map;
+    }
+
+
+    private Integer countPaymentnPerMonth(String month, Integer year) {
+        Integer n = 0;
+
+        for (Payment r : paymentRepository.findAll()) {
+            if (r.getDate().getMonth().toString().equals(month) && r.getDate().getYear() == year) {
+                n++;
+            }
+        }
+        return n;
+    }
 }
