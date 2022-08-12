@@ -2,7 +2,7 @@
 
     <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
         <h4>Обавјештења</h4>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#addNotification">Додај обавјештење</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#addNotification" *ngIf="isManager()">Додај обавјештење</button>
     </div>
 
 
