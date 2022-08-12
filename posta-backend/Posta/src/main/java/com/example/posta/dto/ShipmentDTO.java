@@ -33,8 +33,8 @@ public class ShipmentDTO {
     private Double value;
     private Boolean personalDelivery;
     private Boolean returnReceipt;
-    private Boolean SMSReport;
-    private String smsNumber;
+    private Boolean emailReport;
+    private String email;
     private String date;
     private Double totalPrice;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyy HH:mm:ss");
@@ -72,8 +72,8 @@ public class ShipmentDTO {
         this.value = s.getValue();
         this.personalDelivery = s.getPersonalDelivery();
         this.returnReceipt = s.getReturnReceipt();
-        this.SMSReport = s.getSMSReport();
-        this.smsNumber = s.getSmsNumber();
+        this.emailReport = s.getEmailReport();
+        this.email = s.getEmail();
         this.date = s.getDate().format(formatter);
         this.totalPrice = s.getTotalPrice();
 

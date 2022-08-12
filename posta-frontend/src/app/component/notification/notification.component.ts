@@ -43,4 +43,13 @@ export class NotificationComponent implements OnInit {
     )
   }
 
+
+  isManager() {
+    let role = localStorage.getItem("role");
+    if (role == "ROLE_MANAGER"){
+      return true;
+    }
+    return false;
+  }
+
 }

@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PaymentService {
@@ -116,4 +118,30 @@ public class PaymentService {
 
         return paymentRepository.save(p);
     }
+
+
+    public Map<Integer, Integer> getNumberofPaymentsYearly() {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (Payment r : paymentRepository.findAll()) {
+                if (!map.containsKey(r.getDate().getYear())) {
+                    Integer n = countPaymentPerYear(r.getDate().getYear());
+                    map.put(r.getDate().getYear(), n);
+                }
+
+        }
+        return map;
+    }
+
+    private Integer countPaymentPerYear(Integer year) {
+        Integer n = 0;
+
+        for (Payment r : paymentRepository.findAll()) {
+                if (r.getDate().getYear() == year) {
+                    n++;
+                }
+        }
+
+        return n;
+    }
+
 }

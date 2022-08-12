@@ -71,11 +71,11 @@ public class Shipment {
     @Column(name = "return_receipt", unique = false)
     private Boolean returnReceipt;
 
-    @Column(name = "SMS_report", unique = false)
-    private Boolean SMSReport;
+    @Column(name = "email_report", unique = false)
+    private Boolean emailReport;
 
-    @Column(name = "SMS_number", unique = false)
-    private String smsNumber;
+    @Column(name = "email", unique = false)
+    private String email;
 
     @Column(name = "sent_date", unique = false, nullable = false)
     private LocalDateTime date;

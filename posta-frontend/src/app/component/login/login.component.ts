@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
         },
         error => {
           this.submitted = false;
-          this.notification = {msgType: 'error', msgBody: 'Incorrect username/password or account is not verified.'};
+          this.notification = {msgType: 'error', msgBody: 'Погрешан емаил или лозинка!'};
         });
   }
 }

@@ -2,8 +2,10 @@
 
     <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
         <h4>Статистика уплата</h4>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#addPostOffice">Све уплате</button>
+        <button class="btn btn-primary" (click)="allPayments()">Све уплате</button>
     </div>
-    <p>Овде ће бити дијаграми о уплатама!</p>
+    <p>Број уплата по години:</p>
+
+    <canvas id="myChartYear" width="1357" height="400"></canvas>
 
 </div>

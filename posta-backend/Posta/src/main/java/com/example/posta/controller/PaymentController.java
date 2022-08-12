@@ -14,6 +14,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping(value = "api/payment")
 @RestController
@@ -53,5 +54,17 @@ public class PaymentController {
             return new ResponseEntity<>(m, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+
+    @RequestMapping(value = "/getNumberofPaymentsYearly", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('ROLE_COUNTER_WORKER')")
+    public ResponseEntity<Map<Integer, Integer>> getNumberofPaymentsYearly() {
+        Map<Integer, Integer> n = this.paymentService.getNumberofPaymentsYearly();
+        if (n == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(n, HttpStatus.OK);
+        }
     }
 }

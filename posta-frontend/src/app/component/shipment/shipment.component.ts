@@ -14,7 +14,7 @@ export class ShipmentComponent implements OnInit {
   shipments: Shipment[]
   selectedShipment: Shipment
   newShipmentStatus: String
-
+  searchCriteria: String = ""
   
 
   constructor(private shipmentService:ShipmentService ,private router: Router) { }
@@ -58,7 +58,73 @@ export class ShipmentComponent implements OnInit {
     //this.selectedShipment.shipmentStatus = this.newShipmentStatus
     var changedStatus = {
       "id": this.selectedShipment.id,
-      "newStatus": this.newShipmentStatus
+      "newStatus": this.newShipmentStatus,
+      "email": this.selectedShipment.email,
+      "code": this.selectedShipment.code,
+      "emailReport": this.selectedShipment.emailReport
+    }
+
+    console.log(this.selectedShipment.shipmentStatus)
+
+    this.shipmentService.editShipmentStatus(changedStatus).subscribe(
+      (m: Shipment) => {
+        console.log(m.id)
+        window.location.reload()
+      },
+      (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Упс...',
+          text: 'Дошло је до грешке!',
+        })
+      }
+    )
+  }
+
+  getAll(){
+    this.searchCriteria = ""
+
+    this.shipmentService.getAll().subscribe(
+      (shipments: Shipment[]) => {
+        this.shipments = shipments
+        console.log(this.shipments)
+      }
+    )
+  }
+
+  search(){
+    this.shipmentService.searchByCode(this.searchCriteria).subscribe(
+      (shipments: Shipment[]) => {
+        this.shipments = shipments
+        console.log(this.shipments)
+      }
+    )
+  }
+
+
+  isAccountingWorker() {
+    let role = localStorage.getItem("role");
+    if (role == "ROLE_ACCOUNTING_WORKER"){
+      return true;
+    }
+    return false;
+  }
+
+  isCounterWorker() {
+    let role = localStorage.getItem("role");
+    if (role == "ROLE_COUNTER_WORKER"){
+      return true;
+    }
+    return false;
+  }
+
+  deliverShipment(){
+    var changedStatus = {
+      "id": this.selectedShipment.id,
+      "newStatus": "Достављено",
+      "email": this.selectedShipment.email,
+      "code": this.selectedShipment.code,
+      "emailReport": this.selectedShipment.emailReport
     }
 
     console.log(this.selectedShipment.shipmentStatus)

@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { Payment } from './../model/payment';
 import { PaymentsComponent } from './../component/payments/payments.component';
 import { Observable } from 'rxjs';
@@ -23,5 +24,12 @@ export class PaymentService {
 
     public addPayment(payment): Observable<Payment> {
       return this._http.post<Payment>(`${this.payment_url}/addPayment`, payment)
+    }
+
+    getNumberofPaymentsYearly() {
+      return this._http.get(this.payment_url + `/getNumberofPaymentsYearly`)
+      .pipe(map(reservations => {
+        return reservations;
+      }));   
     }
 }

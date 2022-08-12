@@ -32,4 +32,16 @@ public class EmailService {
         javaMailSender.send(mail);
 
     }
+
+    public void sendMailForDeliveredShipment(String userEmail, String content) throws MessagingException {
+        String text = "<br>Поштовани,<br><br>Ваша пошиљка " + content + " је успјешно испоручена!<br><br>Поздрав";
+
+        MimeMessage mail = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mail);
+        helper.setTo(userEmail);
+        helper.setFrom("wish.and.fish.serbia@gmail.com");
+        helper.setSubject("Испорука пошиљке");
+        helper.setText(text, true);
+        javaMailSender.send(mail);
+    }
 }
