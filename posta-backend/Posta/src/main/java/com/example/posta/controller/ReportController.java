@@ -15,8 +15,8 @@ public class ReportController {
     @Autowired
     private ReportService reportService;
 
-    @GetMapping("/generate")
-    public String generateReport() throws JRException, FileNotFoundException {
-        return reportService.exportReport();
-    }
+//    @GetMapping("/generate")
+//    public String generateReport() throws JRException, FileNotFoundException {
+//        return reportService.exportReport();
+//    }
 }

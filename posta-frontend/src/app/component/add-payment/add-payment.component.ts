@@ -43,7 +43,7 @@ export class AddPaymentComponent implements OnInit {
     if(this.valid){
       this.paymentService.addPayment(this.payment).subscribe(
         (p: Payment) => {
-          window.location.reload()
+          //window.location.reload()
         },
         (error) => {
           Swal.fire({

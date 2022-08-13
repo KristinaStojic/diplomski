@@ -3,9 +3,11 @@ package com.example.posta.service;
 import com.example.posta.dto.*;
 import com.example.posta.model.*;
 import com.example.posta.repository.*;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -38,6 +40,9 @@ public class PaymentService {
     @Autowired
     CountryRepository countryRepository;
 
+    @Autowired
+    ReportService reportService;
+
     public List<PaymentDTO> getAllPayments(){
         List<PaymentDTO> ret = new ArrayList<>();
 
@@ -61,7 +66,7 @@ public class PaymentService {
         return ret;
     }
 
-    public Payment addPayment(AddPaymentDTO dto){
+    public Payment addPayment(AddPaymentDTO dto) throws JRException, FileNotFoundException {
         Payment p = new Payment();
 
         Client client = new Client();
@@ -75,6 +80,7 @@ public class PaymentService {
         cnt.setCountryName(dto.getClientAddress().getCountry());
         countryRepository.save(cnt);
         c.setCountry(cnt);
+        c.setPostalCode(dto.getClientAddress().getPostalCode());
         cityRepository.save(c);
         clientAddress.setCity(c);
         addressRepository.save(clientAddress);
@@ -88,8 +94,9 @@ public class PaymentService {
         receiver.setEnabled(true);
         Address receiverAddress = new Address(dto.getReceiverAddress());
         City rc = new City(dto.getReceiverAddress().getCity());
+        rc.setPostalCode(dto.getReceiverAddress().getPostalCode());
         Country cntr = new Country();
-        cnt.setCountryName(dto.getReceiverAddress().getCountry());
+        cntr.setCountryName(dto.getReceiverAddress().getCountry());
         countryRepository.save(cntr);
         rc.setCountry(cntr);
         cityRepository.save(rc);
@@ -114,7 +121,7 @@ public class PaymentService {
         CounterWorker cw = counterWorkerRepository.getById(w.getId());
 
         p.setCounterWorker(cw);
-
+        this.reportService.exportReport(p);
         return paymentRepository.save(p);
     }
 

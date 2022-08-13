@@ -10,6 +10,7 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,8 +21,9 @@ public class ReportService {
     @Autowired
     PaymentRepository paymentRepository;
 
-    public String exportReport() throws FileNotFoundException, JRException{
-        List<Payment> payments = paymentRepository.findAll();
+    public String exportReport(Payment p) throws FileNotFoundException, JRException{
+        List<Payment> payments = new ArrayList<>();
+        payments.add(p);
         String path = "C:\\diplomski\\posta-backend\\Posta\\src\\main\\resources";
         File file = ResourceUtils.getFile("C:\\diplomski\\posta-backend\\Posta\\src\\main\\resources\\Uplatnica.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
