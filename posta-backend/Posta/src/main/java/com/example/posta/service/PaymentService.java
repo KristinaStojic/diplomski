@@ -193,6 +193,23 @@ public class PaymentService {
         return ret;
     }
 
+
+    public Map<String, Double> getAmountofPaymentsWeekly(WeekReportDTO dto) {
+        Map<String, Double> ret = new HashMap<>();
+        LocalDate start = findDate(dto.getStartDate()).toLocalDate();
+        LocalDate end = findDate(dto.getEndDate()).toLocalDate();
+
+        while (start.isBefore(end) || start.isEqual(end)) {
+            for (Payment r : paymentRepository.findAll()) {
+                Double n = countAmountWeekly(start);
+                ret.put(start.toString().substring(0, 10), n);
+            }
+            start = start.plusDays(1);
+        }
+
+        return ret;
+    }
+
     private LocalDateTime findDate(String start) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         return LocalDateTime.parse(start, formatter);
@@ -208,6 +225,14 @@ public class PaymentService {
         return n;
     }
 
-
+    private Double countAmountWeekly(LocalDate date) {
+        Double n = 0.0;
+        for (Payment r : paymentRepository.findAll()) {
+            if (r.getDate().toLocalDate().isEqual(date)) {
+                n += r.getAmount();
+            }
+        }
+        return n;
+    }
 
 }

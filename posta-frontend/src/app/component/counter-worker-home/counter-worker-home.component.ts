@@ -17,9 +17,12 @@ export class CounterWorkerHomeComponent implements OnInit {
   id;
   myChart: any;
   myChartWeek: any
+  myChartWeekAmount: any
   year;
   startDate: String | any;
   endDate: String | any;
+  startDateAmount: String | any;
+  endDateAmount: String | any;
   myVar : Record<string, number> = {
 
   }
@@ -184,6 +187,83 @@ export class CounterWorkerHomeComponent implements OnInit {
           labels: first,
           datasets: [{
               label: 'број уплата',
+              data: values,
+              backgroundColor: 
+                  'rgba(255, 99, 132, 1)',
+              
+              borderWidth: 1
+          }]
+      },
+      options: {
+        responsive: false,
+        display:true
+      }
+    });
+  }
+
+
+
+  selectDaysAmount(){
+
+    if(this.startDateAmount == undefined || this.endDateAmount == undefined){
+      Swal.fire({
+        icon: 'error',
+        title: 'Упс...',
+        text: 'Изаберите датуме!',
+      }) 
+    }
+    else{
+      var start = formatDate(this.startDateAmount,'dd-MM-yyyy','en_US');
+      var end  = formatDate(this.endDateAmount,'dd-MM-yyyy','en_US');
+  
+     
+  
+      if(this.startDateAmount.getTime() >= this.endDateAmount.getTime()){
+        Swal.fire({
+          icon: 'error',
+          title: 'Упс...',
+          text: 'Почетни датум не смије бити већи или једнак крајњем!',
+        }) 
+      }
+      else{
+        start = start + " 00:00"
+        end = end + " 00:00"
+    
+        var dto = {
+          "id": this.id,
+          "startDate": start,
+          "endDate": end
+        }
+  
+        this.paymentService.getAmountofPaymentsWeekly(dto).subscribe((data : any) => {
+  
+          console.log(data)
+          if(this.myChartWeekAmount !== undefined){
+            this.myChartWeekAmount.destroy();
+          }
+          this.reportPerWeekAmount(data)
+        })
+      }
+  
+    }
+    
+  }
+
+
+
+  reportPerWeekAmount(data){
+    this.myVar = data;
+    let first = Object.keys(data)
+    let values = Object.values(data)
+    this.canvas = document.getElementById('myChartWeekAmount');
+    this.ctx = this.canvas.getContext('2d');
+    //this.myChart.destroy();
+    this.myChartWeek = new Chart(this.ctx, {
+      type: 'bar',
+      data: {
+          labels: first,
+          datasets: [{
+              label: 'уплаћени новац',
               data: values,
               backgroundColor: 
                   'rgba(255, 99, 132, 1)',
