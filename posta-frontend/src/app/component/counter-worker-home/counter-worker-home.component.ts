@@ -258,7 +258,7 @@ export class CounterWorkerHomeComponent implements OnInit {
     this.canvas = document.getElementById('myChartWeekAmount');
     this.ctx = this.canvas.getContext('2d');
     //this.myChart.destroy();
-    this.myChartWeek = new Chart(this.ctx, {
+    this.myChartWeekAmount = new Chart(this.ctx, {
       type: 'bar',
       data: {
           labels: first,
@@ -266,14 +266,14 @@ export class CounterWorkerHomeComponent implements OnInit {
               label: 'уплаћени новац',
               data: values,
               backgroundColor: 
-                  'rgba(255, 99, 132, 1)',
+                  'rgba(154, 55, 132, 1)',
               
               borderWidth: 1
           }]
       },
       options: {
         responsive: false,
-        display:true
+        display:true,
       }
     });
   }
