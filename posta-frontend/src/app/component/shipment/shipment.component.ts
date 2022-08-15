@@ -94,7 +94,13 @@ export class ShipmentComponent implements OnInit {
   }
 
   search(){
-    this.shipmentService.searchByCode(this.searchCriteria).subscribe(
+
+    var dto = {
+      "code": this.searchCriteria,
+      "worker": localStorage.getItem('user')
+    }
+
+    this.shipmentService.searchByCode(dto).subscribe(
       (shipments: Shipment[]) => {
         this.shipments = shipments
         console.log(this.shipments)

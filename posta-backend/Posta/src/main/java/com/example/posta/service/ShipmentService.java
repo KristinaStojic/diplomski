@@ -6,6 +6,7 @@ import com.example.posta.model.enums.LetterType;
 import com.example.posta.model.enums.ShipmentStatus;
 import com.example.posta.model.enums.ShipmentType;
 import com.example.posta.repository.*;
+import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -83,11 +84,13 @@ public class ShipmentService {
         return ret;
     }
 
-    public List<ShipmentDTO> searchByCode(String code){
+    public List<ShipmentDTO> searchByCode(SearchShipmentDTO dto){
         List<ShipmentDTO> ret = new ArrayList<>();
+        Worker w = workerRepository.findByEmail(dto.getWorker());
+        PostOffice po = postOfficeRepository.findById(w.getPostOffice().getId()).orElseGet(null);
 
         for(Shipment s: shipmentRepository.findAll()){
-            if(s.getCode().contains(code)){
+            if(s.getCode().contains(dto.getCode()) && (s.getReceivingPostOffice().getId() == po.getId() || (s.getDeliveringPostOffice() != null && s.getDeliveringPostOffice().getId() == po.getId()))){
                 ShipmentDTO ss = new ShipmentDTO(s);
                 ret.add(ss);
             }

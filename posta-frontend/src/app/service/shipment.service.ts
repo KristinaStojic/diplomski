@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { Shipment } from 'src/app/model/shipment';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -29,8 +30,13 @@ export class ShipmentService {
     return this._http.put<Shipment>(`${this.shipment_url}/editShipmentStatus`, s)
   }
 
-  public searchByCode(code): Observable<any>{
-    return this._http.get<any>(this.shipment_url + `/searchByCode/${code}`, code)
+  public searchByCode(dto): Observable<any>{
+    console.log(dto)
+    return this._http.post<any>(this.shipment_url + `/searchByCode`, dto)
+    // return this._http.post(this.shipment_url + `/searchByCode`, dto)
+    //   .pipe(map(s => {
+    //     return s;
+    //   }));  
   }
 
   public recordShipmentInPostOffice(shipment): Observable<Shipment> {
