@@ -36,15 +36,15 @@ public class Shipment {
     @Column(name = "shipment_status", unique = false, nullable = true)
     private ShipmentStatus shipmentStatus;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "counter_worker_id", nullable = true)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "receiving_post_office_id", nullable = true)
     @JsonBackReference
-    private CounterWorker counterWorker;
+    private PostOffice receivingPostOffice;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "accounting_worker_id", nullable = true)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "delivering_post_office_id", nullable = true)
     @JsonBackReference
-    private AccountingWorker accountingWorker;
+    private PostOffice deliveringPostOffice;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "region_id", nullable = true)

@@ -14,7 +14,9 @@
         </div>
 
         <div class="col-1.5"> 
-          <button class="btn btn-primary" (click)="addShipment()" style="margin-left: 4ch;">Додај пошиљку</button>
+          <button *ngIf="isCounterWorker()" class="btn btn-primary" (click)="addShipment()" style="margin-left: 4ch;">Додај пошиљку</button>
+          <button *ngIf="isAccountingWorker()" class="btn btn-primary" (click)="recordShipment()" style="margin-left: 4ch;">Унеси пошиљку</button>
+
         </div>
 
     </div>

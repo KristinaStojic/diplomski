@@ -1,0 +1,28 @@
+.borders{
+    margin: 6ch; 
+}
+
+
+.inner {
+    padding: 20px;
+    background: #fff;
+    border-style: solid;
+    max-width: 100%;
+    display: flex;
+    border-width: 1px;
+    height: 100%;
+     }
+
+    .inner form {
+      width: 50%;
+      }
+
+
+.form-group {
+    display: flex; }
+    .form-group input {
+     width: 50%; }
+    .form-group input:first-child {
+     margin-right: 20px; }
+
+

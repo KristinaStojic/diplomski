@@ -16,4 +16,5 @@ public class EditShipmentDTO {
     private String email;
     private String code;
     private Boolean emailReport;
+    private String counterWorkerEmail;
 }

@@ -1,1 +1,234 @@
-<p>add-shipment-accounting-worker works!</p>
+<div class="borders">
+    <div class="inner shadow p-3 mb-5 bg-white rounded">
+
+        <form style="display:grid; justify-content: space-between; margin-left: 3.5ch; margin-right: 20px; margin-left: 20px;" >
+
+            <div class="form-group" class="center" style="width: 40vw;">
+
+                <div class="row">
+
+                    <div class="col" style="margin-left: 15px;"><br>
+                        <label style="margin-bottom: 10px;" class="row">Шифра пошиљке:</label>
+                        <input type="text" style="width: 103.5%;" class="row" id="code" name="code" [(ngModel)]="shipment.code">
+                    </div>
+               
+                </div><br>
+
+                <div class="row" >
+                    <div class="col">
+                        <label style="margin-bottom: 10px; margin-left: 0.5ch;" class="row">Пошиљалац:</label>
+                        <input style="width: 95%; margin-left: 0.5ch;" type="text" class="row" placeholder="Име" [(ngModel)]="client.name" name="name">
+                    </div>
+                    <div class="col">
+                        <input style="width: 107%; margin-top: 3.9ch;" type="text" class="row" placeholder="Презиме" [(ngModel)]="client.surname" name="name">
+                    </div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-6" >
+                        <input type="text" placeholder="Улица" style="width: 95%; margin-left: 0.5ch;" [(ngModel)]="clientAddress.street" name="street">
+                    </div>
+                    <div class="col-3" style="padding: 0%">
+                        <input type="text" placeholder="Број" style="width: 100%;" [(ngModel)]="clientAddress.streetNumber" name="streetNumber">
+                    </div>
+                    <div class="col-3" style="padding-right: 0%;">
+                        <input type="text" placeholder="Поштански број" style="width: 97%;" [(ngModel)]="clientAddress.postalCode" name="postalCode">
+                    </div>
+                </div><br>
+
+                <div class="row">
+                    <div class="col">
+                        <input style="width: 95%; margin-left: 0.5ch; margin-top: 0.5ch;" type="text" class="row" placeholder="Град" [(ngModel)]="clientAddress.city" name="city">
+                    </div>
+    
+                    <div class="col">
+                        <input style="width: 107%; margin-top: 0.5ch;" type="text" class="row" placeholder="Држава" [(ngModel)]="clientAddress.country" name="country">
+                    </div>
+                </div><br>
+
+                <div class="row">
+                    <div class="col">
+                        <label style="margin-bottom: 10px; margin-left: 0.5ch;" class="row">Прималац:</label>
+                        <input style="width: 95%; margin-left: 0.5ch;" type="text" class="row" placeholder="Име" [(ngModel)]="receiver.name" name="rname">
+                    </div>
+                    <div class="col">
+                        <input style="width: 107%; margin-top: 3.9ch;" type="text" class="row" placeholder="Презиме" [(ngModel)]="receiver.surname" name="rsurname">
+                    </div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-6" >
+                        <input type="text" placeholder="Улица" style="width: 95%; margin-left: 0.5ch;" [(ngModel)]="receiverAddress.street" name="rstreet">
+                    </div>
+                    <div class="col-3" style="padding: 0%">
+                        <input type="text" placeholder="Број" style="width: 100%;"  [(ngModel)]="receiverAddress.streetNumber" name="rstreetNum">
+                    </div>
+                    <div class="col-3" style="padding-right: 0%;">
+                        <input type="text" placeholder="Поштански број" style="width: 97%;"  [(ngModel)]="receiverAddress.postalCode" name="rPostalCode">
+                    </div>
+                </div><br>
+
+                <div class="row">
+                    <div class="col">
+                        <input style="width: 95%; margin-left: 0.5ch; margin-top: 0.5ch;" type="text" class="row" placeholder="Град"  [(ngModel)]="receiverAddress.city" name="rcity">
+                    </div>
+    
+                    <div class="col">
+                        <input style="width: 107%; margin-top: 0.5ch;" type="text" class="row" placeholder="Држава"  [(ngModel)]="receiverAddress.country" name="rcountry">
+                    </div><br><br>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col" style="margin-left: 12px;"><br>
+                        <label style="margin-bottom: 10px;" class="row">Датум слања:</label>
+                        <input type="date" style="width: 103%;" class="row" id="date" name="date" (change)="selectDate($event)">
+                    </div>
+               
+                </div>
+
+                <div class="row">
+
+                    <div class="col" style="margin-left: 12px;"><br>
+                        <label style="margin-bottom: 10px;" class="row">Датум пријема у пословницу:</label>
+                        <input style="width: 103%;" type="text" class="row" [(ngModel)]="receivingDate" name="date" disabled>
+                    </div>
+               
+                </div><br>
+                   
+            </div><br>
+
+            
+        </form>
+
+        <form>
+            <div class="form-group" class="center" style="width: 37vw;">
+                <div class="row">
+                    <div class="col">
+                        <label style="margin-bottom: 10px; margin-left: 1px;" class="row">Услуга:</label>
+                        <select class="form-select" (change)="selectShipmentType($event)" aria-label="Default select example" style="width: 112%;">
+                            <option value="1">Писмоносна услуга</option>
+                            <option value="2">Пакет</option>
+                        </select>
+                    </div>
+                </div><br>
+
+                <div class="row" *ngIf="letter">
+                    <div class="col">
+                        <label style="margin-bottom: 10px; margin-left: 1px;" class="row">Врста пошиљке:</label>
+                        <select [disabled]="!letter" (change)="selectLetterType($event)" class="form-select" aria-label="Default select example" style="width: 112%;">
+                            <option *ngIf="!letter" selected></option>
+                            <option value="1">Писмо</option>
+                            <option value="2">Препоручена пошиљка</option>
+                            <option value="3">Вриједносна пошиљка</option>
+                        </select>
+                    </div>
+                </div><br>
+
+
+                <div class="row">
+
+                    <div class="col-10" style="margin-left: 12px;">
+                        <label *ngIf="letter" style="margin-bottom: 10px;" class="row">Маса пошиљке (0-1000г):</label>
+                        <label *ngIf="!letter" style="margin-bottom: 10px;" class="row">Маса пошиљке (кг):</label>
+                        <input style="width: 135%;" type="text" class="row" [(ngModel)]="shipment.weight" name="weight">
+                    </div>
+
+                </div><br>
+
+                <div class="row">
+
+                    <div class="col-10" style="margin-left: 12px;">
+                        <label style="margin-bottom: 10px;" class="row">Укупна цијена:</label>
+                        <input style="width: 135%;" type="text" class="row" [(ngModel)]="shipment.totalPrice" name="weight">
+                    </div>
+
+                </div><br>
+
+                <div class="row" *ngIf="valueLetter">
+
+                    <div class="col-10" style="margin-left: 12px;">
+                        <label style="margin-bottom: 10px;" class="row">Вриједност пошиљке (дин):</label>
+                        <input style="width: 135%;" type="text" class="row" [(ngModel)]="shipment.value" name="place">
+                    </div>
+                    
+                </div><br>
+
+                <div class="row" *ngIf="!ordinaryLetter">
+
+                    <div class="col-10" style="margin-left: 12px;">
+                        <label style="margin-bottom: 10px;" class="row">Услуге по захтјеву:</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" (change)="returnReceipt($event)" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Повратница
+                            </label>
+                        </div>
+                          
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" (change)="personalDelivery($event)" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Лично уручење
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" (change)="emailReport($event)" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                             Електронска потврда о уручењу пошиљке - емаил
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div><br>
+
+                <div *ngIf="email" class="row">
+
+                    <div class="col-10" style="margin-left: 12px;">
+                        <label style="margin-bottom: 10px;" class="row"> Емаил:</label>
+                        <input style="width: 135%;" type="text" class="row" [(ngModel)]="shipment.email" name="phoneNum">
+                    </div>
+
+                </div><br>
+               
+            </div><br>
+            <div class="float-right" style="margin-right: 5ch; ">
+                <button class="btn btn-primary" style="margin-right: 1ch;">Откажи</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#totalPrice" >Сачувај</button>
+    
+            </div>
+        </form>
+
+
+    </div>
+
+</div>
+
+
+
+
+<div *ngIf="this.valid" class="modal fade" id="totalPrice" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Укупна цијена пошиљке</h5>
+        </div>
+        
+        <div  class="container"  style="margin: 5% 5% 5% 5%;">
+            
+                <label>Услуга: {{typePrice}} дин</label><br>        
+                <label>Маса: {{weightPrice}} дин</label><br>
+                <label *ngIf="this.shipment.returnReceipt">Повратница: 50 дин</label><br>
+                <label *ngIf="this.shipment.emailReport">Емаил: 100 дин</label><br>
+                <b>Укупно: {{totalPrice}}</b>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Назад</button>
+            <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="recordShipment()">Потврдите?</button>
+        </div>
+    </div>
+    </div>
+</div>

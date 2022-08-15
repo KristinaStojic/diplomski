@@ -61,7 +61,8 @@ export class ShipmentComponent implements OnInit {
       "newStatus": this.newShipmentStatus,
       "email": this.selectedShipment.email,
       "code": this.selectedShipment.code,
-      "emailReport": this.selectedShipment.emailReport
+      "emailReport": this.selectedShipment.emailReport,
+      "counterWorkerEmail": localStorage.getItem('user')
     }
 
     console.log(this.selectedShipment.shipmentStatus)
@@ -124,7 +125,8 @@ export class ShipmentComponent implements OnInit {
       "newStatus": "Достављено",
       "email": this.selectedShipment.email,
       "code": this.selectedShipment.code,
-      "emailReport": this.selectedShipment.emailReport
+      "emailReport": this.selectedShipment.emailReport,
+      "counterWorkerEmail": localStorage.getItem('user')
     }
 
     console.log(this.selectedShipment.shipmentStatus)
@@ -142,5 +144,11 @@ export class ShipmentComponent implements OnInit {
         })
       }
     )
+  }
+
+
+  recordShipment(){
+    this.router.navigate(['/add-shipment-accounting-worker']);
+
   }
 }

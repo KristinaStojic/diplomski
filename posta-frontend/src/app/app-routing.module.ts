@@ -1,3 +1,4 @@
+import { AddShipmentAccountingWorkerComponent } from './component/add-shipment-accounting-worker/add-shipment-accounting-worker.component';
 import { AddShipmentComponent } from './component/add-shipment/add-shipment.component';
 import { ShipmentComponent } from './component/shipment/shipment.component';
 import { AddPaymentComponent } from './component/add-payment/add-payment.component';
@@ -57,6 +58,10 @@ const routes: Routes = [
   {
     path: 'add-shipment',
     component: AddShipmentComponent,
+  },
+  {
+    path: 'add-shipment-accounting-worker',
+    component: AddShipmentAccountingWorkerComponent,
   },
 ];
 

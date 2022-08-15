@@ -47,6 +47,9 @@ public class ShipmentService {
     @Autowired
     EmailService emailService;
 
+    @Autowired
+    PostOfficeRepository postOfficeRepository;
+
     public List<ShipmentDTO> getAllShipments(){
         List<ShipmentDTO> ret = new ArrayList<>();
 
@@ -124,7 +127,8 @@ public class ShipmentService {
         Worker w = workerRepository.findByEmail(dto.getCounterWorker());
         CounterWorker cw = counterWorkerRepository.getById(w.getId());
 
-        s.setCounterWorker(cw);
+        s.setReceivingPostOffice(postOfficeRepository.getById(cw.getPostOffice().getId()));
+        s.setDeliveringPostOffice(null);
 
         if(dto.getShipmentType().equals(ShipmentType.LETTER.toString())){
             s.setShipmentType(ShipmentType.LETTER);
@@ -202,6 +206,12 @@ public class ShipmentService {
             case "Чека на испоруку" -> s.setShipmentStatus(ShipmentStatus.RECEIVED);
             case "Достављено" -> {
                 s.setShipmentStatus(ShipmentStatus.DELIVERED);
+                Worker w = workerRepository.findByEmail(dto.getCounterWorkerEmail());
+
+                if(w.getPostOffice() != null){
+                    s.setDeliveringPostOffice(postOfficeRepository.findById(w.getPostOffice().getId()).orElseGet(null));
+                }
+
                 if(dto.getEmailReport()){
                     emailService.sendMailForDeliveredShipment(dto.getEmail(),dto.getCode());
                 }
