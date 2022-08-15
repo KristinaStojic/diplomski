@@ -24,8 +24,8 @@ public class ShipmentDTO {
     private String shipmentType;
     private String letterType;
     private String shipmentStatus;
-    private String counterWorker;
-    private String accountingWorker;
+    private Long receivingPostOffice;
+    private Long deliveringPostOffice;
     private Region region;
     private String sender;
     private String receiver;
@@ -50,10 +50,13 @@ public class ShipmentDTO {
         else{
             this.shipmentType = "Пакет";
         }
-        this.counterWorker = s.getCounterWorker().getEmail();
+        this.receivingPostOffice = s.getReceivingPostOffice().getId();
+        if(s.getDeliveringPostOffice() != null){
+            this.deliveringPostOffice = s.getDeliveringPostOffice().getId();
+        }
         this.receiverAddress = s.getReceiver().getAddress().getStreet() + " " + s.getReceiver().getAddress().getStreetNumber() + ", " + s.getReceiver().getAddress().getCity().getPostalCode() + " " + s.getReceiver().getAddress().getCity().getCityName() + ", " + s.getReceiver().getAddress().getCity().getCountry().getCountryName();
-        if(s.getAccountingWorker() != null && s.getRegion() != null && s.getLetterType() != null){
-            this.accountingWorker = s.getAccountingWorker().getEmail();
+        if(s.getRegion() != null && s.getLetterType() != null){
+
             this.region = s.getRegion();
 
             if(s.getLetterType().toString().equals(LetterType.VALUE.toString())){

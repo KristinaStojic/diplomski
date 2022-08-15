@@ -9,12 +9,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @Getter
-public class EditShipmentDTO {
+public class RecordShipmentDTO {
 
-    private Long id;
-    private String newStatus;
-    private String email;
     private String code;
-    private Boolean emailReport;
-    private String counterWorkerEmail;
+    private String accountingWorkerEmail;
 }

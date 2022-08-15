@@ -15,12 +15,12 @@ export class ShipmentComponent implements OnInit {
   selectedShipment: Shipment
   newShipmentStatus: String
   searchCriteria: String = ""
-  
+  shipmentCode: String = ""
 
   constructor(private shipmentService:ShipmentService ,private router: Router) { }
 
   ngOnInit(): void {
-    this.shipmentService.getAll().subscribe(
+    this.shipmentService.getAllByWorker(localStorage.getItem('user')).subscribe(
       (shipments: Shipment[]) => {
         this.shipments = shipments
         console.log(this.shipments)
@@ -61,7 +61,8 @@ export class ShipmentComponent implements OnInit {
       "newStatus": this.newShipmentStatus,
       "email": this.selectedShipment.email,
       "code": this.selectedShipment.code,
-      "emailReport": this.selectedShipment.emailReport
+      "emailReport": this.selectedShipment.emailReport,
+      "counterWorkerEmail": localStorage.getItem('user')
     }
 
     console.log(this.selectedShipment.shipmentStatus)
@@ -84,7 +85,7 @@ export class ShipmentComponent implements OnInit {
   getAll(){
     this.searchCriteria = ""
 
-    this.shipmentService.getAll().subscribe(
+    this.shipmentService.getAllByWorker(localStorage.getItem('user')).subscribe(
       (shipments: Shipment[]) => {
         this.shipments = shipments
         console.log(this.shipments)
@@ -93,7 +94,13 @@ export class ShipmentComponent implements OnInit {
   }
 
   search(){
-    this.shipmentService.searchByCode(this.searchCriteria).subscribe(
+
+    var dto = {
+      "code": this.searchCriteria,
+      "worker": localStorage.getItem('user')
+    }
+
+    this.shipmentService.searchByCode(dto).subscribe(
       (shipments: Shipment[]) => {
         this.shipments = shipments
         console.log(this.shipments)
@@ -124,7 +131,8 @@ export class ShipmentComponent implements OnInit {
       "newStatus": "Достављено",
       "email": this.selectedShipment.email,
       "code": this.selectedShipment.code,
-      "emailReport": this.selectedShipment.emailReport
+      "emailReport": this.selectedShipment.emailReport,
+      "counterWorkerEmail": localStorage.getItem('user')
     }
 
     console.log(this.selectedShipment.shipmentStatus)
@@ -141,6 +149,30 @@ export class ShipmentComponent implements OnInit {
           text: 'Дошло је до грешке!',
         })
       }
+    )
+  }
+
+
+  recordShipment(){
+
+    var dto = {
+      "code": this.shipmentCode,
+      "accountingWorkerEmail": localStorage.getItem('user')
+    }
+
+    this.shipmentService.recordShipmentInPostOffice(dto).subscribe(
+      (p: Shipment) => {
+       window.location.reload()
+       //this.router.navigate(['/shipments']);
+
+      },
+      (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Упс...',
+          text: 'Пошиљка са унесеном шифром не постоји у систему!',
+        })
+      },
     )
   }
 }

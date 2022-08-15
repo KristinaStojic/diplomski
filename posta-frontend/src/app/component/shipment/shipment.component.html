@@ -14,7 +14,9 @@
         </div>
 
         <div class="col-1.5"> 
-          <button class="btn btn-primary" (click)="addShipment()" style="margin-left: 4ch;">Додај пошиљку</button>
+          <button *ngIf="isCounterWorker()" class="btn btn-primary" (click)="addShipment()" style="margin-left: 4ch;">Додај пошиљку</button>
+          <button *ngIf="isAccountingWorker()" class="btn btn-primary" data-toggle="modal" data-target="#recordShipment" style="margin-left: 4ch;">Унеси пошиљку</button>
+
         </div>
 
     </div>
@@ -110,6 +112,30 @@
           <button *ngIf="this.selectedShipment?.shipmentStatus != 'Достављено'" type="button" class="btn btn-primary"  data-dismiss="modal" (click)="deliverShipment()">Сачувај</button>
 
       </div>
+  </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal fade" id="recordShipment" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered " role="document">
+  <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Унесите пристиглу пошиљку</h5>
+      </div>
+      
+      <div  class="container"  style="margin: 5% 5% 5% 5%;">
+              <label >Шифра пошиљке: </label>&nbsp;&nbsp;
+              <input type="text" name="code" style="width: 30ch;" [(ngModel)]="shipmentCode">             
+      </div>
+
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Одустани</button>
+          <button type="button" [disabled]="this.shipmentCode === ''" class="btn btn-primary"  data-dismiss="modal" (click)="recordShipment()">Сачувај</button>
+      </div>
+
   </div>
   </div>
 </div>
