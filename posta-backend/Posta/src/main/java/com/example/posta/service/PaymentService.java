@@ -1,15 +1,16 @@
 package com.example.posta.service;
 
-import com.example.posta.dto.AddPaymentDTO;
-import com.example.posta.dto.AddWorkerDTO;
-import com.example.posta.dto.PaymentDTO;
-import com.example.posta.dto.WorkerDTO;
+import com.example.posta.dto.*;
 import com.example.posta.model.*;
 import com.example.posta.repository.*;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,6 +40,9 @@ public class PaymentService {
     @Autowired
     CountryRepository countryRepository;
 
+    @Autowired
+    ReportService reportService;
+
     public List<PaymentDTO> getAllPayments(){
         List<PaymentDTO> ret = new ArrayList<>();
 
@@ -62,7 +66,7 @@ public class PaymentService {
         return ret;
     }
 
-    public Payment addPayment(AddPaymentDTO dto){
+    public Payment addPayment(AddPaymentDTO dto) throws JRException, FileNotFoundException {
         Payment p = new Payment();
 
         Client client = new Client();
@@ -76,6 +80,7 @@ public class PaymentService {
         cnt.setCountryName(dto.getClientAddress().getCountry());
         countryRepository.save(cnt);
         c.setCountry(cnt);
+        c.setPostalCode(dto.getClientAddress().getPostalCode());
         cityRepository.save(c);
         clientAddress.setCity(c);
         addressRepository.save(clientAddress);
@@ -89,8 +94,9 @@ public class PaymentService {
         receiver.setEnabled(true);
         Address receiverAddress = new Address(dto.getReceiverAddress());
         City rc = new City(dto.getReceiverAddress().getCity());
+        rc.setPostalCode(dto.getReceiverAddress().getPostalCode());
         Country cntr = new Country();
-        cnt.setCountryName(dto.getReceiverAddress().getCountry());
+        cntr.setCountryName(dto.getReceiverAddress().getCountry());
         countryRepository.save(cntr);
         rc.setCountry(cntr);
         cityRepository.save(rc);
@@ -115,7 +121,7 @@ public class PaymentService {
         CounterWorker cw = counterWorkerRepository.getById(w.getId());
 
         p.setCounterWorker(cw);
-
+        this.reportService.exportReport(p);
         return paymentRepository.save(p);
     }
 
@@ -141,6 +147,91 @@ public class PaymentService {
                 }
         }
 
+        return n;
+    }
+
+
+    public Map<String, Integer> getNumberofPaymentsMonthly(String year) {
+        Map<String, Integer> map = new HashMap<>();
+        for (Payment r : paymentRepository.findAll()) {
+                if (!map.containsKey(r.getDate().getMonth().toString())) {
+                    Integer n = countPaymentPerMonth(r.getDate().getMonth().toString(), Integer.parseInt(year));
+                    map.put(r.getDate().getMonth().toString(), n);
+                }
+
+        }
+
+        return map;
+    }
+
+
+    private Integer countPaymentPerMonth(String month, Integer year) {
+        Integer n = 0;
+
+        for (Payment r : paymentRepository.findAll()) {
+            if (r.getDate().getMonth().toString().equals(month) && r.getDate().getYear() == year) {
+                n++;
+            }
+        }
+        return n;
+    }
+
+
+    public Map<String, Integer> getNumberofPaymentsWeekly(WeekReportDTO dto) {
+        Map<String, Integer> ret = new HashMap<>();
+        LocalDate start = findDate(dto.getStartDate()).toLocalDate();
+        LocalDate end = findDate(dto.getEndDate()).toLocalDate();
+
+        while (start.isBefore(end) || start.isEqual(end)) {
+            for (Payment r : paymentRepository.findAll()) {
+                  Integer n = countPaymentWeekly(start);
+                  ret.put(start.toString().substring(0, 10), n);
+                }
+            start = start.plusDays(1);
+        }
+        
+        return ret;
+    }
+
+
+    public Map<String, Double> getAmountofPaymentsWeekly(WeekReportDTO dto) {
+        Map<String, Double> ret = new HashMap<>();
+        LocalDate start = findDate(dto.getStartDate()).toLocalDate();
+        LocalDate end = findDate(dto.getEndDate()).toLocalDate();
+
+        while (start.isBefore(end) || start.isEqual(end)) {
+            for (Payment r : paymentRepository.findAll()) {
+                Double n = countAmountWeekly(start);
+                ret.put(start.toString().substring(0, 10), n);
+            }
+            start = start.plusDays(1);
+        }
+
+        return ret;
+    }
+
+    private LocalDateTime findDate(String start) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        return LocalDateTime.parse(start, formatter);
+    }
+
+    private Integer countPaymentWeekly(LocalDate date) {
+        Integer n = 0;
+        for (Payment r : paymentRepository.findAll()) {
+                if (r.getDate().toLocalDate().isEqual(date)) {
+                    n++;
+                }
+        }
+        return n;
+    }
+
+    private Double countAmountWeekly(LocalDate date) {
+        Double n = 0.0;
+        for (Payment r : paymentRepository.findAll()) {
+            if (r.getDate().toLocalDate().isEqual(date)) {
+                n += r.getAmount();
+            }
+        }
         return n;
     }
 

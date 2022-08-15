@@ -6,6 +6,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Payment } from 'src/app/model/payment';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-payment',
@@ -24,7 +25,7 @@ export class AddPaymentComponent implements OnInit {
   valid: Boolean = true
   worker: any
 
-  constructor(private paymentService: PaymentService) { }
+  constructor(private paymentService: PaymentService, private router: Router) { }
 
   ngOnInit(): void {
     this.date = this.pipe.transform(Date.now(), 'dd/MM/yyyy');
@@ -43,7 +44,7 @@ export class AddPaymentComponent implements OnInit {
     if(this.valid){
       this.paymentService.addPayment(this.payment).subscribe(
         (p: Payment) => {
-          window.location.reload()
+          this.router.navigate(['/payments']);
         },
         (error) => {
           Swal.fire({

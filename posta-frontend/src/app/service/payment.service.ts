@@ -32,4 +32,26 @@ export class PaymentService {
         return reservations;
       }));   
     }
+
+
+    getNumberofPaymentsMonthly(year) {
+      return this._http.get(this.payment_url + `/getNumberofPaymentsMonthly/${year}`, year)
+      .pipe(map(payments => {
+        return payments;
+      }));   
+    }
+
+    getNumberofPaymentsWeekly(dto) {
+      return this._http.post(this.payment_url + `/getNumberofPaymentsWeekly`, dto)
+      .pipe(map(payments => {
+        return payments;
+      }));   
+    }
+
+    getAmountofPaymentsWeekly(dto) {
+      return this._http.post(this.payment_url + `/getAmountofPaymentsWeekly`, dto)
+      .pipe(map(payments => {
+        return payments;
+      }));   
+    }
 }
