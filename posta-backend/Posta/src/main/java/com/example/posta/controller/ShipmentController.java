@@ -33,6 +33,17 @@ public class ShipmentController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    @RequestMapping(value="/getAllByWorker/{email}", method = RequestMethod.GET)
+    public @ResponseBody
+    ResponseEntity<List<ShipmentDTO>> getAllByWorker(@PathVariable String email){
+        List<ShipmentDTO> p = shipmentService.getAllByWorker(email);
+        if(p != null){
+            return new ResponseEntity<>(p, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
     @RequestMapping(value="/addShipment", method = RequestMethod.POST)
     @PreAuthorize("hasAuthority('ROLE_COUNTER_WORKER')")
     public ResponseEntity<Shipment> addShipment(@RequestBody AddShipmentDTO dto) {
@@ -61,6 +72,17 @@ public class ShipmentController {
             return new ResponseEntity<>(p, HttpStatus.OK);
         }
 
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+
+    @RequestMapping(value="/recordShipmentInPostOffice", method = RequestMethod.POST)
+    @PreAuthorize("hasAuthority('ROLE_ACCOUNTING_WORKER')")
+    public ResponseEntity<Shipment> recordShipmentInPostOffice(@RequestBody RecordShipmentDTO dto) {
+        Shipment m = this.shipmentService.recordShipmentInPostOffice(dto);
+        if(m!=null){
+            return new ResponseEntity<>(m, HttpStatus.OK);
+        }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }

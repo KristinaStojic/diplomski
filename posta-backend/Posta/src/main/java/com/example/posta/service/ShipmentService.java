@@ -60,6 +60,29 @@ public class ShipmentService {
         return ret;
     }
 
+    public List<ShipmentDTO> getAllByWorker(String email){
+        List<ShipmentDTO> ret = new ArrayList<>();
+
+        for(Shipment p: this.shipmentRepository.findAll()){
+            Worker w = workerRepository.findByEmail(email);
+            if(w == null){
+                return null;
+            }
+
+            if(p.getReceivingPostOffice().getId() == w.getPostOffice().getId()){
+                ShipmentDTO s = new ShipmentDTO(p);
+                ret.add(s);
+            }
+
+            if(p.getDeliveringPostOffice() != null && p.getDeliveringPostOffice().getId() != p.getReceivingPostOffice().getId() && p.getDeliveringPostOffice().getId() == w.getPostOffice().getId()){
+                ShipmentDTO s = new ShipmentDTO(p);
+                ret.add(s);
+            }
+
+        }
+        return ret;
+    }
+
     public List<ShipmentDTO> searchByCode(String code){
         List<ShipmentDTO> ret = new ArrayList<>();
 
@@ -125,9 +148,13 @@ public class ShipmentService {
         s.setReturnReceipt(dto.getReturnReceipt());
         s.setCode(UUID.randomUUID().toString().toUpperCase().substring(0,11));
         Worker w = workerRepository.findByEmail(dto.getCounterWorker());
-        CounterWorker cw = counterWorkerRepository.getById(w.getId());
+        CounterWorker cw = counterWorkerRepository.findById(w.getId()).orElseGet(null);
 
-        s.setReceivingPostOffice(postOfficeRepository.getById(cw.getPostOffice().getId()));
+        if (cw == null){
+            return null;
+        }
+
+        s.setReceivingPostOffice(postOfficeRepository.findById(cw.getPostOffice().getId()).orElseGet(null));
         s.setDeliveringPostOffice(null);
 
         if(dto.getShipmentType().equals(ShipmentType.LETTER.toString())){
@@ -221,5 +248,30 @@ public class ShipmentService {
         }
 
         return this.shipmentRepository.save(s);
+    }
+
+    public Shipment recordShipmentInPostOffice(RecordShipmentDTO dto){
+        Shipment s = shipmentRepository.findByCode(dto.getCode());
+
+        if(s == null){
+            return null;
+        }
+
+        Worker w = workerRepository.findByEmail(dto.getAccountingWorkerEmail());
+
+        if(w == null){
+            return null;
+        }
+
+        PostOffice po = postOfficeRepository.findById(w.getPostOffice().getId()).orElseGet(null);
+
+        if(po == null){
+            return null;
+        }
+
+        s.setDeliveringPostOffice(po);
+        s.setShipmentStatus(ShipmentStatus.SENDING);
+
+        return shipmentRepository.save(s);
     }
 }

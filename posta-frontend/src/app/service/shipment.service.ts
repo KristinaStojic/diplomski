@@ -15,6 +15,10 @@ export class ShipmentService {
     return this._http.get<Shipment[]>(`${this.shipment_url}/getAll`)
   }
 
+  public getAllByWorker(email): Observable<any>{
+    return this._http.get<any>(`${this.shipment_url}/getAllByWorker/${email}`, email)
+  }
+
   public addShipment(shipment): Observable<Shipment> {
     console.log(shipment)
     return this._http.post<Shipment>(`${this.shipment_url}/addShipment`, shipment)
@@ -27,5 +31,10 @@ export class ShipmentService {
 
   public searchByCode(code): Observable<any>{
     return this._http.get<any>(this.shipment_url + `/searchByCode/${code}`, code)
+  }
+
+  public recordShipmentInPostOffice(shipment): Observable<Shipment> {
+    console.log(shipment)
+    return this._http.post<Shipment>(`${this.shipment_url}/recordShipmentInPostOffice`, shipment)
   }
 }

@@ -15,12 +15,12 @@ export class ShipmentComponent implements OnInit {
   selectedShipment: Shipment
   newShipmentStatus: String
   searchCriteria: String = ""
-  
+  shipmentCode: String = ""
 
   constructor(private shipmentService:ShipmentService ,private router: Router) { }
 
   ngOnInit(): void {
-    this.shipmentService.getAll().subscribe(
+    this.shipmentService.getAllByWorker(localStorage.getItem('user')).subscribe(
       (shipments: Shipment[]) => {
         this.shipments = shipments
         console.log(this.shipments)
@@ -85,7 +85,7 @@ export class ShipmentComponent implements OnInit {
   getAll(){
     this.searchCriteria = ""
 
-    this.shipmentService.getAll().subscribe(
+    this.shipmentService.getAllByWorker(localStorage.getItem('user')).subscribe(
       (shipments: Shipment[]) => {
         this.shipments = shipments
         console.log(this.shipments)
@@ -148,7 +148,25 @@ export class ShipmentComponent implements OnInit {
 
 
   recordShipment(){
-    this.router.navigate(['/add-shipment-accounting-worker']);
 
+    var dto = {
+      "code": this.shipmentCode,
+      "accountingWorkerEmail": localStorage.getItem('user')
+    }
+
+    this.shipmentService.recordShipmentInPostOffice(dto).subscribe(
+      (p: Shipment) => {
+       window.location.reload()
+       //this.router.navigate(['/shipments']);
+
+      },
+      (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Упс...',
+          text: 'Пошиљка са унесеном шифром не постоји у систему!',
+        })
+      },
+    )
   }
 }
