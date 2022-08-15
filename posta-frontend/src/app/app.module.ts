@@ -22,6 +22,7 @@ import { PaymentsComponent } from './component/payments/payments.component';
 import { AddPaymentComponent } from './component/add-payment/add-payment.component';
 import { ShipmentComponent } from './component/shipment/shipment.component';
 import { AddShipmentComponent } from './component/add-shipment/add-shipment.component';
+import { AddShipmentAccountingWorkerComponent } from './component/add-shipment-accounting-worker/add-shipment-accounting-worker.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { AddShipmentComponent } from './component/add-shipment/add-shipment.comp
     AddPaymentComponent,
     ShipmentComponent,
     AddShipmentComponent,
+    AddShipmentAccountingWorkerComponent,
   ],
   imports: [
     BrowserModule,

@@ -47,7 +47,7 @@ INSERT INTO public.post_office(id, employee_number, phone_number, address_id, de
 INSERT INTO public.worker(id, post_office_id) VALUES (1237, 33);
 INSERT INTO public.worker(id, post_office_id) VALUES (1239, 33);
 INSERT INTO public.worker(id, post_office_id) VALUES (1238, 34);
-INSERT INTO public.worker(id, post_office_id) VALUES (1243, 34);
+INSERT INTO public.worker(id, post_office_id) VALUES (1243, 33);
 
 INSERT INTO public.manager(id) VALUES (1237);
 INSERT INTO public.manager(id) VALUES (1238);
