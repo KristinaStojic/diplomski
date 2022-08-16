@@ -13,4 +13,5 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class WeekReportDTO {
     private String startDate;
     private String endDate;
+    private String worker;
 }

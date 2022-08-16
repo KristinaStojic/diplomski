@@ -185,10 +185,11 @@ public class PaymentService {
         Map<String, Integer> ret = new HashMap<>();
         LocalDate start = findDate(dto.getStartDate()).toLocalDate();
         LocalDate end = findDate(dto.getEndDate()).toLocalDate();
+        Worker w = workerRepository.findByEmail(dto.getWorker());
 
         while (start.isBefore(end) || start.isEqual(end)) {
             for (Payment r : paymentRepository.findAll()) {
-                  Integer n = countPaymentWeekly(start);
+                  Integer n = countPaymentWeekly(start, w.getPostOffice().getId());
                   ret.put(start.toString().substring(0, 10), n);
                 }
             start = start.plusDays(1);
@@ -219,10 +220,10 @@ public class PaymentService {
         return LocalDateTime.parse(start, formatter);
     }
 
-    private Integer countPaymentWeekly(LocalDate date) {
+    private Integer countPaymentWeekly(LocalDate date, Long id) {
         Integer n = 0;
         for (Payment r : paymentRepository.findAll()) {
-                if (r.getDate().toLocalDate().isEqual(date)) {
+                if (r.getDate().toLocalDate().isEqual(date) && r.getCounterWorker().getPostOffice().getId() == id) {
                     n++;
                 }
         }
