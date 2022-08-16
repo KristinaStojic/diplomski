@@ -238,7 +238,8 @@ export class CounterWorkerHomeComponent implements OnInit {
         var dto = {
           "id": this.id,
           "startDate": start,
-          "endDate": end
+          "endDate": end,
+          "worker": localStorage.getItem('user')
         }
   
         this.paymentService.getAmountofPaymentsWeekly(dto).subscribe((data : any) => {
