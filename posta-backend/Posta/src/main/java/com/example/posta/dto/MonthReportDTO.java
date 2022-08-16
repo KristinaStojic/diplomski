@@ -12,4 +12,5 @@ import lombok.Setter;
 public class MonthReportDTO {
 
     private String year;
+    private String worker;
 }

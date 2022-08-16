@@ -34,8 +34,8 @@ export class PaymentService {
     }
 
 
-    getNumberofPaymentsMonthly(year) {
-      return this._http.get(this.payment_url + `/getNumberofPaymentsMonthly/${year}`, year)
+    getNumberofPaymentsMonthly(dto) {
+      return this._http.post(this.payment_url + `/getNumberofPaymentsMonthly`, dto)
       .pipe(map(payments => {
         return payments;
       }));   

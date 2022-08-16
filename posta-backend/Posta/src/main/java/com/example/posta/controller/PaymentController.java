@@ -59,6 +59,7 @@ public class PaymentController {
     @PreAuthorize("hasAuthority('ROLE_COUNTER_WORKER')")
     public ResponseEntity<Map<Integer, Integer>> getNumberofPaymentsYearly(@PathVariable String worker) {
         Map<Integer, Integer> n = this.paymentService.getNumberofPaymentsYearly(worker);
+
         if (n == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
@@ -66,10 +67,10 @@ public class PaymentController {
         }
     }
 
-    @RequestMapping(value = "/getNumberofPaymentsMonthly/{year}", method = RequestMethod.GET)
+    @RequestMapping(value = "/getNumberofPaymentsMonthly", method = RequestMethod.POST)
     @PreAuthorize("hasAuthority('ROLE_COUNTER_WORKER')")
-    public ResponseEntity<Map<String, Integer>> getNumberofPaymentsMonthly(@PathVariable String year) {
-        Map<String, Integer> n = this.paymentService.getNumberofPaymentsMonthly(year);
+    public ResponseEntity<Map<String, Integer>> getNumberofPaymentsMonthly(@RequestBody MonthReportDTO dto) {
+        Map<String, Integer> n = this.paymentService.getNumberofPaymentsMonthly(dto);
         if (n == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {

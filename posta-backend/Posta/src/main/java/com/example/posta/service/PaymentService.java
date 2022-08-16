@@ -4,6 +4,7 @@ import com.example.posta.dto.*;
 import com.example.posta.model.*;
 import com.example.posta.repository.*;
 import net.sf.jasperreports.engine.JRException;
+import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -152,11 +153,13 @@ public class PaymentService {
     }
 
 
-    public Map<String, Integer> getNumberofPaymentsMonthly(String year) {
+    public Map<String, Integer> getNumberofPaymentsMonthly(MonthReportDTO dto) {
         Map<String, Integer> map = new HashMap<>();
+        Worker w = workerRepository.findByEmail(dto.getWorker());
+
         for (Payment r : paymentRepository.findAll()) {
                 if (!map.containsKey(r.getDate().getMonth().toString())) {
-                    Integer n = countPaymentPerMonth(r.getDate().getMonth().toString(), Integer.parseInt(year));
+                    Integer n = countPaymentPerMonth(r.getDate().getMonth().toString(), Integer.parseInt(dto.getYear()), w.getPostOffice().getId());
                     map.put(r.getDate().getMonth().toString(), n);
                 }
 
@@ -166,11 +169,11 @@ public class PaymentService {
     }
 
 
-    private Integer countPaymentPerMonth(String month, Integer year) {
+    private Integer countPaymentPerMonth(String month, Integer year, Long id) {
         Integer n = 0;
 
         for (Payment r : paymentRepository.findAll()) {
-            if (r.getDate().getMonth().toString().equals(month) && r.getDate().getYear() == year) {
+            if (r.getDate().getMonth().toString().equals(month) && r.getDate().getYear() == year && r.getCounterWorker().getPostOffice().getId() == id) {
                 n++;
             }
         }

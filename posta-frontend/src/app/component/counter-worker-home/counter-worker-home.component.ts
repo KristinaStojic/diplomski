@@ -84,7 +84,12 @@ export class CounterWorkerHomeComponent implements OnInit {
 
 
   reportPerMonth(year){
-    this.paymentService.getNumberofPaymentsMonthly(year).subscribe((data : any) => {
+    var dto={
+      "year": year,
+      "worker": localStorage.getItem('user')
+    }
+
+    this.paymentService.getNumberofPaymentsMonthly(dto).subscribe((data : any) => {
      
 
     this.canvas = document.getElementById('myChart');
