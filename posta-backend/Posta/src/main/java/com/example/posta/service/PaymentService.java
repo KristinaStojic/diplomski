@@ -126,23 +126,24 @@ public class PaymentService {
     }
 
 
-    public Map<Integer, Integer> getNumberofPaymentsYearly() {
+    public Map<Integer, Integer> getNumberofPaymentsYearly(String worker) {
+        Worker w = workerRepository.findByEmail(worker);
+
         Map<Integer, Integer> map = new HashMap<>();
         for (Payment r : paymentRepository.findAll()) {
                 if (!map.containsKey(r.getDate().getYear())) {
-                    Integer n = countPaymentPerYear(r.getDate().getYear());
+                    Integer n = countPaymentPerYear(r.getDate().getYear(), w.getPostOffice().getId());
                     map.put(r.getDate().getYear(), n);
                 }
-
         }
         return map;
     }
 
-    private Integer countPaymentPerYear(Integer year) {
+    private Integer countPaymentPerYear(Integer year, Long id) {
         Integer n = 0;
 
         for (Payment r : paymentRepository.findAll()) {
-                if (r.getDate().getYear() == year) {
+                if (r.getDate().getYear() == year && r.getCounterWorker().getPostOffice().getId() == id) {
                     n++;
                 }
         }

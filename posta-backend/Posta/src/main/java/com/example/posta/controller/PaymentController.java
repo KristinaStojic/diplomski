@@ -55,10 +55,10 @@ public class PaymentController {
     }
 
 
-    @RequestMapping(value = "/getNumberofPaymentsYearly", method = RequestMethod.GET)
+    @RequestMapping(value = "/getNumberofPaymentsYearly/{worker}", method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('ROLE_COUNTER_WORKER')")
-    public ResponseEntity<Map<Integer, Integer>> getNumberofPaymentsYearly() {
-        Map<Integer, Integer> n = this.paymentService.getNumberofPaymentsYearly();
+    public ResponseEntity<Map<Integer, Integer>> getNumberofPaymentsYearly(@PathVariable String worker) {
+        Map<Integer, Integer> n = this.paymentService.getNumberofPaymentsYearly(worker);
         if (n == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {

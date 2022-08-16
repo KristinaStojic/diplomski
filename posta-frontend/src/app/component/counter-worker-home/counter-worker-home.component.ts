@@ -33,7 +33,7 @@ export class CounterWorkerHomeComponent implements OnInit {
     this.year = "2022"
     this.reportPerMonth(this.year)
 
-    this.paymentService.getNumberofPaymentsYearly().subscribe((data : any) => {
+    this.paymentService.getNumberofPaymentsYearly(localStorage.getItem('user')).subscribe((data : any) => {
 
       console.log(data)
     let keys = Object.keys(data)

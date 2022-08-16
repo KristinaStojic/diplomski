@@ -26,8 +26,8 @@ export class PaymentService {
       return this._http.post<Payment>(`${this.payment_url}/addPayment`, payment)
     }
 
-    getNumberofPaymentsYearly() {
-      return this._http.get(this.payment_url + `/getNumberofPaymentsYearly`)
+    getNumberofPaymentsYearly(worker) {
+      return this._http.get(this.payment_url + `/getNumberofPaymentsYearly/${worker}`, worker)
       .pipe(map(reservations => {
         return reservations;
       }));   

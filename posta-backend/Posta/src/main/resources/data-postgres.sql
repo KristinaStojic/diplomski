@@ -99,7 +99,7 @@ INSERT INTO public.payment(
 	VALUES ('3R4', '6548645447', 'Internet', '6598656244', 'Subotica', '234', 12, 1240);
 
 
-INSERT INTO public.financial_service(id, amount, currency, date, client_id, counter_worker_id) VALUES (13, 3500, 'DIN', '09-05-2021', 1242, 1239);
+INSERT INTO public.financial_service(id, amount, currency, date, client_id, counter_worker_id) VALUES (13, 3500, 'DIN', '09-05-2022', 1242, 1246);
 
 INSERT INTO public.payment(
 	model, payment_code, purpose, receiver_account, receiving_place, reference_number, id, receiver_id)
