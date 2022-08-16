@@ -4,6 +4,7 @@ import com.example.posta.dto.*;
 import com.example.posta.model.*;
 import com.example.posta.repository.*;
 import net.sf.jasperreports.engine.JRException;
+import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -126,23 +127,24 @@ public class PaymentService {
     }
 
 
-    public Map<Integer, Integer> getNumberofPaymentsYearly() {
+    public Map<Integer, Integer> getNumberofPaymentsYearly(String worker) {
+        Worker w = workerRepository.findByEmail(worker);
+
         Map<Integer, Integer> map = new HashMap<>();
         for (Payment r : paymentRepository.findAll()) {
                 if (!map.containsKey(r.getDate().getYear())) {
-                    Integer n = countPaymentPerYear(r.getDate().getYear());
+                    Integer n = countPaymentPerYear(r.getDate().getYear(), w.getPostOffice().getId());
                     map.put(r.getDate().getYear(), n);
                 }
-
         }
         return map;
     }
 
-    private Integer countPaymentPerYear(Integer year) {
+    private Integer countPaymentPerYear(Integer year, Long id) {
         Integer n = 0;
 
         for (Payment r : paymentRepository.findAll()) {
-                if (r.getDate().getYear() == year) {
+                if (r.getDate().getYear() == year && r.getCounterWorker().getPostOffice().getId() == id) {
                     n++;
                 }
         }
@@ -151,11 +153,13 @@ public class PaymentService {
     }
 
 
-    public Map<String, Integer> getNumberofPaymentsMonthly(String year) {
+    public Map<String, Integer> getNumberofPaymentsMonthly(MonthReportDTO dto) {
         Map<String, Integer> map = new HashMap<>();
+        Worker w = workerRepository.findByEmail(dto.getWorker());
+
         for (Payment r : paymentRepository.findAll()) {
                 if (!map.containsKey(r.getDate().getMonth().toString())) {
-                    Integer n = countPaymentPerMonth(r.getDate().getMonth().toString(), Integer.parseInt(year));
+                    Integer n = countPaymentPerMonth(r.getDate().getMonth().toString(), Integer.parseInt(dto.getYear()), w.getPostOffice().getId());
                     map.put(r.getDate().getMonth().toString(), n);
                 }
 
@@ -165,11 +169,11 @@ public class PaymentService {
     }
 
 
-    private Integer countPaymentPerMonth(String month, Integer year) {
+    private Integer countPaymentPerMonth(String month, Integer year, Long id) {
         Integer n = 0;
 
         for (Payment r : paymentRepository.findAll()) {
-            if (r.getDate().getMonth().toString().equals(month) && r.getDate().getYear() == year) {
+            if (r.getDate().getMonth().toString().equals(month) && r.getDate().getYear() == year && r.getCounterWorker().getPostOffice().getId() == id) {
                 n++;
             }
         }
@@ -181,10 +185,11 @@ public class PaymentService {
         Map<String, Integer> ret = new HashMap<>();
         LocalDate start = findDate(dto.getStartDate()).toLocalDate();
         LocalDate end = findDate(dto.getEndDate()).toLocalDate();
+        Worker w = workerRepository.findByEmail(dto.getWorker());
 
         while (start.isBefore(end) || start.isEqual(end)) {
             for (Payment r : paymentRepository.findAll()) {
-                  Integer n = countPaymentWeekly(start);
+                  Integer n = countPaymentWeekly(start, w.getPostOffice().getId());
                   ret.put(start.toString().substring(0, 10), n);
                 }
             start = start.plusDays(1);
@@ -198,10 +203,11 @@ public class PaymentService {
         Map<String, Double> ret = new HashMap<>();
         LocalDate start = findDate(dto.getStartDate()).toLocalDate();
         LocalDate end = findDate(dto.getEndDate()).toLocalDate();
+        Worker w = workerRepository.findByEmail(dto.getWorker());
 
         while (start.isBefore(end) || start.isEqual(end)) {
             for (Payment r : paymentRepository.findAll()) {
-                Double n = countAmountWeekly(start);
+                Double n = countAmountWeekly(start, w.getPostOffice().getId());
                 ret.put(start.toString().substring(0, 10), n);
             }
             start = start.plusDays(1);
@@ -215,20 +221,20 @@ public class PaymentService {
         return LocalDateTime.parse(start, formatter);
     }
 
-    private Integer countPaymentWeekly(LocalDate date) {
+    private Integer countPaymentWeekly(LocalDate date, Long id) {
         Integer n = 0;
         for (Payment r : paymentRepository.findAll()) {
-                if (r.getDate().toLocalDate().isEqual(date)) {
+                if (r.getDate().toLocalDate().isEqual(date) && r.getCounterWorker().getPostOffice().getId() == id) {
                     n++;
                 }
         }
         return n;
     }
 
-    private Double countAmountWeekly(LocalDate date) {
+    private Double countAmountWeekly(LocalDate date, Long id) {
         Double n = 0.0;
         for (Payment r : paymentRepository.findAll()) {
-            if (r.getDate().toLocalDate().isEqual(date)) {
+            if (r.getDate().toLocalDate().isEqual(date) && r.getCounterWorker().getPostOffice().getId() == id) {
                 n += r.getAmount();
             }
         }

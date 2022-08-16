@@ -33,7 +33,7 @@ export class CounterWorkerHomeComponent implements OnInit {
     this.year = "2022"
     this.reportPerMonth(this.year)
 
-    this.paymentService.getNumberofPaymentsYearly().subscribe((data : any) => {
+    this.paymentService.getNumberofPaymentsYearly(localStorage.getItem('user')).subscribe((data : any) => {
 
       console.log(data)
     let keys = Object.keys(data)
@@ -84,7 +84,12 @@ export class CounterWorkerHomeComponent implements OnInit {
 
 
   reportPerMonth(year){
-    this.paymentService.getNumberofPaymentsMonthly(year).subscribe((data : any) => {
+    var dto={
+      "year": year,
+      "worker": localStorage.getItem('user')
+    }
+
+    this.paymentService.getNumberofPaymentsMonthly(dto).subscribe((data : any) => {
      
 
     this.canvas = document.getElementById('myChart');
@@ -156,7 +161,8 @@ export class CounterWorkerHomeComponent implements OnInit {
         var dto = {
           "id": this.id,
           "startDate": start,
-          "endDate": end
+          "endDate": end,
+          "worker": localStorage.getItem('user')
         }
   
         this.paymentService.getNumberofPaymentsWeekly(dto).subscribe((data : any) => {
@@ -232,7 +238,8 @@ export class CounterWorkerHomeComponent implements OnInit {
         var dto = {
           "id": this.id,
           "startDate": start,
-          "endDate": end
+          "endDate": end,
+          "worker": localStorage.getItem('user')
         }
   
         this.paymentService.getAmountofPaymentsWeekly(dto).subscribe((data : any) => {

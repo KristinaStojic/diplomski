@@ -26,16 +26,16 @@ export class PaymentService {
       return this._http.post<Payment>(`${this.payment_url}/addPayment`, payment)
     }
 
-    getNumberofPaymentsYearly() {
-      return this._http.get(this.payment_url + `/getNumberofPaymentsYearly`)
+    getNumberofPaymentsYearly(worker) {
+      return this._http.get(this.payment_url + `/getNumberofPaymentsYearly/${worker}`, worker)
       .pipe(map(reservations => {
         return reservations;
       }));   
     }
 
 
-    getNumberofPaymentsMonthly(year) {
-      return this._http.get(this.payment_url + `/getNumberofPaymentsMonthly/${year}`, year)
+    getNumberofPaymentsMonthly(dto) {
+      return this._http.post(this.payment_url + `/getNumberofPaymentsMonthly`, dto)
       .pipe(map(payments => {
         return payments;
       }));   

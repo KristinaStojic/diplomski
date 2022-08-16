@@ -40,6 +40,8 @@ public class ShipmentDTO {
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyy HH:mm:ss");
     private String code;
     private String receiverAddress;
+    private String senderAddress;
+
 
     public ShipmentDTO(Shipment s){
         this.id = s.getId();
@@ -55,9 +57,10 @@ public class ShipmentDTO {
             this.deliveringPostOffice = s.getDeliveringPostOffice().getId();
         }
         this.receiverAddress = s.getReceiver().getAddress().getStreet() + " " + s.getReceiver().getAddress().getStreetNumber() + ", " + s.getReceiver().getAddress().getCity().getPostalCode() + " " + s.getReceiver().getAddress().getCity().getCityName() + ", " + s.getReceiver().getAddress().getCity().getCountry().getCountryName();
-        if(s.getRegion() != null && s.getLetterType() != null){
+        this.senderAddress = s.getSender().getAddress().getStreet() + " " + s.getSender().getAddress().getStreetNumber() + ", " + s.getSender().getAddress().getCity().getPostalCode() + " " + s.getSender().getAddress().getCity().getCityName() + ", " + s.getSender().getAddress().getCity().getCountry().getCountryName();
 
-            this.region = s.getRegion();
+        if(s.getLetterType() != null){
+
 
             if(s.getLetterType().toString().equals(LetterType.VALUE.toString())){
                 this.letterType = "Вриједносна пошиљка";
@@ -69,6 +72,11 @@ public class ShipmentDTO {
                 this.letterType = "Препоручена пошиљка";
             }
         }
+
+        if(s.getRegion() != null){
+            this.region = s.getRegion();
+        }
+
         this.sender = s.getSender().getName() + " " + s.getSender().getSurname();
         this.receiver = s.getReceiver().getName() + " " + s.getReceiver().getSurname();
         this.weight = s.getWeight();

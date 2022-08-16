@@ -32,11 +32,7 @@ export class ShipmentService {
 
   public searchByCode(dto): Observable<any>{
     console.log(dto)
-    return this._http.post<any>(this.shipment_url + `/searchByCode`, dto)
-    // return this._http.post(this.shipment_url + `/searchByCode`, dto)
-    //   .pipe(map(s => {
-    //     return s;
-    //   }));  
+    return this._http.post<any>(this.shipment_url + `/searchByCode`, dto) 
   }
 
   public recordShipmentInPostOffice(shipment): Observable<Shipment> {

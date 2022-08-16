@@ -84,7 +84,7 @@ INSERT INTO public.shipment(
 
 INSERT INTO public.shipment(
 	id, email_report, sent_date, letter_type, personal_delivery, return_receipt, shipment_status, shipment_type, email, total_price, value, weight, receiving_post_office_id, delivering_post_office_id, receiver_id, region_id, sender_id, code)
-	VALUES (16, false, '11-06-2022', null, true, true, 3, 1, null, 270, 0, 340, 34, null, 1244, null, 1242, 'MGI42D5R7A');
+	VALUES (16, false, '11-06-2022', 0, true, true, 3, 1, null, 270, 0, 340, 34, null, 1244, null, 1242, 'MGI42D5R7A');
 
 INSERT INTO public.financial_service(id, amount, currency, date, client_id, counter_worker_id) VALUES (11, 1500, 'DIN', '07-01-2022', 1240, 1239);
 
@@ -99,7 +99,7 @@ INSERT INTO public.payment(
 	VALUES ('3R4', '6548645447', 'Internet', '6598656244', 'Subotica', '234', 12, 1240);
 
 
-INSERT INTO public.financial_service(id, amount, currency, date, client_id, counter_worker_id) VALUES (13, 3500, 'DIN', '09-05-2021', 1242, 1239);
+INSERT INTO public.financial_service(id, amount, currency, date, client_id, counter_worker_id) VALUES (13, 3500, 'DIN', '09-05-2022', 1242, 1246);
 
 INSERT INTO public.payment(
 	model, payment_code, purpose, receiver_account, receiving_place, reference_number, id, receiver_id)

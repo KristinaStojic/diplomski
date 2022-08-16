@@ -21,4 +21,5 @@ export class Shipment {
     sender: Client
     shipmentStatus: String
     totalPrice: number
+    senderAddress: String
 }
