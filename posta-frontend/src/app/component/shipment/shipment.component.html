@@ -45,7 +45,7 @@
             <td>{{m.receiverAddress}}</td>
             <td>{{m.date}}</td>
             <td>{{m.shipmentStatus}}</td>
-            <td><button class="btn btn-primary">Детаљи</button></td>
+            <td><button class="btn btn-primary" data-toggle="modal" data-target="#shipmentDetails" (click)="selectShipment(m)">Детаљи</button></td>
             <!-- <b *ngIf="m.shipmentStatus == 'Достављено'">Достављено</b> -->
             <td *ngIf="isCounterWorker()"><button class="btn btn-primary" style=" height: 4.3ch; white-space: nowrap;" (click)="selectShipment(m)" data-toggle="modal" data-target="#deliver">Испоручи</button></td>
             <td *ngIf="isAccountingWorker()"><button class="btn btn-primary" style=" height: 4.3ch; white-space: nowrap;" (click)="selectShipment(m)" data-toggle="modal" data-target="#changeStatus">Промијени статус</button></td>
@@ -138,4 +138,51 @@
 
   </div>
   </div>
+</div>
+
+
+
+  <!-- Modal for showing shipment details -->
+  <div class="modal fade" id="shipmentDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Детаљи пошиљке са шифром: {{selectedShipment?.code}}</h5>
+        </div>
+        
+     
+        <div class="container" style="margin: 5% 5% 5% 5%;">
+            <label>Пошиљалац:</label>&nbsp;&nbsp;<br>
+            <h6>{{selectedShipment?.sender}}, {{selectedShipment?.senderAddress}}</h6>
+           
+            <label>Прималац:</label>&nbsp;&nbsp;<br>
+            <h6>{{selectedShipment?.receiver}}, {{selectedShipment?.receiverAddress}}</h6>
+            
+            <label>Датум слања:</label>&nbsp;&nbsp;<br>
+            <h6>{{selectedShipment?.date}}</h6>
+
+            <label>Услуга:</label>&nbsp;&nbsp;<br>
+            <h6>{{selectedShipment?.shipmentType}}</h6>
+
+            <label>Укупна цијена:</label>&nbsp;&nbsp;<br>
+            <h6>{{selectedShipment?.totalPrice}} дин</h6>
+           
+            <label>Маса:</label>&nbsp;&nbsp;<br>
+            <h6>{{selectedShipment?.weight}} гр</h6>
+
+            <label *ngIf="selectedShipment?.letterType != null">Врста пошиљке:</label>&nbsp;&nbsp;<br>
+            <h6 *ngIf="selectedShipment?.letterType != null">{{selectedShipment?.letterType}} (укупна вриједност: {{selectedShipment?.value}} дин)</h6>
+           
+            <label>Додатно:</label>&nbsp;&nbsp;<br>
+            <h6 *ngIf="selectedShipment?.personalDelivery">Лична испорука</h6>
+            <h6 *ngIf="selectedShipment?.returnReceipt">Повратница</h6>
+            <h6 *ngIf="selectedShipment?.emailReport">Електронска потврда о уручењу пошиљке - емаил: {{selectedShipment?.email}}</h6>
+
+        </div>
+        
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Затвори</button>
+        </div>
+    </div>
+    </div>
 </div>
