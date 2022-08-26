@@ -47,4 +47,11 @@ export class ShipmentService {
       return shipments;
     }));   
   }
+
+  getNumberofShipmentsMonthly(dto) {
+    return this._http.post(this.shipment_url + `/getNumberofShipmentsMonthly`, dto)
+    .pipe(map(shipments => {
+      return shipments;
+    }));   
+  }
 }

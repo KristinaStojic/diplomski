@@ -89,7 +89,7 @@ public class ShipmentController {
 
     @RequestMapping(value = "/getNumberofShipmentsYearly", method = RequestMethod.POST)
     @PreAuthorize("hasAuthority('ROLE_ACCOUNTING_WORKER')")
-    public ResponseEntity<Map<String, Integer>> getNumberofShipmentsYearly(@RequestBody YearlyShipmentReportDTO dto) {
+    public ResponseEntity<Map<String, Integer>> getNumberofShipmentsYearly(@RequestBody ShipmentReportDTO dto) {
         Map<String, Integer> n = this.shipmentService.getNumberofShipmentsYearly(dto);
 
         if (n == null) {
@@ -99,5 +99,16 @@ public class ShipmentController {
         }
     }
 
+    @RequestMapping(value = "/getNumberofShipmentsMonthly", method = RequestMethod.POST)
+    @PreAuthorize("hasAuthority('ROLE_ACCOUNTING_WORKER')")
+    public ResponseEntity<Map<String, Integer>> getNumberofShipmentsMonthly(@RequestBody ShipmentReportDTO dto) {
+        Map<String, Integer> n = this.shipmentService.getNumberofShipmentsMonthly(dto);
+
+        if (n == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(n, HttpStatus.OK);
+        }
+    }
 
 }

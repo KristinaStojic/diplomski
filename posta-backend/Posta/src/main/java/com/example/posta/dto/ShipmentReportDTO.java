@@ -9,7 +9,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class YearlyShipmentReportDTO {
+public class ShipmentReportDTO {
     private String worker;
     private String year;
+    private String month;
 }

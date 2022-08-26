@@ -4,13 +4,38 @@
         <h4>Статистика пошиљака</h4>
         <button class="btn btn-primary" (click)="allShipments()">Све пошиљке</button>
     </div>
-    <br><h6>Број пошиљака по години:</h6><br>
-    <label>Изабрана година:</label>
-    <select class="form-select" aria-label="Default select example" style="width: 700px;" (change)="selectYear($event)">
-        <option value="2021">2021</option>
-        <option selected value="2022">2022</option>
-    </select>
+    
+    <div style="width:100%;"> 
+        <div style="display:inline-block; width: 49.5%; padding: 1%;" class="div1 shadow">
+            <br><h6>Број пошиљака по години:</h6><br>
+            <label>Изабрана година:</label>
+            <select class="form-select" aria-label="Default select example" style="width: 600px;" (change)="selectYear($event)">
+                <option value="2021">2021</option>
+                <option selected value="2022">2022</option>
+            </select>
+        
+            <canvas id="myChartYear" width="600" height="450" ></canvas>
+        </div> 
+        <div style="display:inline-block; width: 49.5%; margin-left: 1%; padding: 1%;" class="div2 shadow">
+            <br><h6>Број пошиљака по мјесецу за {{this.year}} годину:</h6><br>
+            <label>Изабран мјесец:</label>
+            <select class="form-select" aria-label="Default select example" style="width: 600px;" (change)="selectMonth($event)">
+                <option selected value="1">Јануар</option>
+                <option value="2">Фебруар</option>
+                <option value="3">Март</option>
+                <option value="4">Април</option>
+                <option value="5">Мај</option>
+                <option value="6">Јун</option>
+                <option value="7">Јул</option>
+                <option value="8">Август</option>
+                <option value="9">Септембар</option>
+                <option value="10">Октобар</option>
+                <option value="11">Новембар</option>
+                <option value="12">Децембар</option>
 
-    <canvas id="myChartYear" width="700" height="450"></canvas>
+            </select>
+            <canvas id="myChartMonth" width="600" height="450" ></canvas>
 
+        </div> 
+    </div>
 </div>

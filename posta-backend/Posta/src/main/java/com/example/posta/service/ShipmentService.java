@@ -277,7 +277,7 @@ public class ShipmentService {
     }
 
 
-    public Map<String,Integer> getNumberofShipmentsYearly(YearlyShipmentReportDTO dto){
+    public Map<String,Integer> getNumberofShipmentsYearly(ShipmentReportDTO dto){
         Map<String, Integer> map = new HashMap<>();
         Worker w = workerRepository.findByEmail(dto.getWorker());
         if(w == null){
@@ -328,4 +328,59 @@ public class ShipmentService {
         }
         return n;
     }
+
+
+    public Map<String,Integer> getNumberofShipmentsMonthly(ShipmentReportDTO dto){
+        Map<String, Integer> map = new HashMap<>();
+        Worker w = workerRepository.findByEmail(dto.getWorker());
+        if(w == null){
+            return null;
+        }
+        PostOffice po = postOfficeRepository.findById(w.getPostOffice().getId()).orElseGet(null);
+        if(po == null){
+            return null;
+        }
+
+        for (Shipment r : shipmentRepository.findAll()) {
+            if (!map.containsKey(r.getShipmentStatus().toString())) {
+                Integer n = countShipmentsMonthly(r.getShipmentStatus().toString(), Integer.parseInt(dto.getYear()), dto.getMonth(), po.getId());
+                if(r.getShipmentStatus().toString().equals("RECEIVED")){
+                    map.put("Чека на испоруку", n);
+                }
+                else if(r.getShipmentStatus().toString().equals("DELIVERED")){
+                    map.put("Достављено", n);
+                }
+                else if(r.getShipmentStatus().toString().equals("SENDING")){
+                    map.put("Послато на испоруку", n);
+                }
+                else if(r.getShipmentStatus().toString().equals("RETURNED")){
+                    map.put("Враћено", n);
+                }
+            }
+
+        }
+
+        return map;
+    }
+
+
+    private Integer countShipmentsMonthly(String status, Integer year, String month, Long id) {
+        Integer n = 0;
+
+        for (Shipment r : shipmentRepository.findAll()) {
+            if(r.getDeliveringPostOffice() != null){
+                if (r.getShipmentStatus().toString().equals(status) && r.getDate().getYear() == year && r.getDate().getMonth().toString().equals(month) && r.getDeliveringPostOffice().getId() == id) {
+                    n++;
+                }
+            }
+            else{
+                if (r.getShipmentStatus().toString().equals(status) && r.getDate().getMonth().toString().equals(month) && r.getDate().getYear() == year && r.getReceivingPostOffice().getId() == id) {
+                    n++;
+                }
+            }
+
+        }
+        return n;
+    }
+
 }
