@@ -1,1 +1,79 @@
-<p>accounting-worker-home works!</p>
+<div class="borders">
+
+    <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
+        <h4>Статистика пошиљака</h4>
+        <button class="btn btn-primary" (click)="allShipments()">Све пошиљке</button>
+    </div>
+    
+    <div style="width:100%;"> 
+        <div style="display:inline-block; width: 49.5%; padding: 1%;" class="div1 shadow">
+            <br><h6>Број пошиљака по години:</h6><br>
+            <label>Изабрана година:</label>
+            <select class="form-select" aria-label="Default select example" style="width: 600px;" (change)="selectYear($event)">
+                <option value="2021">2021</option>
+                <option selected value="2022">2022</option>
+            </select>
+        
+            <canvas id="myChartYear" width="600" height="450" ></canvas>
+        </div> 
+        <div style="display:inline-block; width: 49.5%; margin-left: 1%; padding: 1%;" class="div2 shadow">
+            <br><h6>Број пошиљака по мјесецу за {{this.year}} годину:</h6><br>
+            <label>Изабран мјесец:</label>
+            <select class="form-select" aria-label="Default select example" style="width: 600px;" (change)="selectMonth($event)">
+                <option selected value="1">Јануар</option>
+                <option value="2">Фебруар</option>
+                <option value="3">Март</option>
+                <option value="4">Април</option>
+                <option value="5">Мај</option>
+                <option value="6">Јун</option>
+                <option value="7">Јул</option>
+                <option value="8">Август</option>
+                <option value="9">Септембар</option>
+                <option value="10">Октобар</option>
+                <option value="11">Новембар</option>
+                <option value="12">Децембар</option>
+
+            </select>
+            <canvas id="myChartMonth" width="600" height="450" ></canvas>
+
+        </div> 
+    </div>
+
+    <div style="width:100%; margin-top: 1%;">
+        <div style="display:inline-block; width: 49.5%; padding: 1%;" class="div1 shadow">
+            <br><h6>Број пошиљака за изабрани период: </h6><br>
+            <!-- <label style="margin-bottom: 10px;">Почетни датум:</label> -->
+            <mat-form-field appearance="fill">
+                <mat-label>Почетни датум</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="startDate">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker ></mat-datepicker>
+            </mat-form-field>
+            <!-- <label style="margin-bottom: 10px; margin-left: 2%;">Крајњи датум:</label> -->
+            <mat-form-field appearance="fill" style="margin-left: 3%; ">
+                <mat-label>Крајњи датум</mat-label>
+                <input matInput [matDatepicker]="picker2" [min]="startDate" [(ngModel)]="endDate">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2 ></mat-datepicker>
+            </mat-form-field>
+            <button class="btn btn-primary" style="margin-left: 2%;" (click)="selectDays()" >Изаберите</button><br>
+    
+            <canvas *ngIf="startDate !== undefined && endDate !== undefined" id="myChartWeek" width="600" height="450"></canvas>
+        </div>
+
+        <div style="display:inline-block; width: 49.5%; margin-left: 1%; padding: 1%;" class="div2 shadow">
+            <br><h6>Број пошиљака по типу за претходно изабрани период:</h6><br>
+            <label>Изабрани тип:</label>
+            <select class="form-select" aria-label="Default select example" style="width: 600px;" (change)="selectType($event)">
+                <option selected value="1">Достављено</option>
+                <option value="2">Враћено</option>
+                <option value="3">Чека на испоруку</option>
+                <option value="4">Послато на испоруку</option>
+
+            </select>
+
+            <canvas *ngIf="startDate !== undefined && endDate !== undefined" id="myChartWeekType" width="600" height="450"></canvas>
+
+        </div>
+    </div>
+</div>

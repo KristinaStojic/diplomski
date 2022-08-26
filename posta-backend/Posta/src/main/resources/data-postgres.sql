@@ -73,18 +73,18 @@ INSERT INTO public.client(id, address_id) VALUES (1245, 158);
 
 INSERT INTO public.shipment(
 	id, email_report, sent_date, letter_type, personal_delivery, return_receipt, shipment_status, shipment_type, email, total_price, value, weight, receiving_post_office_id, delivering_post_office_id, receiver_id, region_id, sender_id, code)
-	VALUES (11, false, '05-05-2022', null, true, true, 0, 1, null, 250, 0, 3500, 33, null, 1242, null, 1240, 'AKR3O53M8P');
+	VALUES (11, false, '02-05-2022', null, true, true, 0, 1, null, 250, 0, 3500, 33, null, 1242, null, 1240, 'AKR3O53M8P');
 INSERT INTO public.shipment(
 	id, email_report, sent_date, letter_type, personal_delivery, return_receipt, shipment_status, shipment_type, email, total_price, value, weight, receiving_post_office_id, delivering_post_office_id, receiver_id, region_id, sender_id, code)
-	VALUES (12, false, '11-08-2022', null, true, true, 1, 1, null, 250, 0, 3500, 33, 34, 1242, null, 1240, 'AMFE305AMF');
+	VALUES (12, false, '01-08-2022', null, true, true, 1, 1, null, 250, 0, 3500, 33, 34, 1242, null, 1240, 'AMFE305AMF');
 
 INSERT INTO public.shipment(
 	id, email_report, sent_date, letter_type, personal_delivery, return_receipt, shipment_status, shipment_type, email, total_price, value, weight, receiving_post_office_id, delivering_post_office_id, receiver_id, region_id, sender_id, code)
-	VALUES (15, true, '10-17-2022', 1, true, true, 2, 0, 'huawei5242@gmail.com', 350, 0, 120, 33, null, 1244, null, 1245, 'NFHG24K45N');
+	VALUES (15, true, '01-03-2022', 1, true, true, 2, 0, 'huawei5242@gmail.com', 350, 0, 120, 33, null, 1244, null, 1245, 'NFHG24K45N');
 
 INSERT INTO public.shipment(
 	id, email_report, sent_date, letter_type, personal_delivery, return_receipt, shipment_status, shipment_type, email, total_price, value, weight, receiving_post_office_id, delivering_post_office_id, receiver_id, region_id, sender_id, code)
-	VALUES (16, false, '11-06-2022', 0, true, true, 3, 1, null, 270, 0, 340, 34, null, 1244, null, 1242, 'MGI42D5R7A');
+	VALUES (16, false, '01-07-2022', 0, true, true, 3, 1, null, 270, 0, 340, 33, null, 1244, null, 1242, 'MGI42D5R7A');
 
 INSERT INTO public.financial_service(id, amount, currency, date, client_id, counter_worker_id) VALUES (11, 1500, 'DIN', '07-01-2022', 1240, 1239);
 

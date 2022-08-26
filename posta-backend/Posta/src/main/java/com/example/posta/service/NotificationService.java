@@ -62,9 +62,12 @@ public class NotificationService {
         PostOffice po = postOfficeRepository.findById(m.getPostOffice().getId()).orElseGet(null);
 
         for(Worker w: workerRepository.findAll()){
-            if(w.getPostOffice().getId() == po.getId()){
-                emailService.sendMailForNewNotification(w.getEmail(),dto.getContent());
+            if(w.getPostOffice() != null){
+                if(w.getPostOffice().getId() == po.getId()){
+                    emailService.sendMailForNewNotification(w.getEmail(),dto.getContent());
+                }
             }
+
         }
 
         return notificationRepository.save(n);

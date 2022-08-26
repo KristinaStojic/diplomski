@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping(value = "api/shipment")
 @RestController
@@ -83,5 +84,56 @@ public class ShipmentController {
             return new ResponseEntity<>(m, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+
+    @RequestMapping(value = "/getNumberofShipmentsYearly", method = RequestMethod.POST)
+    @PreAuthorize("hasAuthority('ROLE_ACCOUNTING_WORKER')")
+    public ResponseEntity<Map<String, Integer>> getNumberofShipmentsYearly(@RequestBody ShipmentReportDTO dto) {
+        Map<String, Integer> n = this.shipmentService.getNumberofShipmentsYearly(dto);
+
+        if (n == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(n, HttpStatus.OK);
+        }
+    }
+
+    @RequestMapping(value = "/getNumberofShipmentsMonthly", method = RequestMethod.POST)
+    @PreAuthorize("hasAuthority('ROLE_ACCOUNTING_WORKER')")
+    public ResponseEntity<Map<String, Integer>> getNumberofShipmentsMonthly(@RequestBody ShipmentReportDTO dto) {
+        Map<String, Integer> n = this.shipmentService.getNumberofShipmentsMonthly(dto);
+
+        if (n == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(n, HttpStatus.OK);
+        }
+    }
+
+
+    @RequestMapping(value = "/getNumberofShipmentsSelectedPeriod", method = RequestMethod.POST)
+    @PreAuthorize("hasAuthority('ROLE_ACCOUNTING_WORKER')")
+    public ResponseEntity<Map<String, Integer>> getNumberofShipmentsSelectedPeriod(@RequestBody SelectedPeriodShipmentReportDTO dto) {
+        Map<String, Integer> n = this.shipmentService.getNumberofShipmentsSelectedPeriod(dto);
+
+        if (n == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(n, HttpStatus.OK);
+        }
+    }
+
+
+    @RequestMapping(value = "/getNumberofShipmentsByTypeSelectedPeriod", method = RequestMethod.POST)
+    @PreAuthorize("hasAuthority('ROLE_ACCOUNTING_WORKER')")
+    public ResponseEntity<Map<String, Integer>> getNumberofShipmentsByTypeSelectedPeriod(@RequestBody SelectedPeriodShipmentReportDTO dto) {
+        Map<String, Integer> n = this.shipmentService.getNumberofShipmentsByTypeSelectedPeriod(dto);
+
+        if (n == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(n, HttpStatus.OK);
+        }
     }
 }

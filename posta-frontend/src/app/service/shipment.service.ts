@@ -39,4 +39,34 @@ export class ShipmentService {
     console.log(shipment)
     return this._http.post<Shipment>(`${this.shipment_url}/recordShipmentInPostOffice`, shipment)
   }
+
+  
+  getNumberofShipmentsYearly(dto) {
+    return this._http.post(this.shipment_url + `/getNumberofShipmentsYearly`, dto)
+    .pipe(map(shipments => {
+      return shipments;
+    }));   
+  }
+
+  getNumberofShipmentsMonthly(dto) {
+    return this._http.post(this.shipment_url + `/getNumberofShipmentsMonthly`, dto)
+    .pipe(map(shipments => {
+      return shipments;
+    }));   
+  }
+
+
+  getNumberofShipmentsSelectedPeriod(dto) {
+    return this._http.post(this.shipment_url + `/getNumberofShipmentsSelectedPeriod`, dto)
+    .pipe(map(shipments => {
+      return shipments;
+    }));   
+  }
+
+  getNumberofShipmentsByTypeSelectedPeriod(dto) {
+    return this._http.post(this.shipment_url + `/getNumberofShipmentsByTypeSelectedPeriod`, dto)
+    .pipe(map(shipments => {
+      return shipments;
+    }));   
+  }
 }

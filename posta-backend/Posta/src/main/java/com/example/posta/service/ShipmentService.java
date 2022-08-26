@@ -13,10 +13,9 @@ import org.springframework.stereotype.Service;
 import javax.mail.MessagingException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.UUID;
+import java.time.Year;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Service
 public class ShipmentService {
@@ -277,4 +276,233 @@ public class ShipmentService {
 
         return shipmentRepository.save(s);
     }
+
+
+    public Map<String,Integer> getNumberofShipmentsYearly(ShipmentReportDTO dto){
+        Map<String, Integer> map = new HashMap<>();
+        Worker w = workerRepository.findByEmail(dto.getWorker());
+        if(w == null){
+            return null;
+        }
+        PostOffice po = postOfficeRepository.findById(w.getPostOffice().getId()).orElseGet(null);
+        if(po == null){
+            return null;
+        }
+
+        for (Shipment r : shipmentRepository.findAll()) {
+            if (!map.containsKey(r.getShipmentStatus().toString())) {
+                Integer n = countShipmentsYearly(r.getShipmentStatus().toString(), Integer.parseInt(dto.getYear()), po.getId());
+                if(r.getShipmentStatus().toString().equals("RECEIVED")){
+                    map.put("Чека на испоруку", n);
+                }
+                else if(r.getShipmentStatus().toString().equals("DELIVERED")){
+                    map.put("Достављено", n);
+                }
+                else if(r.getShipmentStatus().toString().equals("SENDING")){
+                    map.put("Послато на испоруку", n);
+                }
+                else if(r.getShipmentStatus().toString().equals("RETURNED")){
+                    map.put("Враћено", n);
+                }
+            }
+
+        }
+
+        return map;
+    }
+
+    private Integer countShipmentsYearly(String status, Integer year, Long id) {
+        Integer n = 0;
+
+        for (Shipment r : shipmentRepository.findAll()) {
+            if(r.getDeliveringPostOffice() != null){
+                if (r.getShipmentStatus().toString().equals(status) && r.getDate().getYear() == year && r.getDeliveringPostOffice().getId() == id) {
+                    n++;
+                }
+            }
+            else{
+                if (r.getShipmentStatus().toString().equals(status) && r.getDate().getYear() == year && r.getReceivingPostOffice().getId() == id) {
+                    n++;
+                }
+            }
+
+        }
+        return n;
+    }
+
+
+    public Map<String,Integer> getNumberofShipmentsMonthly(ShipmentReportDTO dto){
+        Map<String, Integer> map = new HashMap<>();
+        Worker w = workerRepository.findByEmail(dto.getWorker());
+        if(w == null){
+            return null;
+        }
+        PostOffice po = postOfficeRepository.findById(w.getPostOffice().getId()).orElseGet(null);
+        if(po == null){
+            return null;
+        }
+
+        for (Shipment r : shipmentRepository.findAll()) {
+            if (!map.containsKey(r.getShipmentStatus().toString())) {
+                Integer n = countShipmentsMonthly(r.getShipmentStatus().toString(), Integer.parseInt(dto.getYear()), dto.getMonth(), po.getId());
+                if(r.getShipmentStatus().toString().equals("RECEIVED")){
+                    map.put("Чека на испоруку", n);
+                }
+                else if(r.getShipmentStatus().toString().equals("DELIVERED")){
+                    map.put("Достављено", n);
+                }
+                else if(r.getShipmentStatus().toString().equals("SENDING")){
+                    map.put("Послато на испоруку", n);
+                }
+                else if(r.getShipmentStatus().toString().equals("RETURNED")){
+                    map.put("Враћено", n);
+                }
+            }
+
+        }
+
+        return map;
+    }
+
+
+    private Integer countShipmentsMonthly(String status, Integer year, String month, Long id) {
+        Integer n = 0;
+
+        for (Shipment r : shipmentRepository.findAll()) {
+            if(r.getDeliveringPostOffice() != null){
+                if (r.getShipmentStatus().toString().equals(status) && r.getDate().getYear() == year && r.getDate().getMonth().toString().equals(month) && r.getDeliveringPostOffice().getId() == id) {
+                    n++;
+                }
+            }
+            else{
+                if (r.getShipmentStatus().toString().equals(status) && r.getDate().getMonth().toString().equals(month) && r.getDate().getYear() == year && r.getReceivingPostOffice().getId() == id) {
+                    n++;
+                }
+            }
+
+        }
+        return n;
+    }
+
+    private LocalDateTime findDate(String start) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        return LocalDateTime.parse(start, formatter);
+    }
+
+    public Map<String,Integer> getNumberofShipmentsSelectedPeriod(SelectedPeriodShipmentReportDTO dto){
+        Map<String, Integer> map = new HashMap<>();
+        LocalDate start = findDate(dto.getStartDate()).toLocalDate();
+        LocalDate end = findDate(dto.getEndDate()).toLocalDate();
+
+        Worker w = workerRepository.findByEmail(dto.getWorker());
+        if(w == null){
+            return null;
+        }
+        PostOffice po = postOfficeRepository.findById(w.getPostOffice().getId()).orElseGet(null);
+        if(po == null){
+            return null;
+        }
+        Integer received = 0;
+        Integer returned = 0;
+        Integer sending = 0;
+        Integer delivered = 0;
+
+        while (start.isBefore(end) || start.isEqual(end)) {
+            for (Shipment r : shipmentRepository.findAll()) {
+                if(r.getShipmentStatus().toString().equals("RECEIVED")){
+                    Integer n = countShipmentsSelectedPeriod(r, r.getShipmentStatus().toString(), start, po.getId());
+                    received += n;
+                }
+                else if(r.getShipmentStatus().toString().equals("DELIVERED")){
+                    Integer n = countShipmentsSelectedPeriod(r, r.getShipmentStatus().toString(), start, po.getId());
+                    delivered += n;
+                }
+                else if(r.getShipmentStatus().toString().equals("SENDING")){
+                    Integer n = countShipmentsSelectedPeriod(r, r.getShipmentStatus().toString(), start, po.getId());
+                    sending += n;
+                }
+                else if(r.getShipmentStatus().toString().equals("RETURNED")){
+                    Integer n = countShipmentsSelectedPeriod(r, r.getShipmentStatus().toString(), start, po.getId());
+                    returned += n;
+                }
+            }
+            start = start.plusDays(1);
+        }
+
+        map.put("Чека на испоруку", received);
+        map.put("Достављено", delivered);
+        map.put("Послато на испоруку", sending);
+        map.put("Враћено", returned);
+
+
+        return map;
+    }
+
+
+    private Integer countShipmentsSelectedPeriod(Shipment r, String status, LocalDate date, Long id) {
+        Integer n = 0;
+
+        //for (Shipment r : shipmentRepository.findAll()) {
+            if(r.getDeliveringPostOffice() != null){
+                if (r.getShipmentStatus().toString().equals(status)  && r.getDate().toLocalDate().isEqual(date)  && r.getDeliveringPostOffice().getId() == id) {
+                    n++;
+                }
+            }
+            else{
+                if (r.getShipmentStatus().toString().equals(status) && r.getDate().toLocalDate().isEqual(date)  && r.getReceivingPostOffice().getId() == id) {
+                    n++;
+                }
+            }
+
+       // }
+        return n;
+    }
+
+
+
+    public Map<String,Integer> getNumberofShipmentsByTypeSelectedPeriod(SelectedPeriodShipmentReportDTO dto){
+        Map<String, Integer> map = new HashMap<>();
+        LocalDate start = findDate(dto.getStartDate()).toLocalDate();
+        LocalDate end = findDate(dto.getEndDate()).toLocalDate();
+
+        Worker w = workerRepository.findByEmail(dto.getWorker());
+        if(w == null){
+            return null;
+        }
+        PostOffice po = postOfficeRepository.findById(w.getPostOffice().getId()).orElseGet(null);
+        if(po == null){
+            return null;
+        }
+
+        while (start.isBefore(end) || start.isEqual(end)) {
+            for (Shipment r : shipmentRepository.findAll()) {
+                Integer n = countShipmentsByTypeSelectedPeriod(dto.getStatus(), start, po.getId());
+                map.put(start.toString().substring(0, 10), n);
+            }
+            start = start.plusDays(1);
+        }
+
+        return map;
+    }
+
+
+    private Integer countShipmentsByTypeSelectedPeriod(String status, LocalDate date, Long id) {
+        Integer n = 0;
+
+        for (Shipment r : shipmentRepository.findAll()) {
+            if(r.getDeliveringPostOffice() != null){
+                if (r.getShipmentStatus().toString().equals(status)  && r.getDate().toLocalDate().isEqual(date)  && r.getDeliveringPostOffice().getId() == id) {
+                    n++;
+                }
+            }
+            else{
+                if (r.getShipmentStatus().toString().equals(status) && r.getDate().toLocalDate().isEqual(date)  && r.getReceivingPostOffice().getId() == id) {
+                    n++;
+                }
+            }
+
+        }
+        return n;
+    }
+
 }
