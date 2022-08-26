@@ -15,12 +15,14 @@ export class AccountingWorkerHomeComponent implements OnInit {
   myChartYear: any;
   myChartMonth: any;
   myChartWeek: any;
+  myChartWeekType: any;
   year: any;
   month: any;
   canvas: any;
   ctx: any;
   startDate: String | any;
   endDate: String | any;
+  type: any
 
   constructor(private router: Router, private shipmentService: ShipmentService) { }
 
@@ -186,7 +188,7 @@ export class AccountingWorkerHomeComponent implements OnInit {
 
   monthlyReport(data){
     
-    console.log(data)
+    // console.log(data)
     let keys = Object.keys(data)
     let values = Object.values(data)
     this.canvas = document.getElementById('myChartMonth');
@@ -256,13 +258,33 @@ export class AccountingWorkerHomeComponent implements OnInit {
   
         this.shipmentService.getNumberofShipmentsSelectedPeriod(dto).subscribe((data : any) => {
   
-          console.log(data)
+          // console.log(data)
           if(this.myChartWeek !== undefined){
             this.myChartWeek.destroy();
           }
           this.reportForSelectedPeriod(data)
         })
+
+        
+        var dtoT = {
+          "startDate": start ,
+          "endDate": end ,
+          "worker": localStorage.getItem('user'),
+          "status": "DELIVERED"
+        }
+
+        this.shipmentService.getNumberofShipmentsByTypeSelectedPeriod(dtoT).subscribe((data : any) => {
+  
+          console.log(data)
+          if(this.myChartWeekType !== undefined){
+            this.myChartWeekType.destroy();
+          }
+          this.reportForSelectedPeriodByType(data)
+        })
+
+
       }
+      
   
     }
     
@@ -301,4 +323,68 @@ export class AccountingWorkerHomeComponent implements OnInit {
   }
 
 
+  selectType($event){
+  
+    var selectedType = $event.target.value
+    console.log(selectedType)
+    if(selectedType == 1){
+      this.type = "DELIVERED"
+    }else if(selectedType == 2){
+      this.type = "RETURNED"
+    }else if(selectedType == 3){
+      this.type = "RECEIVED"
+    }else if(selectedType == 4){
+      this.type = "SENDING"
+    }
+
+    var start = formatDate(this.startDate,'dd-MM-yyyy','en_US');
+    var end  = formatDate(this.endDate,'dd-MM-yyyy','en_US');
+
+    var dto = {
+      "startDate": start + " 00:00",
+      "endDate": end + " 00:00",
+      "worker": localStorage.getItem('user'),
+      "status": this.type
+    }
+
+
+    this.shipmentService.getNumberofShipmentsByTypeSelectedPeriod(dto).subscribe((data : any) => {
+  
+      console.log(data)
+      if(this.myChartWeekType !== undefined){
+        this.myChartWeekType.destroy();
+      }
+      this.reportForSelectedPeriodByType(data)
+    })
+
+  }
+
+
+  reportForSelectedPeriodByType(data){
+    let keys = Object.keys(data)
+    let values = Object.values(data)
+    this.canvas = document.getElementById('myChartWeekType');
+    this.ctx = this.canvas.getContext('2d');
+    this.myChartWeekType = new Chart(this.ctx, {
+      type: 'bar',
+      data: {
+          labels: keys,
+          datasets: [{
+              label: 'број пошиљака',
+              data: values,
+              backgroundColor: [
+                'rgba(191, 22, 217, 1)'
+              ],
+              borderWidth: 1,
+
+          }],
+      },
+
+      options: {
+        responsive: false,
+        display:true,
+
+      }
+    });
+  }
 }

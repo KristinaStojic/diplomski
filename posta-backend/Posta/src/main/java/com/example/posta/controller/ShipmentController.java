@@ -123,4 +123,17 @@ public class ShipmentController {
             return new ResponseEntity<>(n, HttpStatus.OK);
         }
     }
+
+
+    @RequestMapping(value = "/getNumberofShipmentsByTypeSelectedPeriod", method = RequestMethod.POST)
+    @PreAuthorize("hasAuthority('ROLE_ACCOUNTING_WORKER')")
+    public ResponseEntity<Map<String, Integer>> getNumberofShipmentsByTypeSelectedPeriod(@RequestBody SelectedPeriodShipmentReportDTO dto) {
+        Map<String, Integer> n = this.shipmentService.getNumberofShipmentsByTypeSelectedPeriod(dto);
+
+        if (n == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(n, HttpStatus.OK);
+        }
+    }
 }
