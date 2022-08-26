@@ -13,10 +13,8 @@ import org.springframework.stereotype.Service;
 import javax.mail.MessagingException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.UUID;
+import java.time.Year;
+import java.util.*;
 
 @Service
 public class ShipmentService {
@@ -276,5 +274,58 @@ public class ShipmentService {
         s.setShipmentStatus(ShipmentStatus.SENDING);
 
         return shipmentRepository.save(s);
+    }
+
+
+    public Map<String,Integer> getNumberofShipmentsYearly(YearlyShipmentReportDTO dto){
+        Map<String, Integer> map = new HashMap<>();
+        Worker w = workerRepository.findByEmail(dto.getWorker());
+        if(w == null){
+            return null;
+        }
+        PostOffice po = postOfficeRepository.findById(w.getPostOffice().getId()).orElseGet(null);
+        if(po == null){
+            return null;
+        }
+
+        for (Shipment r : shipmentRepository.findAll()) {
+            if (!map.containsKey(r.getShipmentStatus().toString())) {
+                Integer n = countShipmentsYearly(r.getShipmentStatus().toString(), Integer.parseInt(dto.getYear()), po.getId());
+                if(r.getShipmentStatus().toString().equals("RECEIVED")){
+                    map.put("Чека на испоруку", n);
+                }
+                else if(r.getShipmentStatus().toString().equals("DELIVERED")){
+                    map.put("Достављено", n);
+                }
+                else if(r.getShipmentStatus().toString().equals("SENDING")){
+                    map.put("Послато на испоруку", n);
+                }
+                else if(r.getShipmentStatus().toString().equals("RETURNED")){
+                    map.put("Враћено", n);
+                }
+            }
+
+        }
+
+        return map;
+    }
+
+    private Integer countShipmentsYearly(String status, Integer year, Long id) {
+        Integer n = 0;
+
+        for (Shipment r : shipmentRepository.findAll()) {
+            if(r.getDeliveringPostOffice() != null){
+                if (r.getShipmentStatus().toString().equals(status) && r.getDate().getYear() == year && r.getDeliveringPostOffice().getId() == id) {
+                    n++;
+                }
+            }
+            else{
+                if (r.getShipmentStatus().toString().equals(status) && r.getDate().getYear() == year && r.getReceivingPostOffice().getId() == id) {
+                    n++;
+                }
+            }
+
+        }
+        return n;
     }
 }

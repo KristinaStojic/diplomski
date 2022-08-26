@@ -1,1 +1,16 @@
-<p>accounting-worker-home works!</p>
+<div class="borders">
+
+    <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
+        <h4>Статистика пошиљака</h4>
+        <button class="btn btn-primary" (click)="allShipments()">Све пошиљке</button>
+    </div>
+    <br><h6>Број пошиљака по години:</h6><br>
+    <label>Изабрана година:</label>
+    <select class="form-select" aria-label="Default select example" style="width: 700px;" (change)="selectYear($event)">
+        <option value="2021">2021</option>
+        <option selected value="2022">2022</option>
+    </select>
+
+    <canvas id="myChartYear" width="700" height="450"></canvas>
+
+</div>

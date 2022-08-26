@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping(value = "api/shipment")
 @RestController
@@ -84,4 +85,19 @@ public class ShipmentController {
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
+
+    @RequestMapping(value = "/getNumberofShipmentsYearly", method = RequestMethod.POST)
+    @PreAuthorize("hasAuthority('ROLE_ACCOUNTING_WORKER')")
+    public ResponseEntity<Map<String, Integer>> getNumberofShipmentsYearly(@RequestBody YearlyShipmentReportDTO dto) {
+        Map<String, Integer> n = this.shipmentService.getNumberofShipmentsYearly(dto);
+
+        if (n == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(n, HttpStatus.OK);
+        }
+    }
+
+
 }
