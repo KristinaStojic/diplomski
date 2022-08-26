@@ -38,4 +38,27 @@
 
         </div> 
     </div>
+
+    <div style="width:100%; margin-top: 1%;">
+        <div style="display:inline-block; width: 49.5%; padding: 1%;" class="div1 shadow">
+            <br><h6>Број пошиљака за изабрани период: </h6><br>
+            <!-- <label style="margin-bottom: 10px;">Почетни датум:</label> -->
+            <mat-form-field appearance="fill">
+                <mat-label>Почетни датум</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="startDate">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker ></mat-datepicker>
+            </mat-form-field>
+            <!-- <label style="margin-bottom: 10px; margin-left: 2%;">Крајњи датум:</label> -->
+            <mat-form-field appearance="fill" style="margin-left: 3%; ">
+                <mat-label>Крајњи датум</mat-label>
+                <input matInput [matDatepicker]="picker2" [min]="startDate" [(ngModel)]="endDate">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2 ></mat-datepicker>
+            </mat-form-field>
+            <button class="btn btn-primary" style="margin-left: 2%;" (click)="selectDays()" >Изаберите</button><br>
+    
+            <canvas *ngIf="startDate !== undefined && endDate !== undefined" id="myChartWeek" width="600" height="450"></canvas>
+        </div>
+    </div>
 </div>

@@ -111,4 +111,16 @@ public class ShipmentController {
         }
     }
 
+
+    @RequestMapping(value = "/getNumberofShipmentsSelectedPeriod", method = RequestMethod.POST)
+    @PreAuthorize("hasAuthority('ROLE_ACCOUNTING_WORKER')")
+    public ResponseEntity<Map<String, Integer>> getNumberofShipmentsSelectedPeriod(@RequestBody SelectedPeriodShipmentReportDTO dto) {
+        Map<String, Integer> n = this.shipmentService.getNumberofShipmentsSelectedPeriod(dto);
+
+        if (n == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(n, HttpStatus.OK);
+        }
+    }
 }

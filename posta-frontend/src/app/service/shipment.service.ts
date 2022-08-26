@@ -54,4 +54,12 @@ export class ShipmentService {
       return shipments;
     }));   
   }
+
+
+  getNumberofShipmentsSelectedPeriod(dto) {
+    return this._http.post(this.shipment_url + `/getNumberofShipmentsSelectedPeriod`, dto)
+    .pipe(map(shipments => {
+      return shipments;
+    }));   
+  }
 }

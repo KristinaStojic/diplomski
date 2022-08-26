@@ -2,6 +2,8 @@ import { ShipmentService } from './../../service/shipment.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Chart from 'chart.js/auto';
+import Swal from 'sweetalert2';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-accounting-worker-home',
@@ -12,10 +14,13 @@ export class AccountingWorkerHomeComponent implements OnInit {
 
   myChartYear: any;
   myChartMonth: any;
+  myChartWeek: any;
   year: any;
   month: any;
   canvas: any;
   ctx: any;
+  startDate: String | any;
+  endDate: String | any;
 
   constructor(private router: Router, private shipmentService: ShipmentService) { }
 
@@ -214,5 +219,86 @@ export class AccountingWorkerHomeComponent implements OnInit {
 
     
   }
+
+
+
+  selectDays(){
+
+    if(this.startDate == undefined || this.endDate == undefined){
+      Swal.fire({
+        icon: 'error',
+        title: 'Упс...',
+        text: 'Изаберите датуме!',
+      }) 
+    }
+    else{
+      var start = formatDate(this.startDate,'dd-MM-yyyy','en_US');
+      var end  = formatDate(this.endDate,'dd-MM-yyyy','en_US');
+  
+     
+  
+      if(this.startDate.getTime() >= this.endDate.getTime()){
+        Swal.fire({
+          icon: 'error',
+          title: 'Упс...',
+          text: 'Почетни датум не смије бити већи или једнак крајњем!',
+        }) 
+      }
+      else{
+        start = start + " 00:00"
+        end = end + " 00:00"
+    
+        var dto = {
+          "startDate": start,
+          "endDate": end,
+          "worker": localStorage.getItem('user')
+        }
+  
+        this.shipmentService.getNumberofShipmentsSelectedPeriod(dto).subscribe((data : any) => {
+  
+          console.log(data)
+          if(this.myChartWeek !== undefined){
+            this.myChartWeek.destroy();
+          }
+          this.reportForSelectedPeriod(data)
+        })
+      }
+  
+    }
+    
+  }
+
+  reportForSelectedPeriod(data){
+    let keys = Object.keys(data)
+    let values = Object.values(data)
+    this.canvas = document.getElementById('myChartWeek');
+    this.ctx = this.canvas.getContext('2d');
+    this.myChartWeek = new Chart(this.ctx, {
+      type: 'pie',
+      data: {
+          labels: keys,
+          datasets: [{
+              label: 'број пошиљака',
+              data: values,
+              backgroundColor: [
+                  'rgba(253, 12, 15, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(142, 21, 210, 1)',
+                  'rgba(57, 95, 45, 1)'
+
+              ],
+              borderWidth: 1,
+
+          }],
+      },
+
+      options: {
+        responsive: false,
+        display:true,
+
+      }
+    });
+  }
+
 
 }
