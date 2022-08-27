@@ -6,6 +6,8 @@ import lombok.Setter;
 import org.hibernate.jdbc.Work;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Setter
@@ -20,8 +22,20 @@ public class AbsenceRequest {
     @JsonBackReference
     private Worker worker;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "manager_id", nullable = true)
-    @JsonBackReference
-    private Manager manager;
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+//    @JoinColumn(name = "manager_id", nullable = true)
+//    @JsonBackReference
+//    private Manager manager;
+
+    @Column(name = "content", unique = false)
+    private String content;
+
+    @Column(name = "approved", unique = false)
+    private Boolean approved;
+
+    @Column(name = "date", unique = false, nullable = false)
+    private LocalDate date;
+
+    @Column(name = "reviewed", unique = false)
+    private Boolean reviewed;
 }

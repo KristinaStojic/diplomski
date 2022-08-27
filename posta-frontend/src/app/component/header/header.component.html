@@ -43,7 +43,10 @@
               <a class="nav-link" href="#">Возила</a>
             </li>
             <li class="nav-item active" *ngIf="isManager()">
-              <a class="nav-link" href="#">Одсуство</a>
+              <a class="nav-link" href="/absence-requests">Одсуство</a>
+            </li>
+            <li class="nav-item active" *ngIf="isAccountingWorker() || isCounterWorker()">
+              <a class="nav-link" href="/personal-absence-requests">Одсуство</a>
             </li>
             <li class="nav-item dropdown active" *ngIf="isLogged()">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
