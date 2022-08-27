@@ -106,9 +106,9 @@ INSERT INTO public.payment(
 	VALUES ('RT4', '1564864512', 'Struja', '64687654135', 'Novi Sad', '784', 13, 1240);
 
 
-INSERT INTO public.absence_request(id, approved, content, date, manager_id, worker_id)
-	VALUES (12, false, 'Postovani, zelio bih godisnji odmor u periodu od 12.05.2022. do 22.05.2022.', '05-10-2022', null, 1239);
-INSERT INTO public.absence_request(id, approved, content, date, manager_id, worker_id, reviewed)
-	VALUES (13, true, 'Postovani, podnosim zahtjev za bolovanje u periodu od 15.01.2022. do 25.01.2022.', '01-07-2022', 1237, 1243, true);
+INSERT INTO public.absence_request(id, approved, content, date, worker_id, reviewed)
+	VALUES (12, false, 'Postovani, zelio bih godisnji odmor u periodu od 12.05.2022. do 22.05.2022.', '05-10-2022', 1239, false);
+INSERT INTO public.absence_request(id, approved, content, date, worker_id, reviewed)
+	VALUES (13, true, 'Postovani, podnosim zahtjev za bolovanje u periodu od 15.01.2022. do 25.01.2022.', '01-07-2022', 1243, true);
 --INSERT INTO public.absence_request(id, approved, content, date, manager_id, worker_id)
 --	VALUES (14, false, 'Planiram zimovanje', '02-08-2022', null, 1237);

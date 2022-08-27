@@ -21,10 +21,10 @@ public class AbsenceRequest {
     @JsonBackReference
     private Worker worker;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "manager_id", nullable = true)
-    @JsonBackReference
-    private Manager manager;
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+//    @JoinColumn(name = "manager_id", nullable = true)
+//    @JsonBackReference
+//    private Manager manager;
 
     @Column(name = "content", unique = false)
     private String content;

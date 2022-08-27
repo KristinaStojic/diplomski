@@ -1,6 +1,7 @@
 package com.example.posta.controller;
 
 import com.example.posta.dto.AbsenceRequestDTO;
+import com.example.posta.dto.ProcessAbsenceRequestDTO;
 import com.example.posta.dto.WorkerDTO;
 import com.example.posta.service.AbsenceRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,17 @@ public class AbsenceRequestController {
         List<AbsenceRequestDTO> ar = absenceRequestService.getAllAbsenceRequests(worker);
         if(ar != null){
             return new ResponseEntity<>(ar, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(value="/processAbsenceRequest", method = RequestMethod.PUT)
+    @PreAuthorize("hasAuthority('ROLE_MANAGER')")
+    public @ResponseBody ResponseEntity<Boolean> processAbsenceRequest(@RequestBody ProcessAbsenceRequestDTO dto){
+        Boolean processed = absenceRequestService.processAbsenceRequest(dto);
+        if(processed){
+            return new ResponseEntity<>(true, HttpStatus.OK);
         }
 
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

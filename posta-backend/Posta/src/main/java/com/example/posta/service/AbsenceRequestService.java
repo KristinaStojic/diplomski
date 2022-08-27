@@ -1,10 +1,13 @@
 package com.example.posta.service;
 
 import com.example.posta.dto.AbsenceRequestDTO;
+import com.example.posta.dto.ProcessAbsenceRequestDTO;
 import com.example.posta.model.AbsenceRequest;
+import com.example.posta.model.Manager;
 import com.example.posta.model.PostOffice;
 import com.example.posta.model.Worker;
 import com.example.posta.repository.AbsenceRequestRepository;
+import com.example.posta.repository.ManagerRepository;
 import com.example.posta.repository.PostOfficeRepository;
 import com.example.posta.repository.WorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +28,9 @@ public class AbsenceRequestService {
     @Autowired
     PostOfficeRepository postOfficeRepository;
 
+    @Autowired
+    ManagerRepository managerRepository;
+
     public List<AbsenceRequestDTO> getAllAbsenceRequests(String worker){
         List<AbsenceRequestDTO> ret = new ArrayList<>();
         Worker w = workerRepository.findByEmail(worker);
@@ -43,5 +49,29 @@ public class AbsenceRequestService {
             }
         }
         return ret;
+    }
+
+    public Boolean processAbsenceRequest(ProcessAbsenceRequestDTO dto){
+        AbsenceRequest ar  = absenceRequestRepository.findById(dto.getId()).orElseGet(null);
+        if(ar == null){
+            return false;
+        }
+
+        Worker w = workerRepository.findByEmail(dto.getWorker());
+        if(w == null){
+            return false;
+        }
+        Manager m = managerRepository.findById(w.getId()).orElseGet(null);
+        if(m == null){
+            return false;
+        }
+
+        ar.setReviewed(true);
+        ar.setApproved(dto.getApproved());
+        //ar.setManager(m);
+
+        absenceRequestRepository.save(ar);
+
+        return true;
     }
 }
