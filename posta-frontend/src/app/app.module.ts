@@ -23,6 +23,7 @@ import { AddPaymentComponent } from './component/add-payment/add-payment.compone
 import { ShipmentComponent } from './component/shipment/shipment.component';
 import { AddShipmentComponent } from './component/add-shipment/add-shipment.component';
 import { AddShipmentAccountingWorkerComponent } from './component/add-shipment-accounting-worker/add-shipment-accounting-worker.component';
+import { AbsenceRequestsComponent } from './component/absence-requests/absence-requests.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { AddShipmentAccountingWorkerComponent } from './component/add-shipment-a
     ShipmentComponent,
     AddShipmentComponent,
     AddShipmentAccountingWorkerComponent,
+    AbsenceRequestsComponent,
   ],
   imports: [
     BrowserModule,
