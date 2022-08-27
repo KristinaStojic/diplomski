@@ -10,8 +10,8 @@
             <th scope="col" style="width:8%">#</th>
             <th scope="col" style="width:20%">Радник</th>
             <th scope="col" style="width:20%">Позиција</th>
-            <th scope="col" style="width:20%">Садржај</th>
             <th scope="col" style="width:20%">Датум подношења</th>
+            <th scope="col" style="width:20%">Садржај</th>
             <th scope="col" style="width:15%">Статус</th>
 
           </tr>
@@ -22,18 +22,60 @@
             <th scope="row">{{i+1}}</th>
             <td>{{m.worker}}</td>
             <td>{{m.role}}</td>
-            <td>Погледај</td>
             <td>{{m.date}}</td>
+            <td><button class="btn btn-primary" data-toggle="modal" data-target="#viewContent" (click)="selectRequest(m)">Погледај</button></td>
             <td *ngIf="m.approved && m.reviewed" style="color:green; font-weight: bold;">Одобрено</td>
             <td *ngIf="!m.approved && m.reviewed" style="color:red; font-weight: bold;">Одбијено</td>
-            <td *ngIf="!m.reviewed" >Прегледај</td>
-
-            <!-- <td><button class="btn btn-primary" (click)="selectManager(m)" data-toggle="modal" data-target="#editManager">Измијени</button></td>
-            <td><button class="btn btn-primary" (click)="deleteManager(m.id)">Избриши</button></td> -->
+            <td *ngIf="!m.reviewed"><button class="btn btn-primary" data-toggle="modal" data-target="#processRequest" (click)="selectRequest(m)">Обради захтјев</button></td>
+  
 
           </tr>
 
         </tbody>
       </table>
 
+</div>
+
+
+
+
+<div class="modal fade" id="processRequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered " role="document">
+  <div class="modal-content">
+      <div class="modal-header">
+          <h6 class="modal-title" id="exampleModalLongTitle">Захтјев за одсуство радника: {{selectedRequest?.worker}}</h6>
+      </div>
+      
+      <div  class="container"  style="margin: 5% 5% 5% 5%;">
+
+          <h6>Да ли желите да одобрите изабрани захтјев за одсуство?</h6>
+              
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Одбиј</button>
+          <button type="button" class="btn btn-primary"  data-dismiss="modal">Потврди</button>
+      </div>
+  </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="viewContent" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered " role="document">
+  <div class="modal-content">
+      <div class="modal-header" style="margin-left: 2%;">
+          <h6 class="modal-title" id="exampleModalLongTitle">Захтјев за одсуство радника: {{selectedRequest?.worker}}</h6>
+      </div>
+      
+      <div  style="margin: 5% 5% 5% 5%;">
+
+          <h6>{{selectedRequest?.content}}</h6>
+              
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Одбиј</button>
+          <button type="button" class="btn btn-primary"  data-dismiss="modal">Потврди</button>
+      </div>
+  </div>
+  </div>
 </div>

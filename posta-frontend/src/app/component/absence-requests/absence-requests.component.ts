@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class AbsenceRequestsComponent implements OnInit {
 
   requests: AbsenceRequest[]
-
+  selectedRequest: AbsenceRequest
 
   constructor(private requestService: AbsenceRequestService) { }
 
@@ -21,6 +21,10 @@ export class AbsenceRequestsComponent implements OnInit {
         console.log(this.requests)
       }
     )
+  }
+
+  selectRequest(r){
+    this.selectedRequest = r;
   }
 
 }
