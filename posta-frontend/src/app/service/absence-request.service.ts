@@ -17,4 +17,12 @@ export class AbsenceRequestService {
       return this._http.get<AbsenceRequest[]>(`${this.absence_request_url}/getAll/` + localStorage.getItem('user'))
     }
 
+    public getAllByWorker(): Observable<AbsenceRequest[]>{
+      return this._http.get<AbsenceRequest[]>(`${this.absence_request_url}/getByWorker/` + localStorage.getItem('user'))
+    }
+
+    public addAbsenceRequest(request): Observable<AbsenceRequest> {
+      return this._http.post<AbsenceRequest>(`${this.absence_request_url}/addAbsenceRequest`, request)
+    }
+
 }

@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.hibernate.jdbc.Work;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -33,7 +34,7 @@ public class AbsenceRequest {
     private Boolean approved;
 
     @Column(name = "date", unique = false, nullable = false)
-    private LocalDateTime date;
+    private LocalDate date;
 
     @Column(name = "reviewed", unique = false)
     private Boolean reviewed;

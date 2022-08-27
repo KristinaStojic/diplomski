@@ -28,7 +28,7 @@ public class AbsenceRequestDTO {
         }else if(a.getWorker().getRole().getName().toString().equals("ROLE_ACCOUNTING_WORKER")){
             this.role = "Обрачунски радник";
         }
-        this.date = a.getDate().toLocalDate().toString();
+        this.date = a.getDate().toString();
         this.approved = a.getApproved();
         this.reviewed = a.getReviewed();
     }

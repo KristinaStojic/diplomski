@@ -1,0 +1,62 @@
+<div class="borders">
+
+    <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
+        <h4>Захтјеви за одсуство</h4>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#addRequest">Додај захтјев</button>
+    </div>
+
+
+    <!-- <section>
+        <div >
+            <div class="row">
+                    <div class="card mb-4 shadow" *ngFor="let n of requests" style="width: 99%; height: 10ch; margin-left: 1ch;"> 
+                        <div class="card-body">
+                                <div class="flex-shrink-0"><em></em></div>
+                                <div class="ms-4">
+                                    <div style="justify-content: space-between; display: flex;">
+                                        <label>{{n.content}}</label>
+                                        <label>{{n.date}}</label>
+                                        
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    
+            </div>
+        </div>
+    </section> -->
+
+    <div class="card" style="width: 100%">
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="modal fade" id="addRequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal" role="document">
+    <div class="modal-content">
+        <div class="modal-header" style="margin-left: 4%;">
+            <h5 class="modal-title" id="exampleModalLongTitle">Додај нови захтјев за одсуство</h5>
+        </div>
+        
+     
+        <div class="container" style="margin: 5% 5% 5% 5%;">
+      
+
+            <textarea id="w3review" name="w3review" rows="8" cols="50" [(ngModel)]="content"></textarea>
+
+        </div>
+        
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Назад</button>
+            <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="addRequest()">Сачувај</button>
+        </div>
+    </div>
+    </div>
+</div>
