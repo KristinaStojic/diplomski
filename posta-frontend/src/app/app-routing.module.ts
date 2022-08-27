@@ -1,3 +1,4 @@
+import { AbsenceRequestService } from './service/absence-request.service';
 import { PersonalAbsenceRequestsComponent } from './component/personal-absence-requests/personal-absence-requests.component';
 import { AbsenceRequestsComponent } from './component/absence-requests/absence-requests.component';
 import { AddShipmentAccountingWorkerComponent } from './component/add-shipment-accounting-worker/add-shipment-accounting-worker.component';
@@ -64,6 +65,10 @@ const routes: Routes = [
   {
     path: 'add-shipment-accounting-worker',
     component: AddShipmentAccountingWorkerComponent,
+  },
+  {
+    path: 'absence-requests',
+    component: AbsenceRequestsComponent,
   },
   {
     path: 'personal-absence-requests',
