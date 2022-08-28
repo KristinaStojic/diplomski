@@ -38,9 +38,6 @@ public class FinancialService {
     @Column(unique = false, nullable = false)
     private Double amount;
 
-    @Column(unique = false, nullable = false)
-    private String currency;
-
     @Column(name = "date", unique = false, nullable = false)
     private LocalDateTime date;
 
@@ -50,7 +47,7 @@ public class FinancialService {
         //this.counterWorker = u.getCounterWorker();
         //this.client = u.getClient();
         this.amount = u.getAmount();
-        this.currency = u.getCurrency();
+        //this.currency = u.getCurrency();
         this.date = u.getDate();
     }
 }

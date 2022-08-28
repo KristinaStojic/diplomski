@@ -44,4 +44,7 @@ public class Payment extends FinancialService{
     @Column(unique = false, nullable = false)
     private String receivingPlace;
 
+    @Column(unique = false, nullable = false)
+    private String currency;
+
 }
