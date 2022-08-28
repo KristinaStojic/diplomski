@@ -38,7 +38,7 @@ public class FinancialService {
     @Column(unique = false, nullable = false)
     private Double amount;
 
-    @Column(name = "date", unique = false, nullable = false)
+    @Column(name = "date", unique = false, nullable = true)
     private LocalDateTime date;
 
 
