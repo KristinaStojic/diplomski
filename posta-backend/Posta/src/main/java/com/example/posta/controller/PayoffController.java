@@ -45,7 +45,7 @@ public class PayoffController {
 
 
     @RequestMapping(value="/search", method = RequestMethod.POST)
-    @PreAuthorize("hasAuthority('ROLE_COUNTER_WORKER')")
+    @PreAuthorize("hasAuthority('ROLE_COUNTER_WORKER') || hasAuthority('ROLE_ACCOUNTING_WORKER')")
     public ResponseEntity<List<PayoffDTO>> search(@RequestBody SearchPayoffDTO dto){
         List<PayoffDTO> p = payoffService.search(dto);
         if(p != null){
