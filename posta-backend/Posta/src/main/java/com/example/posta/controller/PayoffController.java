@@ -1,6 +1,7 @@
 package com.example.posta.controller;
 
 import com.example.posta.dto.*;
+import com.example.posta.model.Payoff;
 import com.example.posta.service.PaymentService;
 import com.example.posta.service.PayoffService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,18 @@ public class PayoffController {
     @PreAuthorize("hasAuthority('ROLE_COUNTER_WORKER')")
     public ResponseEntity<List<PayoffDTO>> search(@RequestBody SearchPayoffDTO dto){
         List<PayoffDTO> p = payoffService.search(dto);
+        if(p != null){
+            return new ResponseEntity<>(p, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+
+    @RequestMapping(value="/addPayoff", method = RequestMethod.PUT)
+    @PreAuthorize("hasAuthority('ROLE_ACCOUNTING_WORKER')")
+    public ResponseEntity<Payoff> addPayoff(@RequestBody AddPayoffDTO dto){
+        Payoff p = payoffService.addPayoff(dto);
         if(p != null){
             return new ResponseEntity<>(p, HttpStatus.OK);
         }
