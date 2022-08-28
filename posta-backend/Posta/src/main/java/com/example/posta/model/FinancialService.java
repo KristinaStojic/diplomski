@@ -23,7 +23,7 @@ public class FinancialService {
     private long id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "counter_worker_id", nullable = false)
+    @JoinColumn(name = "counter_worker_id", nullable = true)
     @JsonBackReference
     private CounterWorker counterWorker;
 
@@ -41,13 +41,16 @@ public class FinancialService {
     @Column(name = "date", unique = false, nullable = true)
     private LocalDateTime date;
 
+    @Column(unique = false, nullable = false)
+    private String currency;
+
 
 
     public FinancialService(FinancialService u) {
         //this.counterWorker = u.getCounterWorker();
         //this.client = u.getClient();
         this.amount = u.getAmount();
-        //this.currency = u.getCurrency();
+        this.currency = u.getCurrency();
         this.date = u.getDate();
     }
 }

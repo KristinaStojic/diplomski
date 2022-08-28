@@ -12,8 +12,9 @@ import lombok.Setter;
 @Getter
 public class AddPayoffDTO {
     private Client client;
-    private AddressDTO clientAddress;
+    private AddressDTO address;
     private String counterWorker;
-    private Double amount;
+    private String amount;
+    private String currency;
     private String payoffType;
 }

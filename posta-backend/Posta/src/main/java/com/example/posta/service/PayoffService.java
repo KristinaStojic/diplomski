@@ -44,6 +44,9 @@ public class PayoffService {
     @Autowired
     CounterWorkerRepository counterWorkerRepository;
 
+    @Autowired
+    AccountingWorkerRepository accountingWorkerRepository;
+
     public List<PayoffDTO> getAllPayoffs(String worker){
         List<PayoffDTO> ret = new ArrayList<>();
 
@@ -58,7 +61,7 @@ public class PayoffService {
         }
 
         for(Payoff p: payoffRepository.findAll()){
-            if(p.getCounterWorker().getPostOffice().getId() == po.getId()){
+            if(p.getAccountingWorker().getPostOffice().getId() == po.getId()){
                 PayoffDTO pdto = new PayoffDTO(p);
                 ret.add(pdto);
             }
@@ -109,11 +112,13 @@ public class PayoffService {
         Payoff p = new Payoff();
 
         Worker w = workerRepository.findByEmail(dto.getCounterWorker());
-        CounterWorker cw = counterWorkerRepository.findById(w.getId()).orElseGet(null);
-        p.setCounterWorker(cw);
+        AccountingWorker cw = accountingWorkerRepository.findById(w.getId()).orElseGet(null);
+        p.setAccountingWorker(cw);
+        p.setCounterWorker(null);
 
-        p.setAmount(dto.getAmount());
+        p.setAmount(Double.valueOf(dto.getAmount()));
         p.setPaidOff(false);
+        p.setCurrency(dto.getCurrency());
 
         Client client = new Client();
         Role r = roleRepository.findByName("ROLE_CLIENT");
@@ -121,11 +126,11 @@ public class PayoffService {
         client.setSurname(dto.getClient().getSurname());
         client.setDeleted(false);
         client.setEnabled(true);
-        Address clientAddress = new Address(dto.getClientAddress());
-        City c = new City(dto.getClientAddress().getCity());
-        c.setPostalCode(dto.getClientAddress().getPostalCode());
+        Address clientAddress = new Address(dto.getAddress());
+        City c = new City(dto.getAddress().getCity());
+        c.setPostalCode(dto.getAddress().getPostalCode());
         Country cnt = new Country();
-        cnt.setCountryName(dto.getClientAddress().getCountry());
+        cnt.setCountryName(dto.getAddress().getCountry());
         countryRepository.save(cnt);
         c.setCountry(cnt);
         cityRepository.save(c);

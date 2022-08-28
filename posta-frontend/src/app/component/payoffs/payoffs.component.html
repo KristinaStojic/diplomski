@@ -12,8 +12,7 @@
         </div>
 
         <div class="col-1.5"> 
-          <button *ngIf="isAccountingWorker()" class="btn btn-primary" (click)="addPayoff()" style="margin-left: 4ch;">Додај уплату</button>
-
+          <button *ngIf="isAccountingWorker()" class="btn btn-primary" data-toggle="modal" data-target="#addPayoff" style="margin-left: 4ch;">Додај исплату</button>
         </div>
 
     </div>
@@ -25,7 +24,7 @@
             <th scope="col" style="width:8%">#</th>
             <th scope="col" style="width:19.25%">Прималац</th>
             <th scope="col" style="width:24%">Адреса</th>
-            <th scope="col" style="width:19.25%">Сврха</th>
+            <th scope="col" style="width:19.25%">Тип</th>
             <th scope="col" style="width:15%">Износ</th>
             <th scope="col" style="width:12%">Статус</th>
 
@@ -37,7 +36,7 @@
             <td>{{m.client.name}} {{m.client.surname}}</td>
             <td>{{m.clientAddress}}</td>
             <td>{{m.payoffType}}</td>
-            <td>{{m.amount}}</td>
+            <td>{{m.amountCurrency}}</td>
             <td *ngIf="m.paidOff" style="color:green; font-weight: bold;">Исплаћено</td>
             <td *ngIf="!m.paidOff"><button class="btn btn-primary" data-toggle="modal" data-target="#processPayoff" (click)="selectPayoff(m)">Исплати</button></td>
 
@@ -69,3 +68,88 @@
     </div>
     </div>
   </div>
+
+
+
+  <!-- Modal for adding new payoff -->
+  <div class="modal fade" id="addPayoff" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Додај нову исплату</h5>
+        </div><br>
+        <div class="form-group" class="center" style="width: 40vw; margin-left: 4%;">
+        
+            <div class="row">
+                <div class="col">
+                    <label style="margin-bottom: 10px; margin-left: 0.5ch;" class="row">Прималац:</label>
+                    <input style="width: 95%; margin-left: 0.5ch;" type="text" class="row" placeholder="Име" [(ngModel)]="client.name" name="rname">
+                </div>
+                <div class="col">
+                    <input style="width: 107%; margin-top: 3.9ch;" type="text" class="row" [(ngModel)]="client.surname" placeholder="Презиме" >
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-6" >
+                    <input type="text" placeholder="Улица" style="width: 95%; margin-left: 0.5ch;" [(ngModel)]="clientAddress.street" name="rstreet">
+                </div>
+                <div class="col-3" style="padding: 0%">
+                    <input type="text" placeholder="Број" style="width: 100%;" [(ngModel)]="clientAddress.streetNumber" name="rstreetNum">
+                </div>
+                <div class="col-3" style="padding-right: 0%;">
+                    <input type="text" placeholder="Поштански број" style="width: 97%;" [(ngModel)]="clientAddress.postalCode" name="rPostalCode">
+                </div>
+            </div><br>
+
+            <div class="row">
+                <div class="col">
+                    <input style="width: 95%; margin-left: 0.5ch; margin-top: 0.5ch;" type="text" class="row" placeholder="Град" [(ngModel)]="clientAddress.city" name="rcity">
+                </div>
+
+                <div class="col">
+                    <input style="width: 107%; margin-top: 0.5ch;" type="text" class="row" placeholder="Држава" [(ngModel)]="clientAddress.country" name="rcountry">
+                </div><br>
+
+            </div>
+
+            
+
+            <div>
+
+                <div><br>
+                    <label style="margin-bottom: 10px; margin-left: 2px;" class="row">Тип исплате:</label>
+                    <select class="form-select" (change)="selectPayoffType($event)" style="width: 620px; margin-left: 2px;" >
+                        <option selected value="1">Пензија</option>
+                        <option value="2">Дјечији додатак</option>
+                        <option value="3">Инвалиднина</option>
+
+                    </select>
+                </div><br>
+           
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <input style="width: 95%; margin-left: 0.5ch; margin-top: 0.5ch;" type="text" class="row" placeholder="Износ"  [(ngModel)]="payoff.amount"  name="amount">
+                </div>
+
+                <div class="col">
+                    <input style="width: 107%; margin-top: 0.5ch;" type="text" class="row" placeholder="Валута"  [(ngModel)]="payoff.currency"  name="currency">
+                </div><br>
+
+            </div><br>
+               
+        </div>
+     
+        
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Затвори</button>
+            <button type="button" [disabled]="client.name === '' || client.surname === '' || clientAddress.street === '' || clientAddress.streetNumber === '' || clientAddress.postalCode === ''
+             || clientAddress.city === '' || clientAddress.country === '' || payoff.amount === '' || payoff.currency === ''" class="btn btn-primary" (click)="addPayoff()">Сачувај</button>
+
+        </div>
+    </div>
+    </div>
+</div>

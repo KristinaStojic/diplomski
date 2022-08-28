@@ -55,7 +55,7 @@ public class PayoffController {
     }
 
 
-    @RequestMapping(value="/addPayoff", method = RequestMethod.PUT)
+    @RequestMapping(value="/addPayoff", method = RequestMethod.POST)
     @PreAuthorize("hasAuthority('ROLE_ACCOUNTING_WORKER')")
     public ResponseEntity<Payoff> addPayoff(@RequestBody AddPayoffDTO dto){
         Payoff p = payoffService.addPayoff(dto);

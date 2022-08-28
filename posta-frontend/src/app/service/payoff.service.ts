@@ -24,6 +24,11 @@ export class PayoffService {
     return this._http.put<Boolean>(this.payoff_url + `/changePaidOffStatus/${id}`, id)
   }
 
+  public addPayoff(p): Observable<Payoff> {
+    console.log(p)
+    return this._http.post<Payoff>(`${this.payoff_url}/addPayoff`, p)
+  }
+
 }
 
 

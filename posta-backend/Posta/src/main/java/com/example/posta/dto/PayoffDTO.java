@@ -24,6 +24,8 @@ public class PayoffDTO {
     private Boolean paidOff;
     private String clientAddress;
     private String worker;
+    private String amountCurrency;
+
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyy HH:mm:ss");
 
     public PayoffDTO(Payoff p){
@@ -44,6 +46,7 @@ public class PayoffDTO {
         if(p.getDate() != null){
             this.date = p.getDate().format(formatter);
         }
+        this.amountCurrency = p.getAmount() + " " + p.getCurrency();
     }
 
 }

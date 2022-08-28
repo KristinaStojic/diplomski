@@ -99,38 +99,38 @@ INSERT INTO public.shipment(
 	id, email_report, sent_date, letter_type, personal_delivery, return_receipt, shipment_status, shipment_type, email, total_price, value, weight, receiving_post_office_id, delivering_post_office_id, receiver_id, region_id, sender_id, code)
 	VALUES (16, false, '01-07-2022', 0, true, true, 3, 1, null, 270, 0, 340, 33, null, 1244, null, 1242, 'MGI42D5R7A');
 
-INSERT INTO public.financial_service(id, amount, date, client_id, counter_worker_id) VALUES (11, 1500, '07-01-2022', 1240, 1239);
+INSERT INTO public.financial_service(id, amount, date, client_id, counter_worker_id, currency) VALUES (11, 1500, '07-01-2022', 1240, 1239, 'DIN');
 
 INSERT INTO public.payment(
-	model, payment_code, purpose, receiver_account, receiving_place, reference_number, id, receiver_id, currency)
-	VALUES ('2ER', '2451563254', 'Ispiti', '546598563264', 'Zvornik', '542', 11, 1244, 'DIN');
+	model, payment_code, purpose, receiver_account, receiving_place, reference_number, id, receiver_id)
+	VALUES ('2ER', '2451563254', 'Ispiti', '546598563264', 'Zvornik', '542', 11, 1244);
 
-INSERT INTO public.financial_service(id, amount, date, client_id, counter_worker_id) VALUES (12, 5000, '10-11-2021', 1244, 1239);
-
-INSERT INTO public.payment(
-	model, payment_code, purpose, receiver_account, receiving_place, reference_number, id, receiver_id, currency)
-	VALUES ('3R4', '6548645447', 'Internet', '6598656244', 'Subotica', '234', 12, 1240, 'DIN');
-
-
-INSERT INTO public.financial_service(id, amount, date, client_id, counter_worker_id) VALUES (13, 3500, '09-05-2022', 1242, 1246);
+INSERT INTO public.financial_service(id, amount, date, client_id, counter_worker_id, currency) VALUES (12, 5000, '10-11-2021', 1244, 1239, 'DIN');
 
 INSERT INTO public.payment(
-	model, payment_code, purpose, receiver_account, receiving_place, reference_number, id, receiver_id, currency)
-	VALUES ('RT4', '1564864512', 'Struja', '64687654135', 'Novi Sad', '784', 13, 1240, 'DIN');
+	model, payment_code, purpose, receiver_account, receiving_place, reference_number, id, receiver_id)
+	VALUES ('3R4', '6548645447', 'Internet', '6598656244', 'Subotica', '234', 12, 1240);
 
 
-INSERT INTO public.financial_service(id, amount, date, client_id, counter_worker_id) VALUES (14, 12500, null, 1250, 1239);
+INSERT INTO public.financial_service(id, amount, date, client_id, counter_worker_id, currency) VALUES (13, 3500, '09-05-2022', 1242, 1246, 'DIN');
 
-INSERT INTO public.payoff(type, id, paid_off) VALUES (0, 14, false);
+INSERT INTO public.payment(
+	model, payment_code, purpose, receiver_account, receiving_place, reference_number, id, receiver_id)
+	VALUES ('RT4', '1564864512', 'Struja', '64687654135', 'Novi Sad', '784', 13, 1240);
 
 
-INSERT INTO public.financial_service(id, amount, date, client_id, counter_worker_id) VALUES (15, 10000, null, 1251, 1239);
+INSERT INTO public.financial_service(id, amount, date, client_id, counter_worker_id, currency) VALUES (14, 12500, null, 1250, 1239, 'DIN');
 
-INSERT INTO public.payoff(type, id, paid_off) VALUES (1, 15, false);
+INSERT INTO public.payoff(type, id, paid_off, accounting_worker_id) VALUES (0, 14, false, 1243);
 
-INSERT INTO public.financial_service(id, amount, date, client_id, counter_worker_id) VALUES (16, 7500, '08-28-2022', 1252, 1239);
 
-INSERT INTO public.payoff(type, id, paid_off) VALUES (2, 16, true);
+INSERT INTO public.financial_service(id, amount, date, client_id, counter_worker_id, currency) VALUES (15, 10000, null, 1251, 1239, 'DIN');
+
+INSERT INTO public.payoff(type, id, paid_off, accounting_worker_id) VALUES (1, 15, false, 1243);
+
+INSERT INTO public.financial_service(id, amount, date, client_id, counter_worker_id, currency) VALUES (16, 7500, '08-28-2022', 1252, 1239, 'DIN');
+
+INSERT INTO public.payoff(type, id, paid_off, accounting_worker_id) VALUES (2, 16, true, 1243);
 
 INSERT INTO public.absence_request(id, approved, content, date, worker_id, reviewed)
 	VALUES (12, false, 'Postovani, zelio bih godisnji odmor u periodu od 12.05.2022. do 22.05.2022.', '05-10-2022', 1239, false);

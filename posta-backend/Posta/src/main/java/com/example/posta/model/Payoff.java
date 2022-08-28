@@ -2,12 +2,12 @@ package com.example.posta.model;
 
 import com.example.posta.model.enums.PayoffType;
 import com.example.posta.model.enums.ShipmentStatus;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -24,5 +24,10 @@ public class Payoff extends FinancialService{
 
     @Column(name = "paid_off", unique = false)
     private Boolean paidOff;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "accounting_worker_id", nullable = false)
+    @JsonBackReference
+    private AccountingWorker accountingWorker;
 
 }
