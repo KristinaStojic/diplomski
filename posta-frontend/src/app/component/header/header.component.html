@@ -37,6 +37,9 @@
               <a class="nav-link" href="/payments">Уплате</a>
             </li>
             <li class="nav-item active" *ngIf="isCounterWorker() || isAccountingWorker()">
+              <a class="nav-link" href="/payoffs">Исплате</a>
+            </li>
+            <li class="nav-item active" *ngIf="isCounterWorker() || isAccountingWorker()">
               <a class="nav-link" href="/shipments">Пошиљке</a>
             </li>
             <li class="nav-item active" *ngIf="isManager()">

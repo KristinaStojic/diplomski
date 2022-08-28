@@ -1,0 +1,71 @@
+<div class="borders">
+
+    <h4>Исплате</h4>
+    <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
+        
+        <div class="row">
+          <div class="col input-group">
+            <input type="search" class="form-control rounded" [(ngModel)]="searchCriteria" placeholder="Клијент" aria-label="Search" aria-describedby="search-addon" />
+            <button type="button" class="btn btn-outline-primary" (click)="search()">Претражи</button>
+            <button type="button" class="btn btn-outline-primary" (click)="getAll()">Обриши</button>
+          </div>
+        </div>
+
+        <div class="col-1.5"> 
+          <button *ngIf="isAccountingWorker()" class="btn btn-primary" (click)="addPayoff()" style="margin-left: 4ch;">Додај уплату</button>
+
+        </div>
+
+    </div>
+
+
+    <table class="shadow p-3 mb-5 bg-white rounded table" style="width:100%">
+        <thead>
+          <tr>
+            <th scope="col" style="width:8%">#</th>
+            <th scope="col" style="width:19.25%">Прималац</th>
+            <th scope="col" style="width:24%">Адреса</th>
+            <th scope="col" style="width:19.25%">Сврха</th>
+            <th scope="col" style="width:15%">Износ</th>
+            <th scope="col" style="width:12%">Статус</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let m of payoffs; index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{m.client.name}} {{m.client.surname}}</td>
+            <td>{{m.clientAddress}}</td>
+            <td>{{m.payoffType}}</td>
+            <td>{{m.amount}}</td>
+            <td *ngIf="m.paidOff" style="color:green; font-weight: bold;">Исплаћено</td>
+            <td *ngIf="!m.paidOff"><button class="btn btn-primary" data-toggle="modal" data-target="#processPayoff" (click)="selectPayoff(m)">Исплати</button></td>
+
+          </tr>
+
+        </tbody>
+      </table>
+
+</div>
+
+
+
+<div class="modal fade" id="processPayoff" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered " role="document">
+    <div class="modal-content">
+        <div class="modal-header" style="margin-left: 4%;">
+            <h6 class="modal-title" id="exampleModalLongTitle">Исплата</h6>
+        </div>
+        
+        <div  class="container"  style="margin: 5% 5% 5% 5%;">
+  
+            <h6>Да ли сте сигурни да желите да извршите исплату за корисника: {{selectedPayoff?.client?.name}} {{selectedPayoff?.client?.surname}}?</h6>
+                
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Одбиј</button>
+            <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="payOff()">Потврди</button>
+        </div>
+    </div>
+    </div>
+  </div>

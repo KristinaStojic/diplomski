@@ -32,7 +32,7 @@ public class PayoffController {
     }
 
     @RequestMapping(value="/changePaidOffStatus/{id}", method = RequestMethod.PUT)
-    @PreAuthorize("hasAuthority('ROLE_COUNTER_WORKER')")
+    @PreAuthorize("hasAuthority('ROLE_COUNTER_WORKER') || hasAuthority('ROLE_ACCOUNTING_WORKER')")
     public @ResponseBody ResponseEntity<Boolean> changePaidOffStatus(@PathVariable Long id){
         Boolean p = payoffService.changePaidOffStatus(id);
         if(p){
