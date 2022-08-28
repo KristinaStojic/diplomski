@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PayoffService {
@@ -71,11 +72,20 @@ public class PayoffService {
     }
 
 
-    public Boolean changePaidOffStatus(Long id){
-        Payoff p = payoffRepository.findById(id).orElseGet(null);
+    public Boolean changePaidOffStatus(EditPayoffStatusDTO dto){
+        Payoff p = payoffRepository.findById(dto.getId()).orElseGet(null);
         if(p == null){
             return false;
         }
+
+        Worker w = workerRepository.findByEmail(dto.getWorker());
+
+        for(CounterWorker cw: counterWorkerRepository.findAll()){
+            if(cw.getId().equals(w.getId())){
+                p.setCounterWorker(cw);
+            }
+        }
+
 
         p.setPaidOff(true);
         p.setDate(LocalDateTime.now());
@@ -114,6 +124,7 @@ public class PayoffService {
         Worker w = workerRepository.findByEmail(dto.getCounterWorker());
         AccountingWorker cw = accountingWorkerRepository.findById(w.getId()).orElseGet(null);
         p.setAccountingWorker(cw);
+        //p.setPost_office(w.getPostOffice().getId());
         p.setCounterWorker(null);
 
         p.setAmount(Double.valueOf(dto.getAmount()));

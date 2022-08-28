@@ -84,10 +84,10 @@ public class PostOfficeService {
         a.setLatitude(dto.getLatitude());
         addressRepository.save(a);
         p.setAddress(a);
+        this.postOfficeRepository.save(p);
 
         m.setPostOffice(p);
         this.managerRepository.save(m);
-        //this.postOfficeRepository.save(p);
         return p;
     }
 

@@ -99,7 +99,12 @@ export class PayoffsComponent implements OnInit {
 
   payOff(){
 
-    this.payoffService.payOff(this.selectedPayoff.id).subscribe(
+    var dto = {
+      "id": this.selectedPayoff.id,
+      "worker": localStorage.getItem('user')
+    }
+
+    this.payoffService.payOff(dto).subscribe(
       (m: any) => {
         window.location.reload()
       },

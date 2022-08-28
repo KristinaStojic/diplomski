@@ -20,8 +20,8 @@ export class PayoffService {
     return this._http.post<any>(this.payoff_url + `/search`, dto) 
   }
 
-  public payOff(id): Observable<Boolean>{
-    return this._http.put<Boolean>(this.payoff_url + `/changePaidOffStatus/${id}`, id)
+  public payOff(dto): Observable<Boolean>{
+    return this._http.put<Boolean>(this.payoff_url + `/changePaidOffStatus`, dto)
   }
 
   public addPayoff(p): Observable<Payoff> {

@@ -1,6 +1,7 @@
 package com.example.posta.controller;
 
 import com.example.posta.dto.*;
+import com.example.posta.model.EditPayoffStatusDTO;
 import com.example.posta.model.Payoff;
 import com.example.posta.service.PaymentService;
 import com.example.posta.service.PayoffService;
@@ -31,10 +32,10 @@ public class PayoffController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @RequestMapping(value="/changePaidOffStatus/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value="/changePaidOffStatus", method = RequestMethod.PUT)
     @PreAuthorize("hasAuthority('ROLE_COUNTER_WORKER') || hasAuthority('ROLE_ACCOUNTING_WORKER')")
-    public @ResponseBody ResponseEntity<Boolean> changePaidOffStatus(@PathVariable Long id){
-        Boolean p = payoffService.changePaidOffStatus(id);
+    public ResponseEntity<Boolean> changePaidOffStatus(@RequestBody EditPayoffStatusDTO dto){
+        Boolean p = payoffService.changePaidOffStatus(dto);
         if(p){
             return new ResponseEntity<>(true, HttpStatus.OK);
         }
