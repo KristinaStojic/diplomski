@@ -26,6 +26,7 @@ import { AddShipmentAccountingWorkerComponent } from './component/add-shipment-a
 import { AbsenceRequestsComponent } from './component/absence-requests/absence-requests.component';
 import { PersonalAbsenceRequestsComponent } from './component/personal-absence-requests/personal-absence-requests.component';
 import { PayoffsComponent } from './component/payoffs/payoffs.component';
+import { UserMenuComponent } from './component/user-menu/user-menu.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { PayoffsComponent } from './component/payoffs/payoffs.component';
     AbsenceRequestsComponent,
     PersonalAbsenceRequestsComponent,
     PayoffsComponent,
+    UserMenuComponent,
   ],
   imports: [
     BrowserModule,
