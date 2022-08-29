@@ -1,5 +1,6 @@
 package com.example.posta.controller;
 
+import com.example.posta.dto.ChangePasswordDTO;
 import com.example.posta.model.User;
 import com.example.posta.security.util.TokenUtils;
 import org.slf4j.Logger;
@@ -36,16 +37,16 @@ public class UserController {
     }
 
 
-//    @RequestMapping(value="changePassword", method = RequestMethod.PUT)
-//    public ResponseEntity<ChangePasswordDTO> changePassword(@RequestBody ChangePasswordDTO dto) {
-//
-//        User user = userService.findByEmail(dto.getEmail());
-//        ChangePasswordDTO u = userService.updatePasswod(dto);
-//        if(u == null){
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
-//        return new ResponseEntity<>(u,HttpStatus.OK);
-//    }
+    @RequestMapping(value="changePassword", method = RequestMethod.PUT)
+    public ResponseEntity<ChangePasswordDTO> changePassword(@RequestBody ChangePasswordDTO dto) {
+
+        User user = userService.findByEmail(dto.getEmail());
+        ChangePasswordDTO u = userService.updatePasswod(dto);
+        if(u == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(u,HttpStatus.OK);
+    }
 
 
 }

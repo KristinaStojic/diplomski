@@ -1,3 +1,5 @@
+import { ChangePasswordComponent } from './component/change-password/change-password.component';
+import { EditPersonalInfoComponent } from './component/edit-personal-info/edit-personal-info.component';
 import { PayoffsComponent } from './component/payoffs/payoffs.component';
 import { AbsenceRequestService } from './service/absence-request.service';
 import { PersonalAbsenceRequestsComponent } from './component/personal-absence-requests/personal-absence-requests.component';
@@ -78,6 +80,14 @@ const routes: Routes = [
   {
     path: 'payoffs',
     component: PayoffsComponent,
+  },
+  {
+    path: 'edit-personal-info',
+    component: EditPersonalInfoComponent,
+  },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent,
   },
 ];
 
