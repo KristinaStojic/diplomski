@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.posta.dto.ChangePasswordDTO;
+import com.example.posta.dto.EditInfoDTO;
 import com.example.posta.model.*;
 import com.example.posta.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,19 @@ public class UserService {
 
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    public User editUser(EditInfoDTO dto){
+        User u = findByEmail(dto.getOldEmail());
+        if(u == null){
+            return null;
+        }
+
+        u.setName(dto.getName());
+        u.setSurname(dto.getSurname());
+        u.setPhoneNumber(dto.getSurname());
+        u.setEmail(dto.getEmail());
+        return userRepository.save(u);
     }
 
 

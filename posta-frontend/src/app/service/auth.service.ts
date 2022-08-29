@@ -55,4 +55,13 @@ export class AuthService {
     console.table(dto)
     return this._http.put<any>(`${this.user_url}/changePassword`, dto)
   }
+
+
+  public getByEmail(email): Observable<any>{
+    return this._http.get<any>(`${this.user_url}/getByEmail/${email}`, email)
+  }
+
+  public editUser(dto): Observable<any>{
+    return this._http.put<any>(`${this.user_url}/editUser`, dto)
+  }
 }

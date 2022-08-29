@@ -1,32 +1,62 @@
 <mat-card elevation="5" fxFlex class="content" style="margin-top: 60px;">
 
     <mat-card-title>
-        <h4>Промијени лозинку</h4>
+        <h4>Измијени личне податке</h4>
     </mat-card-title>
 
-    <mat-card-content>
-        <!-- <p *ngIf="notification" [class]="notification.msgType">{{notification.msgBody}}</p> -->
-        <form (ngSubmit)="onSubmit()" *ngIf="!submitted" [formGroup]="form">
-             
+    <!-- <mat-card-content *ngIf="!edited">
+
             <mat-form-field>
-                <label>Стара лозинка: </label>
-                <input formControlName="oldPassword" matInput required type="password" required>
+                <label>Име: </label>
+                <input matInput required type="text">
             </mat-form-field> 
             
             <mat-form-field>
-                <label>Нова лозинка: </label>
-                <input formControlName="password" matInput required type="password" required>
+                <label>Презиме: </label>
+                <input matInput required type="text">
             </mat-form-field> 
             <mat-form-field>
-                <label>Понови нову лозинку: </label>
-                <input formControlName="passwordRepeated" matInput required type="password" required>
+                <label>Емаил: </label>
+                <input matInput required type="text">
             </mat-form-field> 
+
+            <mat-form-field>
+                <label>Телефон: </label>
+                <input matInput required type="text">
+            </mat-form-field>
+
+            <button color="primary" mat-raised-button type="submit" (click)="editInfo()">Измијени</button>
+        <hr>
+    </mat-card-content> -->
+
+
+
+    
+    <mat-card-content >
+        <form (ngSubmit)="onSubmit()" *ngIf="!submitted && !edited" [formGroup]="form">
+             
+            <mat-form-field>
+                <label>Име: </label>
+                <input formControlName="name" matInput required type="text" >
+            </mat-form-field> 
+            
+            <mat-form-field>
+                <label>Презиме: </label>
+                <input formControlName="surname" matInput required type="text">
+            </mat-form-field> 
+            <mat-form-field>
+                <label>Емаил: </label>
+                <input formControlName="email" matInput required type="text">
+            </mat-form-field> 
+
+            <mat-form-field>
+                <label>Телефон: </label>
+                <input formControlName="phone" matInput required type="text">
+            </mat-form-field>
+
             <button [disabled]="!form.valid" color="primary" mat-raised-button type="submit">Потврди</button>
-            <br>
-            <button color="primary" mat-raised-button routerLink="/counter-worker-home">Назад</button> 
+            
         </form>
-        <mat-spinner *ngIf="submitted" mode="indeterminate"></mat-spinner>
-        <br>
         <hr>
     </mat-card-content>
     
