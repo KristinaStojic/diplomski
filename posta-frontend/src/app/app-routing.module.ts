@@ -1,3 +1,4 @@
+import { PayoffsComponent } from './component/payoffs/payoffs.component';
 import { AbsenceRequestService } from './service/absence-request.service';
 import { PersonalAbsenceRequestsComponent } from './component/personal-absence-requests/personal-absence-requests.component';
 import { AbsenceRequestsComponent } from './component/absence-requests/absence-requests.component';
@@ -73,6 +74,10 @@ const routes: Routes = [
   {
     path: 'personal-absence-requests',
     component: PersonalAbsenceRequestsComponent,
+  },
+  {
+    path: 'payoffs',
+    component: PayoffsComponent,
   },
 ];
 

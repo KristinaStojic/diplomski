@@ -37,6 +37,9 @@
               <a class="nav-link" href="/payments">Уплате</a>
             </li>
             <li class="nav-item active" *ngIf="isCounterWorker() || isAccountingWorker()">
+              <a class="nav-link" href="/payoffs">Исплате</a>
+            </li>
+            <li class="nav-item active" *ngIf="isCounterWorker() || isAccountingWorker()">
               <a class="nav-link" href="/shipments">Пошиљке</a>
             </li>
             <li class="nav-item active" *ngIf="isManager()">
@@ -48,16 +51,27 @@
             <li class="nav-item active" *ngIf="isAccountingWorker() || isCounterWorker()">
               <a class="nav-link" href="/personal-absence-requests">Одсуство</a>
             </li>
+          
             <li class="nav-item dropdown active" *ngIf="isLogged()">
+              <a [matMenuTriggerFor]="userMenu" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Профил
+              </a>
+           </li>
+
+           <mat-menu #userMenu [overlapTrigger]="false" class="app-header-userMenu" yposition="below">
+            <app-user-menu></app-user-menu>
+           </mat-menu>
+          
+            <!-- <li class="nav-item dropdown active" *ngIf="isLogged()">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Профил
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="margin-right: 15px;">
+              <div class="dropdown-menu" >
                 <a class="dropdown-item" href="#">Лични подаци</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" (click)="logout()">Одјави се</a>
               </div>
-            </li>
+            </li> -->
           </ul></form>
   </div>
 </nav>

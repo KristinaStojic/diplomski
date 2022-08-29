@@ -1,30 +1,32 @@
+<div style="overflow-y: hidden;">
+    <mat-card elevation="5" fxFlex class="content" style="margin-top:150px; " >
 
-<mat-card elevation="5" fxFlex class="content" style="margin-top:150px;" >
-
-    <mat-card-title>
-        <h2>Пошта</h2>
-    </mat-card-title>
-
-    <mat-card-content>
-        <p *ngIf="notification" [class]="notification.msgType">{{notification.msgBody}}</p>
-        <br>
-        <form (ngSubmit)="onSubmit()" *ngIf="!submitted" [formGroup]="form">
-            <mat-form-field>
-                <input formControlName="email" matInput placeholder="емаил" required>
-            </mat-form-field>
-            <mat-form-field>
-                <input formControlName="password" matInput placeholder="лозинка" required type="password">
-            </mat-form-field>
+        <mat-card-title>
+            <h2>Пошта</h2>
+        </mat-card-title>
+    
+        <mat-card-content>
+            <p *ngIf="notification" [class]="notification.msgType">{{notification.msgBody}}</p>
             <br>
-            <br>
-            <button color="primary" mat-raised-button type="submit">Пријави се</button>
+            <form (ngSubmit)="onSubmit()" *ngIf="!submitted" [formGroup]="form">
+                <mat-form-field>
+                    <input formControlName="email" matInput placeholder="емаил" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="password" matInput placeholder="лозинка" required type="password">
+                </mat-form-field>
+                <br>
+                <br>
+                <button color="primary" mat-raised-button type="submit">Пријави се</button>
+                
+            </form>
+          
+    
+            <mat-spinner *ngIf="submitted" mode="indeterminate"></mat-spinner>
             
-        </form>
-      
+            <hr>
+        </mat-card-content>
+    
+    </mat-card>
+</div>
 
-        <mat-spinner *ngIf="submitted" mode="indeterminate"></mat-spinner>
-        
-        <hr>
-    </mat-card-content>
-
-</mat-card>

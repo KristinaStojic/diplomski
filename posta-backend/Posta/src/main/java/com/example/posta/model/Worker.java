@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Entity
 public class Worker extends User{
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER) //, cascade = CascadeType.MERGE)
     @JoinColumn(name = "post_office_id", nullable = true)
     @JsonBackReference
     private PostOffice postOffice;

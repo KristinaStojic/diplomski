@@ -121,7 +121,7 @@ export class AccountingWorkerHomeComponent implements OnInit {
     }else if(month == 7){
       this.month = "JULY"
     }else if(month == 8){
-      this.month = "AVGUST"
+      this.month = "AUGUST"
     }else if(month == 9){
       this.month = "SEPTEMBER"
     }else if(month == 10){
