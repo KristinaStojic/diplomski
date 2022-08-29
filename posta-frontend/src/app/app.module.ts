@@ -27,6 +27,8 @@ import { AbsenceRequestsComponent } from './component/absence-requests/absence-r
 import { PersonalAbsenceRequestsComponent } from './component/personal-absence-requests/personal-absence-requests.component';
 import { PayoffsComponent } from './component/payoffs/payoffs.component';
 import { UserMenuComponent } from './component/user-menu/user-menu.component';
+import { EditPersonalInfoComponent } from './component/edit-personal-info/edit-personal-info.component';
+import { ChangePasswordComponent } from './component/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { UserMenuComponent } from './component/user-menu/user-menu.component';
     PersonalAbsenceRequestsComponent,
     PayoffsComponent,
     UserMenuComponent,
+    EditPersonalInfoComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

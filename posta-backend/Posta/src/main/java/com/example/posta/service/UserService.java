@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.posta.dto.ChangePasswordDTO;
+import com.example.posta.dto.EditInfoDTO;
 import com.example.posta.model.*;
 import com.example.posta.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,15 +50,15 @@ public class UserService {
     }
 
 
-//    public ChangePasswordDTO updatePasswod(ChangePasswordDTO user) {
-//        User updated=userRepository.findByEmail(user.getEmail());
-//        if(!user.getPassword().equals(user.getPasswordRepeated()) || !user.getOldPassword().equals(updated.getPassword())){
-//            return null;
-//        }
-//        updated.setPassword(user.getPassword());
-//        userRepository.save(updated);
-//        return user;
-//    }
+    public ChangePasswordDTO updatePasswod(ChangePasswordDTO user) {
+        User updated=userRepository.findByEmail(user.getEmail());
+        if(!user.getPassword().equals(user.getPasswordRepeated()) || !user.getOldPassword().equals(updated.getPassword())){
+            return null;
+        }
+        updated.setPassword(user.getPassword());
+        userRepository.save(updated);
+        return user;
+    }
 
     public void remove(Long id) {
         userRepository.deleteById(id);
@@ -66,10 +68,19 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-//    public void sendMailForAcceptedRegistration(String email) throws MessagingException, UnsupportedEncodingException {
-//        User u = findByEmail(email);
-//        emailService.sendMailForAcceptedRegistration(u);
-//    }
+    public User editUser(EditInfoDTO dto){
+        User u = findByEmail(dto.getOldEmail());
+        if(u == null){
+            return null;
+        }
+
+        u.setName(dto.getName());
+        u.setSurname(dto.getSurname());
+        u.setPhoneNumber(dto.getSurname());
+        u.setEmail(dto.getEmail());
+        return userRepository.save(u);
+    }
+
 
 
 }

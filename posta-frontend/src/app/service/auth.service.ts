@@ -5,6 +5,7 @@ import { ApiService } from './api.service';
 import { catchError, map } from 'rxjs/operators';
 import jwt_decode from "jwt-decode";
 import { Auth } from '../model/auth';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import { Auth } from '../model/auth';
 export class AuthService {
 
   private auth_url = 'https://localhost:8080/api/auth';
+  private user_url = 'https://localhost:8080/api/users';
 
 
   constructor(
@@ -44,9 +46,22 @@ export class AuthService {
   }
 
 
-  
   logout() { 
     localStorage.clear();
     this.router.navigate(['']);
+  }
+
+  public changePassword(dto): Observable<any>{
+    console.table(dto)
+    return this._http.put<any>(`${this.user_url}/changePassword`, dto)
+  }
+
+
+  public getByEmail(email): Observable<any>{
+    return this._http.get<any>(`${this.user_url}/getByEmail/${email}`, email)
+  }
+
+  public editUser(dto): Observable<any>{
+    return this._http.put<any>(`${this.user_url}/editUser`, dto)
   }
 }
