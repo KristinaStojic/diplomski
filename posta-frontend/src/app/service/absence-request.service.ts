@@ -25,4 +25,9 @@ export class AbsenceRequestService {
       return this._http.post<AbsenceRequest>(`${this.absence_request_url}/addAbsenceRequest`, request)
     }
 
+    public processRequest(dto): Observable<any> {
+      console.log(dto)
+      return this._http.put<any>(this.absence_request_url + `/processAbsenceRequest`, dto)
+    }
+
 }

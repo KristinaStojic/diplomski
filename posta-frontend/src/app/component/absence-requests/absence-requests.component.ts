@@ -1,6 +1,8 @@
+import { PaymentService } from './../../service/payment.service';
 import { AbsenceRequestService } from './../../service/absence-request.service';
 import { AbsenceRequest } from './../../model/absence-request';
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-absence-requests',
@@ -25,6 +27,50 @@ export class AbsenceRequestsComponent implements OnInit {
 
   selectRequest(r){
     this.selectedRequest = r;
+  }
+
+  approve(){
+
+    var dto = {
+      "worker": localStorage.getItem('user'),
+      "id": this.selectedRequest.id,
+      "approved": true
+    }
+
+    this.requestService.processRequest(dto).subscribe(
+      (m: any) => {
+        window.location.reload()
+      },
+      (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Упс...',
+          text: 'Дошло је до грешке!',
+        })
+      },
+    )
+  }
+
+  reject(){
+
+    var dto = {
+      "worker": localStorage.getItem('user'),
+      "id": this.selectedRequest.id,
+      "approved": false
+    }
+
+    this.requestService.processRequest(dto).subscribe(
+      (m: any) => {
+        window.location.reload()
+      },
+      (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Упс...',
+          text: 'Дошло је до грешке!',
+        })
+      },
+    )
   }
 
 }

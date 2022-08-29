@@ -15,6 +15,7 @@ import java.util.List;
 
 @RequestMapping(value = "api/absence_request")
 @RestController
+@CrossOrigin
 public class AbsenceRequestController {
 
     @Autowired
@@ -43,7 +44,7 @@ public class AbsenceRequestController {
 
     @RequestMapping(value="/processAbsenceRequest", method = RequestMethod.PUT)
     @PreAuthorize("hasAuthority('ROLE_MANAGER')")
-    public @ResponseBody ResponseEntity<Boolean> processAbsenceRequest(@RequestBody ProcessAbsenceRequestDTO dto){
+    public ResponseEntity<Boolean> processAbsenceRequest(@RequestBody ProcessAbsenceRequestDTO dto){
         Boolean processed = absenceRequestService.processAbsenceRequest(dto);
         if(processed){
             return new ResponseEntity<>(true, HttpStatus.OK);

@@ -76,7 +76,7 @@ public class UserService {
 
         u.setName(dto.getName());
         u.setSurname(dto.getSurname());
-        u.setPhoneNumber(dto.getSurname());
+        u.setPhoneNumber(dto.getPhone());
         u.setEmail(dto.getEmail());
         return userRepository.save(u);
     }

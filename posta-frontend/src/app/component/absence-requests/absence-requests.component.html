@@ -42,18 +42,18 @@
 <div class="modal fade" id="processRequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered " role="document">
   <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" style="margin-left: 2%;">
           <h6 class="modal-title" id="exampleModalLongTitle">Захтјев за одсуство радника: {{selectedRequest?.worker}}</h6>
       </div>
       
-      <div  class="container"  style="margin: 5% 5% 5% 5%;">
+      <div  class="container"  style="margin: 5% 5% 5% 3%;">
 
           <h6>Да ли желите да одобрите изабрани захтјев за одсуство?</h6>
               
       </div>
       <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Одбиј</button>
-          <button type="button" class="btn btn-primary"  data-dismiss="modal">Потврди</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="reject()">Одбиј</button>
+          <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="approve()">Потврди</button>
       </div>
   </div>
   </div>
