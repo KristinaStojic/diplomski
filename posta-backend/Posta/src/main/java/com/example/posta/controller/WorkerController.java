@@ -2,6 +2,8 @@ package com.example.posta.controller;
 
 import com.example.posta.dto.AddWorkerDTO;
 import com.example.posta.dto.WorkerDTO;
+import com.example.posta.model.Manager;
+import com.example.posta.model.Worker;
 import com.example.posta.service.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,7 @@ import java.util.List;
 
 @RequestMapping(value = "api/worker")
 @RestController
+@CrossOrigin
 public class WorkerController {
 
     @Autowired
@@ -36,6 +39,27 @@ public class WorkerController {
             return new ResponseEntity<>(m, HttpStatus.OK);
         }
 
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(value="/getById/{id}", method = RequestMethod.GET)
+    public @ResponseBody
+    ResponseEntity<WorkerDTO> getById(@PathVariable Long id){
+        WorkerDTO m = workerService.getById(id);
+        if(m != null){
+            return new ResponseEntity<>(m, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(value="/deleteWorker/{id}", method = RequestMethod.DELETE)
+    @PreAuthorize("hasAuthority('ROLE_MANAGER')")
+    public ResponseEntity<Worker> deleteWorker(@PathVariable Long id) {
+        Worker m = this.workerService.deleteWorker(id);
+        if(m!=null){
+            return new ResponseEntity<>(m, HttpStatus.OK);
+        }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }

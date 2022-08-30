@@ -23,4 +23,12 @@ export class EmployeeService {
     return this._http.post<Employee>(`${this.employee_url}/addWorker`, employee)
   }
 
+  public delete(id): Observable <any> {
+    return this._http.delete<any>(`${this.employee_url}/deleteWorker/` + id)
+  }
+
+  public getById(id): Observable<Employee>{
+    return this._http.get<Employee>(`${this.employee_url}/getById/` + id)
+  }  
+
 }

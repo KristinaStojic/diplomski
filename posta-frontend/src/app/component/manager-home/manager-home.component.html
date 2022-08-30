@@ -15,7 +15,6 @@
             <th scope="col" style="width:17.5%">Емаил</th>
             <th scope="col" style="width:17.5%">Телефон</th>
             <th scope="col" style="width:8%"></th>
-            <th scope="col" style="width:8%"></th>
 
           </tr>
         </thead>
@@ -26,8 +25,8 @@
             <td>{{m.surname}}</td>
             <td>{{m.email}}</td>
             <td>{{m.phoneNumber}}</td>
-            <!-- <td><button class="btn btn-primary" (click)="selectManager(m)" data-toggle="modal" data-target="#editManager">Измијени</button></td>
-            <td><button class="btn btn-primary" (click)="deleteManager(m.id)">Избриши</button></td> -->
+            <!-- <td><button class="btn btn-primary" (click)="selectManager(m)" data-toggle="modal" data-target="#editManager">Измијени</button></td> -->
+            <td><button class="btn btn-primary" (click)="deleteManager(m.id)">Избриши</button></td>
 
           </tr>
 
@@ -80,3 +79,5 @@
     </div>
     </div>
 </div>
+
+

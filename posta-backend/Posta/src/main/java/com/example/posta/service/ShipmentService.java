@@ -245,7 +245,7 @@ public class ShipmentService {
                     emailService.sendMailForDeliveredShipment(dto.getEmail(),dto.getCode());
                 }
             }
-            case "Послато на испоруку" -> s.setShipmentStatus(ShipmentStatus.SENDING);
+            //case "Послато на испоруку" -> s.setShipmentStatus(ShipmentStatus.SENDING);
             case "Враћено" -> s.setShipmentStatus(ShipmentStatus.RETURNED);
         }
 
@@ -272,7 +272,7 @@ public class ShipmentService {
         }
 
         s.setDeliveringPostOffice(po);
-        s.setShipmentStatus(ShipmentStatus.SENDING);
+        //s.setShipmentStatus(ShipmentStatus.SENDING);
 
         return shipmentRepository.save(s);
     }

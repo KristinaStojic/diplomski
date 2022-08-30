@@ -26,7 +26,6 @@ public class ShipmentDTO {
     private String shipmentStatus;
     private Long receivingPostOffice;
     private Long deliveringPostOffice;
-    private Region region;
     private String sender;
     private String receiver;
     private Double weight;
@@ -73,10 +72,6 @@ public class ShipmentDTO {
             }
         }
 
-        if(s.getRegion() != null){
-            this.region = s.getRegion();
-        }
-
         this.sender = s.getSender().getName() + " " + s.getSender().getSurname();
         this.receiver = s.getReceiver().getName() + " " + s.getReceiver().getSurname();
         this.weight = s.getWeight();
@@ -97,8 +92,8 @@ public class ShipmentDTO {
         else if(s.getShipmentStatus().equals(ShipmentStatus.RETURNED)){
             this.shipmentStatus = "Враћено";
         }
-        else if(s.getShipmentStatus().equals(ShipmentStatus.SENDING)){
-            this.shipmentStatus = "Испорука у току";
-        }
+//        else if(s.getShipmentStatus().equals(ShipmentStatus.SENDING)){
+//            this.shipmentStatus = "Испорука у току";
+//        }
     }
 }

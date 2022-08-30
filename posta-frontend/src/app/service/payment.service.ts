@@ -18,8 +18,8 @@ export class PaymentService {
     private _http:HttpClient) { }
 
     
-    public getAll(): Observable<Payment[]>{
-      return this._http.get<Payment[]>(`${this.payment_url}/getAll`)
+    public getAll(worker): Observable<any>{
+      return this._http.get<any>(`${this.payment_url}/getAll/${worker}`, worker)
     }
 
     public addPayment(payment): Observable<Payment> {

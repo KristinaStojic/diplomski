@@ -123,4 +123,24 @@ public class WorkerService {
 
         return ret;
     }
+
+    public WorkerDTO getById(Long id){
+        Worker w = workerRepository.findById(id).orElseGet(null);
+        if(w == null){
+            return null;
+        }
+        WorkerDTO wdto = new WorkerDTO(w);
+        return wdto;
+    }
+
+    public Worker deleteWorker(Long id){
+        Worker w = workerRepository.findById(id).orElseGet(null);
+
+        if(w == null){
+            return null;
+        }
+
+        w.setDeleted(true);
+        return workerRepository.save(w);
+    }
 }

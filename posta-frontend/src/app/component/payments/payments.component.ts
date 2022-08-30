@@ -1,6 +1,6 @@
+import { Payment } from './../../model/payment';
 import { PaymentService } from './../../service/payment.service';
 import { Component, OnInit } from '@angular/core';
-import { Payment } from 'src/app/model/payment';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,12 +11,12 @@ import { Router } from '@angular/router';
 export class PaymentsComponent implements OnInit {
 
   payments: Payment[]
-
+  selectedPayment: Payment
 
   constructor(private paymentService: PaymentService, private router: Router) { }
 
   ngOnInit(): void {
-    this.paymentService.getAll().subscribe(
+    this.paymentService.getAll(localStorage.getItem('user')).subscribe(
       (payments: Payment[]) => {
         this.payments = payments
         console.log(this.payments)
@@ -26,6 +26,10 @@ export class PaymentsComponent implements OnInit {
 
   addPayment(){
     this.router.navigate(['/add-payment']);
+  }
+
+  selectPayment(p){
+    this.selectedPayment = p
   }
 
 }

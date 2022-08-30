@@ -46,11 +46,6 @@ public class Shipment {
     @JsonBackReference
     private PostOffice deliveringPostOffice;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "region_id", nullable = true)
-    @JsonBackReference
-    private Region region;
-
     @OneToOne(targetEntity = Client.class,cascade = CascadeType.MERGE)
     @JoinColumn(name = "sender_id")
     private Client sender;
