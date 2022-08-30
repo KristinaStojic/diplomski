@@ -64,4 +64,23 @@ export class ManagerHomeComponent implements OnInit {
     console.log(this.employee)
   }
 
+  selectManager(m){
+
+  }
+
+  deleteManager(id){
+    this.employeeService.delete(id).subscribe(
+      (boolean:any) =>{
+        window.location.reload()
+      },
+      (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Упс...',
+          text: 'Дошло је до грешке!',
+        })
+      }
+    )
+  }
+
 }

@@ -123,4 +123,16 @@ public class WorkerService {
 
         return ret;
     }
+
+
+    public Worker deleteWorker(Long id){
+        Worker w = workerRepository.findById(id).orElseGet(null);
+
+        if(w == null){
+            return null;
+        }
+
+        w.setDeleted(true);
+        return workerRepository.save(w);
+    }
 }
