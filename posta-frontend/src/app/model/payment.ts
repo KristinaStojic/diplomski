@@ -4,6 +4,8 @@ export class Payment {
     id: String
     receiver: Client
     receiverAddress: Address
+    receiverAddressFull: String
+    clientName: String
     clientAddress: Address
     purpose: String
     paymentCode: String
@@ -12,6 +14,7 @@ export class Payment {
     referenceNumber: String
     counterWorker: String
     client: Client
+    clientAddressFull: String
     amount: number
     currency: String
     date: String

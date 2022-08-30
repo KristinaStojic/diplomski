@@ -14,6 +14,7 @@
             <th scope="col" >Сврха уплате</th>
             <th scope="col" >Износ</th>
             <th scope="col" >Датум уплате</th>
+            <th scope="col" style="width:8%"></th>
 
           </tr>
         </thead>
@@ -23,12 +24,61 @@
             <td>{{m.client.name}} {{m.client.surname}}</td>
             <td>{{m.receiver}}</td>
             <td>{{m.purpose}}</td>
-            <td>{{m.amount}}</td>
+            <td>{{m.amount}} {{m.currency}}</td>
             <td>{{m.date}}</td>
-     
+            <td><button class="btn btn-primary" data-toggle="modal" data-target="#paymentDetails" (click)="selectPayment(m)">Детаљи</button></td>
+
           </tr>
 
         </tbody>
       </table>
 
+</div>
+
+
+
+
+<div class="modal fade" id="paymentDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal" role="document">
+  <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Детаљи уплате</h5>
+      </div>
+      
+   
+      <div class="container" style="margin: 5% 5% 5% 5%;">
+          <label>Уплатилац:</label>&nbsp;&nbsp;<br>
+          <h6>{{selectedPayment?.clientName}}, {{selectedPayment?.clientAddressFull}}</h6>
+         
+          <label>Прималац:</label>&nbsp;&nbsp;<br>
+          <h6>{{selectedPayment?.receiver}}, {{selectedPayment?.receiverAddressFull}}</h6>
+          
+          <label>Сврха уплате:</label>&nbsp;&nbsp;<br>
+          <h6>{{selectedPayment?.purpose}}</h6>
+
+          <label>Шифра плаћања:</label>&nbsp;&nbsp;<br>
+          <h6>{{selectedPayment?.paymentCode}}</h6>
+
+          <label>Износ:</label>&nbsp;&nbsp;<br>
+          <h6>{{selectedPayment?.amount}} {{selectedPayment?.currency}}</h6>
+         
+          <label>Рачун примаоца:</label>&nbsp;&nbsp;<br>
+          <h6>{{selectedPayment?.receiverAccount}}</h6>
+
+          <label>Модел:</label>&nbsp;&nbsp;<br>
+          <h6>{{selectedPayment?.model}}</h6>
+
+          <label>Позив на број:</label>&nbsp;&nbsp;<br>
+          <h6>{{selectedPayment?.referenceNumber}}</h6>
+
+          <label>Датум и мјесто пријема:</label>&nbsp;&nbsp;<br>
+          <h6>{{selectedPayment?.date}}, {{selectedPayment?.receivingPlace}}</h6>
+
+      </div>
+      
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Затвори</button>
+      </div>
+  </div>
+  </div>
 </div>
