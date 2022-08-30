@@ -27,4 +27,8 @@ export class EmployeeService {
     return this._http.delete<any>(`${this.employee_url}/deleteWorker/` + id)
   }
 
+  public getById(id): Observable<Employee>{
+    return this._http.get<Employee>(`${this.employee_url}/getById/` + id)
+  }  
+
 }

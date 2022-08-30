@@ -42,6 +42,16 @@ public class WorkerController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    @RequestMapping(value="/getById/{id}", method = RequestMethod.GET)
+    public @ResponseBody
+    ResponseEntity<WorkerDTO> getById(@PathVariable Long id){
+        WorkerDTO m = workerService.getById(id);
+        if(m != null){
+            return new ResponseEntity<>(m, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
 
     @RequestMapping(value="/deleteWorker/{id}", method = RequestMethod.DELETE)
     @PreAuthorize("hasAuthority('ROLE_MANAGER')")
