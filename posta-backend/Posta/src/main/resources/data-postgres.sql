@@ -102,7 +102,7 @@ INSERT INTO public.shipment(
 
 INSERT INTO public.shipment(
 	id, email_report, sent_date, letter_type, personal_delivery, return_receipt, shipment_status, shipment_type, email, total_price, value, weight, receiving_post_office_id, delivering_post_office_id, receiver_id, region_id, sender_id, code)
-	VALUES (16, false, '01-07-2022', 0, true, true, 3, 1, null, 270, 0, 340, 33, null, 1244, null, 1242, 'MGI42D5R7A');
+	VALUES (16, false, '01-07-2022', 0, true, true, 2, 1, null, 270, 0, 340, 33, null, 1244, null, 1242, 'MGI42D5R7A');
 
 INSERT INTO public.financial_service(id, amount, date, client_id, counter_worker_id, currency) VALUES (11, 1500, '07-01-2022', 1240, 1239, 'DIN');
 

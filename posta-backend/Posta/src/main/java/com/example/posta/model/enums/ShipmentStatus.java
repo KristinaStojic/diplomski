@@ -4,5 +4,5 @@ public enum ShipmentStatus {
     RECEIVED,
     DELIVERED,
     RETURNED,
-    SENDING
+    //SENDING
 }

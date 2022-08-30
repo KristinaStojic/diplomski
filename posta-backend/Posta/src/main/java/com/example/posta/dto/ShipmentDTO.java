@@ -97,8 +97,8 @@ public class ShipmentDTO {
         else if(s.getShipmentStatus().equals(ShipmentStatus.RETURNED)){
             this.shipmentStatus = "Враћено";
         }
-        else if(s.getShipmentStatus().equals(ShipmentStatus.SENDING)){
-            this.shipmentStatus = "Испорука у току";
-        }
+//        else if(s.getShipmentStatus().equals(ShipmentStatus.SENDING)){
+//            this.shipmentStatus = "Испорука у току";
+//        }
     }
 }

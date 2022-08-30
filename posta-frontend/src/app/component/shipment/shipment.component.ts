@@ -43,9 +43,9 @@ export class ShipmentComponent implements OnInit {
     if(newStatus == 1){
       this.newShipmentStatus = 'Чека на испоруку'
     }
-    else if(newStatus == 2){
-      this.newShipmentStatus = 'Послато на испоруку'
-    }
+    // else if(newStatus == 2){
+    //   this.newShipmentStatus = 'Послато на испоруку'
+    // }
     else if(newStatus == 3){
       this.newShipmentStatus = 'Достављено'
     }
