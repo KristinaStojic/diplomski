@@ -1,4 +1,4 @@
-package com.example.posta.model;
+package com.example.posta.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

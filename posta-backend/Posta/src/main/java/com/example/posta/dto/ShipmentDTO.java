@@ -26,7 +26,6 @@ public class ShipmentDTO {
     private String shipmentStatus;
     private Long receivingPostOffice;
     private Long deliveringPostOffice;
-    private Region region;
     private String sender;
     private String receiver;
     private Double weight;
@@ -71,10 +70,6 @@ public class ShipmentDTO {
             else{
                 this.letterType = "Препоручена пошиљка";
             }
-        }
-
-        if(s.getRegion() != null){
-            this.region = s.getRegion();
         }
 
         this.sender = s.getSender().getName() + " " + s.getSender().getSurname();

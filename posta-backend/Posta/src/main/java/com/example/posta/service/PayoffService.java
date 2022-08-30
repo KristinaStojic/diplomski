@@ -1,10 +1,10 @@
 package com.example.posta.service;
 
 import com.example.posta.dto.AddPayoffDTO;
+import com.example.posta.dto.EditPayoffStatusDTO;
 import com.example.posta.dto.PayoffDTO;
 import com.example.posta.dto.SearchPayoffDTO;
 import com.example.posta.model.*;
-import com.example.posta.model.enums.LetterType;
 import com.example.posta.model.enums.PayoffType;
 import com.example.posta.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PayoffService {

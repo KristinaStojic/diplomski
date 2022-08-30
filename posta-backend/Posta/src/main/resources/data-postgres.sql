@@ -90,19 +90,19 @@ INSERT INTO public.client(id, address_id) VALUES (1252, 161);
 
 
 INSERT INTO public.shipment(
-	id, email_report, sent_date, letter_type, personal_delivery, return_receipt, shipment_status, shipment_type, email, total_price, value, weight, receiving_post_office_id, delivering_post_office_id, receiver_id, region_id, sender_id, code)
-	VALUES (11, false, '02-05-2022', null, true, true, 0, 1, null, 250, 0, 3500, 33, null, 1242, null, 1240, 'AKR3O53M8P');
+	id, email_report, sent_date, letter_type, personal_delivery, return_receipt, shipment_status, shipment_type, email, total_price, value, weight, receiving_post_office_id, delivering_post_office_id, receiver_id, sender_id, code)
+	VALUES (11, false, '02-05-2022', null, true, true, 0, 1, null, 250, 0, 3500, 33, null, 1242, 1240, 'AKR3O53M8P');
 INSERT INTO public.shipment(
-	id, email_report, sent_date, letter_type, personal_delivery, return_receipt, shipment_status, shipment_type, email, total_price, value, weight, receiving_post_office_id, delivering_post_office_id, receiver_id, region_id, sender_id, code)
-	VALUES (12, false, '01-08-2022', null, true, true, 1, 1, null, 250, 0, 3500, 33, 34, 1242, null, 1240, 'AMFE305AMF');
+	id, email_report, sent_date, letter_type, personal_delivery, return_receipt, shipment_status, shipment_type, email, total_price, value, weight, receiving_post_office_id, delivering_post_office_id, receiver_id, sender_id, code)
+	VALUES (12, false, '01-08-2022', null, true, true, 1, 1, null, 250, 0, 3500, 33, 34, 1242, 1240, 'AMFE305AMF');
 
 INSERT INTO public.shipment(
-	id, email_report, sent_date, letter_type, personal_delivery, return_receipt, shipment_status, shipment_type, email, total_price, value, weight, receiving_post_office_id, delivering_post_office_id, receiver_id, region_id, sender_id, code)
-	VALUES (15, true, '01-03-2022', 1, true, true, 2, 0, 'huawei5242@gmail.com', 350, 0, 120, 33, null, 1244, null, 1245, 'NFHG24K45N');
+	id, email_report, sent_date, letter_type, personal_delivery, return_receipt, shipment_status, shipment_type, email, total_price, value, weight, receiving_post_office_id, delivering_post_office_id, receiver_id, sender_id, code)
+	VALUES (15, true, '01-03-2022', 1, true, true, 2, 0, 'huawei5242@gmail.com', 350, 0, 120, 33, null, 1244, 1245, 'NFHG24K45N');
 
 INSERT INTO public.shipment(
-	id, email_report, sent_date, letter_type, personal_delivery, return_receipt, shipment_status, shipment_type, email, total_price, value, weight, receiving_post_office_id, delivering_post_office_id, receiver_id, region_id, sender_id, code)
-	VALUES (16, false, '01-07-2022', 0, true, true, 2, 1, null, 270, 0, 340, 33, null, 1244, null, 1242, 'MGI42D5R7A');
+	id, email_report, sent_date, letter_type, personal_delivery, return_receipt, shipment_status, shipment_type, email, total_price, value, weight, receiving_post_office_id, delivering_post_office_id, receiver_id, sender_id, code)
+	VALUES (16, false, '01-07-2022', 0, true, true, 3, 1, null, 270, 0, 340, 33, null, 1244, 1242, 'MGI42D5R7A');
 
 INSERT INTO public.financial_service(id, amount, date, client_id, counter_worker_id, currency) VALUES (11, 1500, '07-01-2022', 1240, 1239, 'DIN');
 

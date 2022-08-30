@@ -1,9 +1,8 @@
 package com.example.posta.controller;
 
 import com.example.posta.dto.*;
-import com.example.posta.model.EditPayoffStatusDTO;
+import com.example.posta.dto.EditPayoffStatusDTO;
 import com.example.posta.model.Payoff;
-import com.example.posta.service.PaymentService;
 import com.example.posta.service.PayoffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
