@@ -76,14 +76,21 @@ public class PaymentService {
         client.setDeleted(false);
         client.setEnabled(true);
         Address clientAddress = new Address(dto.getClientAddress());
-        City c = new City(dto.getClientAddress().getCity());
-        Country cnt = new Country();
-        cnt.setCountryName(dto.getClientAddress().getCountry());
-        countryRepository.save(cnt);
-        c.setCountry(cnt);
-        c.setPostalCode(dto.getClientAddress().getPostalCode());
-        cityRepository.save(c);
-        clientAddress.setCity(c);
+        City found = cityRepository.findByPostalCode(dto.getClientAddress().getPostalCode());
+        if(found != null){
+            clientAddress.setCity(found);
+        }else{
+            City c = new City(dto.getClientAddress().getCity());
+            Country cnt = new Country();
+            cnt.setCountryName(dto.getClientAddress().getCountry());
+            countryRepository.save(cnt);
+            c.setCountry(cnt);
+            c.setPostalCode(dto.getClientAddress().getPostalCode());
+            cityRepository.save(c);
+            clientAddress.setCity(c);
+
+        }
+
         addressRepository.save(clientAddress);
         client.setAddress(clientAddress);
         clientRepository.save(client);
@@ -94,14 +101,22 @@ public class PaymentService {
         receiver.setDeleted(false);
         receiver.setEnabled(true);
         Address receiverAddress = new Address(dto.getReceiverAddress());
-        City rc = new City(dto.getReceiverAddress().getCity());
-        rc.setPostalCode(dto.getReceiverAddress().getPostalCode());
-        Country cntr = new Country();
-        cntr.setCountryName(dto.getReceiverAddress().getCountry());
-        countryRepository.save(cntr);
-        rc.setCountry(cntr);
-        cityRepository.save(rc);
-        receiverAddress.setCity(rc);
+        City found2 = cityRepository.findByPostalCode(dto.getReceiverAddress().getPostalCode());
+        if(found2 != null){
+            receiverAddress.setCity(found2);
+        }else{
+            City rc = new City(dto.getReceiverAddress().getCity());
+            rc.setPostalCode(dto.getReceiverAddress().getPostalCode());
+            Country cntr = new Country();
+            cntr.setCountryName(dto.getReceiverAddress().getCountry());
+            countryRepository.save(cntr);
+            rc.setCountry(cntr);
+            cityRepository.save(rc);
+            receiverAddress.setCity(rc);
+
+        }
+
+
         addressRepository.save(receiverAddress);
         receiver.setAddress(receiverAddress);
         clientRepository.save(receiver);

@@ -37,17 +37,14 @@ INSERT INTO USERS(id, deleted, email, enabled, last_password_reset_date, name, p
 
 INSERT INTO public.country(id, country_name) VALUES (100, 'Srbija');
 INSERT INTO public.country(id, country_name) VALUES (101, 'BiH');
-INSERT INTO public.country(id, country_name) VALUES (102, 'Srbija');
-INSERT INTO public.country(id, country_name) VALUES (103, 'Srbija');
-INSERT INTO public.country(id, country_name) VALUES (104, 'Srbija');
-INSERT INTO public.country(id, country_name) VALUES (105, 'Srbija');
+INSERT INTO public.country(id, country_name) VALUES (102, 'Hrvatska');
 
 
 INSERT INTO public.city(id, city_name, postal_code, country_id) VALUES (150, 'Novi Sad', 21000, 100);
-INSERT INTO public.city(id, city_name, postal_code, country_id) VALUES (151, 'Subotica', 24000, 101);
-INSERT INTO public.city(id, city_name, postal_code, country_id) VALUES (152, 'Bijeljina', 35000, 102);
-INSERT INTO public.city(id, city_name, postal_code, country_id) VALUES (153, 'Zvornik', 75400, 103);
-INSERT INTO public.city(id, city_name, postal_code, country_id) VALUES (154, 'Nis', 25400, 104);
+INSERT INTO public.city(id, city_name, postal_code, country_id) VALUES (151, 'Subotica', 24000, 100);
+INSERT INTO public.city(id, city_name, postal_code, country_id) VALUES (152, 'Bijeljina', 35000, 101);
+INSERT INTO public.city(id, city_name, postal_code, country_id) VALUES (153, 'Zvornik', 75400, 101);
+INSERT INTO public.city(id, city_name, postal_code, country_id) VALUES (154, 'Dubrovnik', 25400, 102);
 
 
 INSERT INTO public.address(id, latitude, longitude, street, street_number, city_id) VALUES (155, 15.265, 45.235, 'Svetosavska', 10, 150);

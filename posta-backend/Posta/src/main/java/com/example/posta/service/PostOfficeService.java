@@ -66,18 +66,24 @@ public class PostOfficeService {
 
         Manager m = this.managerRepository.findById(dto.getManagerID()).orElseGet(null);
 //        p.setManager(m);
-
-        Country c = new Country();
-        c.setCountryName(dto.getCountry());
-        this.countryRepository.save(c);
-
-        City city = new City();
-        city.setCountry(c);
-        city.setCityName(dto.getCity());
-        this.cityRepository.save(city);
-
         Address a = new Address();
-        a.setCity(city);
+        City found = cityRepository.findByPostalCode(dto.getPostalCode());
+        if(found != null){
+            a.setCity(found);
+        }
+        else{
+            Country c = new Country();
+            c.setCountryName(dto.getCountry());
+            this.countryRepository.save(c);
+
+            City city = new City();
+            city.setCountry(c);
+            city.setCityName(dto.getCity());
+            this.cityRepository.save(city);
+
+            a.setCity(city);
+        }
+
         a.setStreet(dto.getStreet());
         a.setStreetNumber(dto.getStreetNumber());
         a.setLongitude(dto.getLongitude());

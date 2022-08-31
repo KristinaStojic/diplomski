@@ -137,14 +137,20 @@ public class PayoffService {
         client.setDeleted(false);
         client.setEnabled(true);
         Address clientAddress = new Address(dto.getAddress());
-        City c = new City(dto.getAddress().getCity());
-        c.setPostalCode(dto.getAddress().getPostalCode());
-        Country cnt = new Country();
-        cnt.setCountryName(dto.getAddress().getCountry());
-        countryRepository.save(cnt);
-        c.setCountry(cnt);
-        cityRepository.save(c);
-        clientAddress.setCity(c);
+        City found = cityRepository.findByPostalCode(dto.getAddress().getPostalCode());
+        if(found != null){
+            clientAddress.setCity(found);
+        }else{
+            City c = new City(dto.getAddress().getCity());
+            c.setPostalCode(dto.getAddress().getPostalCode());
+            Country cnt = new Country();
+            cnt.setCountryName(dto.getAddress().getCountry());
+            countryRepository.save(cnt);
+            c.setCountry(cnt);
+            cityRepository.save(c);
+            clientAddress.setCity(c);
+        }
+
         addressRepository.save(clientAddress);
         client.setAddress(clientAddress);
         client.setRole(r);
