@@ -19,6 +19,7 @@ export class PayoffsComponent implements OnInit {
   client: Client = new Client()
   clientAddress : Address = new Address()
   worker: any
+  map = new Map();
 
   constructor(private payoffService: PayoffService) { }
 
@@ -34,6 +35,13 @@ export class PayoffsComponent implements OnInit {
         console.log(this.payoffs)
       }
     )
+
+    this.map.set("21000","Novi Sad")
+    this.map.set("75400","Zvornik")
+    this.map.set("24000","Subptica")
+    this.map.set("76300","Bijeljina")
+    this.map.set("20000","Dubrovnik")
+    this.map.set("11000","Beograd")
   }
 
   isAccountingWorker() {
@@ -127,6 +135,19 @@ export class PayoffsComponent implements OnInit {
       this.payoff.payoffType = "CHILDRENS_ALLOWANCE"
     }else if(selected == 3){
       this.payoff.payoffType = "DISABILITY_ALLOWANCE"
+    }
+  }
+
+  findCity(){
+    this.clientAddress.city = this.map.get(this.clientAddress.postalCode)
+    if(this.clientAddress.city == 'Novi Sad' || this.clientAddress.city == 'Subotica' || this.clientAddress.city == 'Beograd'){
+      this.clientAddress.country = 'Srbija'
+    }else if(this.clientAddress.city == 'Bijeljina' || this.clientAddress.city == 'Zvornik'){
+      this.clientAddress.country = 'BIH'
+    }else if(this.clientAddress.city == 'Dubrovnik'){
+      this.clientAddress.country = 'Hrvatska'
+    }else{
+      this.clientAddress.country = ''
     }
   }
 }

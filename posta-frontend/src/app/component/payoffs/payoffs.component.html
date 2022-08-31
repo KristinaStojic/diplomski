@@ -99,7 +99,7 @@
                     <input type="text" placeholder="Број" style="width: 100%;" [(ngModel)]="clientAddress.streetNumber" name="rstreetNum">
                 </div>
                 <div class="col-3" style="padding-right: 0%;">
-                    <input type="text" placeholder="Поштански број" style="width: 97%;" [(ngModel)]="clientAddress.postalCode" name="rPostalCode">
+                    <input type="text" placeholder="Поштански број" style="width: 97%;" [(ngModel)]="clientAddress.postalCode" name="rPostalCode" autocomplete="off" (change) = findCity()>
                 </div>
             </div><br>
 

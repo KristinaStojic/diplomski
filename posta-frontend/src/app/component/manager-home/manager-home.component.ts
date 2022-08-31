@@ -21,7 +21,8 @@ export class ManagerHomeComponent implements OnInit {
   }
 
   employees: Employee[]
-
+  selectedEmployee: Employee
+  
   constructor(private employeeService: EmployeeService) { }
 
   ngOnInit(): void {
@@ -64,8 +65,14 @@ export class ManagerHomeComponent implements OnInit {
     console.log(this.employee)
   }
 
-  selectManager(m){
+  selectManager(id){
 
+    this.employeeService.getById(id).subscribe(
+      (employee: Employee) => {
+        this.selectedEmployee = employee
+        console.log(this.employees)
+      }
+    )
   }
 
   deleteManager(id){

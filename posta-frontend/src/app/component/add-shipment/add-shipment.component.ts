@@ -32,6 +32,7 @@ export class AddShipmentComponent implements OnInit {
   totalPrice: number = 0
   weightPrice: number = 0
   typePrice: number = 0
+  map = new Map();
 
   constructor(private shipmentService: ShipmentService,
     private router: Router,
@@ -41,6 +42,13 @@ export class AddShipmentComponent implements OnInit {
     this.date = this.pipe.transform(Date.now(), 'dd/MM/yyyy');
     this.worker = localStorage.getItem('user')
     this.shipment.value = 0
+
+    this.map.set("21000","Novi Sad")
+    this.map.set("75400","Zvornik")
+    this.map.set("24000","Subptica")
+    this.map.set("76300","Bijeljina")
+    this.map.set("20000","Dubrovnik")
+    this.map.set("11000","Beograd")
 
   }
 
@@ -287,6 +295,33 @@ export class AddShipmentComponent implements OnInit {
     }
 
     this.shipment.totalPrice = this.totalPrice;
+  }
+
+  findCity(){
+    this.clientAddress.city = this.map.get(this.clientAddress.postalCode)
+    if(this.clientAddress.city == 'Novi Sad' || this.clientAddress.city == 'Subotica' || this.clientAddress.city == 'Beograd'){
+      this.clientAddress.country = 'Srbija'
+    }else if(this.clientAddress.city == 'Bijeljina' || this.clientAddress.city == 'Zvornik'){
+      this.clientAddress.country = 'BIH'
+    }else if(this.clientAddress.city == 'Dubrovnik'){
+      this.clientAddress.country = 'Hrvatska'
+    }else{
+      this.clientAddress.country = ''
+    }
+  }
+
+  
+  findCityReceiver(){
+    this.receiverAddress.city = this.map.get(this.receiverAddress.postalCode)
+    if(this.receiverAddress.city == 'Novi Sad' || this.receiverAddress.city == 'Subotica' || this.receiverAddress.city == 'Beograd'){
+      this.receiverAddress.country = 'Srbija'
+    }else if(this.receiverAddress.city == 'Bijeljina' || this.receiverAddress.city == 'Zvornik'){
+      this.receiverAddress.country = 'BIH'
+    }else if(this.receiverAddress.city == 'Dubrovnik'){
+      this.receiverAddress.country = 'Hrvatska'
+    }else{
+      this.receiverAddress.country = ''
+    }
   }
 
 }

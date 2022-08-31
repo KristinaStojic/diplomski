@@ -23,13 +23,13 @@
                         <input type="text" placeholder="Број" style="width: 100%;" [(ngModel)]="clientAddress.streetNumber" name="streetNumber">
                     </div>
                     <div class="col-3" style="padding-right: 0%;">
-                        <input type="text" placeholder="Поштански број" style="width: 97%;" [(ngModel)]="clientAddress.postalCode" name="postalCode">
+                        <input type="text" placeholder="Поштански број" style="width: 97%;" [(ngModel)]="clientAddress.postalCode" name="postalCode" autocomplete="off" (change) = findCity()>
                     </div>
                 </div><br>
 
                 <div class="row">
                     <div class="col">
-                        <input style="width: 95%; margin-left: 0.5ch; margin-top: 0.5ch;" type="text" class="row" placeholder="Град" [(ngModel)]="clientAddress.city" name="city">
+                        <input style="width: 95%; margin-left: 0.5ch; margin-top: 0.5ch;" type="text" class="row" placeholder="Град" [(ngModel)]="clientAddress.city" autocomplete="off" name="city" >
                     </div>
     
                     <div class="col">
@@ -56,13 +56,13 @@
                         <input type="text" placeholder="Број" style="width: 100%;"  [(ngModel)]="receiverAddress.streetNumber" name="rstreetNum">
                     </div>
                     <div class="col-3" style="padding-right: 0%;">
-                        <input type="text" placeholder="Поштански број" style="width: 97%;"  [(ngModel)]="receiverAddress.postalCode" name="rPostalCode">
+                        <input type="text" placeholder="Поштански број" style="width: 97%;"  [(ngModel)]="receiverAddress.postalCode" name="rPostalCode" autocomplete="off" (change) = findCityReceiver()>
                     </div>
                 </div><br>
 
                 <div class="row">
                     <div class="col">
-                        <input style="width: 95%; margin-left: 0.5ch; margin-top: 0.5ch;" type="text" class="row" placeholder="Град"  [(ngModel)]="receiverAddress.city" name="rcity">
+                        <input style="width: 95%; margin-left: 0.5ch; margin-top: 0.5ch;" type="text" class="row" placeholder="Град"  [(ngModel)]="receiverAddress.city" name="rcity" >
                     </div>
     
                     <div class="col">
