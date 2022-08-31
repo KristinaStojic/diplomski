@@ -69,12 +69,11 @@ public class ShipmentService {
                 return null;
             }
 
-            if(p.getReceivingPostOffice().getId() == w.getPostOffice().getId()){
+            if(p.getDeliveringPostOffice() != null && p.getDeliveringPostOffice().getId() != p.getReceivingPostOffice().getId() && p.getDeliveringPostOffice().getId() == w.getPostOffice().getId()){
                 ShipmentDTO s = new ShipmentDTO(p);
                 ret.add(s);
             }
-
-            if(p.getDeliveringPostOffice() != null && p.getDeliveringPostOffice().getId() != p.getReceivingPostOffice().getId() && p.getDeliveringPostOffice().getId() == w.getPostOffice().getId()){
+            else if(p.getDeliveringPostOffice() == null && p.getReceivingPostOffice().getId() == w.getPostOffice().getId()){
                 ShipmentDTO s = new ShipmentDTO(p);
                 ret.add(s);
             }
@@ -298,9 +297,9 @@ public class ShipmentService {
                 else if(r.getShipmentStatus().toString().equals("DELIVERED")){
                     map.put("Достављено", n);
                 }
-                else if(r.getShipmentStatus().toString().equals("SENDING")){
-                    map.put("Послато на испоруку", n);
-                }
+//                else if(r.getShipmentStatus().toString().equals("SENDING")){
+//                    map.put("Послато на испоруку", n);
+//                }
                 else if(r.getShipmentStatus().toString().equals("RETURNED")){
                     map.put("Враћено", n);
                 }
@@ -351,9 +350,9 @@ public class ShipmentService {
                 else if(r.getShipmentStatus().toString().equals("DELIVERED")){
                     map.put("Достављено", n);
                 }
-                else if(r.getShipmentStatus().toString().equals("SENDING")){
-                    map.put("Послато на испоруку", n);
-                }
+//                else if(r.getShipmentStatus().toString().equals("SENDING")){
+//                    map.put("Послато на испоруку", n);
+//                }
                 else if(r.getShipmentStatus().toString().equals("RETURNED")){
                     map.put("Враћено", n);
                 }
@@ -431,7 +430,7 @@ public class ShipmentService {
 
         map.put("Чека на испоруку", received);
         map.put("Достављено", delivered);
-        map.put("Послато на испоруку", sending);
+        //map.put("Послато на испоруку", sending);
         map.put("Враћено", returned);
 
 

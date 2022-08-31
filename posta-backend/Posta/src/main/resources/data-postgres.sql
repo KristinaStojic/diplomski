@@ -18,7 +18,7 @@ INSERT INTO USERS(id, deleted, email, enabled, last_password_reset_date, name, p
 INSERT INTO USERS(id, deleted, email, enabled, last_password_reset_date, name, password, phone_number, surname, role_id, verification_code)
 	VALUES (1242, false, 'klijent2@gmail.com', true, null,  'Petar', null, '0641352652', 'Jovanovic', 6, null);
 INSERT INTO USERS(id, deleted, email, enabled, last_password_reset_date, name, password, phone_number, surname, role_id, verification_code)
- 	VALUES (1243, false, 'obracunski@gmail.com', true, null,  'Radmila', 'kris', '0641352652', 'Stojic', 5, null);
+ 	VALUES (1243, false, 'radmilastojic68@gmail.com', true, null,  'Radmila', 'kris', '0641352652', 'Stojic', 5, null);
 INSERT INTO USERS(id, deleted, email, enabled, last_password_reset_date, name, password, phone_number, surname, role_id, verification_code)
 	VALUES (1244, false, 'klijent3@gmail.com', true, null,  'Marija', null, '0641352652', 'Markovic', 6, null);
 INSERT INTO USERS(id, deleted, email, enabled, last_password_reset_date, name, password, phone_number, surname, role_id, verification_code)
@@ -30,7 +30,9 @@ INSERT INTO USERS(id, deleted, email, enabled, last_password_reset_date, name, p
 INSERT INTO USERS(id, deleted, email, enabled, last_password_reset_date, name, password, phone_number, surname, role_id, verification_code)
 	VALUES (1252, false, 'klijent7@gmail.com', true, null,  'Ognjen', null, '063565955', 'Peric', 6, null);
 INSERT INTO USERS(id, deleted, email, enabled, last_password_reset_date, name, password, phone_number, surname, role_id, verification_code)
-	VALUES (1246, false, 'salterposta2@gmail.com', true, null,  'Natasa', 'kris', '061352652', 'Mitrovic', 2, null);
+	VALUES (1246, false, 'obracunskiposta2@gmail.com', true, null,  'Natasa', 'kris', '061352652', 'Mitrovic', 5, null);
+INSERT INTO USERS(id, deleted, email, enabled, last_password_reset_date, name, password, phone_number, surname, role_id, verification_code)
+	VALUES (1247, false, 'salterposa2@gmail.com', true, null,  'Natasa', 'kris', '061352652', 'Mitrovic', 2, null);
 
 
 INSERT INTO public.country(id, country_name) VALUES (100, 'Srbija');
@@ -66,13 +68,15 @@ INSERT INTO public.worker(id, post_office_id) VALUES (1239, 33);
 INSERT INTO public.worker(id, post_office_id) VALUES (1238, 34);
 INSERT INTO public.worker(id, post_office_id) VALUES (1246, 34);
 INSERT INTO public.worker(id, post_office_id) VALUES (1243, 33);
+INSERT INTO public.worker(id, post_office_id) VALUES (1247, 34);
 
 INSERT INTO public.manager(id) VALUES (1237);
 INSERT INTO public.manager(id) VALUES (1238);
 
 INSERT INTO public.counter_worker(id) VALUES (1239);
-INSERT INTO public.counter_worker(id) VALUES (1246);
+INSERT INTO public.counter_worker(id) VALUES (1247);
 
+INSERT INTO public.accounting_worker(id) VALUES (1246);
 INSERT INTO public.accounting_worker(id) VALUES (1243);
 
 INSERT INTO public.notification(id, content, manager_id, creation_date) VALUES (15, 'Срећни божићни и новогодишњи празници!', 1237, '07-01-2020');
@@ -102,7 +106,7 @@ INSERT INTO public.shipment(
 
 INSERT INTO public.shipment(
 	id, email_report, sent_date, letter_type, personal_delivery, return_receipt, shipment_status, shipment_type, email, total_price, value, weight, receiving_post_office_id, delivering_post_office_id, receiver_id, sender_id, code)
-	VALUES (16, false, '01-07-2022', 0, true, true, 3, 1, null, 270, 0, 340, 33, null, 1244, 1242, 'MGI42D5R7A');
+	VALUES (16, false, '01-07-2022', 0, true, true, 2, 1, null, 270, 0, 340, 33, null, 1244, 1242, 'MGI42D5R7A');
 
 INSERT INTO public.financial_service(id, amount, date, client_id, counter_worker_id, currency) VALUES (11, 1500, '07-01-2022', 1240, 1239, 'DIN');
 
@@ -117,7 +121,7 @@ INSERT INTO public.payment(
 	VALUES ('3R4', '6548645447', 'Internet', '6598656244', 'Subotica', '234', 12, 1240);
 
 
-INSERT INTO public.financial_service(id, amount, date, client_id, counter_worker_id, currency) VALUES (13, 3500, '09-05-2022', 1242, 1246, 'DIN');
+INSERT INTO public.financial_service(id, amount, date, client_id, counter_worker_id, currency) VALUES (13, 3500, '09-05-2022', 1242, 1247, 'DIN');
 
 INSERT INTO public.payment(
 	model, payment_code, purpose, receiver_account, receiving_place, reference_number, id, receiver_id)
