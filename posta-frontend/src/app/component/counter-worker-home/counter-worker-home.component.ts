@@ -45,12 +45,10 @@ export class CounterWorkerHomeComponent implements OnInit {
       data: {
           labels: keys,
           datasets: [{
-              label: 'број уплата',
+              label: 'broj uplata',
               data: values,
               backgroundColor: [
-                  'rgba(253, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(54, 100, 235, 1)'
+                'rgba(54, 162, 235, 1)',
               ],
               borderWidth: 1,
 
@@ -97,23 +95,13 @@ export class CounterWorkerHomeComponent implements OnInit {
     this.myChart = new Chart(this.ctx, {
       type: 'bar',
       data: {
-          labels: ["Јануар", "Фебруар", "Март", "Април", "Мај", "Јун", "Јул", "Август", "Септембар", "Октобар", "Новембар", "Децембар"],
+          labels: ["Januar", "Februar", "Mart", "April", "Maj", "Jun", "Jul", "Avgust", "Septembar", "Oktobar", "Novembar", "Decembar"],
           datasets: [{
-              label: 'број уплата',
+              label: 'broj uplata',
               data: [data["JANUARY"] , data["FEBRUARY"],data["MARCH"], data["APRIL"], data["MAY"], data["JUN"], data["JULY"], data["AUGUST"], data["SEPTEMBER"], data["OCTOBER"], data["NOVEMBER"], data["DECEMBER"]],
               backgroundColor: [
-                  'rgba(255, 99, 132, 1)',
                   'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(255, 145, 86, 1)',
-                  'rgba(255, 104, 86, 1)',
-                  'rgba(255, 125, 86, 1)',
-                  'rgba(255, 23, 86, 1)',
-                  'rgba(255, 206, 75, 1)',
-                  'rgba(255, 206, 124, 1)',
-                  'rgba(47, 206, 124, 1)',
-                  'rgba(125, 206, 124, 1)',
-                  'rgba(10, 206, 124, 1)',
+                 
 
 
               ],
@@ -137,8 +125,8 @@ export class CounterWorkerHomeComponent implements OnInit {
     if(this.startDate == undefined || this.endDate == undefined){
       Swal.fire({
         icon: 'error',
-        title: 'Упс...',
-        text: 'Изаберите датуме!',
+        title: 'Ups...',
+        text: 'Izaberite datume!',
       }) 
     }
     else{
@@ -150,8 +138,8 @@ export class CounterWorkerHomeComponent implements OnInit {
       if(this.startDate.getTime() >= this.endDate.getTime()){
         Swal.fire({
           icon: 'error',
-          title: 'Упс...',
-          text: 'Почетни датум не смије бити већи или једнак крајњем!',
+          title: 'Ups...',
+          text: 'Početni datum ne smije biti veći ili jednak krajnjem!',
         }) 
       }
       else{
@@ -192,10 +180,10 @@ export class CounterWorkerHomeComponent implements OnInit {
       data: {
           labels: first,
           datasets: [{
-              label: 'број уплата',
+              label: 'broj uplata',
               data: values,
               backgroundColor: 
-                  'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
               
               borderWidth: 1
           }]
@@ -214,8 +202,8 @@ export class CounterWorkerHomeComponent implements OnInit {
     if(this.startDateAmount == undefined || this.endDateAmount == undefined){
       Swal.fire({
         icon: 'error',
-        title: 'Упс...',
-        text: 'Изаберите датуме!',
+        title: 'Ups...',
+        text: 'Izaberite datume!',
       }) 
     }
     else{
@@ -227,8 +215,8 @@ export class CounterWorkerHomeComponent implements OnInit {
       if(this.startDateAmount.getTime() >= this.endDateAmount.getTime()){
         Swal.fire({
           icon: 'error',
-          title: 'Упс...',
-          text: 'Почетни датум не смије бити већи или једнак крајњем!',
+          title: 'Ups...',
+          text: 'Početni datum ne smije biti veći ili jednak krajnjem!',
         }) 
       }
       else{
@@ -270,10 +258,10 @@ export class CounterWorkerHomeComponent implements OnInit {
       data: {
           labels: first,
           datasets: [{
-              label: 'уплаћени новац',
+              label: 'uplaćeni novac',
               data: values,
               backgroundColor: 
-                  'rgba(154, 55, 132, 1)',
+              'rgba(54, 162, 235, 1)',
               
               borderWidth: 1
           }]

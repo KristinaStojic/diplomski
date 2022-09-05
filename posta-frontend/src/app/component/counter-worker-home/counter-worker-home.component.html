@@ -1,22 +1,22 @@
 <div class="borders">
 
     <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
-        <h4>Статистика уплата</h4>
-        <button class="btn btn-primary" (click)="allPayments()">Све уплате</button>
+        <h4>Statistika uplata</h4>
+        <button class="btn btn-primary" (click)="allPayments()">Sve uplate</button>
     </div>
     <br>
 
     <div style="width:100%;"> 
         <div style="display:inline-block; width: 49.5%; padding: 1%;" class="div1 shadow">
-            <h6>Број уплата по години:</h6>
+            <h6>Broj uplata po godini:</h6>
             
             <canvas id="myChartYear" width="600" height="540"></canvas>
         
         </div>
 
         <div style="display:inline-block; width: 49.5%; margin-left: 1%; padding: 1%;" class="div2 shadow">
-            <h6>Мјесечни број уплата за изабрану годину: </h6><br>
-            <label>Изабрана година:</label>
+            <h6>Mjesečni broj uplata za izabranu godinu: </h6><br>
+            <label>Izabrana godina:</label>
             <select class="form-select" aria-label="Default select example" (change)="selectYear($event)">
                 <option value="2021">2021</option>
                 <option selected value="2022">2022</option>
@@ -30,40 +30,40 @@
 
     <div style="width:100%; margin-top: 1%;">
         <div style="display:inline-block; width: 49.5%; padding: 1%;" class="div1 shadow">
-            <br><h6>Број уплата за изабрани период: </h6><br>
+            <br><h6>Broj uplata za izabrani period: </h6><br>
             <mat-form-field appearance="fill">
-                <mat-label>Почетни датум</mat-label>
+                <mat-label>Početni datum</mat-label>
                 <input matInput [matDatepicker]="picker" [(ngModel)]="startDate">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker ></mat-datepicker>
             </mat-form-field>
             <mat-form-field appearance="fill" style="margin-left: 3%; ">
-                <mat-label>Крајњи датум</mat-label>
+                <mat-label>Krajnji datum</mat-label>
                 <input matInput [matDatepicker]="picker2" [min]="startDate" [(ngModel)]="endDate">
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2 ></mat-datepicker>
             </mat-form-field>
-            <button class="btn btn-primary" style="margin-left: 2%;" (click)="selectDays()">Изаберите</button><br>
+            <button class="btn btn-primary" style="margin-left: 2%;" (click)="selectDays()">Izaberite</button><br>
     
             <canvas *ngIf="startDate !== undefined && endDate !== undefined" id="myChartWeek" width="600" height="450"></canvas>
       
         </div>
 
         <div style="display:inline-block; width: 49.5%; margin-left: 1%; padding: 1%;" class="div2 shadow">
-            <br><h6>Укупна количина уплаћеног новца за изабрани период: </h6><br>
+            <br><h6>Ukupna količina uplaćenog novca za izabrani period: </h6><br>
             <mat-form-field appearance="fill">
-                <mat-label>Почетни датум</mat-label>
+                <mat-label>Početni datum</mat-label>
                 <input matInput [matDatepicker]="picker3" [(ngModel)]="startDateAmount">
                 <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                 <mat-datepicker #picker3 ></mat-datepicker>
             </mat-form-field>
             <mat-form-field appearance="fill" style="margin-left: 3%; ">
-                <mat-label>Крајњи датум</mat-label>
+                <mat-label>Krajnji datum</mat-label>
                 <input matInput [matDatepicker]="picker22" [min]="startDateAmount" [(ngModel)]="endDateAmount">
                 <mat-datepicker-toggle matSuffix [for]="picker22"></mat-datepicker-toggle>
                 <mat-datepicker #picker22 ></mat-datepicker>
             </mat-form-field>
-            <button class="btn btn-primary" style="margin-left: 2%;" (click)="selectDaysAmount()">Изаберите</button><br>
+            <button class="btn btn-primary" style="margin-left: 2%;" (click)="selectDaysAmount()">Izaberite</button><br>
     
             <canvas *ngIf="startDateAmount !== undefined && endDateAmount !== undefined" id="myChartWeekAmount" width="600" height="450"></canvas>
     

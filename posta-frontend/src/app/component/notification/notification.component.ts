@@ -36,8 +36,8 @@ export class NotificationComponent implements OnInit {
       (error) => {
         Swal.fire({
           icon: 'error',
-          title: 'Упс...',
-          text: 'Дошло је до грешке!',
+          title: 'Ups...',
+          text: 'Došlo je do greške!',
         })
       },
     )

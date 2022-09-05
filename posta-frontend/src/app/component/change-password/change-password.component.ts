@@ -50,7 +50,7 @@ export class ChangePasswordComponent implements OnInit {
       (err) => {  
         this.submitted = false; 
         this.form.reset()
-        this.notification = 'Лозинке се не поклапају или је погрешна стара!'
+        this.notification = 'Lozinke se ne poklapaju ili je stara pogrešna!'
       } 
     ) 
 

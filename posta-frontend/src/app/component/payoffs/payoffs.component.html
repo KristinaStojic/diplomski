@@ -1,18 +1,18 @@
 <div class="borders">
 
-    <h4>Исплате</h4>
+    <h4>Isplate</h4>
     <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
         
         <div class="row">
           <div class="col input-group">
-            <input type="search" class="form-control rounded" [(ngModel)]="searchCriteria" placeholder="Клијент" aria-label="Search" aria-describedby="search-addon" />
-            <button type="button" class="btn btn-outline-primary" (click)="search()">Претражи</button>
-            <button type="button" class="btn btn-outline-primary" (click)="getAll()">Обриши</button>
+            <input type="search" class="form-control rounded" [(ngModel)]="searchCriteria" placeholder="Klijent" aria-label="Search" aria-describedby="search-addon" />
+            <button type="button" class="btn btn-outline-primary" (click)="search()">Pretraži</button>
+            <button type="button" class="btn btn-outline-primary" (click)="getAll()">Obriši</button>
           </div>
         </div>
 
         <div class="col-1.5"> 
-          <button *ngIf="isAccountingWorker()" class="btn btn-primary" data-toggle="modal" data-target="#addPayoff" style="margin-left: 4ch;">Додај исплату</button>
+          <button *ngIf="isAccountingWorker()" class="btn btn-primary" data-toggle="modal" data-target="#addPayoff" style="margin-left: 4ch;">Dodaj isplatu</button>
         </div>
 
     </div>
@@ -22,11 +22,11 @@
         <thead>
           <tr>
             <th scope="col" style="width:8%">#</th>
-            <th scope="col" style="width:19.25%">Прималац</th>
-            <th scope="col" style="width:24%">Адреса</th>
-            <th scope="col" style="width:19.25%">Тип</th>
-            <th scope="col" style="width:15%">Износ</th>
-            <th scope="col" style="width:12%">Статус</th>
+            <th scope="col" style="width:19.25%">Primalac</th>
+            <th scope="col" style="width:24%">Adresa</th>
+            <th scope="col" style="width:19.25%">Tip</th>
+            <th scope="col" style="width:15%">Iznos</th>
+            <th scope="col" style="width:12%">Status</th>
 
           </tr>
         </thead>
@@ -37,8 +37,8 @@
             <td>{{m.clientAddress}}</td>
             <td>{{m.payoffType}}</td>
             <td>{{m.amountCurrency}}</td>
-            <td *ngIf="m.paidOff" style="color:green; font-weight: bold;">Исплаћено</td>
-            <td *ngIf="!m.paidOff"><button class="btn btn-primary" data-toggle="modal" data-target="#processPayoff" (click)="selectPayoff(m)">Исплати</button></td>
+            <td *ngIf="m.paidOff" style="color:green; font-weight: bold;">Isplaćeno</td>
+            <td *ngIf="!m.paidOff"><button class="btn btn-primary" data-toggle="modal" data-target="#processPayoff" (click)="selectPayoff(m)">Isplati</button></td>
 
           </tr>
 
@@ -53,17 +53,17 @@
     <div class="modal-dialog modal-dialog-centered " role="document">
     <div class="modal-content">
         <div class="modal-header" style="margin-left: 4%;">
-            <h6 class="modal-title" id="exampleModalLongTitle">Исплата</h6>
+            <h6 class="modal-title" id="exampleModalLongTitle">Isplata</h6>
         </div>
         
         <div  class="container"  style="margin: 5% 5% 5% 5%;">
   
-            <h6>Да ли сте сигурни да желите да извршите исплату за корисника: {{selectedPayoff?.client?.name}} {{selectedPayoff?.client?.surname}}?</h6>
+            <h6>Da li ste sigurni da želite da izvršite isplatu za korisnika: {{selectedPayoff?.client?.name}} {{selectedPayoff?.client?.surname}}?</h6>
                 
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Одбиј</button>
-            <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="payOff()">Потврди</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Odbij</button>
+            <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="payOff()">Potvrdi</button>
         </div>
     </div>
     </div>
@@ -76,40 +76,40 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Додај нову исплату</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Dodaj novu isplatu</h5>
         </div><br>
         <div class="form-group" class="center" style="width: 40vw; margin-left: 4%;">
         
             <div class="row">
                 <div class="col">
-                    <label style="margin-bottom: 10px; margin-left: 0.5ch;" class="row">Прималац:</label>
-                    <input style="width: 95%; margin-left: 0.5ch;" type="text" class="row" placeholder="Име" [(ngModel)]="client.name" name="rname">
+                    <label style="margin-bottom: 10px; margin-left: 0.5ch;" class="row">Primalac:</label>
+                    <input style="width: 95%; margin-left: 0.5ch;" type="text" class="row" placeholder="Ime" [(ngModel)]="client.name" name="rname">
                 </div>
                 <div class="col">
-                    <input style="width: 107%; margin-top: 3.9ch;" type="text" class="row" [(ngModel)]="client.surname" placeholder="Презиме" >
+                    <input style="width: 107%; margin-top: 3.9ch;" type="text" class="row" [(ngModel)]="client.surname" placeholder="Prezime" >
                 </div>
             </div>
             <br>
 
             <div class="row">
                 <div class="col-6" >
-                    <input type="text" placeholder="Улица" style="width: 95%; margin-left: 0.5ch;" [(ngModel)]="clientAddress.street" name="rstreet">
+                    <input type="text" placeholder="Ulica" style="width: 95%; margin-left: 0.5ch;" [(ngModel)]="clientAddress.street" name="rstreet">
                 </div>
                 <div class="col-3" style="padding: 0%">
-                    <input type="text" placeholder="Број" style="width: 100%;" [(ngModel)]="clientAddress.streetNumber" name="rstreetNum">
+                    <input type="text" placeholder="Broj" style="width: 100%;" [(ngModel)]="clientAddress.streetNumber" name="rstreetNum">
                 </div>
                 <div class="col-3" style="padding-right: 0%;">
-                    <input type="text" placeholder="Поштански број" style="width: 97%;" [(ngModel)]="clientAddress.postalCode" name="rPostalCode" autocomplete="off" (change) = findCity()>
+                    <input type="text" placeholder="Poštanski broj" style="width: 97%;" [(ngModel)]="clientAddress.postalCode" name="rPostalCode" autocomplete="off" (change) = findCity()>
                 </div>
             </div><br>
 
             <div class="row">
                 <div class="col">
-                    <input style="width: 95%; margin-left: 0.5ch; margin-top: 0.5ch;" type="text" class="row" placeholder="Град" [(ngModel)]="clientAddress.city" name="rcity">
+                    <input style="width: 95%; margin-left: 0.5ch; margin-top: 0.5ch;" type="text" class="row" placeholder="Grad" [(ngModel)]="clientAddress.city" name="rcity">
                 </div>
 
                 <div class="col">
-                    <input style="width: 107%; margin-top: 0.5ch;" type="text" class="row" placeholder="Држава" [(ngModel)]="clientAddress.country" name="rcountry">
+                    <input style="width: 107%; margin-top: 0.5ch;" type="text" class="row" placeholder="Država" [(ngModel)]="clientAddress.country" name="rcountry">
                 </div><br>
 
             </div>
@@ -119,11 +119,11 @@
             <div>
 
                 <div><br>
-                    <label style="margin-bottom: 10px; margin-left: 2px;" class="row">Тип исплате:</label>
+                    <label style="margin-bottom: 10px; margin-left: 2px;" class="row">Tip isplate:</label>
                     <select class="form-select" (change)="selectPayoffType($event)" style="width: 620px; margin-left: 2px;" >
-                        <option selected value="1">Пензија</option>
-                        <option value="2">Дјечији додатак</option>
-                        <option value="3">Инвалиднина</option>
+                        <option selected value="1">Penzija</option>
+                        <option value="2">Dječiji dodatak</option>
+                        <option value="3">Invalidnina</option>
 
                     </select>
                 </div><br>
@@ -132,11 +132,11 @@
 
             <div class="row">
                 <div class="col">
-                    <input style="width: 95%; margin-left: 0.5ch; margin-top: 0.5ch;" type="text" class="row" placeholder="Износ"  [(ngModel)]="payoff.amount"  name="amount">
+                    <input style="width: 95%; margin-left: 0.5ch; margin-top: 0.5ch;" type="text" class="row" placeholder="Iznos"  [(ngModel)]="payoff.amount"  name="amount">
                 </div>
 
                 <div class="col">
-                    <input style="width: 107%; margin-top: 0.5ch;" type="text" class="row" placeholder="Валута"  [(ngModel)]="payoff.currency"  name="currency">
+                    <input style="width: 107%; margin-top: 0.5ch;" type="text" class="row" placeholder="Valuta"  [(ngModel)]="payoff.currency"  name="currency">
                 </div><br>
 
             </div><br>
@@ -145,9 +145,9 @@
      
         
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Затвори</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
             <button type="button" [disabled]="client.name === '' || client.surname === '' || clientAddress.street === '' || clientAddress.streetNumber === '' || clientAddress.postalCode === ''
-             || clientAddress.city === '' || clientAddress.country === '' || payoff.amount === '' || payoff.currency === ''" class="btn btn-primary" (click)="addPayoff()">Сачувај</button>
+             || clientAddress.city === '' || clientAddress.country === '' || payoff.amount === '' || payoff.currency === ''" class="btn btn-primary" (click)="addPayoff()">Sačuvaj</button>
 
         </div>
     </div>

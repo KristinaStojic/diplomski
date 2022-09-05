@@ -1,19 +1,19 @@
 <div class="borders">
 
     <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
-        <h4>Уплате</h4>
-        <button class="btn btn-primary" (click)="addPayment()">Додај уплату</button>
+        <h4>Uplate</h4>
+        <button class="btn btn-primary" (click)="addPayment()">Dodaj uplatu</button>
     </div>
 
     <table class="shadow p-3 mb-5 bg-white rounded table" style="width:100%">
         <thead>
           <tr>
             <th scope="col" style="width:8%">#</th>
-            <th scope="col" >Уплатилац</th>
-            <th scope="col" >Прималац</th>
-            <th scope="col" >Сврха уплате</th>
-            <th scope="col" >Износ</th>
-            <th scope="col" >Датум уплате</th>
+            <th scope="col" >Uplatilac</th>
+            <th scope="col" >Primalac</th>
+            <th scope="col" >Svrha uplate</th>
+            <th scope="col" >Iznos</th>
+            <th scope="col" >Datum uplate</th>
             <th scope="col" style="width:8%"></th>
 
           </tr>
@@ -26,7 +26,7 @@
             <td>{{m.purpose}}</td>
             <td>{{m.amount}} {{m.currency}}</td>
             <td>{{m.date}}</td>
-            <td><button class="btn btn-primary" data-toggle="modal" data-target="#paymentDetails" (click)="selectPayment(m)">Детаљи</button></td>
+            <td><button class="btn btn-primary" data-toggle="modal" data-target="#paymentDetails" (click)="selectPayment(m)">Detalji</button></td>
 
           </tr>
 
@@ -42,42 +42,42 @@
   <div class="modal-dialog modal-dialog-centered modal" role="document">
   <div class="modal-content">
       <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Детаљи уплате</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Detalji uplate</h5>
       </div>
       
    
       <div class="container" style="margin: 5% 5% 5% 5%;">
-          <label>Уплатилац:</label>&nbsp;&nbsp;<br>
+          <label>Uplatilac:</label>&nbsp;&nbsp;<br>
           <h6>{{selectedPayment?.clientName}}, {{selectedPayment?.clientAddressFull}}</h6>
          
-          <label>Прималац:</label>&nbsp;&nbsp;<br>
+          <label>Primalac:</label>&nbsp;&nbsp;<br>
           <h6>{{selectedPayment?.receiver}}, {{selectedPayment?.receiverAddressFull}}</h6>
           
-          <label>Сврха уплате:</label>&nbsp;&nbsp;<br>
+          <label>Svrha uplate:</label>&nbsp;&nbsp;<br>
           <h6>{{selectedPayment?.purpose}}</h6>
 
-          <label>Шифра плаћања:</label>&nbsp;&nbsp;<br>
+          <label>Šifra plaćanja:</label>&nbsp;&nbsp;<br>
           <h6>{{selectedPayment?.paymentCode}}</h6>
 
-          <label>Износ:</label>&nbsp;&nbsp;<br>
+          <label>Iznos:</label>&nbsp;&nbsp;<br>
           <h6>{{selectedPayment?.amount}} {{selectedPayment?.currency}}</h6>
          
-          <label>Рачун примаоца:</label>&nbsp;&nbsp;<br>
+          <label>Račun primaoca:</label>&nbsp;&nbsp;<br>
           <h6>{{selectedPayment?.receiverAccount}}</h6>
 
-          <label>Модел:</label>&nbsp;&nbsp;<br>
+          <label>Model:</label>&nbsp;&nbsp;<br>
           <h6>{{selectedPayment?.model}}</h6>
 
-          <label>Позив на број:</label>&nbsp;&nbsp;<br>
+          <label>Poziv na broj:</label>&nbsp;&nbsp;<br>
           <h6>{{selectedPayment?.referenceNumber}}</h6>
 
-          <label>Датум и мјесто пријема:</label>&nbsp;&nbsp;<br>
+          <label>Datum i mjesto prijema:</label>&nbsp;&nbsp;<br>
           <h6>{{selectedPayment?.date}}, {{selectedPayment?.receivingPlace}}</h6>
 
       </div>
       
       <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Затвори</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
       </div>
   </div>
   </div>

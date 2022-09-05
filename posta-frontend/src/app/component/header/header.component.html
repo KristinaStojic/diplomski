@@ -7,54 +7,54 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin: left 20px; ;">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active" *ngIf="isLogged() && isAdmin()">
-        <a class="nav-link" href="/admin-home">Почетна <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/admin-home">Početna <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active" *ngIf="isLogged() && isManager()">
-        <a class="nav-link" href="/manager-home">Почетна <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/manager-home">Početna <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active" *ngIf="isLogged() && isCounterWorker()">
-        <a class="nav-link" href="/counter-worker-home">Почетна <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/counter-worker-home">Početna <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active" *ngIf="isLogged() && isAccountingWorker()">
-        <a class="nav-link" href="/accounting-worker-home">Почетна <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/accounting-worker-home">Početna <span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active" *ngIf="isAdmin()">
-              <a class="nav-link" href="/admin-home">Управници <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/admin-home">Upravnici <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active" *ngIf="isAdmin()">
-              <a class="nav-link" href="/post-offices">Пословнице</a>
+              <a class="nav-link" href="/post-offices">Poslovnice</a>
             </li>
             <li class="nav-item active" *ngIf="isManager()">
-              <a class="nav-link" href="/manager-home#">Запослени</a>
+              <a class="nav-link" href="/manager-home#">Zaposleni</a>
             </li>
             <li class="nav-item active" *ngIf="isManager() || isAccountingWorker() || isCounterWorker()">
-              <a class="nav-link" href="/notification">Обавјештења</a>
+              <a class="nav-link" href="/notification">Obavještenja</a>
             </li>
             <li class="nav-item active" *ngIf="isCounterWorker()">
-              <a class="nav-link" href="/payments">Уплате</a>
+              <a class="nav-link" href="/payments">Uplate</a>
             </li>
             <li class="nav-item active" *ngIf="isCounterWorker() || isAccountingWorker()">
-              <a class="nav-link" href="/payoffs">Исплате</a>
+              <a class="nav-link" href="/payoffs">Isplate</a>
             </li>
             <li class="nav-item active" *ngIf="isCounterWorker() || isAccountingWorker()">
-              <a class="nav-link" href="/shipments">Пошиљке</a>
+              <a class="nav-link" href="/shipments">Pošiljke</a>
             </li>
             <!-- <li class="nav-item active" *ngIf="isManager()">
               <a class="nav-link" href="#">Возила</a>
             </li> -->
             <li class="nav-item active" *ngIf="isManager()">
-              <a class="nav-link" href="/absence-requests">Одсуство</a>
+              <a class="nav-link" href="/absence-requests">Odsustvo</a>
             </li>
             <li class="nav-item active" *ngIf="isAccountingWorker() || isCounterWorker()">
-              <a class="nav-link" href="/personal-absence-requests">Одсуство</a>
+              <a class="nav-link" href="/personal-absence-requests">Odsustvo</a>
             </li>
           
             <li class="nav-item dropdown active" *ngIf="isLogged()">
               <a [matMenuTriggerFor]="userMenu" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Профил
+                Profil
               </a>
            </li>
 

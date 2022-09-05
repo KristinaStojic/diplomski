@@ -1,21 +1,21 @@
 <div class="borders">
-  <h4>Пошиљке</h4>
+  <h4>Pošiljke</h4>
 
     <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
         
         <div class="row">
           <div class="col input-group">
-            <input type="search" class="form-control rounded" [(ngModel)]="searchCriteria" placeholder="Шифра пошиљке" aria-label="Search" aria-describedby="search-addon" />
-            <button type="button" class="btn btn-outline-primary" (click)="search()">Претражи</button>
-            <button type="button" class="btn btn-outline-primary" (click)="getAll()">Обриши</button>
+            <input type="search" class="form-control rounded" [(ngModel)]="searchCriteria" placeholder="Šifra pošiljke" aria-label="Search" aria-describedby="search-addon" />
+            <button type="button" class="btn btn-outline-primary" (click)="search()">Pretraži</button>
+            <button type="button" class="btn btn-outline-primary" (click)="getAll()">Obriši</button>
           </div>
 
          
         </div>
 
         <div class="col-1.5"> 
-          <button *ngIf="isCounterWorker()" class="btn btn-primary" (click)="addShipment()" style="margin-left: 4ch;">Додај пошиљку</button>
-          <button *ngIf="isAccountingWorker()" class="btn btn-primary" data-toggle="modal" data-target="#recordShipment" style="margin-left: 4ch;">Унеси пошиљку</button>
+          <button *ngIf="isCounterWorker()" class="btn btn-primary" (click)="addShipment()" style="margin-left: 4ch;">Dodaj pošiljku</button>
+          <button *ngIf="isAccountingWorker()" class="btn btn-primary" data-toggle="modal" data-target="#recordShipment" style="margin-left: 4ch;">Unesi pošiljku</button>
 
         </div>
 
@@ -25,12 +25,12 @@
         <thead>
           <tr>
             <th scope="col" >#</th>
-            <th scope="col" >Шифра пошиљке</th>
-            <th scope="col" >Пошиљалац</th>
-            <th scope="col" >Прималац</th>
-            <th scope="col" >Адреса примаоца</th>
-            <th scope="col" >Датум слања</th>
-            <th scope="col" >Статус</th>
+            <th scope="col" >Šifra pošiljke</th>
+            <th scope="col" >Pošiljalac</th>
+            <th scope="col" >Primalac</th>
+            <th scope="col" >Adresa primaoca</th>
+            <th scope="col" >Datum slanja</th>
+            <th scope="col" >Status</th>
             <th scope="col" ></th>
             <th scope="col" ></th>
 
@@ -45,10 +45,10 @@
             <td>{{m.receiverAddress}}</td>
             <td>{{m.date}}</td>
             <td>{{m.shipmentStatus}}</td>
-            <td><button class="btn btn-primary" data-toggle="modal" data-target="#shipmentDetails" (click)="selectShipment(m)">Детаљи</button></td>
+            <td><button class="btn btn-primary" data-toggle="modal" data-target="#shipmentDetails" (click)="selectShipment(m)">Detalji</button></td>
             <!-- <b *ngIf="m.shipmentStatus == 'Достављено'">Достављено</b> -->
-            <td *ngIf="isCounterWorker()"><button class="btn btn-primary" style=" height: 4.3ch; white-space: nowrap;" (click)="selectShipment(m)" data-toggle="modal" data-target="#deliver">Испоручи</button></td>
-            <td *ngIf="isAccountingWorker()"><button class="btn btn-primary" style=" height: 4.3ch; white-space: nowrap;" (click)="selectShipment(m)" data-toggle="modal" data-target="#changeStatus">Промијени статус</button></td>
+            <td *ngIf="isCounterWorker()"><button class="btn btn-primary" style=" height: 4.3ch; white-space: nowrap;" (click)="selectShipment(m)" data-toggle="modal" data-target="#deliver">Isporuči</button></td>
+            <td *ngIf="isAccountingWorker()"><button class="btn btn-primary" style=" height: 4.3ch; white-space: nowrap;" (click)="selectShipment(m)" data-toggle="modal" data-target="#changeStatus">Promijeni status</button></td>
 
           </tr>
 

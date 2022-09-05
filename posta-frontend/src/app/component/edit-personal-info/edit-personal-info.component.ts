@@ -52,14 +52,14 @@ export class EditPersonalInfoComponent implements OnInit {
         (m: any) => {
           Swal.fire({
             icon: 'success',
-            text: 'Успјешно измјењени подаци!',
+            text: 'Uspješno izmijenjeni podaci!',
           })        
         },
         (error) => {
           Swal.fire({
             icon: 'error',
-            title: 'Упс...',
-            text: 'Дошло је до грешке!',
+            title: 'Ups...',
+            text: 'Došlo je do greške!',
           })
         }
       )

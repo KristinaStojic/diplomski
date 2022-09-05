@@ -1,8 +1,8 @@
 <div class="borders">
 
     <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
-        <h4>Захтјеви за одсуство</h4>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#addRequest">Додај захтјев</button>
+        <h4>Zahtjevi za odsustvo</h4>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#addRequest">Dodaj zahtjev</button>
     </div>
 
 
@@ -31,9 +31,9 @@
         <thead>
           <tr>
             <th scope="col" style="width:8%">#</th>
-            <th scope="col" style="width:20%">Садржај</th>
-            <th scope="col" style="width:20%">Датум подношења</th>
-            <th scope="col" style="width:15%">Статус</th>
+            <th scope="col" style="width:20%">Sadržaj</th>
+            <th scope="col" style="width:20%">Datum podnošenja</th>
+            <th scope="col" style="width:15%">Status</th>
 
           </tr>
         </thead>
@@ -43,9 +43,9 @@
             <th scope="row">{{i+1}}</th>
             <td>{{m.content}}</td>
             <td>{{m.date}}</td>
-            <td *ngIf="m.approved && m.reviewed" style="color:green; font-weight: bold;">Одобрено</td>
-            <td *ngIf="!m.approved && m.reviewed" style="color:red; font-weight: bold;">Одбијено</td>
-            <td *ngIf="!m.reviewed">Чека обраду</td>
+            <td *ngIf="m.approved && m.reviewed" style="color:green; font-weight: bold;">Odobreno</td>
+            <td *ngIf="!m.approved && m.reviewed" style="color:red; font-weight: bold;">Odbijeno</td>
+            <td *ngIf="!m.reviewed">Čeka na obradu</td>
   
 
           </tr>
@@ -61,7 +61,7 @@
     <div class="modal-dialog modal-dialog-centered modal" role="document">
     <div class="modal-content">
         <div class="modal-header" style="margin-left: 4%;">
-            <h5 class="modal-title" id="exampleModalLongTitle">Додај нови захтјев за одсуство</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Dodaj novi zahtjev za odsustvo</h5>
         </div>
         
      
@@ -73,8 +73,8 @@
         </div>
         
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Назад</button>
-            <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="addRequest()">Сачувај</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nazad</button>
+            <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="addRequest()">Sačuvaj</button>
         </div>
     </div>
     </div>

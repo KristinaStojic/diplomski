@@ -3,18 +3,18 @@
 <div class="borders">
 
     <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
-        <h4>Управници</h4>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#addManager">Додај управника</button>
+        <h4>Upravnici</h4>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#addManager">Dodaj upravnika</button>
     </div>
 
     <table class="shadow p-3 mb-5 bg-white rounded table" style="width:100%">
         <thead>
           <tr>
             <th scope="col" style="width:8%">#</th>
-            <th scope="col" style="width:17.5%">Име</th>
-            <th scope="col"  style="width:17.5%">Презиме</th>
-            <th scope="col" style="width:17.5%">Емаил</th>
-            <th scope="col" style="width:17.5%">Телефон</th>
+            <th scope="col" style="width:17.5%">Ime</th>
+            <th scope="col"  style="width:17.5%">Prezime</th>
+            <th scope="col" style="width:17.5%">Email</th>
+            <th scope="col" style="width:17.5%">Telefon</th>
             <th scope="col" style="width:8%"></th>
             <th scope="col" style="width:8%"></th>
 
@@ -27,8 +27,8 @@
             <td>{{m.surname}}</td>
             <td>{{m.email}}</td>
             <td>{{m.phoneNumber}}</td>
-            <td><button class="btn btn-primary" (click)="selectManager(m)" data-toggle="modal" data-target="#editManager">Измијени</button></td>
-            <td><button class="btn btn-primary" (click)="deleteManager(m.id)">Избриши</button></td>
+            <td><button class="btn btn-primary" (click)="selectManager(m)" data-toggle="modal" data-target="#editManager">Izmijeni</button></td>
+            <td><button class="btn btn-primary" (click)="deleteManager(m.id)">Izbriši</button></td>
 
           </tr>
 
@@ -44,28 +44,28 @@
     <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Додај новог управника</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Dodaj novog upravnika</h5>
         </div>
         
         <div  class="container"  style="margin: 5% 5% 5% 5%;">
             <mat-form-field>
-                <input matInput required placeholder="Име"  [(ngModel)]="manager.name">
+                <input matInput required placeholder="Ime"  [(ngModel)]="manager.name">
             </mat-form-field>
             <br>
             <mat-form-field>
-                <input matInput required placeholder="Презиме" [(ngModel)]="manager.surname" >
+                <input matInput required placeholder="Prezime" [(ngModel)]="manager.surname" >
             </mat-form-field><br>
             <mat-form-field>
-                <input matInput required placeholder="Телефон" [(ngModel)]="manager.phoneNumber">
+                <input matInput required placeholder="Telefon" [(ngModel)]="manager.phoneNumber">
             </mat-form-field><br>
             <mat-form-field>
-                <input matInput required placeholder="Емаил" [(ngModel)]="manager.email">
+                <input matInput required placeholder="Email" [(ngModel)]="manager.email">
             </mat-form-field>
 
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Назад</button>
-            <button type="button" [disabled]="this.manager.name == '' || this.manager.surname == '' || this.manager.email == '' || this.manager.phoneNumber == ''" class="btn btn-primary"  data-dismiss="modal" (click)="addManager()">Сачувај</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nazad</button>
+            <button type="button" [disabled]="this.manager.name == '' || this.manager.surname == '' || this.manager.email == '' || this.manager.phoneNumber == ''" class="btn btn-primary"  data-dismiss="modal" (click)="addManager()">Sačuvaj</button>
         </div>
     </div>
     </div>
@@ -78,28 +78,28 @@
     <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Измијени информације</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Izmijeni informacije</h5>
         </div>
         
         <div  class="container"  style="margin: 5% 5% 5% 5%;">
             <mat-form-field>
-                <input matInput required placeholder="Име"  [(ngModel)]="selectedManager.name">
+                <input matInput required placeholder="Ime"  [(ngModel)]="selectedManager.name">
             </mat-form-field>
             <br>
             <mat-form-field>
-                <input matInput required placeholder="Презиме" [(ngModel)]="selectedManager.surname" >
+                <input matInput required placeholder="Prezime" [(ngModel)]="selectedManager.surname" >
             </mat-form-field><br>
             <mat-form-field>
-                <input matInput required placeholder="Телефон" [(ngModel)]="selectedManager.phoneNumber">
+                <input matInput required placeholder="Telefon" [(ngModel)]="selectedManager.phoneNumber">
             </mat-form-field><br>
             <mat-form-field>
-                <input matInput required placeholder="Емаил" [(ngModel)]="selectedManager.email">
+                <input matInput required placeholder="Email" [(ngModel)]="selectedManager.email">
             </mat-form-field>
 
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Назад</button>
-            <button type="button" [disabled]="this.selectedManager.name == '' || this.selectedManager.surname == '' || this.selectedManager.email == '' || this.selectedManager.phoneNumber == ''" class="btn btn-primary"  data-dismiss="modal" (click)="editManager()">Сачувај</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nazad</button>
+            <button type="button" [disabled]="this.selectedManager.name == '' || this.selectedManager.surname == '' || this.selectedManager.email == '' || this.selectedManager.phoneNumber == ''" class="btn btn-primary"  data-dismiss="modal" (click)="editManager()">Sačuvaj</button>
         </div>
     </div>
     </div>

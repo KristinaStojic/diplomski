@@ -3,18 +3,18 @@
 <div class="borders">
 
     <div style="justify-content: space-between; display: flex; margin-bottom: 2ch;">
-        <h4>Пословнице</h4>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#addPostOffice">Додај пословницу</button>
+        <h4>Poslovnice</h4>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#addPostOffice">Dodaj poslovnicu</button>
     </div>
    
     <table class="shadow p-3 mb-5 bg-white rounded table" style="width:100%">
         <thead>
           <tr>
             <th scope="col" style="width:8%">#</th>
-            <th scope="col" style="width:17.5%">Адреса</th>
-            <th scope="col"  style="width:17.5%">Град</th>
-            <th scope="col" style="width:17.5%">Држава</th>
-            <th scope="col" style="width:17.5%">Телефон</th>
+            <th scope="col" style="width:17.5%">Adresa</th>
+            <th scope="col"  style="width:17.5%">Grad</th>
+            <th scope="col" style="width:17.5%">Država</th>
+            <th scope="col" style="width:17.5%">Telefon</th>
             <th scope="col" style="width:8%"></th>
             <th scope="col" style="width:8%"></th>
 
@@ -27,8 +27,8 @@
             <td>{{m.city}}</td>
             <td>{{m.country}}</td>
             <td>{{m.phoneNumber}}</td>
-            <td><button class="btn btn-primary" (click)="selectPostOffice(m)" data-toggle="modal" data-target="#editPostOffice">Измијени</button></td>
-            <td><button class="btn btn-primary" (click)="deletePostOffice(m.id)">Избриши</button></td>
+            <td><button class="btn btn-primary" (click)="selectPostOffice(m)" data-toggle="modal" data-target="#editPostOffice">Izmijeni</button></td>
+            <td><button class="btn btn-primary" (click)="deletePostOffice(m.id)">Izbriši</button></td>
 
           </tr>
 
@@ -45,7 +45,7 @@
     <div class="modal-dialog modal-dialog-centered modal" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Додај нову пословницу</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Dodaj novu poslovnicu</h5>
         </div>
         
      
@@ -58,20 +58,20 @@
               </select>
 
             <mat-form-field>
-                <input matInput required placeholder="Телефон" [(ngModel)]="newPostOffice.phoneNumber">
+                <input matInput required placeholder="Telefon" [(ngModel)]="newPostOffice.phoneNumber">
             </mat-form-field>
 
             <label>Адреса:</label>
             <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15">
                 <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"></agm-marker>
             </agm-map>
-              <label>Адреса: {{address}}</label>
+              <label>Adresa: {{address}}</label>
 
         </div>
         
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Назад</button>
-            <button type="button" [disabled]="this.address == '' || this.newPostOffice.phoneNumber == '' || this.newPostOffice.managerID == ''" class="btn btn-primary"  data-dismiss="modal" (click)="addPostOffice()">Сачувај</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nazad</button>
+            <button type="button" [disabled]="this.address == '' || this.newPostOffice.phoneNumber == '' || this.newPostOffice.managerID == ''" class="btn btn-primary"  data-dismiss="modal" (click)="addPostOffice()">Sačuvaj</button>
         </div>
     </div>
     </div>

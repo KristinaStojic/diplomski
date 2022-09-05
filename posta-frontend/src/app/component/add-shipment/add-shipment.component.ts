@@ -71,8 +71,8 @@ export class AddShipmentComponent implements OnInit {
         (error) => {
           Swal.fire({
             icon: 'error',
-            title: 'Упс...',
-            text: 'Дошло је до грешке!',
+            title: 'Ups...',
+            text: 'Došlo je do greške!',
           })
         },
       )
@@ -81,8 +81,8 @@ export class AddShipmentComponent implements OnInit {
     }else{
       Swal.fire({
               icon: 'error',
-              title: 'Упс...',
-              text: 'Попуните сва поља у исправном формату!',
+              title: 'Ups...',
+              text: 'Popunite sva polja u ispravnom formatu!',
             })
             console.log(this.shipment)
 
@@ -224,8 +224,8 @@ export class AddShipmentComponent implements OnInit {
     if(!this.valid){
       Swal.fire({
         icon: 'error',
-        title: 'Упс...',
-        text: 'Попуните сва поља у исправном формату!',
+        title: 'Ups...',
+        text: 'Popunite sva polja u ispravnom formatu!',
       })
     }
 
@@ -238,8 +238,8 @@ export class AddShipmentComponent implements OnInit {
           this.valid = false
           Swal.fire({
             icon: 'error',
-            title: 'Упс...',
-            text: 'Маса пакета мора бити већа од 0!',
+            title: 'Ups...',
+            text: 'Masa paketa mora biti veća od 0!',
           })
         }
 
@@ -265,8 +265,8 @@ export class AddShipmentComponent implements OnInit {
 
         Swal.fire({
           icon: 'error',
-          title: 'Упс...',
-          text: 'Дозвољена маса пошиљке је између 0 и 1000 грама!',
+          title: 'Ups...',
+          text: 'Dozvoljena masa pošiljke je između 0 i 1000 grama!',
         })
       }
 

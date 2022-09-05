@@ -2,7 +2,7 @@
     <mat-card elevation="5" fxFlex class="content" style="margin-top:150px; " >
 
         <mat-card-title>
-            <h2>Пошта</h2>
+            <h2>Pošta</h2>
         </mat-card-title>
     
         <mat-card-content>
@@ -10,14 +10,14 @@
             <br>
             <form (ngSubmit)="onSubmit()" *ngIf="!submitted" [formGroup]="form">
                 <mat-form-field>
-                    <input formControlName="email" matInput placeholder="емаил" required>
+                    <input formControlName="email" matInput placeholder="email" required>
                 </mat-form-field>
                 <mat-form-field>
-                    <input formControlName="password" matInput placeholder="лозинка" required type="password">
+                    <input formControlName="password" matInput placeholder="lozinka" required type="password">
                 </mat-form-field>
                 <br>
                 <br>
-                <button color="primary" mat-raised-button type="submit">Пријави се</button>
+                <button color="primary" mat-raised-button type="submit">Prijavi se</button>
                 
             </form>
           

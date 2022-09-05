@@ -88,8 +88,8 @@ export class PostOfficesComponent implements OnInit {
       (error) => {
         Swal.fire({
           icon: 'error',
-          title: 'Упс...',
-          text: 'Дошло је до грешке!',
+          title: 'Ups...',
+          text: 'Došlo je do greške!',
         })
       },
     )
@@ -122,8 +122,8 @@ export class PostOfficesComponent implements OnInit {
       (error) => {
         Swal.fire({
           icon: 'error',
-          title: 'Упс...',
-          text: 'Дошло је до грешке!',
+          title: 'Ups...',
+          text: 'Došlo je do greške!',
         })
       }
     )
@@ -137,8 +137,8 @@ export class PostOfficesComponent implements OnInit {
       (error) => {
         Swal.fire({
           icon: 'error',
-          title: 'Упс...',
-          text: 'Дошло је до грешке!',
+          title: 'Ups...',
+          text: 'Došlo je do greške!',
         })
       }
     )
@@ -194,14 +194,14 @@ export class PostOfficesComponent implements OnInit {
           Swal.fire({
             icon: 'error',
             title: 'Упс...',
-            text: 'Дошло је до грешке!',
+            text: 'Došlo je do greške!',
           })
         }
       } else {
         Swal.fire({
           icon: 'error',
           title: 'Упс...',
-          text: 'Дошло је до грешке!',
+          text: 'Došlo je do greške!',
         })
       }
 
@@ -251,15 +251,15 @@ export class PostOfficesComponent implements OnInit {
         } else {
           Swal.fire({
             icon: 'error',
-            title: 'Упс...',
-            text: 'Дошло је до грешке!',
+            title: 'Ups...',
+            text: 'Došlo je do greške!',
           })
         }
       } else {
         Swal.fire({
           icon: 'error',
-          title: 'Упс...',
-          text: 'Дошло је до грешке!',
+          title: 'Ups...',
+          text: 'Došlo je do greške!',
         })
       }
 

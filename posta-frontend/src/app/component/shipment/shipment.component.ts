@@ -75,8 +75,8 @@ export class ShipmentComponent implements OnInit {
       (error) => {
         Swal.fire({
           icon: 'error',
-          title: 'Упс...',
-          text: 'Дошло је до грешке!',
+          title: 'Ups...',
+          text: 'Došlo je do greške!',
         })
       }
     )
@@ -145,8 +145,8 @@ export class ShipmentComponent implements OnInit {
       (error) => {
         Swal.fire({
           icon: 'error',
-          title: 'Упс...',
-          text: 'Дошло је до грешке!',
+          title: 'Ups...',
+          text: 'Došlo je do greške!',
         })
       }
     )
@@ -169,8 +169,8 @@ export class ShipmentComponent implements OnInit {
       (error) => {
         Swal.fire({
           icon: 'error',
-          title: 'Упс...',
-          text: 'Пошиљка са унесеном шифром не постоји у систему!',
+          title: 'Ups...',
+          text: 'Pošiljka sa unesenom šifrom ne postoji u sistemu!',
         })
       },
     )
