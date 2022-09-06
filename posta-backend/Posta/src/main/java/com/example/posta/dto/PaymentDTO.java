@@ -49,7 +49,7 @@ public class PaymentDTO {
         this.receiverAccount = p.getReceiverAccount();
         this.model = p.getModel();
         this.referenceNumber = p.getReferenceNumber();
-        this.counterWorker = p.getCounterWorker().getEmail();
+        this.counterWorker = p.getWorker().getEmail();
         this.client = p.getClient();
         this.amount = p.getAmount();
         this.currency = p.getCurrency();

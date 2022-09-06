@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 
 @Getter
 @Setter
-@Entity
+//@Entity
 @NoArgsConstructor
 public class CounterWorker extends Worker{
     public CounterWorker(Worker u) {

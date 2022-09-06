@@ -41,12 +41,6 @@ public class PayoffService {
     @Autowired
     RoleRepository roleRepository;
 
-    @Autowired
-    CounterWorkerRepository counterWorkerRepository;
-
-    @Autowired
-    AccountingWorkerRepository accountingWorkerRepository;
-
     public List<PayoffDTO> getAllPayoffs(String worker){
         List<PayoffDTO> ret = new ArrayList<>();
 
@@ -61,7 +55,7 @@ public class PayoffService {
         }
 
         for(Payoff p: payoffRepository.findAll()){
-            if(p.getAccountingWorker().getPostOffice().getId() == po.getId()){
+            if(p.getAccworker().getPostOffice().getId() == po.getId()){
                 PayoffDTO pdto = new PayoffDTO(p);
                 ret.add(pdto);
             }
@@ -79,9 +73,9 @@ public class PayoffService {
 
         Worker w = workerRepository.findByEmail(dto.getWorker());
 
-        for(CounterWorker cw: counterWorkerRepository.findAll()){
+        for(Worker cw: workerRepository.findAll()){
             if(cw.getId().equals(w.getId())){
-                p.setCounterWorker(cw);
+                p.setWorker(cw);
             }
         }
 
@@ -103,7 +97,7 @@ public class PayoffService {
         }
 
         for(Payoff p: payoffRepository.findAll()){
-            if(p.getCounterWorker().getPostOffice().getId() == w.getPostOffice().getId()){
+            if(p.getWorker().getPostOffice().getId() == w.getPostOffice().getId()){
                 if(p.getClient().getName().toUpperCase().contains(dto.getCriteria().toUpperCase())
                         || p.getClient().getSurname().toUpperCase().contains(dto.getCriteria().toUpperCase())
                             || p.getClient().getAddress().getStreet().toUpperCase().contains(dto.getCriteria().toUpperCase())
@@ -121,10 +115,8 @@ public class PayoffService {
         Payoff p = new Payoff();
 
         Worker w = workerRepository.findByEmail(dto.getCounterWorker());
-        AccountingWorker cw = accountingWorkerRepository.findById(w.getId()).orElseGet(null);
-        p.setAccountingWorker(cw);
+        p.setAccworker(w);
         //p.setPost_office(w.getPostOffice().getId());
-        p.setCounterWorker(null);
 
         p.setAmount(Double.valueOf(dto.getAmount()));
         p.setPaidOff(false);

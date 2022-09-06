@@ -2,10 +2,10 @@ package com.example.posta.service;
 
 import com.example.posta.dto.AddWorkerDTO;
 import com.example.posta.dto.WorkerDTO;
-import com.example.posta.model.Manager;
 import com.example.posta.model.Role;
-import com.example.posta.repository.ManagerRepository;
+import com.example.posta.model.Worker;
 import com.example.posta.repository.RoleRepository;
+import com.example.posta.repository.WorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +18,14 @@ public class ManagerService {
     @Autowired
     private RoleRepository roleRepository;
 
-    @Autowired
-    private ManagerRepository managerRepository;
+//    @Autowired
+//    private ManagerRepository managerRepository;
 
-    public Manager addManager(AddWorkerDTO dto){
-        Manager m = new Manager();
+    @Autowired
+    WorkerRepository workerRepository;
+
+    public Worker addManager(AddWorkerDTO dto){
+        Worker m = new Worker();
         m.setEnabled(true);
         m.setDeleted(false);
         m.setName(dto.getName());
@@ -33,23 +36,23 @@ public class ManagerService {
         Role role = this.roleRepository.findByName("ROLE_MANAGER");
         m.setRole(role);
 
-        return this.managerRepository.save(m);
+        return this.workerRepository.save(m);
     }
 
-    public Manager editManager(AddWorkerDTO dto){
-        Manager m = this.managerRepository.findById(dto.getId()).orElseGet(null);
+    public Worker editManager(AddWorkerDTO dto){
+        Worker m = this.workerRepository.findById(dto.getId()).orElseGet(null);
         m.setName(dto.getName());
         m.setSurname(dto.getSurname());
         m.setEmail(dto.getEmail());
         m.setPhoneNumber(dto.getPhoneNumber());
-        return this.managerRepository.save(m);
+        return this.workerRepository.save(m);
     }
 
     public List<WorkerDTO> getAllManagers(){
         List<WorkerDTO> ret = new ArrayList<>();
 
-        for(Manager m: this.managerRepository.findAll()){
-            if(!m.isDeleted()){
+        for(Worker m: this.workerRepository.findAll()){
+            if(!m.isDeleted() && m.getRole().getName().equals("ROLE_MANAGER")){
                 WorkerDTO manager = new WorkerDTO(m);
                 ret.add(manager);
             }
@@ -58,7 +61,7 @@ public class ManagerService {
     }
 
     public WorkerDTO getById(Long id){
-        Manager m = managerRepository.findById(id).orElseGet(null);
+        Worker m = workerRepository.findById(id).orElseGet(null);
 
         if(m == null){
             return null;
@@ -67,10 +70,10 @@ public class ManagerService {
         return ret;
     }
 
-    public Manager deleteManager(Long id){
-        Manager m = this.managerRepository.findById(id).orElseGet(null);
+    public Worker deleteManager(Long id){
+        Worker m = this.workerRepository.findById(id).orElseGet(null);
         m.setDeleted(true);
-        this.managerRepository.save(m);
+        this.workerRepository.save(m);
 
         return m;
     }
@@ -78,7 +81,7 @@ public class ManagerService {
     public List<WorkerDTO> getFreeManagers(){
         List<WorkerDTO> ret = new ArrayList<>();
 
-        for(Manager m: this.managerRepository.findAll()){
+        for(Worker m: this.workerRepository.findAll()){
             if(!m.isDeleted() && m.getPostOffice() == null){
                 WorkerDTO manager = new WorkerDTO(m);
                 ret.add(manager);
@@ -88,7 +91,7 @@ public class ManagerService {
     }
 
     public Boolean checkIfHasPostOffice(Long id){
-        Manager m = managerRepository.findById(id).orElseGet(null);
+        Worker m = workerRepository.findById(id).orElseGet(null);
         return m.getPostOffice() != null;
     }
 }

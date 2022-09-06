@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 
 @Getter
 @Setter
-@Entity
+//@Entity
 @NoArgsConstructor
 public class Postman extends Worker{
     public Postman(Worker u) {

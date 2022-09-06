@@ -61,7 +61,7 @@
                 <input matInput required placeholder="Telefon" [(ngModel)]="newPostOffice.phoneNumber">
             </mat-form-field>
 
-            <label>Адреса:</label>
+            <label>Adresa:</label>
             <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15">
                 <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"></agm-marker>
             </agm-map>
@@ -101,11 +101,11 @@
                 <input matInput required placeholder="Телефон" [(ngModel)]="selectedPostOffice.phoneNumber">
             </mat-form-field>
 
-            <label>Адреса:</label>
+            <label>Adresa:</label>
             <agm-map [latitude]="selectedPostOffice.latitude" [longitude]="selectedPostOffice.longitude">
                 <agm-marker [latitude]="selectedPostOffice.latitude" [longitude]="selectedPostOffice.longitude" [markerDraggable]="true" (dragEnd)="markerDragEndEditing($event)"></agm-marker>
               </agm-map>
-              <label>Адреса: {{selectedAddress}}</label>
+              <label>Adresa: {{selectedAddress}}</label>
 
         </div>
         

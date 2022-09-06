@@ -26,7 +26,7 @@ public class EmailService {
         MimeMessage mail = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mail);
         helper.setTo(userEmail);
-        helper.setFrom("wish.and.fish.serbia@gmail.com");
+        helper.setFrom("posta.diplomski@gmail.com");
         helper.setSubject("Ново обавјештење");
         helper.setText(text, true);
         javaMailSender.send(mail);
@@ -39,7 +39,7 @@ public class EmailService {
         MimeMessage mail = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mail);
         helper.setTo(userEmail);
-        helper.setFrom("wish.and.fish.serbia@gmail.com");
+        helper.setFrom("posta.diplomski@gmail.com");
         helper.setSubject("Испорука пошиљке");
         helper.setText(text, true);
         javaMailSender.send(mail);

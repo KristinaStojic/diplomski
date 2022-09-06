@@ -20,19 +20,8 @@ public class WorkerService {
     private WorkerRepository workerRepository;
 
     @Autowired
-    private PostmanRepository postmanRepository;
-
-    @Autowired
-    private CounterWorkerRepository counterWorkerRepository;
-
-    @Autowired
-    private AccountingWorkerRepository accountingWorkerRepository;
-
-    @Autowired
     private PostOfficeRepository postOfficeRepository;
 
-    @Autowired
-    private ManagerRepository managerRepository;
 
     public Boolean addWorker(AddWorkerDTO dto){
         switch (dto.getRole()) {
@@ -53,59 +42,59 @@ public class WorkerService {
         return false;
     }
 
-    private void createPostman(AddWorkerDTO dto){
-        Manager m = managerRepository.findByEmail(dto.getManagerEmail());
-        PostOffice po = postOfficeRepository.findById(m.getPostOffice().getId()).orElseGet(null);
-
-        Postman p = new Postman();
-        Role role = this.roleRepository.findByName(dto.getRole());
-        p.setEnabled(true);
-        p.setDeleted(false);
-        p.setName(dto.getName());
-        p.setSurname(dto.getSurname());
-        p.setEmail(dto.getEmail());
-        p.setPhoneNumber(dto.getPhoneNumber());
-        p.setPassword(dto.getPhoneNumber());
-        p.setRole(role);
-        p.setPostOffice(po);
-        postmanRepository.save(p);
-    }
-
-    private void createCounterWorker(AddWorkerDTO dto){
-        Manager m = managerRepository.findByEmail(dto.getManagerEmail());
-        PostOffice po = postOfficeRepository.findById(m.getPostOffice().getId()).orElseGet(null);
-
-        CounterWorker p = new CounterWorker();
-        Role role = this.roleRepository.findByName(dto.getRole());
-        p.setEnabled(true);
-        p.setDeleted(false);
-        p.setName(dto.getName());
-        p.setSurname(dto.getSurname());
-        p.setEmail(dto.getEmail());
-        p.setPhoneNumber(dto.getPhoneNumber());
-        p.setPassword(dto.getPhoneNumber());
-        p.setRole(role);
-        p.setPostOffice(po);
-        counterWorkerRepository.save(p);
-    }
-
-    private void createAccountingWorker(AddWorkerDTO dto){
-        Manager m = managerRepository.findByEmail(dto.getManagerEmail());
-        PostOffice po = postOfficeRepository.findById(m.getPostOffice().getId()).orElseGet(null);
-
-        AccountingWorker p = new AccountingWorker();
-        Role role = this.roleRepository.findByName(dto.getRole());
-        p.setEnabled(true);
-        p.setDeleted(false);
-        p.setName(dto.getName());
-        p.setSurname(dto.getSurname());
-        p.setEmail(dto.getEmail());
-        p.setPhoneNumber(dto.getPhoneNumber());
-        p.setPassword(dto.getPhoneNumber());
-        p.setRole(role);
-        p.setPostOffice(po);
-        accountingWorkerRepository.save(p);
-    }
+//    private void createPostman(AddWorkerDTO dto){
+//        Manager m = managerRepository.findByEmail(dto.getManagerEmail());
+//        PostOffice po = postOfficeRepository.findById(m.getPostOffice().getId()).orElseGet(null);
+//
+//        Postman p = new Postman();
+//        Role role = this.roleRepository.findByName(dto.getRole());
+//        p.setEnabled(true);
+//        p.setDeleted(false);
+//        p.setName(dto.getName());
+//        p.setSurname(dto.getSurname());
+//        p.setEmail(dto.getEmail());
+//        p.setPhoneNumber(dto.getPhoneNumber());
+//        p.setPassword(dto.getPhoneNumber());
+//        p.setRole(role);
+//        p.setPostOffice(po);
+//        postmanRepository.save(p);
+//    }
+//
+//    private void createCounterWorker(AddWorkerDTO dto){
+//        Manager m = managerRepository.findByEmail(dto.getManagerEmail());
+//        PostOffice po = postOfficeRepository.findById(m.getPostOffice().getId()).orElseGet(null);
+//
+//        CounterWorker p = new CounterWorker();
+//        Role role = this.roleRepository.findByName(dto.getRole());
+//        p.setEnabled(true);
+//        p.setDeleted(false);
+//        p.setName(dto.getName());
+//        p.setSurname(dto.getSurname());
+//        p.setEmail(dto.getEmail());
+//        p.setPhoneNumber(dto.getPhoneNumber());
+//        p.setPassword(dto.getPhoneNumber());
+//        p.setRole(role);
+//        p.setPostOffice(po);
+//        counterWorkerRepository.save(p);
+//    }
+//
+//    private void createAccountingWorker(AddWorkerDTO dto){
+//        Manager m = managerRepository.findByEmail(dto.getManagerEmail());
+//        PostOffice po = postOfficeRepository.findById(m.getPostOffice().getId()).orElseGet(null);
+//
+//        AccountingWorker p = new AccountingWorker();
+//        Role role = this.roleRepository.findByName(dto.getRole());
+//        p.setEnabled(true);
+//        p.setDeleted(false);
+//        p.setName(dto.getName());
+//        p.setSurname(dto.getSurname());
+//        p.setEmail(dto.getEmail());
+//        p.setPhoneNumber(dto.getPhoneNumber());
+//        p.setPassword(dto.getPhoneNumber());
+//        p.setRole(role);
+//        p.setPostOffice(po);
+//        accountingWorkerRepository.save(p);
+//    }
 
     public List<WorkerDTO> getAllByManagersPostOffice(String manager){
         List<WorkerDTO> ret = new ArrayList<>();
@@ -143,4 +132,59 @@ public class WorkerService {
         w.setDeleted(true);
         return workerRepository.save(w);
     }
+
+    private void createPostman(AddWorkerDTO dto){
+        Worker m = workerRepository.findByEmail(dto.getManagerEmail());
+        PostOffice po = postOfficeRepository.findById(m.getPostOffice().getId()).orElseGet(null);
+
+        Worker p = new Worker();
+        Role role = this.roleRepository.findByName(dto.getRole());
+        p.setEnabled(true);
+        p.setDeleted(false);
+        p.setName(dto.getName());
+        p.setSurname(dto.getSurname());
+        p.setEmail(dto.getEmail());
+        p.setPhoneNumber(dto.getPhoneNumber());
+        p.setPassword(dto.getPhoneNumber());
+        p.setRole(role);
+        p.setPostOffice(po);
+        workerRepository.save(p);
+    }
+
+    private void createCounterWorker(AddWorkerDTO dto){
+        Worker m = workerRepository.findByEmail(dto.getManagerEmail());
+        PostOffice po = postOfficeRepository.findById(m.getPostOffice().getId()).orElseGet(null);
+
+        Worker p = new Worker();
+        Role role = this.roleRepository.findByName(dto.getRole());
+        p.setEnabled(true);
+        p.setDeleted(false);
+        p.setName(dto.getName());
+        p.setSurname(dto.getSurname());
+        p.setEmail(dto.getEmail());
+        p.setPhoneNumber(dto.getPhoneNumber());
+        p.setPassword(dto.getPhoneNumber());
+        p.setRole(role);
+        p.setPostOffice(po);
+        workerRepository.save(p);
+    }
+
+    private void createAccountingWorker(AddWorkerDTO dto){
+        Worker m = workerRepository.findByEmail(dto.getManagerEmail());
+        PostOffice po = postOfficeRepository.findById(m.getPostOffice().getId()).orElseGet(null);
+
+        Worker p = new Worker();
+        Role role = this.roleRepository.findByName(dto.getRole());
+        p.setEnabled(true);
+        p.setDeleted(false);
+        p.setName(dto.getName());
+        p.setSurname(dto.getSurname());
+        p.setEmail(dto.getEmail());
+        p.setPhoneNumber(dto.getPhoneNumber());
+        p.setPassword(dto.getPhoneNumber());
+        p.setRole(role);
+        p.setPostOffice(po);
+        workerRepository.save(p);
+    }
+
 }

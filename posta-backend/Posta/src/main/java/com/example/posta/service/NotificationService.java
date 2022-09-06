@@ -1,15 +1,12 @@
 package com.example.posta.service;
 
 import com.example.posta.dto.NotificationDTO;
-import com.example.posta.model.Manager;
 import com.example.posta.model.Notification;
 import com.example.posta.model.PostOffice;
 import com.example.posta.model.Worker;
-import com.example.posta.repository.ManagerRepository;
 import com.example.posta.repository.NotificationRepository;
 import com.example.posta.repository.PostOfficeRepository;
 import com.example.posta.repository.WorkerRepository;
-import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +21,8 @@ public class NotificationService {
     @Autowired
     NotificationRepository notificationRepository;
 
-    @Autowired
-    ManagerRepository managerRepository;
+//    @Autowired
+//    ManagerRepository managerRepository;
 
     @Autowired
     EmailService emailService;
@@ -42,7 +39,7 @@ public class NotificationService {
         PostOffice p = postOfficeRepository.findById(w.getPostOffice().getId()).orElseGet(null);
 
         for(Notification n: notificationRepository.findAll()){
-            if(n.getManager().getPostOffice() != null && p.getId() == n.getManager().getPostOffice().getId()){
+            if(n.getWorker().getPostOffice() != null && p.getId() == n.getWorker().getPostOffice().getId()){
                 NotificationDTO ndto = new NotificationDTO(n);
                 ret.add(ndto);
             }
@@ -53,11 +50,11 @@ public class NotificationService {
 
 
     public Notification addNotification(NotificationDTO dto) throws MessagingException {
-        Manager m = managerRepository.findByEmail(dto.getManager());
+        Worker m = workerRepository.findByEmail(dto.getManager());
         Notification n = new Notification();
         n.setContent(dto.getContent());
         n.setDate(LocalDate.now());
-        n.setManager(m);
+        n.setWorker(m);
 
         PostOffice po = postOfficeRepository.findById(m.getPostOffice().getId()).orElseGet(null);
 

@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@Entity
+//@Entity
 @NoArgsConstructor
 public class AccountingWorker extends Worker{
     public AccountingWorker(Worker u) {

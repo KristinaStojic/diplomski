@@ -27,9 +27,6 @@ public class PaymentService {
     WorkerRepository workerRepository;
 
     @Autowired
-    CounterWorkerRepository counterWorkerRepository;
-
-    @Autowired
     AddressRepository addressRepository;
 
     @Autowired
@@ -59,7 +56,7 @@ public class PaymentService {
         Worker w = workerRepository.findByEmail(worker);
 
         for(Payment p: this.paymentRepository.findAll()){
-            if(p.getCounterWorker().getEmail().equals(w.getEmail())){
+            if(p.getWorker().getEmail().equals(w.getEmail())){
                 PaymentDTO payment = new PaymentDTO(p);
                 ret.add(payment);
             }
@@ -101,6 +98,7 @@ public class PaymentService {
         receiver.setDeleted(false);
         receiver.setEnabled(true);
         Address receiverAddress = new Address(dto.getReceiverAddress());
+        System.out.println("adresa" + dto.getReceiverAddress().getPostalCode());
         City found2 = cityRepository.findByPostalCode(dto.getReceiverAddress().getPostalCode());
         if(found2 != null){
             receiverAddress.setCity(found2);
@@ -134,9 +132,9 @@ public class PaymentService {
         p.setReferenceNumber(dto.getReferenceNumber());
 
         Worker w = workerRepository.findByEmail(dto.getCounterWorker());
-        CounterWorker cw = counterWorkerRepository.getById(w.getId());
+        Worker cw = workerRepository.getById(w.getId());
 
-        p.setCounterWorker(cw);
+        p.setWorker(cw);
         this.reportService.exportReport(p);
         return paymentRepository.save(p);
     }
@@ -159,7 +157,7 @@ public class PaymentService {
         Integer n = 0;
 
         for (Payment r : paymentRepository.findAll()) {
-                if (r.getDate().getYear() == year && r.getCounterWorker().getPostOffice().getId() == id) {
+                if (r.getDate().getYear() == year && r.getWorker().getPostOffice().getId() == id) {
                     n++;
                 }
         }
@@ -188,7 +186,7 @@ public class PaymentService {
         Integer n = 0;
 
         for (Payment r : paymentRepository.findAll()) {
-            if (r.getDate().getMonth().toString().equals(month) && r.getDate().getYear() == year && r.getCounterWorker().getPostOffice().getId() == id) {
+            if (r.getDate().getMonth().toString().equals(month) && r.getDate().getYear() == year && r.getWorker().getPostOffice().getId() == id) {
                 n++;
             }
         }
@@ -239,7 +237,7 @@ public class PaymentService {
     private Integer countPaymentWeekly(LocalDate date, Long id) {
         Integer n = 0;
         for (Payment r : paymentRepository.findAll()) {
-                if (r.getDate().toLocalDate().isEqual(date) && r.getCounterWorker().getPostOffice().getId() == id) {
+                if (r.getDate().toLocalDate().isEqual(date) && r.getWorker().getPostOffice().getId() == id) {
                     n++;
                 }
         }
@@ -249,7 +247,7 @@ public class PaymentService {
     private Double countAmountWeekly(LocalDate date, Long id) {
         Double n = 0.0;
         for (Payment r : paymentRepository.findAll()) {
-            if (r.getDate().toLocalDate().isEqual(date) && r.getCounterWorker().getPostOffice().getId() == id) {
+            if (r.getDate().toLocalDate().isEqual(date) && r.getWorker().getPostOffice().getId() == id) {
                 n += r.getAmount();
             }
         }

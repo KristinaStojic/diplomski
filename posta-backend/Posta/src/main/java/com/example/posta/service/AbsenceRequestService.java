@@ -3,18 +3,15 @@ package com.example.posta.service;
 import com.example.posta.dto.AbsenceRequestDTO;
 import com.example.posta.dto.ProcessAbsenceRequestDTO;
 import com.example.posta.model.AbsenceRequest;
-import com.example.posta.model.Manager;
 import com.example.posta.model.PostOffice;
 import com.example.posta.model.Worker;
 import com.example.posta.repository.AbsenceRequestRepository;
-import com.example.posta.repository.ManagerRepository;
 import com.example.posta.repository.PostOfficeRepository;
 import com.example.posta.repository.WorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +27,7 @@ public class AbsenceRequestService {
     @Autowired
     PostOfficeRepository postOfficeRepository;
 
-    @Autowired
-    ManagerRepository managerRepository;
+
 
     public List<AbsenceRequestDTO> getAllAbsenceRequests(String worker){
         List<AbsenceRequestDTO> ret = new ArrayList<>();
@@ -84,10 +80,10 @@ public class AbsenceRequestService {
         if(w == null){
             return false;
         }
-        Manager m = managerRepository.findById(w.getId()).orElseGet(null);
-        if(m == null){
-            return false;
-        }
+//        Manager m = managerRepository.findById(w.getId()).orElseGet(null);
+//        if(m == null){
+//            return false;
+//        }
 
         ar.setReviewed(true);
         ar.setApproved(dto.getApproved());

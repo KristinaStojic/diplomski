@@ -19,8 +19,8 @@ public class PostOfficeService {
     @Autowired
     WorkerRepository workerRepository;
 
-    @Autowired
-    ManagerRepository managerRepository;
+//    @Autowired
+//    ManagerRepository managerRepository;
 
     @Autowired
     CountryRepository countryRepository;
@@ -37,6 +37,11 @@ public class PostOfficeService {
         for(PostOffice p: postOfficeRepository.findAll()){
             if(!p.getDeleted()){
                 PostOfficeDTO po = new PostOfficeDTO(p);
+                for(Worker w: workerRepository.findAll()){
+                    if(w.getPostOffice() != null && w.getPostOffice().getId() == p.getId()){
+                        po.setManagerID(w.getId());
+                    }
+                }
                 ret.add(po);
             }
         }
@@ -64,7 +69,7 @@ public class PostOfficeService {
         p.setPhoneNumber(dto.getPhoneNumber());
         p.setEmployeeNumber(1);
 
-        Manager m = this.managerRepository.findById(dto.getManagerID()).orElseGet(null);
+        Worker m = this.workerRepository.findById(dto.getManagerID()).orElseGet(null);
 //        p.setManager(m);
         Address a = new Address();
         City found = cityRepository.findByPostalCode(dto.getPostalCode());
@@ -93,24 +98,31 @@ public class PostOfficeService {
         this.postOfficeRepository.save(p);
 
         m.setPostOffice(p);
-        this.managerRepository.save(m);
+        this.workerRepository.save(m);
         return p;
     }
 
 
     public PostOffice editPostOffice(AddPostOfficeDTO dto){
         PostOffice p = this.postOfficeRepository.findById(dto.getId()).orElseGet(null);
-        Manager m = this.managerRepository.findById(dto.getManagerID()).orElseGet(null);
+        Worker m = this.workerRepository.findById(dto.getManagerID()).orElseGet(null);
         //p.setManager(m);
         m.setPostOffice(p);
         p.setPhoneNumber(dto.getPhoneNumber());
-        p.getAddress().getCity().setCityName(dto.getCity());
-        p.getAddress().getCity().getCountry().setCountryName(dto.getCountry());
+
+        City c = cityRepository.findByPostalCode(dto.getPostalCode());
+        if(c != null){
+            p.getAddress().setCity(c);
+        }else{
+            p.getAddress().getCity().setCityName(dto.getCity());
+            p.getAddress().getCity().getCountry().setCountryName(dto.getCountry());
+        }
         p.getAddress().setStreet(dto.getStreet());
         p.getAddress().setStreetNumber(dto.getStreetNumber());
         p.getAddress().setLatitude(dto.getLatitude());
         p.getAddress().setLongitude(dto.getLongitude());
-        this.managerRepository.save(m);
+        this.workerRepository.save(m);
+        this.postOfficeRepository.save(p);
         return p;
     }
 }

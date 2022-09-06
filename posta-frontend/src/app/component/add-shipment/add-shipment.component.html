@@ -167,7 +167,12 @@
                 </div><br>
                
             </div><br>
-            <div class="float-right" style="margin-right: 5ch; margin-top: 70px;">
+            <div *ngIf="!email" class="float-right" style="margin-right: 5ch; margin-top: 70px;">
+                <button class="btn btn-primary" style="margin-right: 1ch;">Otkaži</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#totalPrice" (click)="findTotalPrice()">Sačuvaj</button>
+            </div>
+
+            <div *ngIf="email" class="float-right" style="margin-right: 5ch; margin-top: 5px;">
                 <button class="btn btn-primary" style="margin-right: 1ch;">Otkaži</button>
                 <button class="btn btn-primary" data-toggle="modal" data-target="#totalPrice" (click)="findTotalPrice()">Sačuvaj</button>
             </div>
@@ -185,20 +190,20 @@
     <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Укупна цијена пошиљке</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Ukupna cijena pošiljke</h5>
         </div>
         
         <div  class="container"  style="margin: 5% 5% 5% 5%;">
             
-                <label>Услуга: {{typePrice}} дин</label><br>        
-                <label>Маса: {{weightPrice}} дин</label><br>
-                <label *ngIf="this.shipment.returnReceipt">Повратница: 50 дин</label><br>
-                <label *ngIf="this.shipment.emailReport">Емаил: 100 дин</label><br>
-                <b>Укупно: {{totalPrice}}</b>
+                <label>Услуга: {{typePrice}} din</label><br>        
+                <label>Маса: {{weightPrice}} din</label><br>
+                <label *ngIf="this.shipment.returnReceipt">Povratnica: 50 din</label><br>
+                <label *ngIf="this.shipment.emailReport">Email: 100 din</label><br>
+                <b>Ukupno: {{totalPrice}}</b>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Назад</button>
-            <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="addShipment()">Потврдите?</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nazad</button>
+            <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="addShipment()">Potvrdite?</button>
         </div>
     </div>
     </div>

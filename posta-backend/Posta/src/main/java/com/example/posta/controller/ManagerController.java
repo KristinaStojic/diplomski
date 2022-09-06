@@ -3,6 +3,7 @@ package com.example.posta.controller;
 import com.example.posta.dto.AddWorkerDTO;
 import com.example.posta.dto.WorkerDTO;
 import com.example.posta.model.Manager;
+import com.example.posta.model.Worker;
 import com.example.posta.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,8 +42,8 @@ public class ManagerController {
 
     @RequestMapping(value="/addManager", method = RequestMethod.POST)
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public ResponseEntity<Manager> addManager(@RequestBody AddWorkerDTO dto) {
-        Manager m = this.managerService.addManager(dto);
+    public ResponseEntity<Worker> addManager(@RequestBody AddWorkerDTO dto) {
+        Worker m = this.managerService.addManager(dto);
         if(m!=null){
             return new ResponseEntity<>(m, HttpStatus.OK);
         }
@@ -51,8 +52,8 @@ public class ManagerController {
 
     @RequestMapping(value="/editManager", method = RequestMethod.PUT)
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public ResponseEntity<Manager> editManager(@RequestBody AddWorkerDTO dto) {
-        Manager m = this.managerService.editManager(dto);
+    public ResponseEntity<Worker> editManager(@RequestBody AddWorkerDTO dto) {
+        Worker m = this.managerService.editManager(dto);
         if(m!=null){
             return new ResponseEntity<>(m, HttpStatus.OK);
         }
@@ -61,8 +62,8 @@ public class ManagerController {
 
     @RequestMapping(value="/deleteManager/{id}", method = RequestMethod.DELETE)
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public ResponseEntity<Manager> deleteManager(@PathVariable Long id) {
-        Manager m = this.managerService.deleteManager(id);
+    public ResponseEntity<Worker> deleteManager(@PathVariable Long id) {
+        Worker m = this.managerService.deleteManager(id);
         if(m!=null){
             return new ResponseEntity<>(m, HttpStatus.OK);
         }

@@ -52,13 +52,13 @@ export class ManagerHomeComponent implements OnInit {
 
   selectRole($event){
     var selected = $event.target.value
-    if(selected == 'Поштар'){
+    if(selected == 'Poštar'){
       this.employee.role = 'ROLE_POSTMAN'
     }
-    else if(selected == 'Шалтерски радник'){
+    else if(selected == 'Šalterski radnik'){
       this.employee.role = 'ROLE_COUNTER_WORKER'
     }
-    else if(selected == 'Обрачунски радник'){
+    else if(selected == 'Obračunski radnik'){
       this.employee.role = 'ROLE_ACCOUNTING_WORKER'
     }
 

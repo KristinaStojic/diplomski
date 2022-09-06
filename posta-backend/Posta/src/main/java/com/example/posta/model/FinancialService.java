@@ -25,7 +25,7 @@ public class FinancialService {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "counter_worker_id", nullable = true)
     @JsonBackReference
-    private CounterWorker counterWorker;
+    private Worker worker;
 
     @OneToOne(targetEntity = Client.class,cascade = CascadeType.MERGE)
     @JoinColumn(name = "client_id")

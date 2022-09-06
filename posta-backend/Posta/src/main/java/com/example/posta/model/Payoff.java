@@ -24,13 +24,10 @@ public class Payoff extends FinancialService{
 
     @Column(name = "paid_off", unique = false)
     private Boolean paidOff;
-//
-//    @Column(name = "post_office", unique = false)
-//    private Long post_office;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "accounting_worker_id", nullable = false)
+    @JoinColumn(name = "accworker_id", nullable = false)
     @JsonBackReference
-    private AccountingWorker accountingWorker;
+    private Worker accworker;
 
 }

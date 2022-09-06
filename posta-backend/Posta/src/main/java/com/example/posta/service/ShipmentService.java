@@ -26,8 +26,8 @@ public class ShipmentService {
     @Autowired
     WorkerRepository workerRepository;
 
-    @Autowired
-    CounterWorkerRepository counterWorkerRepository;
+//    @Autowired
+//    CounterWorkerRepository counterWorkerRepository;
 
     @Autowired
     AddressRepository addressRepository;
@@ -163,13 +163,12 @@ public class ShipmentService {
         s.setReturnReceipt(dto.getReturnReceipt());
         s.setCode(UUID.randomUUID().toString().toUpperCase().substring(0,11));
         Worker w = workerRepository.findByEmail(dto.getCounterWorker());
-        CounterWorker cw = counterWorkerRepository.findById(w.getId()).orElseGet(null);
 
-        if (cw == null){
+        if (w == null){
             return null;
         }
 
-        s.setReceivingPostOffice(postOfficeRepository.findById(cw.getPostOffice().getId()).orElseGet(null));
+        s.setReceivingPostOffice(postOfficeRepository.findById(w.getPostOffice().getId()).orElseGet(null));
         s.setDeliveringPostOffice(null);
 
         if(dto.getShipmentType().equals(ShipmentType.LETTER.toString())){
@@ -306,16 +305,16 @@ public class ShipmentService {
             if (!map.containsKey(r.getShipmentStatus().toString())) {
                 Integer n = countShipmentsYearly(r.getShipmentStatus().toString(), Integer.parseInt(dto.getYear()), po.getId());
                 if(r.getShipmentStatus().toString().equals("RECEIVED")){
-                    map.put("Чека на испоруку", n);
+                    map.put("Čeka na isporuku", n);
                 }
                 else if(r.getShipmentStatus().toString().equals("DELIVERED")){
-                    map.put("Достављено", n);
+                    map.put("Dostavljeno", n);
                 }
 //                else if(r.getShipmentStatus().toString().equals("SENDING")){
 //                    map.put("Послато на испоруку", n);
 //                }
                 else if(r.getShipmentStatus().toString().equals("RETURNED")){
-                    map.put("Враћено", n);
+                    map.put("Vraćeno pošiljaocu", n);
                 }
             }
 
@@ -359,16 +358,16 @@ public class ShipmentService {
             if (!map.containsKey(r.getShipmentStatus().toString())) {
                 Integer n = countShipmentsMonthly(r.getShipmentStatus().toString(), Integer.parseInt(dto.getYear()), dto.getMonth(), po.getId());
                 if(r.getShipmentStatus().toString().equals("RECEIVED")){
-                    map.put("Чека на испоруку", n);
+                    map.put("Čeka na isporuku", n);
                 }
                 else if(r.getShipmentStatus().toString().equals("DELIVERED")){
-                    map.put("Достављено", n);
+                    map.put("Dostavljeno", n);
                 }
 //                else if(r.getShipmentStatus().toString().equals("SENDING")){
 //                    map.put("Послато на испоруку", n);
 //                }
                 else if(r.getShipmentStatus().toString().equals("RETURNED")){
-                    map.put("Враћено", n);
+                    map.put("Vraćeno pošiljaocu", n);
                 }
             }
 
@@ -442,10 +441,10 @@ public class ShipmentService {
             start = start.plusDays(1);
         }
 
-        map.put("Чека на испоруку", received);
-        map.put("Достављено", delivered);
+        map.put("Čeka na isporuku", received);
+        map.put("Dostavljeno", delivered);
         //map.put("Послато на испоруку", sending);
-        map.put("Враћено", returned);
+        map.put("Vraćeno pošiljaocu", returned);
 
 
         return map;

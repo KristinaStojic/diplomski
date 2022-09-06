@@ -45,6 +45,7 @@ export class AddPaymentComponent implements OnInit {
     this.payment.clientAddress = this.clientAddress;
     this.payment.receiver = this.receiver;
     this.payment.receiverAddress = this.receiverAddress;
+    console.log(this.receiverAddress)
     this.payment.counterWorker = this.worker;
     this.isValid()
 

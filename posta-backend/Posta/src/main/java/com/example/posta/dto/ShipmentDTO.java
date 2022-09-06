@@ -84,13 +84,13 @@ public class ShipmentDTO {
         this.totalPrice = s.getTotalPrice();
 
         if(s.getShipmentStatus().equals(ShipmentStatus.RECEIVED)){
-            this.shipmentStatus = "Чека на испоруку";
+            this.shipmentStatus = "Čeka na isporuku";
         }
         else if(s.getShipmentStatus().equals(ShipmentStatus.DELIVERED)){
-            this.shipmentStatus = "Достављено";
+            this.shipmentStatus = "Dostavljeno";
         }
         else if(s.getShipmentStatus().equals(ShipmentStatus.RETURNED)){
-            this.shipmentStatus = "Враћено";
+            this.shipmentStatus = "Vraćeno pošiljaocu";
         }
 //        else if(s.getShipmentStatus().equals(ShipmentStatus.SENDING)){
 //            this.shipmentStatus = "Испорука у току";

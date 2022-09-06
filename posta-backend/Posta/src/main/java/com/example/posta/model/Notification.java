@@ -25,5 +25,5 @@ public class Notification {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "manager_id", nullable = false)
     @JsonBackReference
-    private Manager manager;
+    private Worker worker;
 }

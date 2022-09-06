@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 
 @Getter
 @Setter
-@Entity
+//@Entity
 @NoArgsConstructor
 public class Admin extends Worker{
     public Admin(Worker u) {

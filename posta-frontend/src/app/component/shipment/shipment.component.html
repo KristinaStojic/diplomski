@@ -63,28 +63,28 @@
   <div class="modal-dialog modal-dialog-centered " role="document">
   <div class="modal-content">
       <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Промијени статус пошиљке: {{selectedShipment?.code}}</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Promijeni status pošiljke: {{selectedShipment?.code}}</h5>
       </div>
       
       <div  class="container"  style="margin: 5% 5% 5% 5%;">
-              <b *ngIf="this.selectedShipment?.shipmentStatus == 'Достављено'">Не може се мијењати статус пошиљке која је већ достављена!!</b>      
+              <b *ngIf="this.selectedShipment?.shipmentStatus == 'Достављено'">Ne može se mijenjati status pošiljke koja je već postavljena!!</b>      
 
-              <label *ngIf="this.selectedShipment?.shipmentStatus != 'Достављено'">Тренутни статус: </label>&nbsp;&nbsp;
+              <label *ngIf="this.selectedShipment?.shipmentStatus != 'Достављено'">Trenutni status: </label>&nbsp;&nbsp;
               <b *ngIf="this.selectedShipment?.shipmentStatus != 'Достављено'">{{this.selectedShipment?.shipmentStatus}}</b><br>
               <div class="row" style="width: 95%;" *ngIf="this.selectedShipment?.shipmentStatus != 'Достављено'">
-                <label class="col-sm-4">Нови статус:</label>
+                <label class="col-sm-4">Novi status:</label>
                 <select class="form-select col" (change)="newStatus($event)" aria-label="Default select example" >
-                  <option value="1">Чека на испоруку</option>
+                  <option value="1">Čeka na isporuku</option>
                   <!-- <option value="2">Послато на испоруку</option> -->
-                  <option value="3">Достављено</option>
-                  <option value="4">Враћено</option>
+                  <option value="3">Dostavljeno</option>
+                  <option value="4">Vraćeno pošiljaocu</option>
                 </select>
               </div>
               
       </div>
       <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Одустани</button>
-          <button [disabled]="this.selectedShipment?.shipmentStatus == 'Достављено'" type="button" class="btn btn-primary"  data-dismiss="modal" (click)="changeStatus()">Сачувај</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Odustani</button>
+          <button [disabled]="this.selectedShipment?.shipmentStatus == 'Достављено'" type="button" class="btn btn-primary"  data-dismiss="modal" (click)="changeStatus()">Sačuvaj</button>
       </div>
   </div>
   </div>
@@ -152,36 +152,36 @@
         
      
         <div class="container" style="margin: 5% 5% 5% 5%;">
-            <label>Пошиљалац:</label>&nbsp;&nbsp;<br>
+            <label>Pošiljalac:</label>&nbsp;&nbsp;<br>
             <h6>{{selectedShipment?.sender}}, {{selectedShipment?.senderAddress}}</h6>
            
-            <label>Прималац:</label>&nbsp;&nbsp;<br>
+            <label>Primalac:</label>&nbsp;&nbsp;<br>
             <h6>{{selectedShipment?.receiver}}, {{selectedShipment?.receiverAddress}}</h6>
             
-            <label>Датум слања:</label>&nbsp;&nbsp;<br>
+            <label>Datum slanja:</label>&nbsp;&nbsp;<br>
             <h6>{{selectedShipment?.date}}</h6>
 
-            <label>Услуга:</label>&nbsp;&nbsp;<br>
+            <label>Usluga:</label>&nbsp;&nbsp;<br>
             <h6>{{selectedShipment?.shipmentType}}</h6>
 
-            <label>Укупна цијена:</label>&nbsp;&nbsp;<br>
-            <h6>{{selectedShipment?.totalPrice}} дин</h6>
+            <label>Ukupna cijena:</label>&nbsp;&nbsp;<br>
+            <h6>{{selectedShipment?.totalPrice}} din</h6>
            
-            <label>Маса:</label>&nbsp;&nbsp;<br>
-            <h6>{{selectedShipment?.weight}} гр</h6>
+            <label>Masa:</label>&nbsp;&nbsp;<br>
+            <h6>{{selectedShipment?.weight}} gr</h6>
 
-            <label *ngIf="selectedShipment?.letterType != null">Врста пошиљке:</label>&nbsp;&nbsp;<br>
-            <h6 *ngIf="selectedShipment?.letterType != null">{{selectedShipment?.letterType}} (укупна вриједност: {{selectedShipment?.value}} дин)</h6>
+            <label *ngIf="selectedShipment?.letterType != null">Vrsta pošiljke:</label>&nbsp;&nbsp;<br>
+            <h6 *ngIf="selectedShipment?.letterType != null">{{selectedShipment?.letterType}} (ukupna vrijednost: {{selectedShipment?.value}} din)</h6>
            
-            <label>Додатно:</label>&nbsp;&nbsp;<br>
-            <h6 *ngIf="selectedShipment?.personalDelivery">Лична испорука</h6>
-            <h6 *ngIf="selectedShipment?.returnReceipt">Повратница</h6>
-            <h6 *ngIf="selectedShipment?.emailReport">Електронска потврда о уручењу пошиљке - емаил: {{selectedShipment?.email}}</h6>
+            <label>Dodatno:</label>&nbsp;&nbsp;<br>
+            <h6 *ngIf="selectedShipment?.personalDelivery"> Lična isporuka</h6>
+            <h6 *ngIf="selectedShipment?.returnReceipt">Povratnica</h6>
+            <h6 *ngIf="selectedShipment?.emailReport">Elektronska potvrda o uručenju pošiljke: {{selectedShipment?.email}}</h6>
 
         </div>
         
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Затвори</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
         </div>
     </div>
     </div>

@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 
 @Getter
 @Setter
-@Entity
+//@Entity
 @NoArgsConstructor
 public class Manager extends Worker {
     public Manager(Worker u) {
