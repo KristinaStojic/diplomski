@@ -102,14 +102,14 @@
       </div>
       
       <div  class="container"  style="margin: 5% 5% 5% 5%;">
-          <b *ngIf="this.selectedShipment?.shipmentStatus == 'Достављено'">Не може се мијењати статус пошиљке која је већ испоручена!!</b>      
+          <b *ngIf="this.selectedShipment?.shipmentStatus == 'Достављено'">Ne može se mijenjati status pošiljke koja je već isporučena!!</b>      
           <!-- <b *ngIf="this.selectedShipment?.shipmentStatus != 'Достављено'">Пошиљка {{selectedShipment?.code}} је успјешно испоручена!</b> -->
-          <b *ngIf="this.selectedShipment?.shipmentStatus != 'Достављено'">Да ли сте сигурни да желите да испоручите пошиљку са шифром: {{selectedShipment?.code}}?</b>
+          <b *ngIf="this.selectedShipment?.shipmentStatus != 'Достављено'">Da li ste sigurni da želite da isporučite pošiljku sa šifrom: {{selectedShipment?.code}}?</b>
 
       </div>
       <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Затвори</button>
-          <button *ngIf="this.selectedShipment?.shipmentStatus != 'Достављено'" type="button" class="btn btn-primary"  data-dismiss="modal" (click)="deliverShipment()">Сачувај</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+          <button *ngIf="this.selectedShipment?.shipmentStatus != 'Достављено'" type="button" class="btn btn-primary"  data-dismiss="modal" (click)="deliverShipment()">Potvrdi</button>
 
       </div>
   </div>
@@ -123,17 +123,17 @@
   <div class="modal-dialog modal-dialog-centered " role="document">
   <div class="modal-content">
       <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Унесите пристиглу пошиљку</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Unesi pristiglu pošiljku</h5>
       </div>
       
       <div  class="container"  style="margin: 5% 5% 5% 5%;">
-              <label >Шифра пошиљке: </label>&nbsp;&nbsp;
+              <label >Šifra pošiljke: </label>&nbsp;&nbsp;
               <input type="text" name="code" style="width: 30ch;" [(ngModel)]="shipmentCode">             
       </div>
 
       <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Одустани</button>
-          <button type="button" [disabled]="this.shipmentCode === ''" class="btn btn-primary"  data-dismiss="modal" (click)="recordShipment()">Сачувај</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+          <button type="button" [disabled]="this.shipmentCode === ''" class="btn btn-primary"  data-dismiss="modal" (click)="recordShipment()">Sačuvaj</button>
       </div>
 
   </div>
@@ -147,7 +147,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Детаљи пошиљке са шифром: {{selectedShipment?.code}}</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Detalji pošiljke sa šifrom: {{selectedShipment?.code}}</h5>
         </div>
         
      

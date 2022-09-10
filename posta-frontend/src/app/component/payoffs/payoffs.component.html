@@ -58,11 +58,11 @@
         
         <div  class="container"  style="margin: 5% 5% 5% 5%;">
   
-            <h6>Da li ste sigurni da želite da izvršite isplatu za korisnika: {{selectedPayoff?.client?.name}} {{selectedPayoff?.client?.surname}}?</h6>
+            <b>Da li ste sigurni da želite da izvršite isplatu za korisnika: {{selectedPayoff?.client?.name}} {{selectedPayoff?.client?.surname}}?</b>
                 
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Odbij</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
             <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="payOff()">Potvrdi</button>
         </div>
     </div>

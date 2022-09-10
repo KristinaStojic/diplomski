@@ -64,7 +64,7 @@
 						<textFieldExpression><![CDATA[$F{client.name}]]></textFieldExpression>
 					</textField>
 					<textField>
-						<reportElement x="75" y="10" width="129" height="30" uuid="7103a046-19f4-41e1-8abf-e5ed1eb61b08"/>
+						<reportElement x="72" y="10" width="129" height="30" uuid="7103a046-19f4-41e1-8abf-e5ed1eb61b08"/>
 						<textElement>
 							<font size="15"/>
 						</textElement>
@@ -78,7 +78,7 @@
 						<textFieldExpression><![CDATA[$F{client.address.street}]]></textFieldExpression>
 					</textField>
 					<textField>
-						<reportElement x="108" y="31" width="69" height="30" uuid="f9a311d1-69f2-4bbc-9a27-78c5e3a356e1"/>
+						<reportElement x="104" y="31" width="69" height="30" uuid="f9a311d1-69f2-4bbc-9a27-78c5e3a356e1"/>
 						<textElement>
 							<font size="15"/>
 						</textElement>
@@ -137,7 +137,7 @@
 						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textField>
-						<reportElement x="5" y="15" width="100" height="30" uuid="a4e1bb7d-dcf1-421d-bb69-e1b9900b0164"/>
+						<reportElement x="5" y="15" width="239" height="30" uuid="a4e1bb7d-dcf1-421d-bb69-e1b9900b0164"/>
 						<textElement>
 							<font size="15"/>
 						</textElement>
@@ -168,7 +168,7 @@
 						<textFieldExpression><![CDATA[$F{receiver.name}]]></textFieldExpression>
 					</textField>
 					<textField>
-						<reportElement x="70" y="10" width="126" height="19" uuid="1cbaebd6-d0a5-4e39-ae5d-bd1d96c9e0b1"/>
+						<reportElement x="67" y="10" width="126" height="19" uuid="1cbaebd6-d0a5-4e39-ae5d-bd1d96c9e0b1"/>
 						<textElement>
 							<font size="15"/>
 						</textElement>
@@ -182,7 +182,7 @@
 						<textFieldExpression><![CDATA[$F{receiver.address.street}]]></textFieldExpression>
 					</textField>
 					<textField>
-						<reportElement x="105" y="31" width="126" height="19" uuid="6cab83f5-802b-4d9a-9371-d290e3d90da6"/>
+						<reportElement x="101" y="31" width="126" height="19" uuid="6cab83f5-802b-4d9a-9371-d290e3d90da6"/>
 						<textElement>
 							<font size="15"/>
 						</textElement>
@@ -398,6 +398,13 @@
 				<staticText>
 					<reportElement x="488" y="417" width="9" height="29" uuid="c4475f94-56be-405b-9edd-7b786731fb45"/>
 					<text><![CDATA[,]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="498" y="411" width="100" height="30" uuid="f0431ced-b10e-4964-ba7a-c298459d3cfe"/>
+					<textElement>
+						<font size="15"/>
+					</textElement>
+					<text><![CDATA[07.09.2022.]]></text>
 				</staticText>
 			</frame>
 		</band>
