@@ -69,7 +69,7 @@ public class ShipmentService {
                 return null;
             }
 
-            if(p.getDeliveringPostOffice() != null && p.getDeliveringPostOffice().getId() != p.getReceivingPostOffice().getId() && p.getDeliveringPostOffice().getId() == w.getPostOffice().getId()){
+            if(p.getDeliveringPostOffice() != null  && p.getDeliveringPostOffice().getId() == w.getPostOffice().getId()){
                 ShipmentDTO s = new ShipmentDTO(p);
                 ret.add(s);
             }
@@ -250,7 +250,7 @@ public class ShipmentService {
                 Worker w = workerRepository.findByEmail(dto.getCounterWorkerEmail());
 
                 if(w.getPostOffice() != null){
-                    s.setDeliveringPostOffice(postOfficeRepository.findById(w.getPostOffice().getId()).orElseGet(null));
+                    s.setDeliveringPostOffice(postOfficeRepository.findById(33L).orElseGet(null));
                 }
 
                 if(dto.getEmailReport()){

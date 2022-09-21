@@ -20,27 +20,27 @@ public class EmailService {
     private WorkerRepository workerRepository;
 
     public void sendMailForNewNotification(String userEmail, String content) throws MessagingException {
-        String text = "<br>Ново обавјештење примљено:<br>" + content;
+        String text = "<br>Novo obavještenje primljeno:<br>" + content;
         Worker worker = workerRepository.findByEmail(userEmail);
 
         MimeMessage mail = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mail);
         helper.setTo(userEmail);
         helper.setFrom("posta.diplomski@gmail.com");
-        helper.setSubject("Ново обавјештење");
+        helper.setSubject("Novo obavještenje");
         helper.setText(text, true);
         javaMailSender.send(mail);
 
     }
 
     public void sendMailForDeliveredShipment(String userEmail, String content) throws MessagingException {
-        String text = "<br>Поштовани,<br><br>Ваша пошиљка " + content + " је успјешно испоручена!<br><br>Поздрав";
+        String text = "<br>Poštоvani,<br><br>Vaša pošiljka " + content + " je uspješno isporučena!<br><br>Pozdrav";
 
         MimeMessage mail = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mail);
         helper.setTo(userEmail);
         helper.setFrom("posta.diplomski@gmail.com");
-        helper.setSubject("Испорука пошиљке");
+        helper.setSubject("Isporuka pošiljke");
         helper.setText(text, true);
         javaMailSender.send(mail);
     }

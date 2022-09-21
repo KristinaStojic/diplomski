@@ -50,7 +50,7 @@
         
      
         <div class="container" style="margin: 5% 5% 5% 5%;">
-            <label>Управник:</label>
+            <label>Upravnik:</label>
 
             <select class="form-select" (change)="changeManager($event)" aria-label="Default select example" style="width: 425px;">
                 <option></option>
@@ -85,12 +85,12 @@
     <div class="modal-dialog modal-dialog-centered modal" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Измијени пословницу</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Izmijeni poslovnicu</h5>
         </div>
         
      
         <div class="container" style="margin: 5% 5% 5% 5%;">
-            <label>Управник:</label>
+            <label>Upravnik:</label>
 
             <select class="form-select" (change)="changeManager($event)" aria-label="Default select example" style="width: 425px;">
                 <option *ngIf="selectedManager" selected>{{selectedManager.name}} {{selectedManager.surname}}</option>
@@ -110,8 +110,8 @@
         </div>
         
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Назад</button>
-            <button type="button" [disabled]="this.selectedAddress == '' || this.selectedPostOffice.phoneNumber == ''" class="btn btn-primary"  data-dismiss="modal" (click)="editPostOffice()">Сачувај</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nazad</button>
+            <button type="button" [disabled]="this.selectedAddress == '' || this.selectedPostOffice.phoneNumber == ''" class="btn btn-primary"  data-dismiss="modal" (click)="editPostOffice()">Sačuvaj</button>
         </div>
     </div>
     </div>

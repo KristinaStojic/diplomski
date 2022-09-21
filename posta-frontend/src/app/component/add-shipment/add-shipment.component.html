@@ -7,66 +7,66 @@
                 <div class="row" >
                     <div class="col">
                         <label style="margin-bottom: 10px; margin-left: 0.5ch;" class="row">Pošiljalac:</label>
-                        <input style="width: 95%; margin-left: 0.5ch;" type="text" class="row" placeholder="Ime" [(ngModel)]="client.name" name="name">
+                        <input style="width: 95%; margin-left: 0.5ch;" type="text" class="row" autocomplete="off" placeholder="Ime" [(ngModel)]="client.name" name="name">
                     </div>
                     <div class="col">
-                        <input style="width: 107%; margin-top: 3.9ch;" type="text" class="row" placeholder="Prezime" [(ngModel)]="client.surname" name="name">
+                        <input style="width: 107%; margin-top: 3.9ch;" type="text" class="row" autocomplete="off" placeholder="Prezime" [(ngModel)]="client.surname" name="name">
                     </div>
                 </div>
                 <br>
 
                 <div class="row">
                     <div class="col-6" >
-                        <input type="text" placeholder="Ulica" style="width: 95%; margin-left: 0.5ch;" [(ngModel)]="clientAddress.street" name="street">
+                        <input type="text" placeholder="Ulica" style="width: 95%; margin-left: 0.5ch;" autocomplete="off" [(ngModel)]="clientAddress.street" name="street">
                     </div>
                     <div class="col-3" style="padding: 0%">
-                        <input type="text" placeholder="Broj" style="width: 100%;" [(ngModel)]="clientAddress.streetNumber" name="streetNumber">
+                        <input type="text" placeholder="Broj" style="width: 100%;" autocomplete="off" [(ngModel)]="clientAddress.streetNumber" name="streetNumber">
                     </div>
                     <div class="col-3" style="padding-right: 0%;">
-                        <input type="text" placeholder="Poštanski broj" style="width: 97%;" [(ngModel)]="clientAddress.postalCode" name="postalCode" autocomplete="off" (change) = findCity()>
+                        <input type="text" placeholder="Poštanski broj" style="width: 97%;" autocomplete="off" [(ngModel)]="clientAddress.postalCode" name="postalCode" autocomplete="off" (change) = findCity()>
                     </div>
                 </div><br>
 
                 <div class="row">
                     <div class="col">
-                        <input style="width: 95%; margin-left: 0.5ch; margin-top: 0.5ch;" type="text" class="row" placeholder="Grad" [(ngModel)]="clientAddress.city" autocomplete="off" name="city" >
+                        <input style="width: 95%; margin-left: 0.5ch; margin-top: 0.5ch;" autocomplete="off" type="text" class="row" placeholder="Grad" [(ngModel)]="clientAddress.city" autocomplete="off" name="city" >
                     </div>
     
                     <div class="col">
-                        <input style="width: 107%; margin-top: 0.5ch;" type="text" class="row" placeholder="Država" [(ngModel)]="clientAddress.country" name="country">
+                        <input style="width: 107%; margin-top: 0.5ch;" type="text" autocomplete="off" class="row" placeholder="Država" [(ngModel)]="clientAddress.country" name="country">
                     </div>
                 </div><br>
 
                 <div class="row">
                     <div class="col">
                         <label style="margin-bottom: 10px; margin-left: 0.5ch;" class="row">Primalac:</label>
-                        <input style="width: 95%; margin-left: 0.5ch;" type="text" class="row" placeholder="Ime" [(ngModel)]="receiver.name" name="rname">
+                        <input style="width: 95%; margin-left: 0.5ch;" type="text" autocomplete="off" class="row" placeholder="Ime" [(ngModel)]="receiver.name" name="rname">
                     </div>
                     <div class="col">
-                        <input style="width: 107%; margin-top: 3.9ch;" type="text" class="row" placeholder="Prezime" [(ngModel)]="receiver.surname" name="rsurname">
+                        <input style="width: 107%; margin-top: 3.9ch;" type="text" autocomplete="off" class="row" placeholder="Prezime" [(ngModel)]="receiver.surname" name="rsurname">
                     </div>
                 </div>
                 <br>
 
                 <div class="row">
                     <div class="col-6" >
-                        <input type="text" placeholder="Ulica" style="width: 95%; margin-left: 0.5ch;" [(ngModel)]="receiverAddress.street" name="rstreet">
+                        <input type="text" placeholder="Ulica" style="width: 95%; margin-left: 0.5ch;" autocomplete="off" [(ngModel)]="receiverAddress.street" name="rstreet">
                     </div>
                     <div class="col-3" style="padding: 0%">
-                        <input type="text" placeholder="Broj" style="width: 100%;"  [(ngModel)]="receiverAddress.streetNumber" name="rstreetNum">
+                        <input type="text" placeholder="Broj" style="width: 100%;"  autocomplete="off" [(ngModel)]="receiverAddress.streetNumber" name="rstreetNum">
                     </div>
                     <div class="col-3" style="padding-right: 0%;">
-                        <input type="text" placeholder="Poštanski broj" style="width: 97%;"  [(ngModel)]="receiverAddress.postalCode" name="rPostalCode" autocomplete="off" (change) = findCityReceiver()>
+                        <input type="text" placeholder="Poštanski broj" style="width: 97%;" autocomplete="off" [(ngModel)]="receiverAddress.postalCode" name="rPostalCode" autocomplete="off" (change) = findCityReceiver()>
                     </div>
                 </div><br>
 
                 <div class="row">
                     <div class="col">
-                        <input style="width: 95%; margin-left: 0.5ch; margin-top: 0.5ch;" type="text" class="row" placeholder="Grad"  [(ngModel)]="receiverAddress.city" name="rcity" >
+                        <input style="width: 95%; margin-left: 0.5ch; margin-top: 0.5ch;" autocomplete="off" type="text" class="row" placeholder="Grad"  [(ngModel)]="receiverAddress.city" name="rcity" >
                     </div>
     
                     <div class="col">
-                        <input style="width: 107%; margin-top: 0.5ch;" type="text" class="row" placeholder="Država"  [(ngModel)]="receiverAddress.country" name="rcountry">
+                        <input style="width: 107%; margin-top: 0.5ch;" type="text" class="row" autocomplete="off" placeholder="Država"  [(ngModel)]="receiverAddress.country" name="rcountry">
                     </div><br><br>
 
                 </div>
@@ -75,7 +75,7 @@
 
                     <div class="col" style="margin-left: 12px;"><br>
                         <label style="margin-bottom: 10px;" class="row">Datum prijema:</label>
-                        <input style="width: 103%;" type="text" class="row" [(ngModel)]="date" name="date" disabled>
+                        <input style="width: 103%;" type="text" class="row" [(ngModel)]="date" autocomplete="off" name="date" disabled>
                     </div>
                
                 </div><br>
@@ -195,8 +195,8 @@
         
         <div  class="container"  style="margin: 5% 5% 5% 5%;">
             
-                <label>Услуга: {{typePrice}} din</label><br>        
-                <label>Маса: {{weightPrice}} din</label><br>
+                <label>Usluga: {{typePrice}} din</label><br>        
+                <label>Masa: {{weightPrice}} din</label><br>
                 <label *ngIf="this.shipment.returnReceipt">Povratnica: 50 din</label><br>
                 <label *ngIf="this.shipment.emailReport">Email: 100 din</label><br>
                 <b>Ukupno: {{totalPrice}}</b>

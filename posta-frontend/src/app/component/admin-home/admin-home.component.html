@@ -49,17 +49,17 @@
         
         <div  class="container"  style="margin: 5% 5% 5% 5%;">
             <mat-form-field>
-                <input matInput required placeholder="Ime"  [(ngModel)]="manager.name">
+                <input matInput required placeholder="Ime" autocomplete="off" [(ngModel)]="manager.name">
             </mat-form-field>
             <br>
             <mat-form-field>
-                <input matInput required placeholder="Prezime" [(ngModel)]="manager.surname" >
+                <input matInput required placeholder="Prezime" autocomplete="off" [(ngModel)]="manager.surname" >
             </mat-form-field><br>
             <mat-form-field>
-                <input matInput required placeholder="Telefon" [(ngModel)]="manager.phoneNumber">
+                <input matInput required placeholder="Telefon" autocomplete="off" [(ngModel)]="manager.phoneNumber">
             </mat-form-field><br>
             <mat-form-field>
-                <input matInput required placeholder="Email" [(ngModel)]="manager.email">
+                <input matInput required placeholder="Email" autocomplete="off" [(ngModel)]="manager.email">
             </mat-form-field>
 
         </div>
@@ -83,7 +83,7 @@
         
         <div  class="container"  style="margin: 5% 5% 5% 5%;">
             <mat-form-field>
-                <input matInput required placeholder="Ime"  [(ngModel)]="selectedManager.name">
+                <input matInput required placeholder="Ime" autocomplete="off" [(ngModel)]="selectedManager.name">
             </mat-form-field>
             <br>
             <mat-form-field>

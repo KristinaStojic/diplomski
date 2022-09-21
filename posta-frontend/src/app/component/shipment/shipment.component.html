@@ -162,7 +162,8 @@
             <h6>{{selectedShipment?.date}}</h6>
 
             <label>Usluga:</label>&nbsp;&nbsp;<br>
-            <h6>{{selectedShipment?.shipmentType}}</h6>
+            <!-- <h6>{{selectedShipment?.shipmentType}}</h6> -->
+            <h6>Pismonosna usluga</h6>
 
             <label>Ukupna cijena:</label>&nbsp;&nbsp;<br>
             <h6>{{selectedShipment?.totalPrice}} din</h6>
@@ -171,8 +172,9 @@
             <h6>{{selectedShipment?.weight}} gr</h6>
 
             <label *ngIf="selectedShipment?.letterType != null">Vrsta pošiljke:</label>&nbsp;&nbsp;<br>
-            <h6 *ngIf="selectedShipment?.letterType != null">{{selectedShipment?.letterType}} (ukupna vrijednost: {{selectedShipment?.value}} din)</h6>
-           
+            <!-- <h6 *ngIf="selectedShipment?.letterType != null">{{selectedShipment?.letterType}} (ukupna vrijednost: {{selectedShipment?.value}} din)</h6> -->
+            <h6 *ngIf="selectedShipment?.letterType != null">Vrijednosna pošiljka (ukupna vrijednost: {{selectedShipment?.value}} din)</h6>
+
             <label>Dodatno:</label>&nbsp;&nbsp;<br>
             <h6 *ngIf="selectedShipment?.personalDelivery"> Lična isporuka</h6>
             <h6 *ngIf="selectedShipment?.returnReceipt">Povratnica</h6>

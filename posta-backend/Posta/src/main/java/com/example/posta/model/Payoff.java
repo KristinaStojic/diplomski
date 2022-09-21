@@ -25,7 +25,7 @@ public class Payoff extends FinancialService{
     @Column(name = "paid_off", unique = false)
     private Boolean paidOff;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "accworker_id", nullable = false)
     @JsonBackReference
     private Worker accworker;
